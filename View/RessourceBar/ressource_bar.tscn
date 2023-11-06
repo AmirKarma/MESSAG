@@ -1,10 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6i4vynrrtudd"]
 
-[ext_resource type="Texture2D" uid="uid://b50y1o5odckwc" path="res://Welt/937757.png" id="1_f21kx"]
-[ext_resource type="Texture2D" uid="uid://blpllbfwmq0sr" path="res://Welt/pngtree-yellow-lightning-sign-bolt-vector-png-image_4651528.png" id="2_ueuve"]
+[ext_resource type="Texture2D" uid="uid://b50y1o5odckwc" path="res://RessourceBar/coin.png" id="1_ingmr"]
+[ext_resource type="Texture2D" uid="uid://blpllbfwmq0sr" path="res://RessourceBar/lightning.png" id="2_tad4p"]
 
 [node name="RessourceBar" type="Control"]
 layout_mode = 3
+anchor_left = -0.025
 anchor_right = -0.025
 offset_right = 328.0
 offset_bottom = 16.0
@@ -33,7 +34,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_f21kx")
+texture = ExtResource("1_ingmr")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer"]
@@ -50,7 +51,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_ueuve")
+texture = ExtResource("2_tad4p")
 expand_mode = 2
 
 [node name="Label2" type="Label" parent="HBoxContainer"]

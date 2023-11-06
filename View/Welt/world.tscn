@@ -10,3 +10,19 @@ polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, 127, 58, 127, 59, 180, 0, 181)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="."]
+position = Vector2(136, 0)
+polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="."]
+position = Vector2(264, 0)
+polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="."]
+position = Vector2(136, 128)
+polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="."]
+position = Vector2(264, 128)
+polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)

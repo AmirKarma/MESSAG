@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdfejtgr3uct"]
+[gd_scene load_steps=3 format=3 uid="uid://cdfejtgr3uct"]
 
 [ext_resource type="Script" path="res://Welt/world.gd" id="1_fs3ho"]
+[ext_resource type="PackedScene" uid="uid://c6i4vynrrtudd" path="res://RessourceBar/ressource_bar.tscn" id="2_tdseh"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_fs3ho")
@@ -10,6 +11,7 @@ polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, 127, 58, 127, 59, 180, 0, 181)
+
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="."]
 position = Vector2(136, 0)
@@ -26,3 +28,7 @@ polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
 [node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="."]
 position = Vector2(264, 128)
 polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
+
+[node name="RessourceBar" parent="." instance=ExtResource("2_tdseh")]
+grow_horizontal = 2
+grow_vertical = 2

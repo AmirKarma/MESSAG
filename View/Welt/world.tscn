@@ -22,10 +22,12 @@ polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
 
 [node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="."]
 position = Vector2(136, 128)
+scale = Vector2(1.00417, 1.05783)
 polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
 
 [node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="."]
 position = Vector2(264, 128)
+scale = Vector2(1, 1.07092)
 polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
 
 [node name="RessourceBar" parent="." instance=ExtResource("2_tdseh")]

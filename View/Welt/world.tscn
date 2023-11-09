@@ -7,30 +7,6 @@
 [node name="World" type="Node2D"]
 script = ExtResource("1_fs3ho")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(0, 127, 58, 127, 59, 180, 0, 181)
-
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="."]
-position = Vector2(136, 0)
-polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
-
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="."]
-position = Vector2(264, 0)
-polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
-
-[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="."]
-position = Vector2(136, 128)
-scale = Vector2(1.00417, 1.05783)
-polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
-
-[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="."]
-position = Vector2(264, 128)
-scale = Vector2(1, 1.07092)
-polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
-
 [node name="RessourceBar" parent="." instance=ExtResource("2_tdseh")]
 offset_right = 320.0
 grow_horizontal = 2
@@ -38,3 +14,29 @@ grow_vertical = 2
 
 [node name="Player" parent="." instance=ExtResource("3_g0tsn")]
 position = Vector2(72, 88)
+
+[node name="Borders" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Borders"]
+polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Borders"]
+polygon = PackedVector2Array(0, 127, 58, 127, 59, 180, 0, 181)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Borders"]
+position = Vector2(136, 0)
+polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Borders"]
+position = Vector2(264, 0)
+polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Borders"]
+position = Vector2(136, 128)
+scale = Vector2(1.00417, 1.05783)
+polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Borders"]
+position = Vector2(264, 128)
+scale = Vector2(1, 1.07092)
+polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)

@@ -1,28 +1,47 @@
 extends CharacterBody2D
 
+var max_speed = 100
+var speed = 0
+var acceleration = 400
+var move_direction
+var moving = false
+var destination = Vector2()
+var movement = Vector2()
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+@onready var animationPlayer = $AnimationPlayer
+@onready var animationTree = $AnimationTree
+@onready var animationState = animationTree.get("parameters/playback")
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+func _unhandled_input(event):
+	if event.is_action_pressed('Click'):
+		moving = true
+		destination = get_global_mouse_position()
+		animationState.travel("Run")
 
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	
+	MovementLoop(delta)
+	
 
-	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
+func MovementLoop(delta):
+	if moving == false:
+		animationState.travel("Idle")
+		speed = 0
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		speed += acceleration * delta
+		if speed > max_speed:
+			speed = max_speed
+	movement = position.direction_to(destination) * speed
+	move_direction = rad_to_deg(destination.angle_to_point(position))
+	if position.distance_to(destination) > 5:
+		animationTree.set("parameters/Idle/blend_position", movement)
+		animationTree.set("parameters/Run/blend_position", movement)
 
-	move_and_slide()
+		velocity = movement
+		move_and_slide()
+	else:
+		moving = false
+		
+

@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6i4vynrrtudd"]
+[gd_scene load_steps=4 format=3 uid="uid://c6i4vynrrtudd"]
 
 [ext_resource type="Texture2D" uid="uid://b50y1o5odckwc" path="res://RessourceBar/coin.png" id="1_ingmr"]
 [ext_resource type="Texture2D" uid="uid://blpllbfwmq0sr" path="res://RessourceBar/lightning.png" id="2_tad4p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3yyqo"]
+size = Vector2(320, 37)
 
 [node name="RessourceBar" type="Control"]
 layout_mode = 3
@@ -65,3 +68,9 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 color = Color(0, 0, 0, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(160, 18.5)
+shape = SubResource("RectangleShape2D_3yyqo")

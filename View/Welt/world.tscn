@@ -37,3 +37,4 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Player" parent="." instance=ExtResource("3_g0tsn")]
+position = Vector2(72, 88)

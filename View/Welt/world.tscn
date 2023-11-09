@@ -1,42 +1,59 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdfejtgr3uct"]
+[gd_scene load_steps=6 format=3 uid="uid://cdfejtgr3uct"]
 
 [ext_resource type="Script" path="res://Welt/world.gd" id="1_fs3ho"]
+[ext_resource type="Texture2D" uid="uid://ckk16mfavv7tr" path="res://Welt/back.png" id="2_18102"]
 [ext_resource type="PackedScene" uid="uid://c6i4vynrrtudd" path="res://RessourceBar/ressource_bar.tscn" id="2_tdseh"]
 [ext_resource type="PackedScene" uid="uid://cwo4kcdmsf7cr" path="res://Player/player.tscn" id="3_g0tsn"]
+[ext_resource type="Texture2D" uid="uid://47jaxlpumdmx" path="res://Welt/spaceshipone-spacecraft-pixel-art-pixel-art-633ca2c9272cccd441e55f3186f6cfe0.png" id="5_1q3f0"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_fs3ho")
 
+[node name="Back" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(160, 90)
+texture = ExtResource("2_18102")
+
 [node name="RessourceBar" parent="." instance=ExtResource("2_tdseh")]
+top_level = true
 offset_right = 320.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Player" parent="." instance=ExtResource("3_g0tsn")]
+top_level = true
 position = Vector2(72, 88)
 
 [node name="Borders" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Borders"]
+position = Vector2(-51, 169)
 polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Borders"]
+position = Vector2(-54, 42)
 polygon = PackedVector2Array(0, 127, 58, 127, 59, 180, 0, 181)
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Borders"]
-position = Vector2(136, 0)
+position = Vector2(-54, 164)
 polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Borders"]
-position = Vector2(264, 0)
+position = Vector2(-54, 166)
 polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
 
 [node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Borders"]
-position = Vector2(136, 128)
+position = Vector2(-50, 170)
 scale = Vector2(1.00417, 1.05783)
 polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
 
 [node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Borders"]
-position = Vector2(264, 128)
+position = Vector2(126, 96)
 scale = Vector2(1, 1.07092)
-polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
+build_mode = 1
+polygon = PackedVector2Array(33, -28.0133, 41, -28.0133, 39, 15.8742, 47, 22.4106, 41, 23.3444, 41, 26.1457, 39, 28.9471, 33, 28.9471, 31, 26.1457, 30, 23.3444, 26, 23.3444, 25, 27.0795, 11, 34.5497, -1, 34.5497, -15, 27.0795, -15, 23.3444, -21, 23.3444, -21, 27.0795, -23, 28.9471, -29, 28.9471, -31, 27.0795, -31, 24.2782, -37, 23.3444, -37, 20.5431, -29, 14.0066, -31, -19.6093, -31, -27.0795, -29, -29.8809, -24, -28.9471, -21, -27.0795, -23, 8.40399, -15, 0, -15, -17.7418, -3, -30.8146, 13, -30.8146, 25, -17.7418, 25, 2.80133, 33, 8.40399, 31, -27.0795)
+
+[node name="Spaceshipone-spacecraft-pixel-art-pixel-art-633Ca2c9272Cccd441e55f3186f6Cfe0" type="Sprite2D" parent="."]
+position = Vector2(131, 99)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_1q3f0")

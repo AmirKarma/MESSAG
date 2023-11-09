@@ -5,6 +5,7 @@
 
 [node name="RessourceBar" type="Control"]
 layout_mode = 3
+anchor_left = -0.025
 anchor_right = -0.025
 offset_right = 328.0
 offset_bottom = 16.0

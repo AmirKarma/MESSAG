@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://d26fe4t3pqew4" path="res://Images/astronaut.png" id="2_8dut7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yw0jl"]
-radius = 8.0
-height = 16.0
+radius = 5.0
+height = 12.0
 
 [sub_resource type="Animation" id="Animation_40r3o"]
 resource_name = "IdleRight"
@@ -176,7 +176,7 @@ advance_mode = 0
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_i8lqd"]
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_36e0f")
-states/Idle/position = Vector2(422, 100)
+states/Idle/position = Vector2(421, 99.75)
 states/Run/node = SubResource("AnimationNodeBlendSpace2D_6fsyd")
 states/Run/position = Vector2(630, 100)
 transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_bg58m"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_0ra76"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_dwgmt")]
@@ -187,14 +187,14 @@ metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-8, -9)
+position = Vector2(-9.53674e-07, -8)
 scale = Vector2(0.75, 0.71875)
 texture = ExtResource("2_8dut7")
 hframes = 10
 vframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(0, 3)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_yw0jl")
 

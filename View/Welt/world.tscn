@@ -22,7 +22,7 @@ offset = Vector2(10, 10)
 
 [node name="RessourceBar" parent="." instance=ExtResource("2_tdseh")]
 top_level = true
-offset_right = 320.0
+offset_left = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 

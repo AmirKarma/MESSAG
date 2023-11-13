@@ -37,7 +37,6 @@ func MovementLoop(delta):
 	movement = position.direction_to(nav.target_position) * speed
 	move_direction = nav.get_next_path_position() - global_position
 	move_direction = move_direction.normalized()
-	print(position.distance_to(nav.target_position))
 	if position.distance_to(nav.target_position) > 20:
 		animationTree.set("parameters/Idle/blend_position", movement)
 		animationTree.set("parameters/Run/blend_position", movement)

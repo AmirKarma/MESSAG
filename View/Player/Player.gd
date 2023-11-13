@@ -11,12 +11,13 @@ var movement = Vector2()
 @onready var animationPlayer = $AnimationPlayer
 @onready var animationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
+@onready var nav : NavigationAgent2D = $NavigationAgent2D
 
 
 func _unhandled_input(event):
 	if event.is_action_pressed('Click'):
 		moving = true
-		destination = get_global_mouse_position()
+		nav.target_position = get_global_mouse_position()
 		animationState.travel("Run")
 
 
@@ -33,13 +34,15 @@ func MovementLoop(delta):
 		speed += acceleration * delta
 		if speed > max_speed:
 			speed = max_speed
-	movement = position.direction_to(destination) * speed
-	move_direction = rad_to_deg(destination.angle_to_point(position))
-	if position.distance_to(destination) > 5:
+	movement = position.direction_to(nav.target_position) * speed
+	move_direction = nav.get_next_path_position() - global_position
+	move_direction = move_direction.normalized()
+	print(position.distance_to(nav.target_position))
+	if position.distance_to(nav.target_position) > 20:
 		animationTree.set("parameters/Idle/blend_position", movement)
 		animationTree.set("parameters/Run/blend_position", movement)
 
-		velocity = movement
+		velocity = velocity.lerp(move_direction * speed, speed * delta)
 		move_and_slide()
 	else:
 		moving = false

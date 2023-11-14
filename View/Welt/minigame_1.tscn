@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://dajunsqxb1n7u"]
+
+[ext_resource type="Texture2D" uid="uid://bnpo6ouaxmymb" path="res://miniGame1/2833063-leuchtend-schimmernder-weltraum-hintergrund-vektor.jpg" id="1_wmih3"]
+[ext_resource type="Texture2D" uid="uid://dk2ajl41ehgqc" path="res://miniGame1/Links.png" id="2_ujj5k"]
+[ext_resource type="Texture2D" uid="uid://c07kk6mrv4mgw" path="res://miniGame1/Rechts.png" id="3_4rq5k"]
+[ext_resource type="Texture2D" uid="uid://cupblxprrds30" path="res://miniGame1/Vor.png" id="4_crehj"]
+[ext_resource type="Texture2D" uid="uid://do57lky7kooxw" path="res://miniGame1/Zurueck.png" id="5_whnsh"]
+[ext_resource type="Texture2D" uid="uid://rs25juq66hg6" path="res://miniGame1/Schuss.png" id="6_tr40v"]
+
+[node name="minigame1" type="Node2D"]
+
+[node name="2833063-leuchtend-schimmernder-weltraum-hintergrund-vektor" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+scale = Vector2(0.166667, 0.146461)
+texture = ExtResource("1_wmih3")
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(161, 91)
+
+[node name="TouchLinks" type="TouchScreenButton" parent="."]
+position = Vector2(2, 145)
+scale = Vector2(0.245, 0.25)
+texture_normal = ExtResource("2_ujj5k")
+action = "links"
+
+[node name="TouchRechts" type="TouchScreenButton" parent="."]
+position = Vector2(35, 145)
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("3_4rq5k")
+action = "rechts"
+
+[node name="TouchHoch" type="TouchScreenButton" parent="."]
+position = Vector2(287, 113)
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("4_crehj")
+action = "hoch"
+
+[node name="TouchRunter" type="TouchScreenButton" parent="."]
+position = Vector2(287, 146)
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("5_whnsh")
+action = "runter"
+
+[node name="TouchSchuss" type="TouchScreenButton" parent="."]
+position = Vector2(247, 130)
+scale = Vector2(0.289063, 0.382813)
+texture_normal = ExtResource("6_tr40v")
+action = "schuss"

@@ -13,6 +13,7 @@ var movement = Vector2()
 @onready var animationState = animationTree.get("parameters/playback")
 
 
+
 func _unhandled_input(event):
 	if event.is_action_pressed('Click'):
 		moving = true

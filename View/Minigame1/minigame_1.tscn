@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfq6ogl4ncriu"]
+
+[ext_resource type="Texture2D" uid="uid://dkbeg86ngsply" path="res://Minigame1/2833063-leuchtend-schimmernder-weltraum-hintergrund-vektor.jpg" id="1_tw1b6"]
+
+[node name="minigame1" type="Node2D"]
+
+[node name="2833063-leuchtend-schimmernder-weltraum-hintergrund-vektor" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+scale = Vector2(0.166667, 0.146461)
+texture = ExtResource("1_tw1b6")

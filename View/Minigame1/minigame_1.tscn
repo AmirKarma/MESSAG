@@ -1,10 +1,53 @@
-[gd_scene load_steps=2 format=3 uid="uid://bfq6ogl4ncriu"]
+[gd_scene load_steps=8 format=3 uid="uid://bfq6ogl4ncriu"]
 
+[ext_resource type="Script" path="res://Minigame1/minigame_1.gd" id="1_47igm"]
 [ext_resource type="Texture2D" uid="uid://dkbeg86ngsply" path="res://Minigame1/2833063-leuchtend-schimmernder-weltraum-hintergrund-vektor.jpg" id="1_tw1b6"]
+[ext_resource type="Texture2D" uid="uid://bkx37m4vh0kys" path="res://Minigame1/Zurueck2.png" id="2_g36wf"]
+[ext_resource type="Texture2D" uid="uid://dd207v8nb6a44" path="res://Minigame1/Vor2.png" id="3_l1jfh"]
+[ext_resource type="Texture2D" uid="uid://c71hyjyu75q1x" path="res://Minigame1/Links2.png" id="4_inhro"]
+[ext_resource type="Texture2D" uid="uid://5vnd8m0304ne" path="res://Minigame1/Rechts2.png" id="5_xg0e1"]
+[ext_resource type="Texture2D" uid="uid://uqyon1vc46nq" path="res://Minigame1/Schuss2.png" id="6_86lsl"]
 
 [node name="minigame1" type="Node2D"]
+script = ExtResource("1_47igm")
 
 [node name="2833063-leuchtend-schimmernder-weltraum-hintergrund-vektor" type="Sprite2D" parent="."]
 position = Vector2(160, 90)
 scale = Vector2(0.166667, 0.146461)
 texture = ExtResource("1_tw1b6")
+
+[node name="Touchzurück" type="TouchScreenButton" parent="."]
+position = Vector2(286, 146)
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("2_g36wf")
+action = "zurueck"
+
+[node name="Touchvor" type="TouchScreenButton" parent="."]
+position = Vector2(286, 112)
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("3_l1jfh")
+action = "vor"
+
+[node name="Touchlinks" type="TouchScreenButton" parent="."]
+position = Vector2(3, 145)
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("4_inhro")
+action = "links"
+
+[node name="Touchrechts" type="TouchScreenButton" parent="."]
+position = Vector2(39, 145)
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("5_xg0e1")
+action = "rechts"
+
+[node name="Touchschuss" type="TouchScreenButton" parent="."]
+position = Vector2(257, 125)
+scale = Vector2(0.210938, 0.3125)
+texture_normal = ExtResource("6_86lsl")
+action = "schuss"
+
+[node name="Touchbacktomain" type="TouchScreenButton" parent="."]
+position = Vector2(306, 1)
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("6_86lsl")
+action = "debug"

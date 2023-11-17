@@ -15,8 +15,10 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("debug"):
 		var maingame = load("res://Welt/world.tscn").instantiate()
-		get_tree().unload_current_scene()
-		get_tree().change_scene_to_packed(maingame)
+		get_tree().root.add_child(maingame)
+		get_tree().current_scene.queue_free()
+		get_tree().current_scene = maingame
+
 	elif Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 		

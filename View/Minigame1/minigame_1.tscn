@@ -52,7 +52,7 @@ texture_normal = ExtResource("5_xg0e1")
 action = "rechts"
 
 [node name="Touchschuss" type="TouchScreenButton" parent="."]
-position = Vector2(257, 125)
+position = Vector2(257, 136)
 scale = Vector2(0.210938, 0.3125)
 texture_normal = ExtResource("6_86lsl")
 action = "schuss"
@@ -61,4 +61,4 @@ action = "schuss"
 position = Vector2(306, 1)
 scale = Vector2(0.1, 0.1)
 texture_normal = ExtResource("6_86lsl")
-action = "reset"
+action = "debug"

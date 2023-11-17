@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5npm67ylwqjg"
-path="res://.godot/imported/berg.png-1b3c42fc353da67e5fb4873ef13db0bd.ctex"
+uid="uid://d00pgsvoe4lmv"
+path="res://.godot/imported/Background.png-ac02ab4ac02e5e17d144bfe63370d95c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigame1/berg.png"
-dest_files=["res://.godot/imported/berg.png-1b3c42fc353da67e5fb4873ef13db0bd.ctex"]
+source_file="res://Images/Background.png"
+dest_files=["res://.godot/imported/Background.png-ac02ab4ac02e5e17d144bfe63370d95c.ctex"]
 
 [params]
 

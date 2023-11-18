@@ -14,7 +14,7 @@ var shot_cooldown := false
 @export var movementspeed := 4.0
 @export var maxspeed := 120.0
 @export var rotation_speed := 250.0
-@export var schwebeeffect := 0.5
+@export var schwebeeffect := 1
  
 
 

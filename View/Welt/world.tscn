@@ -15,11 +15,6 @@ vertices = PackedVector2Array(0, 120, 0, 48, 56, 48, 64, 128, 56, 40, 136, 40, 1
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 4, 5, 6, 3), PackedInt32Array(7, 8, 9, 10), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(7, 10, 13, 14), PackedInt32Array(13, 15, 16, 14), PackedInt32Array(6, 7, 14, 17), PackedInt32Array(3, 6, 17), PackedInt32Array(3, 17, 18, 19), PackedInt32Array(19, 18, 20)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, 48, 56, 48, 56, 40, 136, 40, 136, 48, 192, 48, 192, 40, 264, 40, 264, 48, 320, 48, 320, 128, 264, 128, 264, 176, 192, 176, 192, 128, 136, 128, 136, 176, 64, 176, 64, 168, 64, 128, 0, 120)])
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_dpesm"]
-vertices = PackedVector2Array(0, 120, 0, 48, 56, 48, 64, 128, 56, 40, 136, 40, 136, 48, 192, 48, 192, 40, 264, 40, 264, 48, 320, 48, 320, 128, 264, 128, 192, 128, 264, 176, 192, 176, 136, 128, 136, 176, 64, 168, 64, 176)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 4, 5, 6, 3), PackedInt32Array(7, 8, 9, 10), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(7, 10, 13, 14), PackedInt32Array(13, 15, 16, 14), PackedInt32Array(6, 7, 14, 17), PackedInt32Array(3, 6, 17), PackedInt32Array(3, 17, 18, 19), PackedInt32Array(19, 18, 20)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, 48, 56, 48, 56, 40, 136, 40, 136, 48, 192, 48, 192, 40, 264, 40, 264, 48, 320, 48, 320, 128, 264, 128, 264, 176, 192, 176, 192, 128, 136, 128, 136, 176, 64, 176, 64, 168, 64, 128, 0, 120)])
-
 [node name="World" type="Node2D"]
 script = ExtResource("1_fs3ho")
 

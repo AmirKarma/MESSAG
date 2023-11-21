@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdfejtgr3uct"]
+[gd_scene load_steps=8 format=3 uid="uid://cdfejtgr3uct"]
 
 [ext_resource type="Script" path="res://Welt/world.gd" id="1_fs3ho"]
 [ext_resource type="PackedScene" uid="uid://cwo4kcdmsf7cr" path="res://Player/player.tscn" id="3_g0tsn"]
 [ext_resource type="Texture2D" uid="uid://bx0w45bxv47r4" path="res://Images/back.png" id="4_vqsp3"]
+[ext_resource type="PackedScene" uid="uid://d3nqblcu1fvpi" path="res://Welt/Rocket/rocket.tscn" id="4_x5ukb"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_chnmc"]
 
@@ -23,6 +24,10 @@ position = Vector2(-10, -10)
 texture = ExtResource("4_vqsp3")
 centered = false
 offset = Vector2(10, 10)
+
+[node name="Rocket" parent="." instance=ExtResource("4_x5ukb")]
+top_level = true
+position = Vector2(32, 152)
 
 [node name="Player" parent="." instance=ExtResource("3_g0tsn")]
 top_level = true

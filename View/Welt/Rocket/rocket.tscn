@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3nqblcu1fvpi"]
+
+[ext_resource type="Texture2D" uid="uid://i4oyawtcj6bi" path="res://Minigame1/spaceshipone-spacecraft-pixel-art-pixel-art-633ca2c9272cccd441e55f3186f6cfe0.png" id="1_dcsnl"]
+[ext_resource type="Script" path="res://Welt/Rocket/rocket.gd" id="1_owhly"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jgsuk"]
+radius = 16.0
+height = 48.0
+
+[node name="Rocket" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_owhly")
+
+[node name="OptionButton" type="OptionButton" parent="."]
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = 16.0
+
+[node name="rocketSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.125, 0.129)
+texture = ExtResource("1_dcsnl")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jgsuk")
+
+[connection signal="pressed" from="OptionButton" to="." method="_on_option_button_pressed"]

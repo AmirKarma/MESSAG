@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l767vdolyta3"
-path="res://.godot/imported/laserRed01.png-8ce547c4af679b9ae1c9b3ad8268138c.ctex"
+uid="uid://dx260ahkthxlv"
+path="res://.godot/imported/Restart.png-92484bf45cb85b18a006afc82cdc95c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigame1/laserRed01.png"
-dest_files=["res://.godot/imported/laserRed01.png-8ce547c4af679b9ae1c9b3ad8268138c.ctex"]
+source_file="res://Minigame1/Restart.png"
+dest_files=["res://.godot/imported/Restart.png-92484bf45cb85b18a006afc82cdc95c0.ctex"]
 
 [params]
 

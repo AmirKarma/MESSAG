@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxropyekb5ofj"
-path="res://.godot/imported/Links2.png-e2fbad8eebf80be8c87e87a75f3dc1d2.ctex"
+uid="uid://8dfwjwaomn0t"
+path="res://.godot/imported/schuss.png-fe3888635b93711636cacbfc22cabcad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigame1/Links2.png"
-dest_files=["res://.godot/imported/Links2.png-e2fbad8eebf80be8c87e87a75f3dc1d2.ctex"]
+source_file="res://Minigame1/schuss.png"
+dest_files=["res://.godot/imported/schuss.png-fe3888635b93711636cacbfc22cabcad.ctex"]
 
 [params]
 

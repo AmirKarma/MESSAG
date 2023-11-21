@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxropyekb5ofj"
-path="res://.godot/imported/Links2.png-e2fbad8eebf80be8c87e87a75f3dc1d2.ctex"
+uid="uid://wp3flb0vdfmp"
+path="res://.godot/imported/KometM.png-6afdd373e4b9b618dbe5da7de50bffe5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigame1/Links2.png"
-dest_files=["res://.godot/imported/Links2.png-e2fbad8eebf80be8c87e87a75f3dc1d2.ctex"]
+source_file="res://Minigame1/KometM.png"
+dest_files=["res://.godot/imported/KometM.png-6afdd373e4b9b618dbe5da7de50bffe5.ctex"]
 
 [params]
 

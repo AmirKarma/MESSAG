@@ -67,5 +67,4 @@ scale = Vector2(1, 1.07092)
 polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_dpesm")

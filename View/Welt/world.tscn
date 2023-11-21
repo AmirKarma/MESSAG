@@ -1,10 +1,69 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdfejtgr3uct"]
+[gd_scene load_steps=8 format=3 uid="uid://cdfejtgr3uct"]
 
 [ext_resource type="Script" path="res://Welt/world.gd" id="1_fs3ho"]
 [ext_resource type="PackedScene" uid="uid://cwo4kcdmsf7cr" path="res://Player/player.tscn" id="3_g0tsn"]
+[ext_resource type="Texture2D" uid="uid://bx0w45bxv47r4" path="res://Images/back.png" id="4_vqsp3"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_chnmc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wn3li"]
+size = Vector2(60, 56)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_dpesm"]
+vertices = PackedVector2Array(0, 120, 0, 48, 56, 48, 64, 128, 56, 40, 136, 40, 136, 48, 192, 48, 192, 40, 264, 40, 264, 48, 320, 48, 320, 128, 264, 128, 192, 128, 264, 176, 192, 176, 136, 128, 136, 176, 64, 168, 64, 176)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 4, 5, 6, 3), PackedInt32Array(7, 8, 9, 10), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(7, 10, 13, 14), PackedInt32Array(13, 15, 16, 14), PackedInt32Array(6, 7, 14, 17), PackedInt32Array(3, 6, 17), PackedInt32Array(3, 17, 18, 19), PackedInt32Array(19, 18, 20)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 48, 56, 48, 56, 40, 136, 40, 136, 48, 192, 48, 192, 40, 264, 40, 264, 48, 320, 48, 320, 128, 264, 128, 264, 176, 192, 176, 192, 128, 136, 128, 136, 176, 64, 176, 64, 168, 64, 128, 0, 120)])
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_fs3ho")
 
+[node name="Back" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(-10, -10)
+texture = ExtResource("4_vqsp3")
+centered = false
+offset = Vector2(10, 10)
+
+[node name="RessourceBar" parent="." instance=ExtResource("2_tdseh")]
+top_level = true
+offset_left = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Player" parent="." instance=ExtResource("3_g0tsn")]
+top_level = true
 position = Vector2(72, 88)
+
+[node name="Border" type="StaticBody2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.207843)
+position = Vector2(159, 44)
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="Border"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(60, 56)
+mesh = SubResource("QuadMesh_chnmc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+shape = SubResource("RectangleShape2D_wn3li")
+
+[node name="Border2" type="StaticBody2D" parent="."]
+modulate = Color(1, 1, 1, 0.207843)
+position = Vector2(290, 152)
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="Border2"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(60, 56)
+mesh = SubResource("QuadMesh_chnmc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border2"]
+shape = SubResource("RectangleShape2D_wn3li")
+
+[node name="Borders_CollisionPolygon2D6" type="CollisionPolygon2D" parent="Border2"]
+position = Vector2(-26, -24)
+scale = Vector2(1, 1.07092)
+polygon = PackedVector2Array(1, 1, 54, 0, 55, 48, 1, 48)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_dpesm")

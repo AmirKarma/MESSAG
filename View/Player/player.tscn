@@ -215,10 +215,6 @@ parameters/Run/blend_position = Vector2(0, 0)
 path_postprocessing = 1
 debug_enabled = true
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_postprocessing = 1
-debug_enabled = true
-
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]

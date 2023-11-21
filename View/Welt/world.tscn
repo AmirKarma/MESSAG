@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdfejtgr3uct"]
+[gd_scene load_steps=7 format=3 uid="uid://cdfejtgr3uct"]
 
 [ext_resource type="Script" path="res://Welt/world.gd" id="1_fs3ho"]
 [ext_resource type="PackedScene" uid="uid://cwo4kcdmsf7cr" path="res://Player/player.tscn" id="3_g0tsn"]
@@ -23,12 +23,6 @@ position = Vector2(-10, -10)
 texture = ExtResource("4_vqsp3")
 centered = false
 offset = Vector2(10, 10)
-
-[node name="RessourceBar" parent="." instance=ExtResource("2_tdseh")]
-top_level = true
-offset_left = 8.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Player" parent="." instance=ExtResource("3_g0tsn")]
 top_level = true

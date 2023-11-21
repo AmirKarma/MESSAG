@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Welt/world.gd" id="1_fs3ho"]
 [ext_resource type="PackedScene" uid="uid://cwo4kcdmsf7cr" path="res://Player/player.tscn" id="3_g0tsn"]
-[ext_resource type="Texture2D" uid="uid://bx0w45bxv47r4" path="res://Images/back.png" id="4_vqsp3"]
+[ext_resource type="Texture2D" path="res://Images/back.png" id="4_vqsp3"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_chnmc"]
 

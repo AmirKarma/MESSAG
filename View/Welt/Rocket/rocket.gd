@@ -1,5 +1,8 @@
 extends Node2D
 
+@onready var optionButton = $OptionButton
+@onready var rocketSprite = $rocketSprite
+
 var pressed: bool = false
 var world
 var player
@@ -7,6 +10,8 @@ var player
 func _ready():
 	world = get_tree().get_root().get_node("World")
 	player = world.get_node("Player")
+	add_items()
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -19,8 +24,8 @@ func _process(delta):
 
 
 func _on_option_button_pressed():
-	
 	pressed = true
+	optionButton.get_popup().hide()
 	if player.position.distance_to(position) > 50:
 		player.moving = true
 		player.nav.target_position = position - Vector2(20,20)
@@ -28,4 +33,17 @@ func _on_option_button_pressed():
 
 
 func doSomething():
-	print("läuft")
+	optionButton.show_popup()
+	optionButton.get_popup().position = Vector2(100, 150)
+
+func add_items():
+	optionButton.add_item("Minigame")
+
+func _on_option_button_item_selected(index):
+	
+	if index == 0:
+		
+		var minigame = load("res://Minigame1/minigame_1.tscn").instantiate()
+		get_tree().root.add_child(minigame)
+		get_tree().current_scene.queue_free()
+		get_tree().current_scene = minigame

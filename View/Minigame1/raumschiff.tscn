@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://g40na2y72ch1"]
 
 [ext_resource type="Script" path="res://Minigame1/raumschiff.gd" id="1_0evgc"]
-[ext_resource type="Texture2D" uid="uid://i4oyawtcj6bi" path="res://Minigame1/spaceshipone-spacecraft-pixel-art-pixel-art-633ca2c9272cccd441e55f3186f6cfe0.png" id="1_lph4x"]
+[ext_resource type="Texture2D" uid="uid://i4oyawtcj6bi" path="res://Minigame1/Ship.png" id="2_r3hqo"]
 
 [node name="Raumschiff" type="CharacterBody2D"]
 script = ExtResource("1_0evgc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.0461538, 0.055)
-texture = ExtResource("1_lph4x")
+texture = ExtResource("2_r3hqo")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(17.8871, -1.42155)

@@ -11,10 +11,10 @@ var shot_szene = preload("res://Minigame1/schuss.tscn")
 
 var shot_cooldown := false
 
-@export var movementspeed := 4.0
-@export var maxspeed := 120.0
+@export var movementspeed := 2.5
+@export var maxspeed := 100.0
 @export var rotation_speed := 250.0
-@export var schwebeeffect := 1
+@export var schwebeeffect := 0.5
  
 
 

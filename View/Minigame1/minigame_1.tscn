@@ -75,13 +75,13 @@ action = "debug"
 [node name="AllKometen" type="Node" parent="."]
 
 [node name="Kometen3" parent="AllKometen" instance=ExtResource("9_e5o5x")]
-position = Vector2(249, 69)
+position = Vector2(255, 100)
 
 [node name="Kometen" parent="AllKometen" instance=ExtResource("9_e5o5x")]
 position = Vector2(84, 61)
 
 [node name="Kometen2" parent="AllKometen" instance=ExtResource("9_e5o5x")]
-position = Vector2(168, 122)
+position = Vector2(184, 142)
 
 [node name="Kometen4" parent="AllKometen" instance=ExtResource("9_e5o5x")]
-position = Vector2(212, 48)
+position = Vector2(208, 29)

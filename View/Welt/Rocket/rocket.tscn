@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://d3nqblcu1fvpi"]
 
-[ext_resource type="Texture2D" uid="uid://i4oyawtcj6bi" path="res://Minigame1/spaceshipone-spacecraft-pixel-art-pixel-art-633ca2c9272cccd441e55f3186f6cfe0.png" id="1_dcsnl"]
+[ext_resource type="Texture2D" uid="uid://i4oyawtcj6bi" path="res://Minigame1/Ship.png" id="1_dcsnl"]
 [ext_resource type="Script" path="res://Welt/Rocket/rocket.gd" id="1_owhly"]
 
 [sub_resource type="SystemFont" id="SystemFont_f0rxr"]

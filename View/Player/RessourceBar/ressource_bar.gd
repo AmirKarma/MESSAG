@@ -44,6 +44,7 @@ func removeMooneten(value):
 
 
 
+
 func setEnergy(value):
 	energy = value
 	saveData()

@@ -127,6 +127,7 @@ vertical_alignment = 1
 
 [node name="EnergyLabel" type="Label" parent="."]
 texture_filter = 1
+layout_mode = 0
 offset_left = 42.0
 offset_top = 12.0
 offset_right = 79.0

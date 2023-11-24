@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6i4vynrrtudd"]
+[gd_scene load_steps=8 format=3 uid="uid://c6i4vynrrtudd"]
 
 [ext_resource type="Texture2D" uid="uid://b50y1o5odckwc" path="res://Player/RessourceBar/coin.png" id="1_cmysq"]
+[ext_resource type="Script" path="res://Player/RessourceBar/ressource_bar.gd" id="1_y8e31"]
 [ext_resource type="Texture2D" uid="uid://blpllbfwmq0sr" path="res://Player/RessourceBar/lightning.png" id="2_alw1l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifrfo"]
@@ -34,6 +35,7 @@ offset_right = 160.0
 offset_bottom = 30.0
 grow_horizontal = 2
 size_flags_horizontal = 4
+script = ExtResource("1_y8e31")
 
 [node name="ProgressBarMoney" type="ProgressBar" parent="."]
 clip_contents = true
@@ -134,3 +136,9 @@ theme_override_font_sizes/font_size = 7
 text = "1000"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c6i4vynrrtudd"]
 
-[ext_resource type="Texture2D" uid="uid://b50y1o5odckwc" path="res://Player/RessourceBar/coin.png" id="1_cmysq"]
+[ext_resource type="Texture2D" uid="uid://cviesfy3xnig0" path="res://Images/Mooneten.png" id="1_wqrjf"]
 [ext_resource type="Texture2D" uid="uid://blpllbfwmq0sr" path="res://Player/RessourceBar/lightning.png" id="2_alw1l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bi7fe"]
@@ -54,9 +54,9 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 13.0
-offset_top = -8.0
+offset_top = -9.0
 offset_right = 113.0
-offset_bottom = -2.0
+offset_bottom = -3.0
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_bi7fe")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ifrfo")
@@ -103,9 +103,9 @@ offset_right = 12.0
 offset_bottom = 15.0
 
 [node name="Coin" type="Sprite2D" parent="Control"]
-position = Vector2(5, 5)
-scale = Vector2(0.0209961, 0.0185547)
-texture = ExtResource("1_cmysq")
+position = Vector2(5, 4)
+scale = Vector2(0.0124512, 0.012207)
+texture = ExtResource("1_wqrjf")
 
 [node name="Control2" type="Control" parent="."]
 layout_mode = 1

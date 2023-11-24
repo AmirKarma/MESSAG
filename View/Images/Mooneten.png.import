@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i4oyawtcj6bi"
-path="res://.godot/imported/spaceshipone-spacecraft-pixel-art-pixel-art-633ca2c9272cccd441e55f3186f6cfe0.png-37b43c6a146a8b7a730f1e4e80c29716.ctex"
+uid="uid://cviesfy3xnig0"
+path="res://.godot/imported/Mooneten.png-928b87f4353ac4bc6fc0b1ec42908378.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigame1/spaceshipone-spacecraft-pixel-art-pixel-art-633ca2c9272cccd441e55f3186f6cfe0.png"
-dest_files=["res://.godot/imported/spaceshipone-spacecraft-pixel-art-pixel-art-633ca2c9272cccd441e55f3186f6cfe0.png-37b43c6a146a8b7a730f1e4e80c29716.ctex"]
+source_file="res://Images/Mooneten.png"
+dest_files=["res://.godot/imported/Mooneten.png-928b87f4353ac4bc6fc0b1ec42908378.ctex"]
 
 [params]
 

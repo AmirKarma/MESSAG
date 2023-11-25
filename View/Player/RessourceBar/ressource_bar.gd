@@ -74,6 +74,8 @@ func loadData():
 		mooneten = file.get_var()
 		energy = file.get_var()
 		updateRessourceBar()
+	else:
+		saveData()
 	
 
 func updateRessourceBar():

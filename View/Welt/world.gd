@@ -1,9 +1,9 @@
 extends Node2D
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	y_sort_enabled = true
+	get_tree().set_auto_accept_quit(false)
 	
 func _process(_delta):
 		if Input.is_action_just_pressed("debug"):
@@ -11,3 +11,11 @@ func _process(_delta):
 			get_tree().root.add_child(minigame)
 			get_tree().current_scene.queue_free()
 			get_tree().current_scene = minigame
+
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		DataScript.setUnixLastTime(Time.get_unix_time_from_system())
+		get_tree().quit()
+	elif what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		DataScript.setUnixLastTime(Time.get_unix_time_from_system())
+		get_tree().quit()

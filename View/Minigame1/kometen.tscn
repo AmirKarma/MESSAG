@@ -1,17 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://wsxpcan07b4v"]
 
 [ext_resource type="Script" path="res://Minigame1/Kometen.gd" id="1_qv861"]
-[ext_resource type="Texture2D" uid="uid://c0xbhobim6qkf" path="res://Minigame1/KometB.png" id="2_4jq4r"]
+[ext_resource type="Texture2D" uid="uid://dlhkm3k8k5onw" path="res://Minigame1/KometB.png" id="2_4jq4r"]
 [ext_resource type="Shape2D" uid="uid://bmxxulj2wvpt1" path="res://Minigame1/Resourcen/kometen.tres" id="3_8juvg"]
 
 [node name="Kometen" type="Area2D"]
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_qv861")
-groesse = 2
+size = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_4jq4r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = ExtResource("3_8juvg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

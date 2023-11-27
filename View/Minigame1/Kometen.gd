@@ -15,6 +15,18 @@ var komet_geschw_klein = randf_range(50,60)
 enum KometenGroesse{GROSS, MITTEL, KLEIN}
 @export var size := KometenGroesse.GROSS
 
+var punkte: int:
+	get:
+		match size:
+			KometenGroesse.GROSS:
+				return 10
+			KometenGroesse.MITTEL:
+				return 15
+			KometenGroesse.KLEIN:
+				return 25
+			_:
+				return 0
+
 
 
 func _ready():
@@ -55,6 +67,13 @@ func _physics_process(delta):
 		
 		
 func zerstörung():
-	emit_signal("zerstört", global_position, size)	
+	emit_signal("zerstört", global_position, size, punkte)	
 	queue_free()
 
+
+
+func _on_body_entered(body):
+	if body is raumschiff:
+		var raumschiff = body
+		raumschiff.tot()
+		

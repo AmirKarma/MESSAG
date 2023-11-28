@@ -1,0 +1,144 @@
+[gd_scene load_steps=12 format=3 uid="uid://cox2t4q5l8egc"]
+
+[ext_resource type="Texture2D" uid="uid://deaxxdvpsmbn1" path="res://Images/Options/InventoryRect.png" id="1_cx7lp"]
+[ext_resource type="Script" path="res://Welt/options/building_options.gd" id="1_rsla3"]
+[ext_resource type="Script" path="res://Welt/options/info.gd" id="4_rdr6i"]
+
+[sub_resource type="Theme" id="Theme_6q78u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nup0g"]
+bg_color = Color(0.305882, 0.47451, 0.533333, 1)
+border_width_bottom = 4
+border_color = Color(0, 0.141176, 0.223529, 1)
+border_blend = true
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_067b4"]
+bg_color = Color(0, 0.313726, 0.4, 1)
+border_width_bottom = 2
+border_color = Color(0, 0.141176, 0.223529, 1)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03mor"]
+bg_color = Color(0, 0.313726, 0.4, 1)
+border_width_bottom = 4
+border_color = Color(0, 0.141176, 0.223529, 1)
+border_blend = true
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="FontVariation" id="FontVariation_fwe2u"]
+
+[sub_resource type="Theme" id="Theme_ydirm"]
+default_font = SubResource("FontVariation_fwe2u")
+default_font_size = 0
+Button/constants/h_separation = 2
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 9
+Button/styles/hover = SubResource("StyleBoxFlat_nup0g")
+Button/styles/normal = SubResource("StyleBoxFlat_067b4")
+Button/styles/pressed = SubResource("StyleBoxFlat_03mor")
+
+[sub_resource type="Theme" id="Theme_5d3re"]
+
+[sub_resource type="GDScript" id="GDScript_is6v3"]
+script/source = "extends Button
+
+var miniGame_Path = \" \"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func _pressed():
+	print(miniGame_Path)
+	var minigame = load(miniGame_Path).instantiate()
+	get_tree().root.add_child(minigame)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = minigame
+	pass
+
+func set_miniGame(path: String):
+	miniGame_Path = path
+	
+"
+
+[node name="Building Options" type="Control"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 3
+anchors_preset = 0
+offset_top = -1.0
+offset_right = 43.0
+offset_bottom = 23.0
+script = ExtResource("1_rsla3")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+modulate = Color(1, 1, 1, 0.792157)
+texture_filter = 1
+texture_repeat = 1
+offset_left = -16.0
+offset_top = -15.0
+offset_right = 120.0
+offset_bottom = 65.0
+texture = ExtResource("1_cx7lp")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
+offset_left = 40.0
+offset_top = 8.0
+offset_right = 104.0
+offset_bottom = 48.0
+theme = SubResource("Theme_6q78u")
+text = "Rocket"
+fit_content = true
+
+[node name="Buttons" type="Control" parent="."]
+texture_filter = 1
+texture_repeat = 1
+anchors_preset = 0
+offset_left = 30.0
+offset_top = -2.0
+offset_right = 70.0
+offset_bottom = 38.0
+theme = SubResource("Theme_ydirm")
+
+[node name="play" type="Button" parent="Buttons"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 26.0
+offset_top = 27.0
+offset_right = 73.0
+offset_bottom = 53.0
+theme = SubResource("Theme_5d3re")
+text = "Play"
+script = SubResource("GDScript_is6v3")
+
+[node name="info" type="Button" parent="Buttons"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -30.0
+offset_top = 27.0
+offset_right = 18.0
+offset_bottom = 53.0
+text = "soon..."
+script = ExtResource("4_rdr6i")
+
+[connection signal="pressed" from="Buttons/info" to="." method="_on_info_pressed"]

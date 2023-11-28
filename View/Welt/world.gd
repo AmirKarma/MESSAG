@@ -1,6 +1,5 @@
 extends Node2D
 
-
 # Called when the node enters the scene tree for the first time.
 @onready var player = $Player
 @onready var rocket = $Rocket
@@ -26,3 +25,12 @@ func show_option():
 		player.show_options("res://Minigame1/minigame_1.tscn")
 	else:
 		player.hide_options()
+	get_tree().set_auto_accept_quit(false)
+	
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		DataScript.setUnixLastTime(Time.get_unix_time_from_system())
+		get_tree().quit()
+	elif what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		DataScript.setUnixLastTime(Time.get_unix_time_from_system())
+		get_tree().quit()

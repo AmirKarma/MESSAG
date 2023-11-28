@@ -9,8 +9,7 @@ func _ready():
 
 	
 func _process(_delta):
-	print(player.position)
-	print(rocket.position)
+
 	show_option()
 	if Input.is_action_just_pressed("debug"):
 		var minigame = load("res://Minigame1/minigame_1.tscn").instantiate()

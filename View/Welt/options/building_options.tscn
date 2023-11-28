@@ -91,6 +91,7 @@ script = ExtResource("1_rsla3")
 modulate = Color(1, 1, 1, 0.792157)
 texture_filter = 1
 texture_repeat = 1
+layout_mode = 0
 offset_left = -16.0
 offset_top = -15.0
 offset_right = 120.0
@@ -102,6 +103,7 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 
 [node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
 offset_left = 40.0
 offset_top = 8.0
 offset_right = 104.0

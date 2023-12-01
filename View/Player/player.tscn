@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://c6i4vynrrtudd" path="res://Player/RessourceBar/ressource_bar.tscn" id="3_0wfbp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yw0jl"]
-radius = 5.0
-height = 12.0
+radius = 6.0
+height = 18.0
 
 [sub_resource type="Animation" id="Animation_40r3o"]
 resource_name = "IdleRight"
@@ -195,8 +195,7 @@ hframes = 10
 vframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
-rotation = -1.5708
+position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_yw0jl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

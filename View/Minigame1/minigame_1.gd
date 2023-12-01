@@ -5,18 +5,32 @@ extends Node2D
 @onready var Kanone = $Kanone
 @onready var raumschiff = $Raumschiff
 @onready var kometen = $AllKometen
+@onready var Punkte = $Punkte/info
+@onready var Leben = $Punkte/info
+@onready var RespawnPos = $RespawnPos
+
+
+
+
+var score := 0:
+	set(punkte):
+		score = punkte
+		Punkte.punkte = score
 
 var kometen_scene = preload("res://Minigame1/kometen.tscn")
 
 func _ready():
+	score = 0
+	lives = 3
+	
 	raumschiff.connect("kanonen_schuss", _spieler_kanonen_schuss)
+	raumschiff.connect("spieler_tot", _spieler_stirbt)
 	
 	for Kometen in kometen.get_children():
 		Kometen.connect("zerstört", _kometen_zerstört)
 		
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("debug"):
 		var maingame = load("res://Welt/world.tscn").instantiate()
@@ -27,10 +41,31 @@ func _process(delta):
 	elif Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 		
+var lives := 3:
+	set(value):
+		lives = value
+		Leben.leben = lives
+
+func _spieler_stirbt():
+	lives -= 1
+	print("tot_tottot")
+	if lives <= 0:
+		var maingame = load("res://Welt/world.tscn").instantiate()
+		get_tree().root.add_child(maingame)
+		get_tree().current_scene.queue_free()
+		get_tree().current_scene = maingame
+	else:
+		await get_tree().create_timer(1).timeout
+		raumschiff.respawn(RespawnPos.global_position)
+		
+		
+		
+		
 func _spieler_kanonen_schuss(schuss):
 	Kanone.add_child(schuss)
 
-func _kometen_zerstört(position,size):
+func _kometen_zerstört(position,size,punkte):
+	score += punkte
 	for i in range(2):
 		match size:
 			Kometen.KometenGroesse.GROSS:

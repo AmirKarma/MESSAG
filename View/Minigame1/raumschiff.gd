@@ -1,15 +1,20 @@
-extends CharacterBody2D
+class_name raumschiff extends CharacterBody2D
 
 signal kanonen_schuss(schuss)
+signal spieler_tot
 
 @export var speedplayer = 50
 @export var schuss_rate := 0.25
 
 @onready var Gun = $Gun
+@onready var sprite = $Sprite2D
+@onready var collision = $CollisionPolygon2D
 
 var shot_szene = preload("res://Minigame1/schuss.tscn")
 
 var shot_cooldown := false
+var alive := true
+
 
 @export var movementspeed := 2.5
 @export var maxspeed := 100.0
@@ -57,6 +62,24 @@ func _physics_process(delta):
 			
 		elif global_position.x > screen_size.x:
 			global_position.x = 0	
+			
+func respawn(pos):
+	if alive ==false:
+		alive = true
+		global_position = pos
+		velocity = Vector2.ZERO
+		sprite.visible = true
+		collision.set_deferred("disabled", false)
+		process_mode = Node.PROCESS_MODE_INHERIT
+		print("Respawn")
+
+func tot():
+	if alive == true:
+		alive = false
+		sprite.visible = false
+		collision.set_deferred("disabled", true)
+		emit_signal("spieler_tot")		
+	
 		
 func schuss():
 	var k = shot_szene.instantiate()
@@ -64,3 +87,4 @@ func schuss():
 	k.rotation = rotation
 	emit_signal("kanonen_schuss", k)
 	
+

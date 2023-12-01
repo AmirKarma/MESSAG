@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3nqblcu1fvpi"]
+[gd_scene load_steps=5 format=3 uid="uid://d3nqblcu1fvpi"]
 
-[ext_resource type="Texture2D" uid="uid://i4oyawtcj6bi" path="res://Minigame1/Ship.png" id="1_dcsnl"]
 [ext_resource type="Script" path="res://Welt/Rocket/rocket.gd" id="1_owhly"]
+[ext_resource type="Texture2D" uid="uid://c8wdrwfglpbrk" path="res://Welt/Rocket/Rakete.png" id="2_1kb1i"]
 
 [sub_resource type="SystemFont" id="SystemFont_f0rxr"]
 font_names = PackedStringArray("Arial")
+subpixel_positioning = 0
 
 [sub_resource type="Theme" id="Theme_xonwc"]
 resource_local_to_scene = true
@@ -17,10 +18,6 @@ OptionButton/colors/font_focus_color = Color(0.94902, 0.266667, 0.94902, 1)
 OptionButton/colors/font_hover_color = Color(0.129412, 0.94902, 0.94902, 1)
 OptionButton/colors/font_pressed_color = Color(1, 1, 0.164706, 1)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jgsuk"]
-radius = 16.0
-height = 48.0
-
 [node name="Rocket" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_owhly")
@@ -28,25 +25,17 @@ script = ExtResource("1_owhly")
 [node name="OptionButton" type="OptionButton" parent="."]
 clip_children = 1
 texture_filter = 1
-offset_left = -8.0
-offset_top = -16.0
-offset_right = 8.0
-offset_bottom = 16.0
+offset_left = -16.0
+offset_top = -49.0
+offset_right = 17.0
+offset_bottom = 50.0
 theme = SubResource("Theme_xonwc")
 flat = true
 clip_text = true
 allow_reselect = true
 
 [node name="rocketSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.125, 0.129)
-texture = ExtResource("1_dcsnl")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 8)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_jgsuk")
+texture = ExtResource("2_1kb1i")
 
 [connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="OptionButton" to="." method="_on_option_button_pressed"]

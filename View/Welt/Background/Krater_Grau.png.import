@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx0w45bxv47r4"
-path="res://.godot/imported/back.png-e43b0a987de47e1a4ee6fd2278454853.ctex"
+uid="uid://3s6ye2qf1hou"
+path="res://.godot/imported/Krater_Grau.png-2508c00d4214d046f8719c07c73223c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/back.png"
-dest_files=["res://.godot/imported/back.png-e43b0a987de47e1a4ee6fd2278454853.ctex"]
+source_file="res://Welt/Background/Krater_Grau.png"
+dest_files=["res://.godot/imported/Krater_Grau.png-2508c00d4214d046f8719c07c73223c0.ctex"]
 
 [params]
 

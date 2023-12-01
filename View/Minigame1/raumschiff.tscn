@@ -1,18 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://g40na2y72ch1"]
 
 [ext_resource type="Script" path="res://Minigame1/raumschiff.gd" id="1_0evgc"]
-[ext_resource type="Texture2D" uid="uid://i4oyawtcj6bi" path="res://Minigame1/Ship.png" id="2_r3hqo"]
+[ext_resource type="Texture2D" uid="uid://be64i61ys42iq" path="res://Minigame1/Rakete.png" id="2_w8jf0"]
 
 [node name="Raumschiff" type="CharacterBody2D"]
 script = ExtResource("1_0evgc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.0461538, 0.055)
-texture = ExtResource("2_r3hqo")
+scale = Vector2(0.22, 0.199)
+texture = ExtResource("2_w8jf0")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(17.8871, -1.42155)
-polygon = PackedVector2Array(-21.8871, -3.57845, -18.8871, -9.57845, -18.8871, -11.5785, -15.8871, -11.5785, -15.8871, -8.57845, -12.8871, -4.57845, -12.8871, 1.42155, -7.8871, 7.42155, -9.8871, 9.42155, -11.8871, 8.42155, -14.8871, 10.4215, -19.8871, 10.4215, -22.8871, 8.42155, -23.8871, 9.42155, -26.8871, 7.42155, -21.8871, 1.42155)
+polygon = PackedVector2Array(-17.8871, -9.57845, -16.8871, -8.57845, -15.8871, -6.57845, -14.8871, -4.57845, -14.8871, -3.57845, -14.8871, -2.57845, -13.8871, -1.57845, -13.8871, -0.57845, -13.8871, 3.42155, -11.8871, 5.42155, -11.8871, 11.4215, -12.8871, 11.4215, -14.8871, 6.42155, -15.8871, 6.42155, -15.8871, 8.42155, -16.8871, 9.42155, -17.8871, 9.42155, -18.8871, 8.42155, -18.8871, 6.42155, -19.8871, 6.42155, -22.8871, 11.4215, -23.8871, 11.4215, -23.8871, 6.42155, -21.8871, 3.42155, -21.8871, -1.57845, -20.8871, -4.57845, -19.8871, -6.57845, -18.8871, -8.57845)
 
 [node name="Gun" type="Node2D" parent="."]
 position = Vector2(0, -17)

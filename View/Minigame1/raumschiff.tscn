@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://g40na2y72ch1"]
 
 [ext_resource type="Script" path="res://Minigame1/raumschiff.gd" id="1_0evgc"]
-[ext_resource type="Texture2D" uid="uid://belqnj7clenjv" path="res://Minigame1/Rakete_an.png" id="2_q36kg"]
+[ext_resource type="Texture2D" uid="uid://8cpaq3gcfs20" path="res://Minigame1/Rakete_an.png" id="2_q36kg"]
 
 [node name="Raumschiff" type="CharacterBody2D"]
 script = ExtResource("1_0evgc")

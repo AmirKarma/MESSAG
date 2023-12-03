@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://wsxpcan07b4v"]
 
 [ext_resource type="Script" path="res://Minigame1/Kometen.gd" id="1_qv861"]
-[ext_resource type="Texture2D" uid="uid://dlhkm3k8k5onw" path="res://Minigame1/KometB.png" id="2_4jq4r"]
+[ext_resource type="Texture2D" uid="uid://c2owlt8ckb6qc" path="res://Minigame1/KometB.png" id="2_4jq4r"]
 [ext_resource type="Shape2D" uid="uid://bmxxulj2wvpt1" path="res://Minigame1/Resourcen/kometen.tres" id="3_8juvg"]
 
 [node name="Kometen" type="Area2D"]

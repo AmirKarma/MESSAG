@@ -25,43 +25,41 @@ offset_right = 250.0
 offset_bottom = 250.0
 metadata/_edit_use_anchors_ = true
 
-[node name="links" type="Button" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-offset_left = -250.0
-offset_top = -250.0
-offset_right = -90.0
-offset_bottom = 250.0
-metadata/_edit_use_anchors_ = true
-
-[node name="rechts" type="Button" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-offset_left = 90.0
-offset_top = -250.0
-offset_right = 250.0
-offset_bottom = 250.0
-metadata/_edit_use_anchors_ = true
-
 [node name="vor" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -250.0
-offset_top = -250.0
-offset_right = 250.0
+offset_top = -650.0
+offset_right = 260.0
 offset_bottom = -120.0
 
 [node name="zurück" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -250.0
+offset_left = -240.0
 offset_top = 120.0
 offset_right = 250.0
-offset_bottom = 250.0
+offset_bottom = 630.0
+
+[node name="rechts" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 140.0
+offset_top = -200.0
+offset_right = 768.0
+offset_bottom = 208.0
+
+[node name="links" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -780.0
+offset_top = -200.0
+offset_right = -152.0
+offset_bottom = 208.0
 
 [connection signal="button_down" from="Button" to="Joystick2" method="_on_button_button_down"]
 [connection signal="button_up" from="Button" to="Joystick2" method="_on_button_button_up"]
-[connection signal="mouse_entered" from="links" to="Joystick2" method="_on_button_2_mouse_entered"]
-[connection signal="mouse_exited" from="links" to="Joystick2" method="_on_button_2_mouse_exited"]
-[connection signal="mouse_entered" from="rechts" to="Joystick2" method="_on_rechts_mouse_entered"]
-[connection signal="mouse_exited" from="rechts" to="Joystick2" method="_on_rechts_mouse_exited"]
 [connection signal="mouse_entered" from="vor" to="Joystick2" method="_on_vor_mouse_entered"]
 [connection signal="mouse_exited" from="vor" to="Joystick2" method="_on_vor_mouse_exited"]
 [connection signal="mouse_entered" from="zurück" to="Joystick2" method="_on_zurück_mouse_entered"]
 [connection signal="mouse_exited" from="zurück" to="Joystick2" method="_on_zurück_mouse_exited"]
+[connection signal="mouse_entered" from="rechts" to="Joystick2" method="_on_rechts_mouse_entered"]
+[connection signal="mouse_exited" from="rechts" to="Joystick2" method="_on_rechts_mouse_exited"]
+[connection signal="mouse_entered" from="links" to="Joystick2" method="_on_links_mouse_entered"]
+[connection signal="mouse_exited" from="links" to="Joystick2" method="_on_links_mouse_exited"]

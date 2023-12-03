@@ -55,6 +55,8 @@ func _spieler_stirbt():
 		get_tree().current_scene.queue_free()
 		get_tree().current_scene = maingame
 	else:
+		var mooneten_before = DataScript.getMooneten()
+		DataScript.setMooneten(mooneten_before + score) 
 		await get_tree().create_timer(1).timeout
 		raumschiff.respawn(RespawnPos.global_position)
 		

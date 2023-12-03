@@ -44,6 +44,10 @@ func _process(delta):
 			
 	else:
 		global_position = lerp(global_position, parent.global_position, delta*10)
+		Input.action_release("links")
+		Input.action_release("rechts")
+		Input.action_release("vor")
+		Input.action_release("zurueck")
 
 
 func _on_button_button_down():
@@ -55,9 +59,9 @@ func _on_button_button_up():
 
 
 
-func _on_button_2_mouse_entered():
+func _on_links_mouse_entered():
 	links = true
-func _on_button_2_mouse_exited():
+func _on_links_mouse_exited():
 	links= false
 
 func _on_rechts_mouse_entered():
@@ -75,3 +79,5 @@ func _on_zurück_mouse_entered():
 	zurueck = true
 func _on_zurück_mouse_exited():
 	zurueck = false
+
+

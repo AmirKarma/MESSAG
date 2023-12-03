@@ -1,17 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfq6ogl4ncriu"]
+[gd_scene load_steps=10 format=3 uid="uid://bfq6ogl4ncriu"]
 
 [ext_resource type="Script" path="res://Minigame1/minigame_1.gd" id="1_47igm"]
-[ext_resource type="Texture2D" uid="uid://dkbeg86ngsply" path="res://Minigame1/2833063-leuchtend-schimmernder-weltraum-hintergrund-vektor.jpg" id="1_tw1b6"]
-[ext_resource type="Texture2D" uid="uid://bnkqe0kxmyfxb" path="res://Minigame1/Zurueck2.png" id="2_g36wf"]
 [ext_resource type="PackedScene" uid="uid://b6xe8654tk18d" path="res://Minigame1/info.tscn" id="2_ybuk1"]
-[ext_resource type="Texture2D" uid="uid://cmmaa1rvm8fs" path="res://Minigame1/Vor2.png" id="3_l1jfh"]
+[ext_resource type="Texture2D" uid="uid://d4bvoelmcyjy7" path="res://Minigame1/Background_1.png" id="3_1ykcl"]
 [ext_resource type="PackedScene" uid="uid://g40na2y72ch1" path="res://Minigame1/raumschiff.tscn" id="3_ydnmk"]
-[ext_resource type="Texture2D" uid="uid://bxropyekb5ofj" path="res://Minigame1/Links2.png" id="4_inhro"]
-[ext_resource type="Texture2D" uid="uid://bu6y84kfgb8nc" path="res://Minigame1/Rechts2.png" id="5_xg0e1"]
-[ext_resource type="Texture2D" uid="uid://cnikvpvch2r8f" path="res://Minigame1/Schuss2.png" id="6_86lsl"]
-[ext_resource type="Texture2D" uid="uid://dx260ahkthxlv" path="res://Minigame1/Restart.png" id="9_6v6t2"]
+[ext_resource type="Texture2D" uid="uid://b56jve8otmcps" path="res://Minigame1/Schuss2.png" id="6_86lsl"]
+[ext_resource type="Texture2D" uid="uid://mirwogqwtmbr" path="res://Minigame1/Restart.png" id="9_6v6t2"]
 [ext_resource type="PackedScene" uid="uid://wsxpcan07b4v" path="res://Minigame1/kometen.tscn" id="9_e5o5x"]
-[ext_resource type="Texture2D" uid="uid://wtu8ltp1xelx" path="res://Minigame1/Exit.png" id="10_5a5t6"]
+[ext_resource type="Texture2D" uid="uid://tgdengqasqk3" path="res://Minigame1/Exit.png" id="10_5a5t6"]
+[ext_resource type="PackedScene" uid="uid://bb0x0ox30dogx" path="res://Minigame1/joystick.tscn" id="13_qrxh0"]
 
 [node name="minigame1" type="Node2D"]
 script = ExtResource("1_47igm")
@@ -23,8 +20,8 @@ script = ExtResource("1_47igm")
 [node name="2833063-leuchtend-schimmernder-weltraum-hintergrund-vektor" type="Sprite2D" parent="."]
 show_behind_parent = true
 position = Vector2(160, 90)
-scale = Vector2(0.166667, 0.146461)
-texture = ExtResource("1_tw1b6")
+scale = Vector2(0.333333, 0.333333)
+texture = ExtResource("3_1ykcl")
 
 [node name="Raumschiff" parent="." instance=ExtResource("3_ydnmk")]
 top_level = true
@@ -40,32 +37,8 @@ position = Vector2(158, 91)
 
 [node name="Kanone" type="Node" parent="."]
 
-[node name="Touchzurück" type="TouchScreenButton" parent="."]
-position = Vector2(286, 146)
-scale = Vector2(0.25, 0.25)
-texture_normal = ExtResource("2_g36wf")
-action = "zurueck"
-
-[node name="Touchvor" type="TouchScreenButton" parent="."]
-position = Vector2(286, 112)
-scale = Vector2(0.25, 0.25)
-texture_normal = ExtResource("3_l1jfh")
-action = "vor"
-
-[node name="Touchlinks" type="TouchScreenButton" parent="."]
-position = Vector2(3, 145)
-scale = Vector2(0.25, 0.25)
-texture_normal = ExtResource("4_inhro")
-action = "links"
-
-[node name="Touchrechts" type="TouchScreenButton" parent="."]
-position = Vector2(39, 145)
-scale = Vector2(0.25, 0.25)
-texture_normal = ExtResource("5_xg0e1")
-action = "rechts"
-
 [node name="Touchschuss" type="TouchScreenButton" parent="."]
-position = Vector2(257, 136)
+position = Vector2(1.99997, 139)
 scale = Vector2(0.210938, 0.3125)
 texture_normal = ExtResource("6_86lsl")
 action = "schuss"
@@ -95,3 +68,6 @@ position = Vector2(184, 142)
 
 [node name="Kometen4" parent="AllKometen" instance=ExtResource("9_e5o5x")]
 position = Vector2(208, 29)
+
+[node name="Joystick" parent="." instance=ExtResource("13_qrxh0")]
+position = Vector2(292, 152)

@@ -27,6 +27,7 @@ func _on_option_button_pressed():
 	pressed = true
 	optionButton.get_popup().hide()
 	if player.position.distance_to(position) > 50:
+		player.stand_still = false
 		player.moving = true
 		player.nav.target_position = position - Vector2(20,20)
 		player.animationState.travel("Run")

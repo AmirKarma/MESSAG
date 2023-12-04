@@ -11,6 +11,8 @@ var free_field_pressed:bool = false
 var stand_still:bool = false
 var clicked_tile
 var clicked_tile_center
+var tile_data
+var free_field_pattern:Array
 
 @onready var world : Node2D = get_tree().get_root().get_node("World")
 @onready var animationPlayer = $AnimationPlayer
@@ -21,39 +23,59 @@ var clicked_tile_center
 
 func _unhandled_input(event):
 	if event.is_action_pressed('Click'):
-		tilemap_free_field_acess()
+		set_free_field_pressed()
+		free_field_distance_check()
 		if !stand_still:
+			set_patter()
 			moving = true
-			stand_still = false
 			nav.target_position = get_global_mouse_position()
 			animationState.travel("Run")
 
-func tilemap_free_field_acess():
+func set_patter():
+	if tile_data.get_custom_data('clickable'):
+			free_field_pattern = create_pattern()
+
+func set_free_field_pressed():
 	#Tilemapcoords
 	clicked_tile = map.local_to_map(get_global_mouse_position())
 	#Globalcoords
 	clicked_tile_center = map.map_to_local(clicked_tile)
-	var tile_data = map.get_cell_tile_data(0,clicked_tile)
+	tile_data = map.get_cell_tile_data(0,clicked_tile)
 	if tile_data:
-		var can_click_cell = tile_data.get_custom_data('clickable')
-		if can_click_cell:
+		if tile_data.get_custom_data('clickable'):
 			free_field_pressed = true
 		else:
 			free_field_pressed = false
 			stand_still = false
 
+# creates the free field pattern
+func create_pattern()-> Array:
+	var pattern:Array
+	pattern.append(clicked_tile)
+	var pattern_index = 0
+	while(len(pattern) < 6):
+		var surrounding_cells:Array = map.get_surrounding_cells(pattern[pattern_index])
+		for i in range(len(surrounding_cells)):
+			var tile_data_pattern = map.get_cell_tile_data(0,surrounding_cells[i])
+			if tile_data_pattern.get_custom_data('clickable') and !pattern.has(surrounding_cells[i]):
+				pattern.append(surrounding_cells[i])
+		pattern_index += 1
+	return pattern
+	
 func _physics_process(delta):
 	MovementLoop(delta)
 	free_field_distance_check()
-	
 
 func free_field_distance_check():
 	if free_field_pressed:
-		if position.distance_to(clicked_tile_center) < 35:
+		if (position.distance_to(clicked_tile_center) < 35 or stand_still) and free_field_pattern.has(clicked_tile):
 			moving = false
 			stand_still = true
 			open_menu()
-		
+			free_field_pressed = false
+		else :
+			stand_still = false
+			set_patter()
 
 func open_menu():
 	print("open")

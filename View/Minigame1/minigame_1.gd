@@ -50,7 +50,7 @@ func _spieler_stirbt():
 	lives -= 1
 	print("tot_tottot")
 	if lives <= 0:
-		var maingame = load("res://Welt/world.tscn").instantiate()
+		var maingame = load("res://Minigame1/GameOverScreen.tscn").instantiate()
 		get_tree().root.add_child(maingame)
 		get_tree().current_scene.queue_free()
 		get_tree().current_scene = maingame

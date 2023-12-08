@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1bi7kasqad8r"]
+[gd_scene load_steps=9 format=3 uid="uid://djvcmma4a72cc"]
 
 [ext_resource type="Script" path="res://Minigame1/RetryButton.gd" id="1_ivxgs"]
 [ext_resource type="Script" path="res://Minigame1/GameOverScreen.gd" id="1_w773k"]
 [ext_resource type="Script" path="res://Minigame1/ExitButton.gd" id="2_p7hpq"]
+[ext_resource type="Texture2D" uid="uid://d4bvoelmcyjy7" path="res://Minigame1/Background_1.png" id="4_iglc3"]
 
 [sub_resource type="FontFile" id="FontFile_gwgbe"]
 cache/0/16/0/ascent = 0.0
@@ -33,7 +34,6 @@ cache/0/50/0/kerning_overrides/50/0 = Vector2(0, 0)
 [sub_resource type="LabelSettings" id="LabelSettings_2fllk"]
 font = SubResource("FontFile_gwgbe")
 font_size = 50
-font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="FontFile" id="FontFile_tv01g"]
 cache/0/16/0/ascent = 0.0
@@ -54,7 +54,6 @@ cache/0/30/0/kerning_overrides/30/0 = Vector2(0, 0)
 [sub_resource type="LabelSettings" id="LabelSettings_w7qst"]
 font = SubResource("FontFile_tv01g")
 font_size = 30
-font_color = Color(0, 0, 0, 1)
 
 [node name="GameOverScreen" type="Control"]
 layout_mode = 3
@@ -65,32 +64,36 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w773k")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 180.0
-color = Color(0.811765, 0.0352941, 0.0901961, 1)
+[node name="Background1" type="Sprite2D" parent="."]
+modulate = Color(0.321569, 0.321569, 0.321569, 1)
+show_behind_parent = true
+position = Vector2(160, 90)
+scale = Vector2(0.333333, 0.333333)
+texture = ExtResource("4_iglc3")
 
 [node name="GameOverText" type="Label" parent="."]
 layout_mode = 0
 offset_left = 32.0
-offset_top = 12.0
 offset_right = 292.0
-offset_bottom = 66.0
+offset_bottom = 70.0
 text = "Game Over"
 label_settings = SubResource("LabelSettings_2fllk")
 
-[node name="ScoreLable" type="Label" parent="."]
+[node name="scoreLableMain" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 37.0
+offset_top = 51.0
+offset_right = 124.0
+offset_bottom = 95.0
+text = "Score:"
+label_settings = SubResource("LabelSettings_w7qst")
 
-[node name="Label3" type="Label" parent="."]
+[node name="highscoreLableMain" type="Label" parent="."]
 layout_mode = 0
-offset_left = 62.0
-offset_top = 74.0
-offset_right = 149.0
-offset_bottom = 108.0
+offset_left = 37.0
+offset_top = 80.0
+offset_right = 124.0
+offset_bottom = 124.0
 text = "Score:"
 label_settings = SubResource("LabelSettings_w7qst")
 

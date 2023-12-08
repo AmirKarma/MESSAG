@@ -9,10 +9,11 @@ extends Node2D
 @onready var Leben = $Punkte/info
 @onready var RespawnPos = $RespawnPos
 
+var timer2
 
 
 
-var score := 0:
+@export var score := 0:
 	set(punkte):
 		score = punkte
 		Punkte.punkte = score
@@ -22,6 +23,13 @@ var kometen_scene = preload("res://Minigame1/kometen.tscn")
 func _ready():
 	score = 0
 	lives = 3
+	
+	timer2 = Timer.new()
+	add_child(timer2)
+	timer2.wait_time = 5
+	timer2.timeout.connect(new_kometen)
+	timer2.start()
+	
 	
 	raumschiff.connect("kanonen_schuss", _spieler_kanonen_schuss)
 	raumschiff.connect("spieler_tot", _spieler_stirbt)
@@ -40,6 +48,8 @@ func _process(delta):
 
 	elif Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
+	
+	
 		
 var lives := 3:
 	set(value):
@@ -48,15 +58,17 @@ var lives := 3:
 
 func _spieler_stirbt():
 	lives -= 1
-	print("tot_tottot")
 	if lives <= 0:
+		DataScript.setM1Score(score)
+		
 		var maingame = load("res://Minigame1/GameOverScreen.tscn").instantiate()
 		get_tree().root.add_child(maingame)
 		get_tree().current_scene.queue_free()
 		get_tree().current_scene = maingame
+		DataScript.addMooneten(score)
+		
 	else:
-		var mooneten_before = DataScript.getMooneten()
-		DataScript.setMooneten(mooneten_before + score) 
+		
 		await get_tree().create_timer(1).timeout
 		raumschiff.respawn(RespawnPos.global_position)
 		
@@ -84,4 +96,11 @@ func spawn_kometen(position, size):
 	k.size = size
 	k.connect("zerstört", _kometen_zerstört)
 	kometen.call_deferred("add_child",k)
+	
+func new_kometen():
+	var k = kometen_scene.instantiate()
+	k.connect("zerstört", _kometen_zerstört)
+	kometen.call_deferred("add_child",k)
+	add_child(k)
+	timer2.start()
 	

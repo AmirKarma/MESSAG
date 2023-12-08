@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://th2ea82xp615"]
 
 [ext_resource type="Script" path="res://Minigame1/schuss.gd" id="1_xrdhj"]
-[ext_resource type="Texture2D" uid="uid://8dfwjwaomn0t" path="res://Minigame1/schuss.png" id="2_1ure2"]
+[ext_resource type="Texture2D" uid="uid://2f17bkx8kduv" path="res://Minigame1/schuss.png" id="2_1ure2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opgdf"]
 size = Vector2(2, 21.5)

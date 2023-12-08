@@ -9,6 +9,7 @@ signal spieler_tot
 @onready var Gun = $Gun
 @onready var sprite = $Sprite2D
 @onready var collision = $CollisionPolygon2D
+var timer1
 
 var shot_szene = preload("res://Minigame1/schuss.tscn")
 
@@ -21,6 +22,12 @@ var alive := true
 @export var rotation_speed := 250.0
 @export var schwebeeffect := 0.5
  
+
+func _ready():
+	timer1 = Timer.new()
+	add_child(timer1)
+	timer1.wait_time = 3
+	
 
 
 func _process(delta):
@@ -69,9 +76,13 @@ func respawn(pos):
 		global_position = pos
 		velocity = Vector2.ZERO
 		sprite.visible = true
+		timer1.start()
+		timer1.timeout.connect(playerCollisionRespawn)
+		
+func playerCollisionRespawn():
 		collision.set_deferred("disabled", false)
 		process_mode = Node.PROCESS_MODE_INHERIT
-		print("Respawn")
+		print("Respawn")	
 
 func tot():
 	if alive == true:
@@ -82,9 +93,10 @@ func tot():
 	
 		
 func schuss():
-	var k = shot_szene.instantiate()
-	k.global_position = Gun.global_position
-	k.rotation = rotation
-	emit_signal("kanonen_schuss", k)
+	if alive:
+		var k = shot_szene.instantiate()
+		k.global_position = Gun.global_position
+		k.rotation = rotation
+		emit_signal("kanonen_schuss", k)
 	
 

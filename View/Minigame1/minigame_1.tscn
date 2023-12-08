@@ -34,22 +34,26 @@ position = Vector2(157, 91)
 position = Vector2(158, 91)
 
 [node name="SchussContainer" type="Node2D" parent="."]
+position = Vector2(-13, -13)
 
 [node name="Kanone" type="Node" parent="."]
 
 [node name="Touchschuss" type="TouchScreenButton" parent="."]
-position = Vector2(17, 124)
+top_level = true
+position = Vector2(25, 108)
 scale = Vector2(0.210938, 0.3125)
 texture_normal = ExtResource("6_86lsl")
 action = "schuss"
 
 [node name="Touchrestart" type="TouchScreenButton" parent="."]
+top_level = true
 position = Vector2(292, 1)
 scale = Vector2(0.101563, 0.101563)
 texture_normal = ExtResource("9_6v6t2")
 action = "reset"
 
 [node name="Touchbacktomain" type="TouchScreenButton" parent="."]
+top_level = true
 position = Vector2(306, 1)
 scale = Vector2(0.1, 0.1)
 texture_normal = ExtResource("10_5a5t6")
@@ -58,16 +62,17 @@ action = "debug"
 [node name="AllKometen" type="Node" parent="."]
 
 [node name="Kometen3" parent="AllKometen" instance=ExtResource("9_e5o5x")]
-position = Vector2(258, 70)
+position = Vector2(288, 81)
 
 [node name="Kometen" parent="AllKometen" instance=ExtResource("9_e5o5x")]
-position = Vector2(50, 61)
+position = Vector2(36, 54)
 
 [node name="Kometen2" parent="AllKometen" instance=ExtResource("9_e5o5x")]
-position = Vector2(150, 156)
+position = Vector2(121, 156)
 
 [node name="Kometen4" parent="AllKometen" instance=ExtResource("9_e5o5x")]
-position = Vector2(177, 24)
+position = Vector2(172, 24)
 
 [node name="Joystick" parent="." instance=ExtResource("13_qrxh0")]
-position = Vector2(281, 141)
+top_level = true
+position = Vector2(269, 130)

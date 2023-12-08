@@ -3,6 +3,8 @@ extends Control
 var mooneten = 0
 var energy = 0
 var unixLastTime = 0
+var minigame_one_highscore = 0
+var minigame_one_score = 0
 
 var ressourceBarDataString = "res://Player/playerData.dat"
 
@@ -64,7 +66,20 @@ func addEnergy(value):
 func removeEnergy(value):
 	energy = energy - value
 	saveData()
+	
+	
+func setM1Score(value):
+	minigame_one_score = value
+	if minigame_one_score >= minigame_one_highscore:
+		minigame_one_highscore = minigame_one_score
+		saveData()
+	
+func getM1Score():
+	return minigame_one_score	
 
+
+func getM1HighScore():
+	return minigame_one_highscore
 
 
 func saveData():
@@ -72,6 +87,7 @@ func saveData():
 	file.store_var(mooneten)
 	file.store_var(energy)
 	file.store_var(unixLastTime)
+	file.store_var(minigame_one_highscore)
 	
 func loadData():
 	if FileAccess.file_exists(ressourceBarDataString):
@@ -79,6 +95,7 @@ func loadData():
 		mooneten = file.get_var()
 		energy = file.get_var()
 		unixLastTime = file.get_var()
+		minigame_one_highscore = file.get_var()
 		addOfflineMooneten()
 	else:
 		unixLastTime = Time.get_unix_time_from_system()

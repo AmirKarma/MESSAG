@@ -26,12 +26,12 @@ func _unhandled_input(event):
 		set_free_field_pressed()
 		free_field_distance_check()
 		if !stand_still:
-			set_patter()
+			set_pattern()
 			moving = true
 			nav.target_position = get_global_mouse_position()
 			animationState.travel("Run")
 
-func set_patter():
+func set_pattern():
 	if tile_data.get_custom_data('clickable'):
 			free_field_pattern = create_pattern()
 
@@ -75,7 +75,7 @@ func free_field_distance_check():
 			free_field_pressed = false
 		else :
 			stand_still = false
-			set_patter()
+			set_pattern()
 
 func open_menu():
 	print("open")

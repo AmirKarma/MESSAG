@@ -71,14 +71,15 @@ func free_field_distance_check():
 		if (position.distance_to(clicked_tile_center) < 35 or stand_still) and free_field_pattern.has(clicked_tile):
 			moving = false
 			stand_still = true
-			open_menu()
+			open_menu(clicked_tile_center)
 			free_field_pressed = false
 		else :
 			stand_still = false
 			set_pattern()
 
-func open_menu():
-	print("open")
+func open_menu(value):
+	var test = getFieldIndex(value)
+	print(test)
 
 func MovementLoop(delta):
 	if !stand_still:
@@ -104,3 +105,47 @@ func MovementLoop(delta):
 		animationState.travel("Idle")
 		speed = 0
 
+func getFieldIndex(value):
+	if(value.x >= 16 && value.x <= 80):
+		if(value.y >= 144 && value.y <= 176):
+			return 0
+	if(value.x >= 144 && value.x <= 208):
+		if(value.y >= 48 && value.y <= 80):
+			return 1
+	if(value.x >= 528 && value.x <= 592):
+		if(value.y >= 48 && value.y <= 80):
+			return 2
+	if(value.x >= 496 && value.x <= 560):
+		if(value.y >= -144 && value.y <= -112):
+			return 3    
+	if(value.x >= 208 && value.x <= 272):
+		if(value.y >= -144 && value.y <= -112):
+			return 4
+	if(value.x >= -144 && value.x <= -80):
+		if(value.y >= -144 && value.y <= -112):
+			return 5
+	if(value.x >= -496 && value.x <= -432):
+		if(value.y >= -80 && value.y <= -48):
+			return 6
+	if(value.x >= -304 && value.x <= -240):
+		if(value.y >= 80 && value.y <= 112):
+			return 7
+	if(value.x >= -176 && value.x <= -112):
+		if(value.y >= 240 && value.y <= 272):
+			return 8
+	if(value.x >= -368 && value.x <= -304):
+		if(value.y >= 336 && value.y <= 368):
+			return 9
+	if(value.x >= 48 && value.x <= 112):
+		if(value.y >= 368 && value.y <= 400):
+			return 10
+	if(value.x >= 336 && value.x <= 400):
+		if(value.y >= 432 && value.y <= 464):
+			return 11
+	if(value.x >= 432 && value.x <= 496):
+		if(value.y >= 240 && value.y <= 272):
+			return 12
+	if(value.x >= 880 && value.x <= 944):
+		if(value.y >= 240 && value.y <= 272):
+			return 13
+	return -1

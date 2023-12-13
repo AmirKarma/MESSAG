@@ -1,19 +1,32 @@
+# Extends the CharacterBody2D class
 extends CharacterBody2D
 
+# Maximum speed of the character
 var max_speed = 100
+# Current speed of the character
 var speed = 0
+# Acceleration of the character
 var acceleration = 400
+# Direction in which the character is moving
 var move_direction
+# Indicates whether the character is moving
 var moving = false
+# Destination for movement
 var destination = Vector2()
+# Vector for character movement
 var movement = Vector2()
+# Indicates whether the free-field key is pressed
 var free_field_pressed:bool = false
+# Indicates whether the character is standing still
 var stand_still:bool = false
+# Clicked tile and its center
 var clicked_tile
 var clicked_tile_center
+# Data of the tile and pattern for free fields
 var tile_data
 var free_field_pattern:Array
 
+# References to other nodes and resources in the game
 @onready var world : Node2D = get_tree().get_root().get_node("World")
 @onready var animationPlayer = $AnimationPlayer
 @onready var animationTree = $AnimationTree
@@ -21,6 +34,7 @@ var free_field_pattern:Array
 @onready var nav : NavigationAgent2D = $NavigationAgent2D
 @onready var map : TileMap = world.get_node('TileMap')
 
+# Function called when unhandled input occurs
 func _unhandled_input(event):
 	if event.is_action_pressed('Click'):
 		set_free_field_pressed()
@@ -31,10 +45,12 @@ func _unhandled_input(event):
 			nav.target_position = get_global_mouse_position()
 			animationState.travel("Run")
 
+# Sets the pattern for free fields if the tile is clickable
 func set_pattern():
 	if tile_data.get_custom_data('clickable'):
 			free_field_pattern = create_pattern()
 
+# Activates the free-field key and sets the click status
 func set_free_field_pressed():
 	#Tilemapcoords
 	clicked_tile = map.local_to_map(get_global_mouse_position())
@@ -62,10 +78,12 @@ func create_pattern()-> Array:
 		pattern_index += 1
 	return pattern
 	
+# Called every physics process
 func _physics_process(delta):
 	MovementLoop(delta)
 	free_field_distance_check()
-
+	
+# Checks the distance to the free field
 func free_field_distance_check():
 	if free_field_pressed:
 		if (position.distance_to(clicked_tile_center) < 35 or stand_still) and free_field_pattern.has(clicked_tile):
@@ -76,11 +94,13 @@ func free_field_distance_check():
 		else :
 			stand_still = false
 			set_pattern()
-
+			
+# Opens a menu and returns the index of the field
 func open_menu(value):
 	var test = getFieldIndex(value)
 	print(test)
-
+	
+# Governs character movement
 func MovementLoop(delta):
 	if !stand_still:
 		if moving == false:
@@ -104,7 +124,8 @@ func MovementLoop(delta):
 	else:
 		animationState.travel("Idle")
 		speed = 0
-
+		
+# Returns the index of the field based on the global position
 func getFieldIndex(value):
 	if(value.x >= 16 && value.x <= 80):
 		if(value.y >= 144 && value.y <= 176):

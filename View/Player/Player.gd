@@ -98,7 +98,9 @@ func free_field_distance_check():
 # Opens a menu and returns the index of the field
 func open_menu(value):
 	var test = getFieldIndex(value)
+	var buildingIndex = getBuildingIndex(test)
 	print(test)
+	print(buildingIndex)
 	
 # Governs character movement
 func MovementLoop(delta):
@@ -170,3 +172,34 @@ func getFieldIndex(value):
 		if(value.y >= 240 && value.y <= 272):
 			return 13
 	return -1
+	
+func getBuildingIndex(value):
+	if(value == 0):
+		return DataScript.fieldZero
+	if(value == 1):
+		return DataScript.fieldOne
+	if(value == 2):
+		return DataScript.fieldTwo
+	if(value == 3):
+		return DataScript.fieldThree
+	if(value == 4):
+		return DataScript.fieldFour
+	if(value == 5):
+		return DataScript.fieldFive
+	if(value == 6):
+		return DataScript.fieldSix
+	if(value == 7):
+		return DataScript.fieldSeven
+	if(value == 8):
+		return DataScript.fieldEight
+	if(value == 9):
+		return DataScript.fieldNine
+	if(value == 10):
+		return DataScript.fieldTen
+	if(value == 11):
+		return DataScript.fieldEleven
+	if(value == 12):
+		return DataScript.fieldTwelve
+	if(value == 13):
+		return DataScript.fieldThirteen
+	

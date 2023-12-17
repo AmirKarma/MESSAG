@@ -229,3 +229,34 @@ func addOfflineMooneten():
 		offlineMooneten = 1000
 	addMooneten(offlineMooneten)
 	
+func resetStats():
+	mooneten = 0
+	energy = 0
+	unixLastTime = Time.get_unix_time_from_system()
+	minigame2_highscore = 0
+	minigame_one_highscore = 0
+	moneyGeneratorCount = 0
+	moonstoneGeneratorCount = 0
+	shopCount = 0
+	moneyStorageCount = 0
+	moonstoneStorageCount = 0
+	fieldZero = -2
+	fieldOne = -1
+	fieldTwo = -1
+	fieldThree = -1
+	fieldFour = -1
+	fieldFive = -1
+	fieldSix = -1
+	fieldSeven = -1
+	fieldEight = -1
+	fieldNine = -1
+	fieldTen = -1
+	fieldEleven = -1
+	fieldTwelve = -1
+	fieldThirteen = -1
+	moneyGeneratorActiveCount = -1
+	moonstoneGeneratorActiveCount = -1
+	moneyStorageActiveCount = -1
+	moonstoneStorageActiveCount = -1
+	saveData()
+	

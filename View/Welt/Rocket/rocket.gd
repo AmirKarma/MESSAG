@@ -39,6 +39,7 @@ func doSomething():
 
 func add_items():
 	optionButton.add_item("Minigame")
+	optionButton.add_item("Minigame2")
 
 func _on_option_button_item_selected(index):
 	
@@ -48,3 +49,9 @@ func _on_option_button_item_selected(index):
 		get_tree().root.add_child(minigame)
 		get_tree().current_scene.queue_free()
 		get_tree().current_scene = minigame
+	elif index == 1:
+		DataScript.setUnixLastTime(Time.get_unix_time_from_system())
+		var minigame2 = load("res://Minigame2/minigame2.tscn").instantiate()
+		get_tree().root.add_child(minigame2)
+		get_tree().current_scene.queue_free()
+		get_tree().current_scene = minigame2

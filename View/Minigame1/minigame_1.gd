@@ -1,5 +1,6 @@
 extends Node2D
 
+
 # References to scene elements using the @onready keyword
 @onready var spieler_spawn_pos = $StartPosition
 @onready var schuss_container = $SchussContainer

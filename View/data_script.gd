@@ -15,9 +15,14 @@ var shopCount = 0
 var moneyStorageCount = 0
 var moonstoneStorageCount = 0
 
-var fieldZero = -1
+var moneyGeneratorActiveCount = 0
+var moonstoneGeneratorActiveCount = 0
+var moneyStorageActiveCount = 0
+var moonstoneStorageActiveCount = 0
+
+var fieldZero = -2
 var fieldOne = -1
-var fieldTwo = 0
+var fieldTwo = -1
 var fieldThree = -1
 var fieldFour = -1
 var fieldFive = -1
@@ -51,7 +56,10 @@ func _process(delta):
 	
 # Function called when the timer times out
 func _on_timeout_timer():
-	addMooneten(50)
+	var newMooneten = 50
+	if moneyGeneratorActiveCount > 0:
+		newMooneten = newMooneten * moneyGeneratorActiveCount
+	addMooneten(newMooneten)
 	timer.start()
 	
 # Setter function for mooneten variable
@@ -144,6 +152,10 @@ func saveData():
 	file.store_var(fieldEleven)
 	file.store_var(fieldTwelve)
 	file.store_var(fieldThirteen)
+	file.store_var(moneyGeneratorActiveCount)
+	file.store_var(moonstoneGeneratorActiveCount)
+	file.store_var(moneyStorageActiveCount)
+	file.store_var(moonstoneStorageActiveCount)
 	
 
 # Function to load player data from a file	
@@ -173,6 +185,10 @@ func loadData():
 		fieldEleven = file.get_var()
 		fieldTwelve = file.get_var()
 		fieldThirteen = file.get_var()
+		moneyGeneratorActiveCount = file.get_var()
+		moonstoneGeneratorActiveCount = file.get_var()
+		moneyStorageActiveCount = file.get_var()
+		moonstoneStorageActiveCount = file.get_var()
 		addOfflineMooneten()
 	else:
 		unixLastTime = Time.get_unix_time_from_system()
@@ -184,6 +200,8 @@ func addOfflineMooneten():
 	diff = diff / 60
 	diff = round(diff)
 	var offlineMooneten = diff * 50
+	if moneyGeneratorActiveCount > 0:
+		offlineMooneten = offlineMooneten * moneyGeneratorActiveCount
 	if offlineMooneten > 1000:
 		offlineMooneten = 1000
 	addMooneten(offlineMooneten)

@@ -25,11 +25,11 @@ jobs:
           relative_project_path: ./View/
           archive_output: true
 
-      - name: Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build 
-          path: |
-            /home/runner/.local/share/godot/archives/
+#      - name: Artifacts
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: build 
+#          path: |
+#            /home/runner/.local/share/godot/archives/
           
       

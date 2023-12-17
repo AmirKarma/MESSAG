@@ -19,6 +19,7 @@ func _on_fortsetzen_pressed():
 
 
 func _on_neues_spiel_pressed():
+	DataScript.resetStats()
 	var maingame = load("res://Welt/world.tscn").instantiate()
 	get_tree().root.add_child(maingame)
 	get_tree().current_scene.queue_free()

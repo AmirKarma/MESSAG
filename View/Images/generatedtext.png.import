@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmlf6q63rh2kt"
-path="res://.godot/imported/Vor2.png-ae79e924cac30042a54b33fb8c63e5b2.ctex"
+uid="uid://c24lsh16am6o0"
+path="res://.godot/imported/generatedtext.png-b71f90cb0745f0ad4ceb40033e41fd31.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigame1/Vor2.png"
-dest_files=["res://.godot/imported/Vor2.png-ae79e924cac30042a54b33fb8c63e5b2.ctex"]
+source_file="res://Images/generatedtext.png"
+dest_files=["res://.godot/imported/generatedtext.png-b71f90cb0745f0ad4ceb40033e41fd31.ctex"]
 
 [params]
 

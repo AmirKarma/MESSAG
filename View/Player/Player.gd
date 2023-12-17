@@ -26,6 +26,9 @@ var clicked_tile_center
 var tile_data
 var free_field_pattern:Array
 
+var buildingIndex = -1
+var fieldIndex = -1
+
 # References to other nodes and resources in the game
 @onready var world : Node2D = get_tree().get_root().get_node("World")
 @onready var animationPlayer = $AnimationPlayer
@@ -34,9 +37,13 @@ var free_field_pattern:Array
 @onready var nav : NavigationAgent2D = $NavigationAgent2D
 @onready var map : TileMap = world.get_node('TileMap')
 
+func _ready():
+	$Inventar.connect("_on_buybutton_bought", _on_buybutton_bought)
+
 # Function called when unhandled input occurs
 func _unhandled_input(event):
 	if event.is_action_pressed('Click'):
+		$Inventar.visible = false
 		set_free_field_pressed()
 		free_field_distance_check()
 		if !stand_still:
@@ -97,11 +104,42 @@ func free_field_distance_check():
 			
 # Opens a menu and returns the index of the field
 func open_menu(value):
-	var test = getFieldIndex(value)
-	var buildingIndex = getBuildingIndex(test)
-	print(test)
+	fieldIndex = getFieldIndex(value)
+	buildingIndex = getBuildingIndex(fieldIndex)
+	print(fieldIndex)
 	print(buildingIndex)
+	if buildingIndex == -1:
+		$Inventar.visible = true
 	
+
+func _on_buybutton_bought(bIndex):
+	print("Ausgewählt: " + str(bIndex))
+	if bIndex == 0:
+		if DataScript.moneyGeneratorCount > 0:
+			DataScript.moneyGeneratorCount = DataScript.moneyGeneratorCount - 1
+			setBuilding(fieldIndex, bIndex)
+			DataScript.saveData()
+	elif bIndex == 1:
+		if DataScript.moonstoneGeneratorCount > 0:
+			DataScript.moonstoneGeneratorCount = DataScript.moonstoneGeneratorCount - 1
+			setBuilding(fieldIndex, bIndex)
+			DataScript.saveData()
+	elif bIndex == 2:
+		if DataScript.moneyStorageCount > 0:
+			DataScript.moneyStorageCount = DataScript.moneyStorageCount - 1
+			setBuilding(fieldIndex, bIndex)
+			DataScript.saveData()
+	elif bIndex == 3:
+		if DataScript.moonstoneStorageCount > 0:
+			DataScript.moonstoneStorageCount = DataScript.moonstoneStorageCount - 1
+			setBuilding(fieldIndex, bIndex)
+			DataScript.saveData()
+	elif bIndex == 4:
+		if DataScript.shopCount > 0:
+			DataScript.shopCount = DataScript.shopCount - 1
+			setBuilding(fieldIndex, bIndex)
+			DataScript.saveData()
+
 # Governs character movement
 func MovementLoop(delta):
 	if !stand_still:
@@ -202,4 +240,36 @@ func getBuildingIndex(value):
 		return DataScript.fieldTwelve
 	if(value == 13):
 		return DataScript.fieldThirteen
+		
+func player_shop_method():
+	pass
 	
+func setBuilding(value, bIndex):
+	if(value == 0):
+		DataScript.fieldZero = bIndex
+	if(value == 1):
+		DataScript.fieldOne = bIndex
+	if(value == 2):
+		DataScript.fieldTwo = bIndex
+	if(value == 3):
+		DataScript.fieldThree = bIndex
+	if(value == 4):
+		DataScript.fieldFour = bIndex
+	if(value == 5):
+		DataScript.fieldFive = bIndex
+	if(value == 6):
+		DataScript.fieldSix = bIndex
+	if(value == 7):
+		DataScript.fieldSeven = bIndex
+	if(value == 8):
+		DataScript.fieldEight = bIndex
+	if(value == 9):
+		DataScript.fieldNine = bIndex
+	if(value == 10):
+		DataScript.fieldTen = bIndex
+	if(value == 11):
+		DataScript.fieldEleven = bIndex
+	if(value == 12):
+		DataScript.fieldTwelve = bIndex
+	if(value == 13):
+		DataScript.fieldThirteen = bIndex

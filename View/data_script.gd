@@ -9,6 +9,27 @@ var unixLastTime = 0 #logout time
 var minigame_one_highscore = 0
 var minigame_one_score = 0
 
+var moneyGeneratorCount = 0
+var moonstoneGeneratorCount = 0
+var shopCount = 0
+var moneyStorageCount = 0
+var moonstoneStorageCount = 0
+
+var fieldZero = -1
+var fieldOne = -1
+var fieldTwo = 0
+var fieldThree = -1
+var fieldFour = -1
+var fieldFive = -1
+var fieldSix = -1
+var fieldSeven = -1
+var fieldEight = -1
+var fieldNine = -1
+var fieldTen = -1
+var fieldEleven = -1
+var fieldTwelve = -1
+var fieldThirteen = -1
+
 # data storage location
 var ressourceBarDataString = "res://Player/playerData.dat"
 
@@ -104,6 +125,26 @@ func saveData():
 	file.store_var(energy)
 	file.store_var(unixLastTime)
 	file.store_var(minigame_one_highscore)
+	file.store_var(moneyGeneratorCount)
+	file.store_var(moonstoneGeneratorCount)
+	file.store_var(shopCount)
+	file.store_var(moneyStorageCount)
+	file.store_var(moonstoneStorageCount)
+	file.store_var(fieldZero)
+	file.store_var(fieldOne)
+	file.store_var(fieldTwo)
+	file.store_var(fieldThree)
+	file.store_var(fieldFour)
+	file.store_var(fieldFive)
+	file.store_var(fieldSix)
+	file.store_var(fieldSeven)
+	file.store_var(fieldEight)
+	file.store_var(fieldNine)
+	file.store_var(fieldTen)
+	file.store_var(fieldEleven)
+	file.store_var(fieldTwelve)
+	file.store_var(fieldThirteen)
+	
 
 # Function to load player data from a file	
 func loadData():
@@ -113,6 +154,25 @@ func loadData():
 		energy = file.get_var()
 		unixLastTime = file.get_var()
 		minigame_one_highscore = file.get_var()
+		moneyGeneratorCount = file.get_var()
+		moonstoneGeneratorCount = file.get_var()
+		shopCount = file.get_var()
+		moneyStorageCount = file.get_var()
+		moonstoneStorageCount = file.get_var()
+		fieldZero = file.get_var()
+		fieldOne = file.get_var()
+		fieldTwo = file.get_var()
+		fieldThree = file.get_var()
+		fieldFour = file.get_var()
+		fieldFive = file.get_var()
+		fieldSix = file.get_var()
+		fieldSeven = file.get_var()
+		fieldEight = file.get_var()
+		fieldNine = file.get_var()
+		fieldTen = file.get_var()
+		fieldEleven = file.get_var()
+		fieldTwelve = file.get_var()
+		fieldThirteen = file.get_var()
 		addOfflineMooneten()
 	else:
 		unixLastTime = Time.get_unix_time_from_system()

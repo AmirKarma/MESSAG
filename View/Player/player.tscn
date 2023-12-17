@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_3qcmq"]
 [ext_resource type="Texture2D" uid="uid://d26fe4t3pqew4" path="res://Images/astronaut.png" id="2_8dut7"]
 [ext_resource type="PackedScene" uid="uid://c6i4vynrrtudd" path="res://Player/RessourceBar/ressource_bar.tscn" id="3_0wfbp"]
-[ext_resource type="PackedScene" uid="uid://djmdat0ledp8m" path="res://Player/inventar.tscn" id="3_w3aec"]
+[ext_resource type="PackedScene" path="res://Player/inventar.tscn" id="3_w3aec"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yw0jl"]
 radius = 6.0

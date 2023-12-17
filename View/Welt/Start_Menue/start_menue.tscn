@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Welt/Start_Menue/start_menue.gd" id="1_j38ne"]
 [ext_resource type="Texture2D" uid="uid://d4bvoelmcyjy7" path="res://Minigame1/Background_1.png" id="2_k2pf6"]
 [ext_resource type="Texture2D" uid="uid://cviesfy3xnig0" path="res://Images/Mooneten.png" id="3_13emr"]
-[ext_resource type="Texture2D" path="res://Images/generatedtext.png" id="4_tbqsh"]
+[ext_resource type="Texture2D" uid="uid://chyc51ecgm3q5" path="res://Images/generatedtext.png" id="4_tbqsh"]
 [ext_resource type="Texture2D" uid="uid://chvkehfinf0j" path="res://Minigame2/asteroid_grey.png" id="6_bpifs"]
 [ext_resource type="Texture2D" uid="uid://2f17bkx8kduv" path="res://Minigame1/schuss.png" id="7_vkhpp"]
 

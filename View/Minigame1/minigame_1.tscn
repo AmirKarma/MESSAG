@@ -63,19 +63,15 @@ action = "debug"
 
 [node name="Kometen3" parent="AllKometen" instance=ExtResource("9_e5o5x")]
 position = Vector2(288, 81)
-size = 0
 
 [node name="Kometen" parent="AllKometen" instance=ExtResource("9_e5o5x")]
 position = Vector2(36, 54)
-size = 0
 
 [node name="Kometen2" parent="AllKometen" instance=ExtResource("9_e5o5x")]
 position = Vector2(121, 156)
-size = 0
 
 [node name="Kometen4" parent="AllKometen" instance=ExtResource("9_e5o5x")]
 position = Vector2(172, 24)
-size = 0
 
 [node name="Joystick" parent="." instance=ExtResource("13_qrxh0")]
 top_level = true

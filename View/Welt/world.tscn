@@ -1,9 +1,9 @@
 [gd_scene load_steps=27 format=3 uid="uid://cdfejtgr3uct"]
 
 [ext_resource type="Script" path="res://Welt/world.gd" id="1_fs3ho"]
-[ext_resource type="Texture2D" uid="uid://dbh5uk0ytof32" path="res://Welt/Background/Terrain_Ecken.png" id="2_2bpty"]
-[ext_resource type="Texture2D" uid="uid://ddhd05dwexuff" path="res://Welt/Background/Terrain_Grau.png" id="2_pmdlq"]
-[ext_resource type="Texture2D" uid="uid://3s6ye2qf1hou" path="res://Welt/Background/Krater_Grau.png" id="3_dim4n"]
+[ext_resource type="Texture2D" path="res://Welt/Background/Terrain_Ecken.png" id="2_2bpty"]
+[ext_resource type="Texture2D" path="res://Welt/Background/Terrain_Grau.png" id="2_pmdlq"]
+[ext_resource type="Texture2D" path="res://Welt/Background/Krater_Grau.png" id="3_dim4n"]
 [ext_resource type="PackedScene" uid="uid://cwo4kcdmsf7cr" path="res://Player/player.tscn" id="3_g0tsn"]
 [ext_resource type="PackedScene" uid="uid://d3nqblcu1fvpi" path="res://Welt/Rocket/rocket.tscn" id="4_x5ukb"]
 

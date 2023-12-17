@@ -23,8 +23,6 @@ func _on_neues_spiel_pressed():
 	get_tree().root.add_child(maingame)
 	get_tree().current_scene.queue_free()
 	get_tree().current_scene = maingame
-	DataScript.setMooneten(0)
-	DataScript.setEnergy(0)
 	
 	
 	

@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://det7mjel5dohh"]
+
+[ext_resource type="Texture2D" uid="uid://cp3olla0v3mdx" path="res://Minigame2/background-black.png" id="1_aa8d1"]
+[ext_resource type="Script" path="res://Minigame2/Background.gd" id="1_byurc"]
+[ext_resource type="Script" path="res://Minigame2/minigame2.gd" id="1_wjhoj"]
+[ext_resource type="Texture2D" uid="uid://blup8s04ergik" path="res://Minigame1/Rakete.png" id="3_jhdig"]
+[ext_resource type="Script" path="res://Minigame2/Player.gd" id="4_iemfn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcre6"]
+radius = 0.05
+height = 0.19
+
+[node name="minigame2" type="Node2D"]
+script = ExtResource("1_wjhoj")
+
+[node name="Objects" type="Node" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("1_byurc")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(2.08165e-12, 180)
+
+[node name="SpaceBackground" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(160, 90)
+scale = Vector2(0.8, 0.45)
+texture = ExtResource("1_aa8d1")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(160, 128)
+scale = Vector2(85, 125)
+script = ExtResource("4_iemfn")
+
+[node name="Rocket" type="Sprite2D" parent="Player"]
+scale = Vector2(0.00323163, 0.00225)
+texture = ExtResource("3_jhdig")
+
+[node name="Area2D" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+shape = SubResource("CapsuleShape2D_bcre6")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

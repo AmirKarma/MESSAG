@@ -9,6 +9,15 @@ var unixLastTime = 0 #logout time
 var minigame_one_highscore = 0
 var minigame_one_score = 0
 
+var minigame2_score = 0
+var minigame2_highscore = 0
+var minigame2_timer:
+	set(value):
+		minigame2_timer = value
+		
+var minigame2_timerSpeed = 0.01
+const minigame2_gameSpeed = Vector2(0,10) 
+
 var moneyGeneratorCount = 0
 var moonstoneGeneratorCount = 0
 var shopCount = 0
@@ -118,10 +127,22 @@ func setM1Score(value):
 		minigame_one_highscore = minigame_one_score
 		saveData()
 
+func setMinigame2_highscore(value):
+	if value > minigame2_highscore:
+		minigame2_highscore = value
+		saveData()
+		
+func getMinigame2_highscore():
+	return minigame2_highscore
 # Getter function for minigame_one_score variable
 func getM1Score():
 	return minigame_one_score	
 
+func setMinigame2_score(value):
+	minigame2_score = value
+	
+func getMinigame2_score():
+	return minigame2_score
 # Getter function for minigame_one_highscore variable
 func getM1HighScore():
 	return minigame_one_highscore
@@ -132,6 +153,7 @@ func saveData():
 	file.store_var(mooneten)
 	file.store_var(energy)
 	file.store_var(unixLastTime)
+	file.store_var(minigame2_highscore)
 	file.store_var(minigame_one_highscore)
 	file.store_var(moneyGeneratorCount)
 	file.store_var(moonstoneGeneratorCount)
@@ -165,6 +187,7 @@ func loadData():
 		mooneten = file.get_var()
 		energy = file.get_var()
 		unixLastTime = file.get_var()
+		minigame2_highscore = file.get_var()
 		minigame_one_highscore = file.get_var()
 		moneyGeneratorCount = file.get_var()
 		moonstoneGeneratorCount = file.get_var()

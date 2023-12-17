@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bfq6ogl4ncriu"]
 
 [ext_resource type="Script" path="res://Minigame1/minigame_1.gd" id="1_47igm"]
-[ext_resource type="PackedScene" uid="uid://b6xe8654tk18d" path="res://Minigame1/info.tscn" id="2_ybuk1"]
+[ext_resource type="PackedScene" uid="uid://cnscj3t5rp2x5" path="res://Minigame1/info.tscn" id="2_ybuk1"]
 [ext_resource type="Texture2D" uid="uid://d4bvoelmcyjy7" path="res://Minigame1/Background_1.png" id="3_1ykcl"]
 [ext_resource type="PackedScene" uid="uid://g40na2y72ch1" path="res://Minigame1/raumschiff.tscn" id="3_ydnmk"]
 [ext_resource type="Texture2D" uid="uid://b56jve8otmcps" path="res://Minigame1/Schuss2.png" id="6_86lsl"]

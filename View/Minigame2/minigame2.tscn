@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://det7mjel5dohh"]
+[gd_scene load_steps=8 format=3 uid="uid://det7mjel5dohh"]
 
 [ext_resource type="Texture2D" uid="uid://cp3olla0v3mdx" path="res://Minigame2/background-black.png" id="1_aa8d1"]
 [ext_resource type="Script" path="res://Minigame2/Background.gd" id="1_byurc"]
 [ext_resource type="Script" path="res://Minigame2/minigame2.gd" id="1_wjhoj"]
 [ext_resource type="Texture2D" uid="uid://blup8s04ergik" path="res://Minigame1/Rakete.png" id="3_jhdig"]
 [ext_resource type="Script" path="res://Minigame2/Player.gd" id="4_iemfn"]
+[ext_resource type="Texture2D" uid="uid://tgdengqasqk3" path="res://Minigame1/Exit.png" id="6_3qhid"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcre6"]
 radius = 0.05
@@ -42,4 +43,10 @@ shape = SubResource("CapsuleShape2D_bcre6")
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(299, 2)
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("6_3qhid")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]

@@ -9,14 +9,19 @@ var unixLastTime = 0 #logout time
 var minigame_one_highscore = 0
 var minigame_one_score = 0
 
-var minigame2_score = 0
-var minigame2_highscore = 0
-var minigame2_timer:
-	set(value):
-		minigame2_timer = value
-		
-var minigame2_timerSpeed = 0.01
-const minigame2_gameSpeed = Vector2(0,10) 
+# Variables for Mini-Game 2
+# Variable to track the current score in Mini-Game 2
+var minigame2_score := 0
+# Variable to store the high score in Mini-Game 2
+var minigame2_highscore := 0
+# Timer variable for Mini-Game 2
+var minigame2_timer: 
+	set(value): minigame2_timer = value
+# Speed at which the timer in Mini-Game 2 decreases
+var minigame2_timerSpeed := 0.01
+# Constant representing the game speed in Mini-Game 2 as a 2D vector (horizontal speed = 0, vertical speed = 10)
+const minigame2_gameSpeed := Vector2(0, 10)
+
 
 var moneyGeneratorCount = 0
 var moonstoneGeneratorCount = 0
@@ -29,6 +34,7 @@ var moonstoneGeneratorActiveCount = 0
 var moneyStorageActiveCount = 0
 var moonstoneStorageActiveCount = 0
 
+#field id´s -2: building on the field; -1: no building on the field
 var fieldZero = -2
 var fieldOne = -1
 var fieldTwo = -1

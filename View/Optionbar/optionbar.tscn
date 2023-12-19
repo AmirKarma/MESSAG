@@ -6,17 +6,21 @@
 [ext_resource type="Texture2D" uid="uid://cqyb7cv4a2jkf" path="res://Optionbar/close button pressed.png" id="4_d5vgi"]
 
 [node name="optionbar" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="optionbarRect" type="NinePatchRect" parent="."]
+z_index = 1
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 0
-offset_right = 320.0
-offset_bottom = 180.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 310.0
+offset_bottom = 170.0
 texture = ExtResource("1_2jdyx")
 patch_margin_left = 6
 patch_margin_top = 6
@@ -26,9 +30,9 @@ script = ExtResource("2_da1ef")
 
 [node name="closeButton" type="TextureButton" parent="optionbarRect"]
 layout_mode = 0
-offset_left = 293.0
+offset_left = 273.0
 offset_top = 8.0
-offset_right = 311.0
+offset_right = 291.0
 offset_bottom = 26.0
 texture_normal = ExtResource("3_oie7c")
 texture_pressed = ExtResource("4_d5vgi")
@@ -53,9 +57,9 @@ text = "Level 1"
 [node name="buildingRect" type="NinePatchRect" parent="optionbarRect"]
 layout_mode = 0
 offset_left = 7.0
-offset_top = 40.0
-offset_right = 147.0
-offset_bottom = 170.0
+offset_top = 35.0
+offset_right = 127.0
+offset_bottom = 150.0
 texture = ExtResource("1_2jdyx")
 patch_margin_left = 6
 patch_margin_top = 6

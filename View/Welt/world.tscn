@@ -181,8 +181,8 @@ top_level = true
 position = Vector2(72, 88)
 
 [node name="Rocket" parent="." instance=ExtResource("4_x5ukb")]
-visible = false
 top_level = true
 position = Vector2(47, 118)
 
 [node name="optionbar" parent="." instance=ExtResource("7_c2vov")]
+visible = false

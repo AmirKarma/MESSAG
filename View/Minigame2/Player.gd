@@ -28,3 +28,14 @@ func player_movement():
 
 	# Move the player using Godot's built-in move_and_slide function
 	move_and_slide()
+
+
+
+# Function called when the Player node detects another area entering it
+func _on_area_2d_area_entered(area):
+	# Set the high score to the current score when the area is entered
+	DataScript.minigame2_highscore = DataScript.minigame2_score
+
+	# get_tree().change_scene_to_file("res://Minigame2/GameOverScreenMinigame2.tscn")
+	print("gameOver")
+

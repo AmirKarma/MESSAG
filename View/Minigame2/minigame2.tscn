@@ -1,13 +1,11 @@
-
-[gd_scene load_steps=9 format=3 uid="uid://det7mjel5dohh"]
-
+[gd_scene load_steps=10 format=3 uid="uid://det7mjel5dohh"]
 
 [ext_resource type="Script" path="res://Minigame2/Background.gd" id="1_byurc"]
 [ext_resource type="Script" path="res://Minigame2/minigame2.gd" id="1_wjhoj"]
 [ext_resource type="Texture2D" uid="uid://cp3olla0v3mdx" path="res://Minigame2/Img/background-black.png" id="3_j0lcg"]
 [ext_resource type="Texture2D" uid="uid://blup8s04ergik" path="res://Minigame1/Rakete.png" id="3_jhdig"]
 [ext_resource type="Script" path="res://Minigame2/Player.gd" id="4_iemfn"]
-[ext_resource type="Texture2D" uid="uid://tgdengqasqk3" path="res://Minigame1/Exit.png" id="6_3qhid"]
+[ext_resource type="Script" path="res://Minigame2/Overlay.gd" id="6_ehkd1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcre6"]
 radius = 0.05
@@ -44,7 +42,7 @@ script = ExtResource("4_iemfn")
 scale = Vector2(0.00323163, 0.00225)
 texture = ExtResource("3_jhdig")
 
-[node name="Area2D" type="Area2D" parent="Player"]
+[node name="Area2D" type="Area2D" parent="Player" groups=["Player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
 shape = SubResource("CapsuleShape2D_bcre6")
@@ -60,6 +58,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 320.0
 offset_bottom = 180.0
+script = ExtResource("6_ehkd1")
 
 [node name="TouchRight" type="TouchScreenButton" parent="Hud/Overlay"]
 position = Vector2(240, 130)
@@ -71,4 +70,11 @@ position = Vector2(80, 130)
 shape = SubResource("RectangleShape2D_unto0")
 action = "ui_left"
 
+[node name="Score" type="Label" parent="Hud/Overlay"]
+visible = false
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 23.0
+
+[connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="Minigame2_timer" to="." method="_on_timer_timeout"]

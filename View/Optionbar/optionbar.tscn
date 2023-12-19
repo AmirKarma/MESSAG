@@ -34,4 +34,34 @@ texture_normal = ExtResource("3_oie7c")
 texture_pressed = ExtResource("4_d5vgi")
 stretch_mode = 0
 
+[node name="Label" type="Label" parent="optionbarRect"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 1.0
+offset_right = 183.0
+offset_bottom = 27.0
+text = "Rocket"
+
+[node name="Label2" type="Label" parent="optionbarRect"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 13.0
+offset_right = 183.0
+offset_bottom = 39.0
+text = "Level 1"
+
+[node name="buildingRect" type="NinePatchRect" parent="optionbarRect"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 40.0
+offset_right = 147.0
+offset_bottom = 170.0
+texture = ExtResource("1_2jdyx")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="buildingImage" type="Sprite2D" parent="optionbarRect/buildingRect"]
+
 [connection signal="pressed" from="optionbarRect/closeButton" to="optionbarRect" method="_on_texture_button_pressed"]

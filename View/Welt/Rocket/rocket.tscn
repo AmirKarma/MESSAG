@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://Welt/Rocket/rocket.gd" id="1_owhly"]
 [ext_resource type="Texture2D" uid="uid://c8wdrwfglpbrk" path="res://Welt/Rocket/Rakete.png" id="2_1kb1i"]
 
-[sub_resource type="SystemFont" id="SystemFont_f0rxr"]
+[sub_resource type="SystemFont" id="SystemFont_1tvvm"]
 font_names = PackedStringArray("Arial")
 subpixel_positioning = 0
 
 [sub_resource type="Theme" id="Theme_xonwc"]
 resource_local_to_scene = true
-default_font = SubResource("SystemFont_f0rxr")
+default_font = SubResource("SystemFont_1tvvm")
 default_font_size = 15
 OptionButton/colors/Test = Color(0, 0, 0, 1)
 OptionButton/colors/font_color = Color(0.87451, 0.0666667, 0.87451, 1)

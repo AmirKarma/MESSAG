@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var optionButton = $OptionButton
-@onready var rocketSprite = $rocketSprite
+@onready var RoverSprite = $RoverSide
 
 var pressed: bool = false
 var world
@@ -38,14 +38,14 @@ func doSomething():
 	optionButton.get_popup().position = Vector2(100, 125)
 
 func add_items():
-	optionButton.add_item("Minigame")
+	optionButton.add_item("Minigame2")
 
 func _on_option_button_item_selected(index):
 	
 	if index == 0:
 		DataScript.setUnixLastTime(Time.get_unix_time_from_system())
-		var minigame = load("res://Minigame1/minigame_1.tscn").instantiate()
-		get_tree().root.add_child(minigame)
+		var minigame2 = load("res://Minigame2/minigame2.tscn").instantiate()
+		get_tree().root.add_child(minigame2)
 		get_tree().current_scene.queue_free()
-		get_tree().current_scene = minigame
+		get_tree().current_scene = minigame2
 

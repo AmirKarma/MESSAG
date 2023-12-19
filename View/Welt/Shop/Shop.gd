@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var optionButton = $OptionButton
-@onready var rocketSprite = $rocketSprite
+@onready var ShopSprite = $Shop
 
 var pressed: bool = false
 var world
@@ -35,17 +35,47 @@ func _on_option_button_pressed():
 
 func doSomething():
 	optionButton.show_popup()
-	optionButton.get_popup().position = Vector2(100, 125)
+	optionButton.get_popup().position = Vector2(110, 30)
 
 func add_items():
-	optionButton.add_item("Minigame")
+	optionButton.add_item("Kaufen für 10")
+	optionButton.add_item("Kaufen für 100")
+	optionButton.add_item("Kaufen für 1000")
+	optionButton.add_item("Kaufen für 10000")
+	optionButton.add_item("Kaufen für 100000")
 
 func _on_option_button_item_selected(index):
-	
+	var Mooneten1 = DataScript.getMooneten()
+	print(Mooneten1)
 	if index == 0:
-		DataScript.setUnixLastTime(Time.get_unix_time_from_system())
-		var minigame = load("res://Minigame1/minigame_1.tscn").instantiate()
-		get_tree().root.add_child(minigame)
-		get_tree().current_scene.queue_free()
-		get_tree().current_scene = minigame
+		if Mooneten1 >= 10:
+			print("10 Kaufen")
+		else:
+			print("Zu wenig Mooneten")
+		pass
+	if index == 1:
+		if Mooneten1 >= 100:
+			print("100 Kaufen")
+		else:
+			print("Zu wenig Mooneten")
+		pass
+	if index == 2:
+		if Mooneten1 >= 1000:
+			print("1000 Kaufen")
+		else:
+			print("Zu wenig Mooneten")
+		pass
+	if index == 3:
+		if Mooneten1 >= 10000:
+			print("10000 Kaufen")
+		else:
+			print("Zu wenig Mooneten")
+		pass
+	if index == 4:
+		if Mooneten1 >= 100000:
+			print("100000 Kaufen")
+		else:
+			print("Zu wenig Mooneten")
+		pass		
+		
 

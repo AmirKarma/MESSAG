@@ -25,21 +25,12 @@ func _on_neues_spiel_pressed():
 	get_tree().current_scene.queue_free()
 	get_tree().current_scene = maingame
 	
-	
-	
-	
-	#var file_path = "res://Player/playerData.dat"
-	#var file = File.new()
-	#if file.open(file_path, File.WRITE) == OK:
-	#	file.erase()
-	#	file.close()
-	#	print("Die Datei wurde gelöscht.")
-	#else:
-	#	print("Fehler beim Öffnen der Datei.")
-	
+
 	
 
 
 func _on_impressum_pressed():
-	
-	pass # Replace with function body.
+	var impressum = load("res://Welt/Start_Menue/impressum.tscn").instantiate()
+	get_tree().root.add_child(impressum)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = impressum

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://exjcs8ahpr4v"]
+
+[ext_resource type="Texture2D" uid="uid://chvkehfinf0j" path="res://Minigame2/Img/asteroid_grey.png" id="1_41j5u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qmd24"]
+radius = 13.0
+
+[node name="Object3" type="Area2D"]
+
+[node name="Komet" type="Sprite2D" parent="."]
+scale = Vector2(0.411, 0.411)
+texture = ExtResource("1_41j5u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_qmd24")

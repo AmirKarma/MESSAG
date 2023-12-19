@@ -26,3 +26,10 @@ func _on_timer_timeout():
 			#commetSpawnCount = 3
 		
 	DataScript.minigame2_timer += DataScript.minigame2_timerSpeed
+
+
+func _on_touch_screen_button_pressed():
+	var world = load("res://Welt/world.tscn").instantiate()
+	get_tree().root.add_child(world)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = world

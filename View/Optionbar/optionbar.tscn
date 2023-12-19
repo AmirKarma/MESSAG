@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3j4k722cf5c4"]
+[gd_scene load_steps=5 format=3 uid="uid://b3j4k722cf5c4"]
 
 [ext_resource type="Texture2D" uid="uid://ciufklrbhy8ro" path="res://Optionbar/InventoryRect.png" id="1_2jdyx"]
 [ext_resource type="Script" path="res://Optionbar/optionbarRect.gd" id="2_da1ef"]
+[ext_resource type="Texture2D" uid="uid://cmf3bph3mtqb2" path="res://Optionbar/close button.png" id="3_oie7c"]
+[ext_resource type="Texture2D" uid="uid://cqyb7cv4a2jkf" path="res://Optionbar/close button pressed.png" id="4_d5vgi"]
 
 [node name="optionbar" type="Control"]
 layout_mode = 3
@@ -10,12 +12,26 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="optionbarRect" type="NinePatchRect" parent="."]
+texture_filter = 1
+texture_repeat = 1
 layout_mode = 0
-offset_right = 12.0
-offset_bottom = 12.0
+offset_right = 320.0
+offset_bottom = 180.0
 texture = ExtResource("1_2jdyx")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
 script = ExtResource("2_da1ef")
+
+[node name="closeButton" type="TextureButton" parent="optionbarRect"]
+layout_mode = 0
+offset_left = 293.0
+offset_top = 8.0
+offset_right = 311.0
+offset_bottom = 26.0
+texture_normal = ExtResource("3_oie7c")
+texture_pressed = ExtResource("4_d5vgi")
+stretch_mode = 0
+
+[connection signal="pressed" from="optionbarRect/closeButton" to="optionbarRect" method="_on_texture_button_pressed"]

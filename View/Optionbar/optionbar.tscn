@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b3j4k722cf5c4"]
 
 [ext_resource type="Texture2D" uid="uid://ciufklrbhy8ro" path="res://Optionbar/InventoryRect.png" id="1_2jdyx"]
-[ext_resource type="Script" path="res://Optionbar/optionbarRect.gd" id="2_da1ef"]
+[ext_resource type="Script" path="res://Optionbar/optionbar.gd" id="1_ek6y1"]
 [ext_resource type="Texture2D" uid="uid://cmf3bph3mtqb2" path="res://Optionbar/close button.png" id="3_oie7c"]
 [ext_resource type="Texture2D" uid="uid://cqyb7cv4a2jkf" path="res://Optionbar/close button pressed.png" id="4_d5vgi"]
 
@@ -11,8 +11,9 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_ek6y1")
 
-[node name="optionbarRect" type="NinePatchRect" parent="."]
+[node name="optionbar_rect" type="NinePatchRect" parent="."]
 z_index = 1
 texture_filter = 1
 texture_repeat = 1
@@ -26,9 +27,8 @@ patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
-script = ExtResource("2_da1ef")
 
-[node name="closeButton" type="TextureButton" parent="optionbarRect"]
+[node name="closeButton" type="TextureButton" parent="optionbar_rect"]
 layout_mode = 0
 offset_left = 273.0
 offset_top = 8.0
@@ -38,23 +38,7 @@ texture_normal = ExtResource("3_oie7c")
 texture_pressed = ExtResource("4_d5vgi")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="optionbarRect"]
-layout_mode = 0
-offset_left = 130.0
-offset_top = 1.0
-offset_right = 183.0
-offset_bottom = 27.0
-text = "Rocket"
-
-[node name="Label2" type="Label" parent="optionbarRect"]
-layout_mode = 0
-offset_left = 130.0
-offset_top = 13.0
-offset_right = 183.0
-offset_bottom = 39.0
-text = "Level 1"
-
-[node name="buildingRect" type="NinePatchRect" parent="optionbarRect"]
+[node name="buildingRect" type="NinePatchRect" parent="optionbar_rect"]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 35.0
@@ -66,6 +50,30 @@ patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
 
-[node name="buildingImage" type="Sprite2D" parent="optionbarRect/buildingRect"]
+[node name="building_image" type="Sprite2D" parent="optionbar_rect/buildingRect"]
 
-[connection signal="pressed" from="optionbarRect/closeButton" to="optionbarRect" method="_on_texture_button_pressed"]
+[node name="RessorceRect" type="NinePatchRect" parent="optionbar_rect"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 35.0
+offset_right = 293.0
+offset_bottom = 87.0
+texture = ExtResource("1_2jdyx")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="buttons_rect" type="NinePatchRect" parent="optionbar_rect"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 94.0
+offset_right = 293.0
+offset_bottom = 149.0
+texture = ExtResource("1_2jdyx")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[connection signal="pressed" from="optionbar_rect/closeButton" to="." method="_on_close_button_pressed"]

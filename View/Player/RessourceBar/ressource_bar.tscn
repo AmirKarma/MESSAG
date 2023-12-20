@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6i4vynrrtudd"]
+[gd_scene load_steps=7 format=3 uid="uid://c6i4vynrrtudd"]
 
 [ext_resource type="Texture2D" uid="uid://b50y1o5odckwc" path="res://Player/RessourceBar/coin.png" id="1_cmysq"]
 [ext_resource type="Script" path="res://Player/RessourceBar/ressource_bar.gd" id="1_y8e31"]
@@ -17,10 +17,6 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkr5u"]
-bg_color = Color(0.87451, 0.435294, 0.603922, 1)
-border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="SystemFont" id="SystemFont_1gtge"]
 font_names = PackedStringArray("Comic Sans MS")
@@ -73,18 +69,6 @@ max_value = 20000.0
 value = 10000.0
 rounded = true
 show_percentage = false
-
-[node name="MenuButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_bottom = -12.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_bkr5u")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1

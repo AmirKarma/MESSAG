@@ -5,6 +5,7 @@ extends Node2D
 
 @onready var optionbar = $optionbar
 @onready var player = $Player
+@onready var optionbar_pos = player.get_node("Camera2D").get_screen_center_position() - get_viewport_rect().size / 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,15 +42,29 @@ func building_distance(building : Node):
 			player.nav.target_position = building.position - Vector2(20,20)
 			player.animationState.travel("Run")
 		open_optionbar(building)
+	elif optionbar.is_close_button_pressed():
+		hide_optionbar()
+		
 		
 			
 func open_optionbar(building : Node):
 	if building.pressed:
 		if player.position.distance_to(building.position) < 50:
 			building.pressed = false
-			optionbar.get_node("optionbarRect").set_building_image(building.get_node("rocketSprite").texture.resource_path)
-			optionbar.position = player.get_node("Camera2D").get_screen_center_position() - get_viewport_rect().size / 2 
-			optionbar.show()
-		elif player.nav.target_position != building.position - Vector2(20,20):
-			optionbar.set_visible(false)
+			optionbar.set_optionbar(optionbar_pos,building.get_node("rocketSprite").texture.resource_path)
+			optionbar.set_visible(true)
+			optionbar.close_pressed = false
+			player.set_process(false)
+			player.set_physics_process(false)
+			player.get_node("Camera2D/HUD").visible = false
+		elif player.nav.target_position != building.position - Vector2(20,20):			
 			building.pressed = false
+
+func hide_optionbar():
+	optionbar.set_visible(false)
+	player.set_process(true)
+	player.set_physics_process(true)
+	player.get_node("Camera2D/HUD").visible = true
+	player.stand_still = true	
+
+		

@@ -4,6 +4,7 @@ extends Control
 var optionbar_rect_size
 var building_image_pos
 var optionbar_visibility 
+var game_scene
 var close_pressed = false
 
 # Called when the node enters the scene tree for the first time.
@@ -34,7 +35,16 @@ func hide_optionbar():
 func is_close_button_pressed():
 	return close_pressed == true
 
-func set_optionbar(positon : Vector2, path : String):
+func set_optionbar(positon : Vector2, image_path : String, game_path : String):
 	self.position = positon
-	set_building_image(path)
+	set_building_image(image_path)
+	game_scene = game_path
 
+
+
+func _on_play_1_button_pressed():
+	get_tree().change_scene_to_file(game_scene)
+
+
+func _on_play_2_button_pressed():
+	get_tree().change_scene_to_file("res://Minigame2/minigame2.tscn")

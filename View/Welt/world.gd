@@ -5,7 +5,7 @@ extends Node2D
 
 @onready var optionbar = $optionbar
 @onready var player = $Player
-@onready var optionbar_pos = player.get_node("Camera2D").get_screen_center_position() - get_viewport_rect().size / 2
+var optionbar_pos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,6 +15,7 @@ func _ready():
 	
 # Process function called every frame
 func _process(_delta):
+		
 		if Input.is_action_just_pressed("debug"):
 			var minigame = load("res://Minigame1/minigame_1.tscn").instantiate()
 			get_tree().root.add_child(minigame)
@@ -51,7 +52,8 @@ func open_optionbar(building : Node):
 	if building.pressed:
 		if player.position.distance_to(building.position) < 50:
 			building.pressed = false
-			optionbar.set_optionbar(optionbar_pos,building.get_node("rocketSprite").texture.resource_path)
+			optionbar_pos = player.get_node("Camera2D").get_screen_center_position() - get_viewport_rect().size / 2
+			optionbar.set_optionbar(optionbar_pos,building.get_node("rocketSprite").texture.resource_path , "res://Minigame1/minigame_1.tscn")
 			optionbar.set_visible(true)
 			optionbar.close_pressed = false
 			player.set_process(false)
@@ -65,6 +67,5 @@ func hide_optionbar():
 	player.set_process(true)
 	player.set_physics_process(true)
 	player.get_node("Camera2D/HUD").visible = true
-	player.stand_still = true	
 
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3j4k722cf5c4"]
+[gd_scene load_steps=12 format=3 uid="uid://b3j4k722cf5c4"]
 
 [ext_resource type="Texture2D" uid="uid://ciufklrbhy8ro" path="res://Optionbar/InventoryRect.png" id="1_2jdyx"]
 [ext_resource type="Script" path="res://Optionbar/optionbar.gd" id="1_ek6y1"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://cf4f12qm7l386" path="res://Optionbar/Minecraft.ttf" id="5_ggw1r"]
 [ext_resource type="Texture2D" uid="uid://bc0rs38f53l75" path="res://Optionbar/button_texture.png" id="6_81hu4"]
 [ext_resource type="Texture2D" uid="uid://psf1sqwuk5q2" path="res://Optionbar/button_pressed_texture.png" id="6_y3j0o"]
+[ext_resource type="FontFile" uid="uid://c5bot1t0ttb6b" path="res://Optionbar/04B_30__.TTF" id="8_ehm71"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_elxks"]
 texture = ExtResource("6_y3j0o")
@@ -51,6 +52,27 @@ patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
+
+[node name="building_name" type="Label" parent="optionbar_rect"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 0
+offset_left = 110.0
+offset_top = 6.0
+offset_right = 200.0
+offset_bottom = 29.0
+theme_override_fonts/font = ExtResource("8_ehm71")
+horizontal_alignment = 1
+
+[node name="building_level" type="Label" parent="optionbar_rect"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 25.0
+offset_right = 178.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("5_ggw1r")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
 
 [node name="closeButton" type="TextureButton" parent="optionbar_rect"]
 layout_mode = 0

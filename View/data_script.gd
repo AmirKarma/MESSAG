@@ -77,7 +77,7 @@ func _process(delta):
 func _on_timeout_timer():
 	var newMooneten = 50
 	if moneyGeneratorActiveCount > 0:
-		newMooneten = newMooneten * moneyGeneratorActiveCount
+		newMooneten = newMooneten + (moneyGeneratorActiveCount * newMooneten)
 	addMooneten(newMooneten)
 	timer.start()
 	
@@ -254,7 +254,7 @@ func addOfflineMooneten():
 	diff = round(diff)
 	var offlineMooneten = diff * 50
 	if moneyGeneratorActiveCount > 0:
-		offlineMooneten = offlineMooneten * moneyGeneratorActiveCount
+		offlineMooneten = offlineMooneten + (moneyGeneratorActiveCount * offlineMooneten)
 	if offlineMooneten > 1000:
 		offlineMooneten = 1000
 	addMooneten(offlineMooneten)

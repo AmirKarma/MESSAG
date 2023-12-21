@@ -56,6 +56,7 @@ func open_optionbar(building : Node):
 			optionbar.set_optionbar(optionbar_pos,"Rocket","1",building.get_node("rocketSprite").texture.resource_path , "res://Minigame1/minigame_1.tscn")
 			optionbar.set_visible(true)
 			optionbar.close_pressed = false
+			player.stand_still = true
 			player.set_process(false)
 			player.set_physics_process(false)
 			player.get_node("Camera2D/HUD").visible = false

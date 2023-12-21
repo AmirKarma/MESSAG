@@ -41,7 +41,7 @@ func is_close_button_pressed():
 func set_optionbar(positon : Vector2, name : String, level : String, image_path : String, game_path : String):
 	self.position = positon
 	building_name.text = name
-	building_level.text += level
+	building_level.text = "Level " + level
 	set_building_image(image_path)
 	game_scene = game_path
 

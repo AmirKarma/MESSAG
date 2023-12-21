@@ -38,10 +38,10 @@ func hide_optionbar():
 func is_close_button_pressed():
 	return close_pressed == true
 
-func set_optionbar(positon : Vector2, name : String, level : String, image_path : String, game_path : String):
+func set_optionbar(positon : Vector2, name : String, level_num : String, image_path : String, game_path : String):
 	self.position = positon
 	building_name.text = name
-	building_level.text = "Level " + level
+	building_level.text = "Level " + level_num
 	set_building_image(image_path)
 	game_scene = game_path
 

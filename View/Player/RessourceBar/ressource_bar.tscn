@@ -1,0 +1,128 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6i4vynrrtudd"]
+
+[ext_resource type="Texture2D" uid="uid://b50y1o5odckwc" path="res://Player/RessourceBar/coin.png" id="1_cmysq"]
+[ext_resource type="Script" path="res://Player/RessourceBar/ressource_bar.gd" id="1_y8e31"]
+[ext_resource type="Texture2D" uid="uid://blpllbfwmq0sr" path="res://Player/RessourceBar/lightning.png" id="2_alw1l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifrfo"]
+bg_color = Color(0.913725, 0.701961, 0.309804, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pxeql"]
+bg_color = Color(0.392157, 0.392157, 0.392157, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="SystemFont" id="SystemFont_1gtge"]
+font_names = PackedStringArray("Comic Sans MS")
+
+[node name="RessourceBar" type="Control"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_right = 160.0
+offset_bottom = 30.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+script = ExtResource("1_y8e31")
+
+[node name="ProgressBarMoney" type="ProgressBar" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 13.0
+offset_top = -8.0
+offset_right = 113.0
+offset_bottom = -2.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_ifrfo")
+max_value = 20000.0
+value = 5000.0
+rounded = true
+show_percentage = false
+
+[node name="ProgressBarMoonstone" type="ProgressBar" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = -8.0
+offset_right = 113.0
+offset_bottom = -2.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_pxeql")
+max_value = 20000.0
+value = 10000.0
+rounded = true
+show_percentage = false
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 5.0
+offset_right = 12.0
+offset_bottom = 15.0
+mouse_filter = 2
+
+[node name="Coin" type="Sprite2D" parent="Control"]
+position = Vector2(5, 5)
+scale = Vector2(0.0209961, 0.0185547)
+texture = ExtResource("1_cmysq")
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -11.0
+offset_right = 11.0
+offset_bottom = -1.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Moonstone" type="Sprite2D" parent="Control2"]
+position = Vector2(6, 6)
+scale = Vector2(0.0327222, 0.0327222)
+texture = ExtResource("2_alw1l")
+
+[node name="MoonetenLabel" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 42.0
+offset_top = -3.0
+offset_right = 79.0
+offset_bottom = 23.0
+theme_override_fonts/font = SubResource("SystemFont_1gtge")
+theme_override_font_sizes/font_size = 7
+text = "1000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnergyLabel" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 42.0
+offset_top = 12.0
+offset_right = 79.0
+offset_bottom = 38.0
+theme_override_fonts/font = SubResource("SystemFont_1gtge")
+theme_override_font_sizes/font_size = 7
+text = "1000"
+horizontal_alignment = 1
+vertical_alignment = 1

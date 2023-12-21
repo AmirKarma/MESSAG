@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx0w45bxv47r4"
-path="res://.godot/imported/back.png-e43b0a987de47e1a4ee6fd2278454853.ctex"
+uid="uid://blup8s04ergik"
+path="res://.godot/imported/Rakete.png-2e71d208f0ad0bac35876792e8cced5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/back.png"
-dest_files=["res://.godot/imported/back.png-e43b0a987de47e1a4ee6fd2278454853.ctex"]
+source_file="res://Minigame1/Rakete.png"
+dest_files=["res://.godot/imported/Rakete.png-2e71d208f0ad0bac35876792e8cced5d.ctex"]
 
 [params]
 

@@ -1,11 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://cwo4kcdmsf7cr"]
+[gd_scene load_steps=27 format=3 uid="uid://cwo4kcdmsf7cr"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_3qcmq"]
 [ext_resource type="Texture2D" uid="uid://d26fe4t3pqew4" path="res://Images/astronaut.png" id="2_8dut7"]
+[ext_resource type="PackedScene" uid="uid://c6i4vynrrtudd" path="res://Player/RessourceBar/ressource_bar.tscn" id="3_0wfbp"]
+[ext_resource type="PackedScene" uid="uid://djmdat0ledp8m" path="res://Player/inventar.tscn" id="3_w3aec"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yw0jl"]
-radius = 5.0
-height = 12.0
+radius = 6.0
+height = 18.0
 
 [sub_resource type="Animation" id="Animation_40r3o"]
 resource_name = "IdleRight"
@@ -183,7 +185,6 @@ transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_b
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_3qcmq")
-metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -194,8 +195,7 @@ hframes = 10
 vframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
-rotation = -1.5708
+position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_yw0jl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -209,3 +209,20 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/Idle/blend_position = Vector2(-0.00642675, 1.1)
 parameters/Run/blend_position = Vector2(0, 0)
+
+[node name="Inventar" parent="." instance=ExtResource("3_w3aec")]
+visible = false
+position = Vector2(-48, -40)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="HUD" type="CanvasLayer" parent="Camera2D"]
+
+[node name="RessourceBar" parent="Camera2D/HUD" instance=ExtResource("3_0wfbp")]
+anchors_preset = -1
+anchor_left = -0.025
+offset_left = 8.0
+grow_vertical = 2

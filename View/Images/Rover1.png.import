@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blpllbfwmq0sr"
-path="res://.godot/imported/lightning.png-1f4d85186faaeef6db2bcfa260cd4780.ctex"
+uid="uid://nfu2kg4lupka"
+path="res://.godot/imported/Rover1.png-0930e70c4516b959f90984257b3c00bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RessourceBar/lightning.png"
-dest_files=["res://.godot/imported/lightning.png-1f4d85186faaeef6db2bcfa260cd4780.ctex"]
+source_file="res://Images/Rover1.png"
+dest_files=["res://.godot/imported/Rover1.png-0930e70c4516b959f90984257b3c00bc.ctex"]
 
 [params]
 

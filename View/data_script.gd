@@ -2,7 +2,9 @@
 # This script handles behavior and interactions for a 2D node in the game.
 extends Control 
 
+
 # Player resources and game data variables
+var firstGame = false
 var mooneten = 0 
 var energy = 0
 var unixLastTime = 0 #logout time
@@ -52,6 +54,7 @@ var fieldThirteen = -1
 
 # data storage location
 var ressourceBarDataString = "res://Player/playerData.dat"
+var fieldDataString = "res://Welt/fieldData.dat"
 
 #declare timer variable
 var timer
@@ -63,7 +66,8 @@ func _ready():
 	timer.wait_time = 60
 	timer.timeout.connect(_on_timeout_timer)
 	timer.start()
-	loadData()
+	loadPlayerData()
+	loadFieldData()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -80,7 +84,7 @@ func _on_timeout_timer():
 # Setter function for mooneten variable
 func setMooneten(value):
 	mooneten = value
-	saveData()
+	savePlayerData()
 	
 # Getter function for mooneten variable
 func getMooneten():
@@ -89,17 +93,17 @@ func getMooneten():
 # Function to add mooneten to the player's resources	
 func addMooneten(value):
 	mooneten = mooneten + value
-	saveData()
+	savePlayerData()
 	
 # Function to remove mooneten from the player's resources
 func removeMooneten(value):
 	mooneten = mooneten - value
-	saveData()
+	savePlayerData()
 
 # Setter function for unixLastTime variable
 func setUnixLastTime(value):
 	unixLastTime = value
-	saveData()
+	savePlayerData()
 	
 # Getter function for unixLastTime variable	
 func getUnixLastTime():
@@ -109,7 +113,7 @@ func getUnixLastTime():
 # Setter function for energy variable
 func setEnergy(value):
 	energy = value
-	saveData()
+	savePlayerData()
 
 # Getter function for energy variable
 func getEnergy():
@@ -118,12 +122,12 @@ func getEnergy():
 # Function to add energy to the player's resources	
 func addEnergy(value):
 	energy = energy + value
-	saveData()
+	savePlayerData()
 	
 # Function to remove energy from the player's resources
 func removeEnergy(value):
 	energy = energy - value
-	saveData()
+	savePlayerData()
 	
 	
 # Setter function for minigame_one_score variable
@@ -131,12 +135,12 @@ func setM1Score(value):
 	minigame_one_score = value
 	if minigame_one_score >= minigame_one_highscore:
 		minigame_one_highscore = minigame_one_score
-		saveData()
+		savePlayerData()
 
 func setMinigame2_highscore(value):
 	if value > minigame2_highscore:
 		minigame2_highscore = value
-		saveData()
+		savePlayerData()
 		
 func getMinigame2_highscore():
 	return minigame2_highscore
@@ -153,9 +157,17 @@ func getMinigame2_score():
 func getM1HighScore():
 	return minigame_one_highscore
 
+func isPlayingFirstTime():
+	return firstGame
+	
+func setFirstGame(value):
+	firstGame = value
+	savePlayerData()
+
 # Function to save player data to a file
-func saveData():
+func savePlayerData():
 	var file = FileAccess.open(ressourceBarDataString, FileAccess.WRITE)
+	file.store_var(firstGame)
 	file.store_var(mooneten)
 	file.store_var(energy)
 	file.store_var(unixLastTime)
@@ -166,6 +178,39 @@ func saveData():
 	file.store_var(shopCount)
 	file.store_var(moneyStorageCount)
 	file.store_var(moonstoneStorageCount)
+	file.store_var(moneyGeneratorActiveCount)
+	file.store_var(moonstoneGeneratorActiveCount)
+	file.store_var(moneyStorageActiveCount)
+	file.store_var(moonstoneStorageActiveCount)
+	
+
+# Function to load player data from a file	
+func loadPlayerData():
+	if FileAccess.file_exists(ressourceBarDataString):
+		var file = FileAccess.open(ressourceBarDataString, FileAccess.READ)
+		firstGame = file.get_var()
+		mooneten = file.get_var()
+		energy = file.get_var()
+		unixLastTime = file.get_var()
+		minigame2_highscore = file.get_var()
+		minigame_one_highscore = file.get_var()
+		moneyGeneratorCount = file.get_var()
+		moonstoneGeneratorCount = file.get_var()
+		shopCount = file.get_var()
+		moneyStorageCount = file.get_var()
+		moonstoneStorageCount = file.get_var()
+		moneyGeneratorActiveCount = file.get_var()
+		moonstoneGeneratorActiveCount = file.get_var()
+		moneyStorageActiveCount = file.get_var()
+		moonstoneStorageActiveCount = file.get_var()
+		addOfflineMooneten()
+	else:
+		firstGame = true
+		unixLastTime = Time.get_unix_time_from_system()
+		savePlayerData()
+		
+func saveFieldData():
+	var file = FileAccess.open(fieldDataString, FileAccess.WRITE)
 	file.store_var(fieldZero)
 	file.store_var(fieldOne)
 	file.store_var(fieldTwo)
@@ -180,26 +225,12 @@ func saveData():
 	file.store_var(fieldEleven)
 	file.store_var(fieldTwelve)
 	file.store_var(fieldThirteen)
-	file.store_var(moneyGeneratorActiveCount)
-	file.store_var(moonstoneGeneratorActiveCount)
-	file.store_var(moneyStorageActiveCount)
-	file.store_var(moonstoneStorageActiveCount)
 	
 
 # Function to load player data from a file	
-func loadData():
-	if FileAccess.file_exists(ressourceBarDataString):
-		var file = FileAccess.open(ressourceBarDataString, FileAccess.READ)
-		mooneten = file.get_var()
-		energy = file.get_var()
-		unixLastTime = file.get_var()
-		minigame2_highscore = file.get_var()
-		minigame_one_highscore = file.get_var()
-		moneyGeneratorCount = file.get_var()
-		moonstoneGeneratorCount = file.get_var()
-		shopCount = file.get_var()
-		moneyStorageCount = file.get_var()
-		moonstoneStorageCount = file.get_var()
+func loadFieldData():
+	if FileAccess.file_exists(fieldDataString):
+		var file = FileAccess.open(fieldDataString, FileAccess.READ)
 		fieldZero = file.get_var()
 		fieldOne = file.get_var()
 		fieldTwo = file.get_var()
@@ -214,15 +245,8 @@ func loadData():
 		fieldEleven = file.get_var()
 		fieldTwelve = file.get_var()
 		fieldThirteen = file.get_var()
-		moneyGeneratorActiveCount = file.get_var()
-		moonstoneGeneratorActiveCount = file.get_var()
-		moneyStorageActiveCount = file.get_var()
-		moonstoneStorageActiveCount = file.get_var()
-		addOfflineMooneten()
 	else:
-		unixLastTime = Time.get_unix_time_from_system()
-		saveData()
-	
+		saveFieldData()
 # Function to add offline mooneten based on time elapsed since the last logout
 func addOfflineMooneten():
 	var diff = Time.get_unix_time_from_system() - getUnixLastTime()
@@ -236,6 +260,7 @@ func addOfflineMooneten():
 	addMooneten(offlineMooneten)
 	
 func resetStats():
+	firstGame = true
 	mooneten = 0
 	energy = 0
 	unixLastTime = Time.get_unix_time_from_system()
@@ -264,5 +289,6 @@ func resetStats():
 	moonstoneGeneratorActiveCount = -1
 	moneyStorageActiveCount = -1
 	moonstoneStorageActiveCount = -1
-	saveData()
+	savePlayerData()
+	saveFieldData()
 	

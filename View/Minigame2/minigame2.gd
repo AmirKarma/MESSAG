@@ -67,7 +67,7 @@ func move_objects(delta):
 
 # Function to update the HUD overlay score display
 func set_score():
-	overlay.score = DataScript.minigame2_score
+	overlay.score = DataScript.getMinigame2_score()
 
 # Function to spawn a random number of objects with random positions and speeds
 func spawn_objects():
@@ -95,7 +95,6 @@ func remove_objects(object):
 
 # Timer timeout function to modify game parameters over time
 func _on_timer_timeout():
-	print(DataScript.minigame2_timer)
 	match str(DataScript.minigame2_timer).pad_decimals(0):
 		'4':
 			DataScript.minigame2_timerSpeed = 0.005 

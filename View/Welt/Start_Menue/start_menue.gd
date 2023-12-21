@@ -12,10 +12,11 @@ func _process(delta):
 
 
 func _on_fortsetzen_pressed():
-	var maingame = load("res://Welt/world.tscn").instantiate()
-	get_tree().root.add_child(maingame)
-	get_tree().current_scene.queue_free()
-	get_tree().current_scene = maingame
+	if(!DataScript.isPlayingFirstTime()):
+		var maingame = load("res://Welt/world.tscn").instantiate()
+		get_tree().root.add_child(maingame)
+		get_tree().current_scene.queue_free()
+		get_tree().current_scene = maingame
 
 
 func _on_neues_spiel_pressed():
@@ -24,6 +25,7 @@ func _on_neues_spiel_pressed():
 	get_tree().root.add_child(maingame)
 	get_tree().current_scene.queue_free()
 	get_tree().current_scene = maingame
+	DataScript.setFirstGame(false)
 	
 
 	

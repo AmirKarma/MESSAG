@@ -38,7 +38,7 @@ var moonstoneStorageActiveCount = 0
 
 #field id´s -2: building on the field; -1: no building on the field
 var fieldZero = -2
-var fieldOne = -1
+var fieldOne = -2
 var fieldTwo = -1
 var fieldThree = -1
 var fieldFour = -1
@@ -50,7 +50,7 @@ var fieldNine = -1
 var fieldTen = -1
 var fieldEleven = -1
 var fieldTwelve = -1
-var fieldThirteen = -1
+var fieldThirteen = -2
 
 # data storage location
 var ressourceBarDataString = "res://Player/playerData.dat"
@@ -272,7 +272,7 @@ func resetStats():
 	moneyStorageCount = 0
 	moonstoneStorageCount = 0
 	fieldZero = -2
-	fieldOne = -1
+	fieldOne = -2
 	fieldTwo = -1
 	fieldThree = -1
 	fieldFour = -1
@@ -284,11 +284,11 @@ func resetStats():
 	fieldTen = -1
 	fieldEleven = -1
 	fieldTwelve = -1
-	fieldThirteen = -1
-	moneyGeneratorActiveCount = -1
-	moonstoneGeneratorActiveCount = -1
-	moneyStorageActiveCount = -1
-	moonstoneStorageActiveCount = -1
+	fieldThirteen = -2
+	moneyGeneratorActiveCount = 0
+	moonstoneGeneratorActiveCount = 0
+	moneyStorageActiveCount = 0
+	moonstoneStorageActiveCount = 0
 	savePlayerData()
 	saveFieldData()
 	

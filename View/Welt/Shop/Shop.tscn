@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4lfomd2r2ws"]
+
+[ext_resource type="Script" path="res://Welt/Shop/Shop.gd" id="1_foi5v"]
+[ext_resource type="Texture2D" uid="uid://c45g51an7mwx8" path="res://Welt/Shop/Shop.png" id="2_w6q10"]
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_foi5v")
+
+[node name="OptionButton" type="OptionButton" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -38.0
+offset_top = -140.0
+offset_right = 164.0
+offset_bottom = 15.0
+flat = true
+clip_text = true
+allow_reselect = true
+
+[node name="Shop" type="Sprite2D" parent="."]
+position = Vector2(61, -48)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_w6q10")
+
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="OptionButton" to="." method="_on_option_button_pressed"]

@@ -116,27 +116,27 @@ func _on_buybutton_bought(bIndex):
 	$Inventar.visible = false
 	print("Ausgewählt: " + str(bIndex))
 	if bIndex == 0:
-		#if DataScript.moneyGeneratorCount > 0:
+		if DataScript.moneyGeneratorCount > 0:
 			DataScript.moneyGeneratorCount = DataScript.moneyGeneratorCount - 1
 			setBuilding(fieldIndex, bIndex)
 			DataScript.saveFieldData()
 	elif bIndex == 1:
-		#if DataScript.moonstoneGeneratorCount > 0:
+		if DataScript.moonstoneGeneratorCount > 0:
 			DataScript.moonstoneGeneratorCount = DataScript.moonstoneGeneratorCount - 1
 			setBuilding(fieldIndex, bIndex)
 			DataScript.saveFieldData()
 	elif bIndex == 2:
-		#if DataScript.moneyStorageCount > 0:
+		if DataScript.moneyStorageCount > 0:
 			DataScript.moneyStorageCount = DataScript.moneyStorageCount - 1
 			setBuilding(fieldIndex, bIndex)
 			DataScript.saveFieldData()
 	elif bIndex == 3:
-		#if DataScript.moonstoneStorageCount > 0:
+		if DataScript.moonstoneStorageCount > 0:
 			DataScript.moonstoneStorageCount = DataScript.moonstoneStorageCount - 1
 			setBuilding(fieldIndex, bIndex)
 			DataScript.saveFieldData()
 	elif bIndex == 4:
-		#if DataScript.shopCount > 0:
+		if DataScript.shopCount > 0:
 			DataScript.shopCount = DataScript.shopCount - 1
 			setBuilding(fieldIndex, bIndex)
 			DataScript.saveFieldData()

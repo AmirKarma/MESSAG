@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cdfejtgr3uct"]
+[gd_scene load_steps=31 format=3 uid="uid://cdfejtgr3uct"]
 
 [ext_resource type="Script" path="res://Welt/world.gd" id="1_fs3ho"]
 [ext_resource type="Texture2D" uid="uid://dbh5uk0ytof32" path="res://Welt/Background/Terrain_Ecken.png" id="2_2bpty"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://b3j4k722cf5c4" path="res://Optionbar/optionbar.tscn" id="7_c2vov"]
 [ext_resource type="PackedScene" uid="uid://vs86hwyi0bag" path="res://Welt/Rover/rover.tscn" id="8_hxkyc"]
 [ext_resource type="Texture2D" path="res://Images/shop_1 (1).png" id="9_s3n4a"]
-[ext_resource type="PackedScene" uid="uid://b4lfomd2r2ws" path="res://Welt/Shop/Shop.tscn" id="10_dtt61"]
 [ext_resource type="Texture2D" path="res://Images/shop_schild.png" id="11_ofo6g"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_afsc4"]
@@ -196,7 +195,7 @@ top_level = true
 y_sort_enabled = true
 position = Vector2(172, 44)
 
-[node name="Shop1(1)" type="Sprite2D" parent="."]
+[node name="ShopSchild2" type="Sprite2D" parent="."]
 position = Vector2(160, 314)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("9_s3n4a")
@@ -205,6 +204,3 @@ texture = ExtResource("9_s3n4a")
 position = Vector2(737, 391)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("11_ofo6g")
-
-[node name="Shop" parent="." instance=ExtResource("10_dtt61")]
-position = Vector2(848, 276)

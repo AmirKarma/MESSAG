@@ -4,12 +4,12 @@ extends Control
 
 
 # Player resources and game data variables
-var firstGame = false
-var mooneten = 0 
-var energy = 0
-var unixLastTime = 0 #logout time
-var minigame_one_highscore = 0
-var minigame_one_score = 0
+var firstGame := false
+var mooneten := 0 
+var moonstone := 0
+var unixLastTime := 0 #logout time
+var minigame_one_highscore := 0
+var minigame_one_score := 0
 
 # Variables for Mini-Game 2
 # Variable to track the current score in Mini-Game 2
@@ -25,36 +25,23 @@ var minigame2_timerSpeed := 0.01
 const minigame2_gameSpeed := Vector2(0, 10)
 
 
-var moneyGeneratorCount = 0
-var moonstoneGeneratorCount = 0
-var shopCount = 0
-var moneyStorageCount = 0
-var moonstoneStorageCount = 0
+var moneyGeneratorCount := 0
+var moonstoneGeneratorCount := 0
+var shopCount := 0
+var moneyStorageCount := 0
+var moonstoneStorageCount := 0
 
-var moneyGeneratorActiveCount = 0
-var moonstoneGeneratorActiveCount = 0
-var moneyStorageActiveCount = 0
-var moonstoneStorageActiveCount = 0
+var moneyGeneratorActiveCount := 0
+var moonstoneGeneratorActiveCount := 0
+var moneyStorageActiveCount := 0
+var moonstoneStorageActiveCount := 0
 
 #field id´s -2: building on the field; -1: no building on the field
-var fieldZero = -2
-var fieldOne = -2
-var fieldTwo = -1
-var fieldThree = -1
-var fieldFour = -1
-var fieldFive = -1
-var fieldSix = -1
-var fieldSeven = -1
-var fieldEight = -1
-var fieldNine = -1
-var fieldTen = -1
-var fieldEleven = -1
-var fieldTwelve = -1
-var fieldThirteen = -2
+var fieldArray := [-2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -2]
 
 # data storage location
-var ressourceBarDataString = "res://Player/playerData.dat"
-var fieldDataString = "res://Welt/fieldData.dat"
+var ressourceBarDataString := "res://Player/playerData.dat"
+var fieldDataString := "res://Welt/fieldData.dat"
 
 #declare timer variable
 var timer
@@ -111,22 +98,22 @@ func getUnixLastTime():
 
 
 # Setter function for energy variable
-func setEnergy(value):
-	energy = value
+func setMoonstone(value):
+	moonstone = value
 	savePlayerData()
 
 # Getter function for energy variable
-func getEnergy():
-	return energy
+func getMoonstone():
+	return moonstone
 	
 # Function to add energy to the player's resources	
-func addEnergy(value):
-	energy = energy + value
+func addMoonstone(value):
+	moonstone = moonstone + value
 	savePlayerData()
 	
 # Function to remove energy from the player's resources
-func removeEnergy(value):
-	energy = energy - value
+func removeMoonstone(value):
+	moonstone = moonstone - value
 	savePlayerData()
 	
 	
@@ -169,7 +156,7 @@ func savePlayerData():
 	var file = FileAccess.open(ressourceBarDataString, FileAccess.WRITE)
 	file.store_var(firstGame)
 	file.store_var(mooneten)
-	file.store_var(energy)
+	file.store_var(moonstone)
 	file.store_var(unixLastTime)
 	file.store_var(minigame2_highscore)
 	file.store_var(minigame_one_highscore)
@@ -190,7 +177,7 @@ func loadPlayerData():
 		var file = FileAccess.open(ressourceBarDataString, FileAccess.READ)
 		firstGame = file.get_var()
 		mooneten = file.get_var()
-		energy = file.get_var()
+		moonstone = file.get_var()
 		unixLastTime = file.get_var()
 		minigame2_highscore = file.get_var()
 		minigame_one_highscore = file.get_var()
@@ -211,40 +198,15 @@ func loadPlayerData():
 		
 func saveFieldData():
 	var file = FileAccess.open(fieldDataString, FileAccess.WRITE)
-	file.store_var(fieldZero)
-	file.store_var(fieldOne)
-	file.store_var(fieldTwo)
-	file.store_var(fieldThree)
-	file.store_var(fieldFour)
-	file.store_var(fieldFive)
-	file.store_var(fieldSix)
-	file.store_var(fieldSeven)
-	file.store_var(fieldEight)
-	file.store_var(fieldNine)
-	file.store_var(fieldTen)
-	file.store_var(fieldEleven)
-	file.store_var(fieldTwelve)
-	file.store_var(fieldThirteen)
-	
+	for n in range(0,14):
+		file.store_var(fieldArray[n])
 
 # Function to load player data from a file	
 func loadFieldData():
 	if FileAccess.file_exists(fieldDataString):
 		var file = FileAccess.open(fieldDataString, FileAccess.READ)
-		fieldZero = file.get_var()
-		fieldOne = file.get_var()
-		fieldTwo = file.get_var()
-		fieldThree = file.get_var()
-		fieldFour = file.get_var()
-		fieldFive = file.get_var()
-		fieldSix = file.get_var()
-		fieldSeven = file.get_var()
-		fieldEight = file.get_var()
-		fieldNine = file.get_var()
-		fieldTen = file.get_var()
-		fieldEleven = file.get_var()
-		fieldTwelve = file.get_var()
-		fieldThirteen = file.get_var()
+		for n in range(0,14):
+			fieldArray[n] = file.get_var()
 	else:
 		saveFieldData()
 # Function to add offline mooneten based on time elapsed since the last logout
@@ -262,7 +224,7 @@ func addOfflineMooneten():
 func resetStats():
 	firstGame = true
 	mooneten = 0
-	energy = 0
+	moonstone = 0
 	unixLastTime = Time.get_unix_time_from_system()
 	minigame2_highscore = 0
 	minigame_one_highscore = 0
@@ -271,20 +233,7 @@ func resetStats():
 	shopCount = 0
 	moneyStorageCount = 0
 	moonstoneStorageCount = 0
-	fieldZero = -2
-	fieldOne = -2
-	fieldTwo = -1
-	fieldThree = -1
-	fieldFour = -1
-	fieldFive = -1
-	fieldSix = -1
-	fieldSeven = -1
-	fieldEight = -1
-	fieldNine = -1
-	fieldTen = -1
-	fieldEleven = -1
-	fieldTwelve = -1
-	fieldThirteen = -2
+	fieldArray = [-2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -2]
 	moneyGeneratorActiveCount = 0
 	moonstoneGeneratorActiveCount = 0
 	moneyStorageActiveCount = 0

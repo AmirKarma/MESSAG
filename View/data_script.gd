@@ -20,7 +20,7 @@ var minigame2_highscore := 0
 var minigame2_timer: 
 	set(value): minigame2_timer = value
 # Speed at which the timer in Mini-Game 2 decreases
-var minigame2_timerSpeed := 0.01
+var minigame2_timerSpeed
 # Constant representing the game speed in Mini-Game 2 as a 2D vector (horizontal speed = 0, vertical speed = 10)
 const minigame2_gameSpeed := Vector2(0, 10)
 

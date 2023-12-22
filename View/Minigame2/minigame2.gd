@@ -33,6 +33,7 @@ func _ready():
 	# Initialize timer, score, and spawn count
 	DataScript.minigame2_timer = 3
 	DataScript.minigame2_score = 0
+	DataScript.minigame2_timerSpeed = 0.01
 	cometSpawnCount = 1
 
 	# Initialize HUD overlay score display
@@ -95,17 +96,17 @@ func remove_objects(object):
 
 # Timer timeout function to modify game parameters over time
 func _on_timer_timeout():
-	match str(DataScript.minigame2_timer).pad_decimals(0):
-		'4':
+	match int(DataScript.minigame2_timer):
+		4:
 			DataScript.minigame2_timerSpeed = 0.005 
 			remove_comet_speed(3)
-		'5': 
+		5: 
 			DataScript.minigame2_timerSpeed  = 0.0025 
 			cometSpawnCount = 2
-		'6': 
+		6: 
 			DataScript.minigame2_timerSpeed  = 0.00125 
 			remove_comet_speed(2)
-		'7':
+		7:
 			remove_comet_speed(1)
 			cometSpawnCount = 3
 		

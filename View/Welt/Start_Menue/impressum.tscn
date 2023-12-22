@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c1herues0xtn2"]
+[gd_scene load_steps=31 format=3 uid="uid://dv6ip25omgyd4"]
 
 [ext_resource type="Script" path="res://Welt/Start_Menue/impressum.gd" id="1_mxe33"]
 [ext_resource type="Texture2D" uid="uid://dbh5uk0ytof32" path="res://Welt/Background/Terrain_Ecken.png" id="2_mwrd3"]
@@ -215,7 +215,7 @@ text = "Julia Haupt
 Thomas Kesper
 Louis Bieber
 Finn Meuser
-Armir Ebrahimi"
+Amir Ebrahimi"
 label_settings = SubResource("LabelSettings_qa7p6")
 
 [node name="Label2" type="Label" parent="."]

@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://d3nqblcu1fvpi" path="res://Welt/Rocket/rocket.tscn" id="4_x5ukb"]
 [ext_resource type="PackedScene" uid="uid://b3j4k722cf5c4" path="res://Optionbar/optionbar.tscn" id="7_c2vov"]
 [ext_resource type="PackedScene" uid="uid://vs86hwyi0bag" path="res://Welt/Rover/rover.tscn" id="8_hxkyc"]
-[ext_resource type="Texture2D" uid="uid://buayqmu5h76b5" path="res://Images/shop_1 (1).png" id="9_s3n4a"]
+[ext_resource type="Texture2D" path="res://Images/shop_1 (1).png" id="9_s3n4a"]
 [ext_resource type="PackedScene" uid="uid://b4lfomd2r2ws" path="res://Welt/Shop/Shop.tscn" id="10_dtt61"]
-[ext_resource type="Texture2D" uid="uid://81puq7pseyvx" path="res://Images/shop_schild.png" id="11_ofo6g"]
+[ext_resource type="Texture2D" path="res://Images/shop_schild.png" id="11_ofo6g"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_afsc4"]
 tile_data = PackedInt32Array(0, 2, 0, 65536, 2, 1, 1, 65538, 0, 65537, 65538, 1, 2, 131074, 0, 65538, 131074, 1)
@@ -192,6 +192,8 @@ position = Vector2(47, 116)
 visible = false
 
 [node name="Rover" parent="." instance=ExtResource("8_hxkyc")]
+top_level = true
+y_sort_enabled = true
 position = Vector2(172, 44)
 
 [node name="Shop1(1)" type="Sprite2D" parent="."]

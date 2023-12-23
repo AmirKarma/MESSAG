@@ -2,19 +2,19 @@
 extends CharacterBody2D
 
 # Maximum speed of the character
-var max_speed = 100
+var max_speed := 100
 # Current speed of the character
-var speed = 0
+var speed := 0
 # Acceleration of the character
-var acceleration = 400
+var acceleration := 400
 # Direction in which the character is moving
 var move_direction
 # Indicates whether the character is moving
-var moving = false
+var moving := false
 # Destination for movement
-var destination = Vector2()
+var destination := Vector2()
 # Vector for character movement
-var movement = Vector2()
+var movement := Vector2()
 # Indicates whether the free-field key is pressed
 var free_field_pressed:bool = false
 # Indicates whether the character is standing still
@@ -26,8 +26,8 @@ var clicked_tile_center
 var tile_data
 var free_field_pattern:Array
 
-var buildingIndex = -1
-var fieldIndex = -1
+var buildingIndex := -1
+var fieldIndex := -1
 
 # References to other nodes and resources in the game
 @onready var world : Node2D = get_tree().get_root().get_node("World")
@@ -213,64 +213,10 @@ func getFieldIndex(value):
 	return -1
 	
 func getBuildingIndex(value):
-	if(value == 0):
-		return DataScript.fieldZero
-	if(value == 1):
-		return DataScript.fieldOne
-	if(value == 2):
-		return DataScript.fieldTwo
-	if(value == 3):
-		return DataScript.fieldThree
-	if(value == 4):
-		return DataScript.fieldFour
-	if(value == 5):
-		return DataScript.fieldFive
-	if(value == 6):
-		return DataScript.fieldSix
-	if(value == 7):
-		return DataScript.fieldSeven
-	if(value == 8):
-		return DataScript.fieldEight
-	if(value == 9):
-		return DataScript.fieldNine
-	if(value == 10):
-		return DataScript.fieldTen
-	if(value == 11):
-		return DataScript.fieldEleven
-	if(value == 12):
-		return DataScript.fieldTwelve
-	if(value == 13):
-		return DataScript.fieldThirteen
+	return DataScript.fieldArray[value]
 		
 func player_shop_method():
 	pass
 	
 func setBuilding(value, bIndex):
-	if(value == 0):
-		DataScript.fieldZero = bIndex
-	if(value == 1):
-		DataScript.fieldOne = bIndex
-	if(value == 2):
-		DataScript.fieldTwo = bIndex
-	if(value == 3):
-		DataScript.fieldThree = bIndex
-	if(value == 4):
-		DataScript.fieldFour = bIndex
-	if(value == 5):
-		DataScript.fieldFive = bIndex
-	if(value == 6):
-		DataScript.fieldSix = bIndex
-	if(value == 7):
-		DataScript.fieldSeven = bIndex
-	if(value == 8):
-		DataScript.fieldEight = bIndex
-	if(value == 9):
-		DataScript.fieldNine = bIndex
-	if(value == 10):
-		DataScript.fieldTen = bIndex
-	if(value == 11):
-		DataScript.fieldEleven = bIndex
-	if(value == 12):
-		DataScript.fieldTwelve = bIndex
-	if(value == 13):
-		DataScript.fieldThirteen = bIndex
+	DataScript.fieldArray[value] = bIndex

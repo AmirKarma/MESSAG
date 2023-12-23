@@ -29,6 +29,9 @@ var free_field_pattern:Array
 var buildingIndex = -1
 var fieldIndex = -1
 
+var standart_camerazoom:Vector2 = Vector2(1,1)
+var standart_position:Vector2 = Vector2(0,0)
+
 # References to other nodes and resources in the game
 @onready var world : Node2D = get_tree().get_root().get_node("World")
 @onready var animationPlayer = $AnimationPlayer
@@ -36,21 +39,33 @@ var fieldIndex = -1
 @onready var animationState = animationTree.get("parameters/playback")
 @onready var nav : NavigationAgent2D = $NavigationAgent2D
 @onready var map : TileMap = world.get_node('TileMap')
+@onready var camera:Camera2D = $Camera2D
+@onready var hud:CanvasLayer = get_node("/root/World/Player/Camera2D/HUD")
 
 func _ready():
 	$Inventar.connect("_on_buybutton_bought", _on_buybutton_bought)
 
 # Function called when unhandled input occurs
 func _unhandled_input(event):
-	if event.is_action_pressed('Click'):
-		$Inventar.visible = false
-		set_free_field_pressed()
-		free_field_distance_check()
-		if !stand_still:
-			set_pattern()
-			moving = true
-			nav.target_position = get_global_mouse_position()
-			animationState.travel("Run")
+	if camera.zoom == standart_camerazoom:
+		if event.is_action_pressed('Click'):
+			$Inventar.visible = false
+			set_free_field_pressed()
+			free_field_distance_check()
+			if !stand_still:
+				set_pattern()
+				moving = true
+				nav.target_position = get_global_mouse_position()
+				animationState.travel("Run")
+	else:
+		reset_camera()
+		
+func reset_camera():
+	camera.zoom = standart_camerazoom
+	camera.position = standart_position
+	hud.visible = true
+	modulate = Color.WHITE
+
 
 # Sets the pattern for free fields if the tile is clickable
 func set_pattern():

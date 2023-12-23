@@ -9,19 +9,15 @@ var optionbar_pos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player.position = DataScript.get_last_player_position()
 	y_sort_enabled = true
 	get_tree().set_auto_accept_quit(false)
 	print()
 	
 # Process function called every frame
 func _process(_delta):
-		
-		if Input.is_action_just_pressed("debug"):
-			var minigame = load("res://Minigame1/minigame_1.tscn").instantiate()
-			get_tree().root.add_child(minigame)
-			get_tree().current_scene.queue_free()
-			get_tree().current_scene = minigame
-		building_distance(self.get_child(2)) 
+	DataScript.set_last_player_position(player.position)
+	building_distance(self.get_child(2)) 
 
 # Notification function called for window management events
 func _notification(what):
@@ -45,6 +41,7 @@ func building_distance(building : Node):
 		open_optionbar(building)
 	elif optionbar.is_close_button_pressed():
 		hide_optionbar()
+		optionbar.close_pressed = false
 		
 		
 			

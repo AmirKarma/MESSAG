@@ -16,7 +16,6 @@ func _ready():
 	
 # Process function called every frame
 func _process(_delta):
-	DataScript.set_last_player_position(player.position)
 	building_distance(self.get_child(2)) 
 
 # Notification function called for window management events
@@ -24,10 +23,12 @@ func _notification(what):
 	# Handle a close request from the window manager
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		DataScript.setUnixLastTime(Time.get_unix_time_from_system())
+		DataScript.set_last_player_position(player.position)
 		get_tree().quit()
 	# Handle a go back request from the window manager
 	elif what == NOTIFICATION_WM_GO_BACK_REQUEST:
 		DataScript.setUnixLastTime(Time.get_unix_time_from_system())
+		DataScript.set_last_player_position(player.position)
 		get_tree().quit()
 
 func building_distance(building : Node):

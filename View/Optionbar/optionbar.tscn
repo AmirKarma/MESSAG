@@ -251,10 +251,11 @@ anchor_bottom = 0.5
 offset_left = 8.28
 offset_top = -10.0
 offset_right = 74.28
-offset_bottom = 6.0
-text = "soon..."
+offset_bottom = 26.0
+text = "upgrade"
 
 [node name="info_button" type="Button" parent="optionbar_rect/buttons_rect/buttons"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.043

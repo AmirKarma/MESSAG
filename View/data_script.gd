@@ -46,6 +46,8 @@ var fieldDataString := "res://Welt/fieldData.dat"
 #declare timer variable
 var timer
 
+var last_player_position: Vector2 = Vector2(168,131)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer = Timer.new()
@@ -150,6 +152,12 @@ func isPlayingFirstTime():
 func setFirstGame(value):
 	firstGame = value
 	savePlayerData()
+	
+func get_last_player_position():
+	return last_player_position
+
+func set_last_player_position(value):
+	last_player_position = value
 
 # Function to save player data to a file
 func savePlayerData():
@@ -169,6 +177,7 @@ func savePlayerData():
 	file.store_var(moonstoneGeneratorActiveCount)
 	file.store_var(moneyStorageActiveCount)
 	file.store_var(moonstoneStorageActiveCount)
+	file.store_var(last_player_position)
 	
 
 # Function to load player data from a file	
@@ -190,6 +199,7 @@ func loadPlayerData():
 		moonstoneGeneratorActiveCount = file.get_var()
 		moneyStorageActiveCount = file.get_var()
 		moonstoneStorageActiveCount = file.get_var()
+		last_player_position = file.get_var()
 		addOfflineMooneten()
 	else:
 		firstGame = true
@@ -238,6 +248,7 @@ func resetStats():
 	moonstoneGeneratorActiveCount = 0
 	moneyStorageActiveCount = 0
 	moonstoneStorageActiveCount = 0
+	last_player_position = Vector2(168,131)
 	savePlayerData()
 	saveFieldData()
 	

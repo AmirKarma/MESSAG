@@ -48,8 +48,8 @@ var timer
 
 var last_player_position: Vector2 = Vector2(168,131)
 
-var rocket_level:int = 1
 
+var rocket_level:int = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer = Timer.new()
@@ -190,7 +190,6 @@ func savePlayerData():
 	file.store_var(moonstoneStorageActiveCount)
 	file.store_var(last_player_position)
 	file.store_var(rocket_level)
-	
 	
 
 # Function to load player data from a file	

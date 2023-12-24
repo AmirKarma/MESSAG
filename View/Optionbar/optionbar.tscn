@@ -236,6 +236,7 @@ offset_bottom = -2.0
 text = "upgrade"
 
 [node name="info_button" type="Button" parent="optionbar_rect/buttons_rect/buttons"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.043

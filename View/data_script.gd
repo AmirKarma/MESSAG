@@ -48,6 +48,8 @@ var timer
 
 var last_player_position: Vector2 = Vector2(168,131)
 
+
+var rocket_level:int = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer = Timer.new()
@@ -139,6 +141,7 @@ func getM1Score():
 
 func setMinigame2_score(value):
 	minigame2_score = value
+	savePlayerData()
 	
 func getMinigame2_score():
 	return minigame2_score
@@ -158,6 +161,14 @@ func get_last_player_position():
 
 func set_last_player_position(value):
 	last_player_position = value
+	savePlayerData()
+
+func get_rocket_level():
+	return rocket_level
+
+func set_rocket_level(value):
+	rocket_level += value
+	savePlayerData()
 
 # Function to save player data to a file
 func savePlayerData():
@@ -178,6 +189,7 @@ func savePlayerData():
 	file.store_var(moneyStorageActiveCount)
 	file.store_var(moonstoneStorageActiveCount)
 	file.store_var(last_player_position)
+	file.store_var(rocket_level)
 	
 
 # Function to load player data from a file	
@@ -200,6 +212,7 @@ func loadPlayerData():
 		moneyStorageActiveCount = file.get_var()
 		moonstoneStorageActiveCount = file.get_var()
 		last_player_position = file.get_var()
+		rocket_level = file.get_var()
 		addOfflineMooneten()
 	else:
 		firstGame = true
@@ -249,6 +262,7 @@ func resetStats():
 	moneyStorageActiveCount = 0
 	moonstoneStorageActiveCount = 0
 	last_player_position = Vector2(168,131)
+	rocket_level = 1
 	savePlayerData()
 	saveFieldData()
 	

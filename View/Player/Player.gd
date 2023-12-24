@@ -134,28 +134,31 @@ func _on_buybutton_bought(bIndex):
 		if DataScript.moneyGeneratorCount > 0:
 			DataScript.moneyGeneratorCount = DataScript.moneyGeneratorCount - 1
 			setBuilding(fieldIndex, bIndex)
+			DataScript.moneyGeneratorActiveCount = DataScript.moneyGeneratorActiveCount + 1
+			DataScript.savePlayerData()
 			DataScript.saveFieldData()
 	elif bIndex == 1:
 		if DataScript.moonstoneGeneratorCount > 0:
 			DataScript.moonstoneGeneratorCount = DataScript.moonstoneGeneratorCount - 1
 			setBuilding(fieldIndex, bIndex)
+			DataScript.moonstoneGeneratorActiveCount = DataScript.moonstoneGeneratorActiveCount + 1
+			DataScript.savePlayerData()
 			DataScript.saveFieldData()
 	elif bIndex == 2:
 		if DataScript.moneyStorageCount > 0:
 			DataScript.moneyStorageCount = DataScript.moneyStorageCount - 1
 			setBuilding(fieldIndex, bIndex)
+			DataScript.moneyStorageActiveCount = DataScript.moneyStorageActiveCount + 1
+			DataScript.savePlayerData()
 			DataScript.saveFieldData()
 	elif bIndex == 3:
 		if DataScript.moonstoneStorageCount > 0:
 			DataScript.moonstoneStorageCount = DataScript.moonstoneStorageCount - 1
 			setBuilding(fieldIndex, bIndex)
+			DataScript.moonstoneStorageActiveCount = DataScript.moonstoneStorageActiveCount + 1
+			DataScript.savePlayerData()
 			DataScript.saveFieldData()
-	elif bIndex == 4:
-		if DataScript.shopCount > 0:
-			DataScript.shopCount = DataScript.shopCount - 1
-			setBuilding(fieldIndex, bIndex)
-			DataScript.saveFieldData()
-
+			
 # Governs character movement
 func MovementLoop(delta):
 	if !stand_still:

@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://3d3na5hd1gfu"]
+
+[ext_resource type="Texture2D" uid="uid://bsdpd37oq8xnn" path="res://Welt/Game-Boy-Advance-Pokemon-Ruby-Sapphire-Buildings.png" id="1_b34qc"]
+[ext_resource type="Script" path="res://Welt/Buildings/building.gd" id="1_sjs5k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhh1g"]
+atlas = ExtResource("1_b34qc")
+region = Rect2(0, 0, 103, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad2mp"]
+atlas = ExtResource("1_b34qc")
+region = Rect2(73, 83, 73, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tprn0"]
+atlas = ExtResource("1_b34qc")
+region = Rect2(348, 83, 87, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u17np"]
+atlas = ExtResource("1_b34qc")
+region = Rect2(87, 166, 87, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u80g"]
+atlas = ExtResource("1_b34qc")
+region = Rect2(0, 83, 72, 83)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hv1wp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhh1g")
+}],
+"loop": true,
+"name": &"moonetenGenerator",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad2mp")
+}],
+"loop": true,
+"name": &"moonetenStorage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tprn0")
+}],
+"loop": true,
+"name": &"moonstoneGenerator",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u17np")
+}],
+"loop": true,
+"name": &"moonstoneStorage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u80g")
+}],
+"loop": true,
+"name": &"shopPlay",
+"speed": 5.0
+}]
+
+[node name="Building" type="Node2D"]
+script = ExtResource("1_sjs5k")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="icon" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3.8147e-06, 1.90735e-06)
+scale = Vector2(0.708333, 0.554217)
+sprite_frames = SubResource("SpriteFrames_hv1wp")
+animation = &"moonetenGenerator"

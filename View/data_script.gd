@@ -27,7 +27,6 @@ const minigame2_gameSpeed := Vector2(0, 10)
 
 var moneyGeneratorCount := 0
 var moonstoneGeneratorCount := 0
-var shopCount := 0
 var moneyStorageCount := 0
 var moonstoneStorageCount := 0
 
@@ -181,7 +180,6 @@ func savePlayerData():
 	file.store_var(minigame_one_highscore)
 	file.store_var(moneyGeneratorCount)
 	file.store_var(moonstoneGeneratorCount)
-	file.store_var(shopCount)
 	file.store_var(moneyStorageCount)
 	file.store_var(moonstoneStorageCount)
 	file.store_var(moneyGeneratorActiveCount)
@@ -204,7 +202,6 @@ func loadPlayerData():
 		minigame_one_highscore = file.get_var()
 		moneyGeneratorCount = file.get_var()
 		moonstoneGeneratorCount = file.get_var()
-		shopCount = file.get_var()
 		moneyStorageCount = file.get_var()
 		moonstoneStorageCount = file.get_var()
 		moneyGeneratorActiveCount = file.get_var()
@@ -253,7 +250,6 @@ func resetStats():
 	minigame_one_highscore = 0
 	moneyGeneratorCount = 0
 	moonstoneGeneratorCount = 0
-	shopCount = 0
 	moneyStorageCount = 0
 	moonstoneStorageCount = 0
 	fieldArray = [-2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -2]

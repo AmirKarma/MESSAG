@@ -12,7 +12,6 @@ func _ready():
 	player.position = DataScript.get_last_player_position()
 	y_sort_enabled = true
 	get_tree().set_auto_accept_quit(false)
-	print()
 	
 # Process function called every frame
 func _process(_delta):
@@ -67,4 +66,3 @@ func hide_optionbar():
 	player.set_physics_process(true)
 	player.get_node("Camera2D/HUD").visible = true
 
-		

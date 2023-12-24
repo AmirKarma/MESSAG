@@ -248,6 +248,7 @@ func resetStats():
 	moonstoneGeneratorActiveCount = 0
 	moneyStorageActiveCount = 0
 	moonstoneStorageActiveCount = 0
+	last_player_position = Vector2(168,131)
 	savePlayerData()
 	saveFieldData()
 	

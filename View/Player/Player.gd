@@ -133,7 +133,7 @@ func _on_buybutton_bought(bIndex):
 	if bIndex == DataScript.moonetenGenerator:
 		if DataScript.moneyGeneratorCount > 0:
 			DataScript.moneyGeneratorCount = DataScript.moneyGeneratorCount - 1
-			DataScript.set_building(fieldIndex, bIndex,"Moonetengenerator",[100,1000,2000,10000],"moonetenGenerator","", 0, [1000,2000,5000,10000])
+			DataScript.set_building(fieldIndex, bIndex,"Moonetengenerator",[100,1000,2000,10000],"moonetenGenerator","res://Minigame2/minigame2.tscn", 0, [1000,2000,5000,10000])
 			DataScript.moneyGeneratorActiveCount = DataScript.moneyGeneratorActiveCount + 1
 			DataScript.savePlayerData()
 	elif bIndex == DataScript.moonstoneGenerator:

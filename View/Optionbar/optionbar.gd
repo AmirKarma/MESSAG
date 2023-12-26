@@ -111,6 +111,13 @@ func set_bars():
 	$optionbar_rect/RessorceRect/Coin.visible = true
 	$optionbar_rect/RessorceRect/energybar.visible = true
 	$optionbar_rect/RessorceRect/Moonstone.visible = true
+	if DataScript.fieldArray[building_id][0] == 0:
+		$optionbar_rect/RessorceRect/moonetenbar/mooneten_label.text = str(DataScript.fieldArray[building_id][ressource_amount]) + " / " + str(DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1])
+		$optionbar_rect/RessorceRect/moonetenbar.value = DataScript.fieldArray[building_id][ressource_amount]
+		$optionbar_rect/RessorceRect/moonetenbar.max_value = DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1]
+		$optionbar_rect/RessorceRect/energybar/energy_label.text = str(DataScript.fieldArray[building_id][ressource_amount]) + " / " + str(DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1])
+		$optionbar_rect/RessorceRect/energybar.value = DataScript.fieldArray[building_id][ressource_amount]
+		$optionbar_rect/RessorceRect/energybar.max_value = DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1]
 	if DataScript.fieldArray[building_id][0] == 2 || DataScript.fieldArray[building_id][0] == 4:
 		$optionbar_rect/RessorceRect/energybar.visible = false
 		$optionbar_rect/RessorceRect/Moonstone.visible = false

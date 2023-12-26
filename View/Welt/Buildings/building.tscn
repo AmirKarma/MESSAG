@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://3d3na5hd1gfu"]
+[gd_scene load_steps=13 format=3 uid="uid://3d3na5hd1gfu"]
 
 [ext_resource type="Texture2D" uid="uid://bsdpd37oq8xnn" path="res://Welt/Game-Boy-Advance-Pokemon-Ruby-Sapphire-Buildings.png" id="1_b34qc"]
 [ext_resource type="Script" path="res://Welt/Buildings/building.gd" id="1_sjs5k"]
@@ -66,13 +66,60 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kaxb7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_608ix"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xjkiy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8n4sj"]
+
 [node name="Building" type="Node2D"]
 script = ExtResource("1_sjs5k")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
 [node name="icon" type="AnimatedSprite2D" parent="."]
-position = Vector2(-3.8147e-06, 1.90735e-06)
-scale = Vector2(0.708333, 0.554217)
+position = Vector2(4.59376, 1.90735e-06)
+scale = Vector2(0.721983, 0.554217)
 sprite_frames = SubResource("SpriteFrames_hv1wp")
-animation = &"moonetenGenerator"
+animation = &"moonetenStorage"
+
+[node name="MoonetenGeneratorButton" type="Button" parent="."]
+visible = false
+offset_left = -29.0
+offset_top = -23.0
+offset_right = 39.0
+offset_bottom = 22.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kaxb7")
+flat = true
+
+[node name="MoonetenStorageButton" type="Button" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -16.0
+offset_right = 28.0
+offset_bottom = 24.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_608ix")
+flat = true
+
+[node name="MoonstoneGeneratorButton" type="Button" parent="."]
+visible = false
+offset_left = -26.0
+offset_top = -13.0
+offset_right = 22.0
+offset_bottom = 19.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xjkiy")
+flat = true
+
+[node name="MoonstoneStorageButton" type="Button" parent="."]
+visible = false
+offset_left = -27.0
+offset_top = -20.0
+offset_right = 31.0
+offset_bottom = 23.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8n4sj")
+flat = true
+
+[connection signal="pressed" from="MoonetenGeneratorButton" to="." method="_on_mooneten_generator_button_pressed"]
+[connection signal="pressed" from="MoonetenStorageButton" to="." method="_on_mooneten_storage_button_pressed"]
+[connection signal="pressed" from="MoonstoneGeneratorButton" to="." method="_on_moonstone_generator_button_pressed"]
+[connection signal="pressed" from="MoonstoneStorageButton" to="." method="_on_moonstone_storage_button_pressed"]

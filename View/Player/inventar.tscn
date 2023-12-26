@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://djmdat0ledp8m"]
+[gd_scene load_steps=13 format=3 uid="uid://bax0u2n2sk0vg"]
 
 [ext_resource type="Script" path="res://Player/Inventory.gd" id="1_cw3s8"]
 [ext_resource type="Texture2D" uid="uid://bsdpd37oq8xnn" path="res://Welt/Game-Boy-Advance-Pokemon-Ruby-Sapphire-Buildings.png" id="2_0x0ji"]
@@ -97,7 +97,7 @@ color = Color(0.34902, 0.4, 0.541176, 0.658824)
 position = Vector2(49, 23)
 scale = Vector2(0.708333, 0.554217)
 sprite_frames = SubResource("SpriteFrames_e4nrv")
-animation = &"shopPlay"
+animation = &"moonstoneStorage"
 
 [node name="buttonleft" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)

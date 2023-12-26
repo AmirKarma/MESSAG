@@ -104,6 +104,7 @@ func create_pattern()-> Array:
 func _physics_process(delta):
 	MovementLoop(delta)
 	free_field_distance_check()
+	DataScript.set_last_player_position(position)
 	
 # Checks the distance to the free field
 func free_field_distance_check():
@@ -120,9 +121,8 @@ func free_field_distance_check():
 # Opens a menu and returns the index of the field
 func open_menu(value):
 	fieldIndex = getFieldIndex(value)
-	buildingIndex = getBuildingIndex(fieldIndex)
+	buildingIndex = getBuildingIndex(fieldIndex)[0]
 	print(fieldIndex)
-	print(buildingIndex)
 	if buildingIndex == -1:
 		$Inventar.visible = true
 	
@@ -130,34 +130,30 @@ func open_menu(value):
 func _on_buybutton_bought(bIndex):
 	$Inventar.visible = false
 	print("Ausgewählt: " + str(bIndex))
-	if bIndex == 0:
+	if bIndex == DataScript.moonetenGenerator:
 		if DataScript.moneyGeneratorCount > 0:
 			DataScript.moneyGeneratorCount = DataScript.moneyGeneratorCount - 1
-			setBuilding(fieldIndex, bIndex)
+			DataScript.set_building(fieldIndex, bIndex,"Moonetengenerator",[100,1000,2000,10000],"moonetenGenerator","res://Minigame2/minigame2.tscn")
 			DataScript.moneyGeneratorActiveCount = DataScript.moneyGeneratorActiveCount + 1
 			DataScript.savePlayerData()
-			DataScript.saveFieldData()
-	elif bIndex == 1:
+	elif bIndex == DataScript.moonstoneGenerator:
 		if DataScript.moonstoneGeneratorCount > 0:
 			DataScript.moonstoneGeneratorCount = DataScript.moonstoneGeneratorCount - 1
-			setBuilding(fieldIndex, bIndex)
+			DataScript.set_building(fieldIndex, bIndex,"Moonstonegenerator",[100,1000,2000,10000],"moonstoneGenerator","")
 			DataScript.moonstoneGeneratorActiveCount = DataScript.moonstoneGeneratorActiveCount + 1
 			DataScript.savePlayerData()
-			DataScript.saveFieldData()
-	elif bIndex == 2:
+	elif bIndex == DataScript.moonetenStorage:
 		if DataScript.moneyStorageCount > 0:
 			DataScript.moneyStorageCount = DataScript.moneyStorageCount - 1
-			setBuilding(fieldIndex, bIndex)
+			DataScript.set_building(fieldIndex, bIndex,"Moonetenstorage",[100,1000,2000,10000],"moonetenStorage","")
 			DataScript.moneyStorageActiveCount = DataScript.moneyStorageActiveCount + 1
 			DataScript.savePlayerData()
-			DataScript.saveFieldData()
-	elif bIndex == 3:
+	elif bIndex == DataScript.moonstoneStorage:
 		if DataScript.moonstoneStorageCount > 0:
 			DataScript.moonstoneStorageCount = DataScript.moonstoneStorageCount - 1
-			setBuilding(fieldIndex, bIndex)
+			DataScript.set_building(fieldIndex, bIndex,"Moonstonestorage",[100,1000,2000,10000],"moonstoneStorage","")
 			DataScript.moonstoneStorageActiveCount = DataScript.moonstoneStorageActiveCount + 1
 			DataScript.savePlayerData()
-			DataScript.saveFieldData()
 			
 # Governs character movement
 func MovementLoop(delta):
@@ -235,6 +231,4 @@ func getBuildingIndex(value):
 		
 func player_shop_method():
 	pass
-	
-func setBuilding(value, bIndex):
-	DataScript.fieldArray[value] = bIndex
+

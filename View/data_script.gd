@@ -35,9 +35,31 @@ var moonstoneGeneratorActiveCount := 0
 var moneyStorageActiveCount := 0
 var moonstoneStorageActiveCount := 0
 
-#field id´s -2: building on the field; -1: no building on the field
-var fieldArray := [-2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -2]
+# building ids
+var rocket:int = 0
+var shop:int = 1
+var moonetenGenerator:int = 2
+var moonstoneGenerator:int = 3
+var moonetenStorage:int = 4
+var moonstoneStorage:int = 5
 
+#field id´s -2: building on the field; -1: no building on the field
+var fieldArray := [[rocket,"Rocket",1,[10000,20000,50000,100000],"","res://Minigame1/minigame_1.tscn"], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-2]]
+var inventar:Array = []
+func set_building(field_index:int,building_index:int,building_name:String,upgrade_costs:Array,image:String,game_path:String):
+	var building := []
+	building.append(building_index)
+	building.append(building_name)
+	building.append(1)#building level
+	building.append(upgrade_costs)
+	building.append(image)
+	building.append(game_path)
+	fieldArray[field_index] = building
+	saveFieldData()
+	
+func edit_building(building_id:int,attribute_id:int, value):
+	fieldArray[building_id][attribute_id] = value
+	saveFieldData()
 # data storage location
 var ressourceBarDataString := "res://Player/playerData.dat"
 var fieldDataString := "res://Welt/fieldData.dat"
@@ -187,7 +209,6 @@ func savePlayerData():
 	file.store_var(moneyStorageActiveCount)
 	file.store_var(moonstoneStorageActiveCount)
 	file.store_var(last_player_position)
-	file.store_var(rocket_level)
 	
 
 # Function to load player data from a file	
@@ -209,7 +230,6 @@ func loadPlayerData():
 		moneyStorageActiveCount = file.get_var()
 		moonstoneStorageActiveCount = file.get_var()
 		last_player_position = file.get_var()
-		rocket_level = file.get_var()
 		addOfflineMooneten()
 	else:
 		firstGame = true
@@ -248,17 +268,16 @@ func resetStats():
 	unixLastTime = Time.get_unix_time_from_system()
 	minigame2_highscore = 0
 	minigame_one_highscore = 0
-	moneyGeneratorCount = 0
-	moonstoneGeneratorCount = 0
-	moneyStorageCount = 0
-	moonstoneStorageCount = 0
-	fieldArray = [-2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -2]
+	moneyGeneratorCount = 3
+	moonstoneGeneratorCount = 3
+	moneyStorageCount = 3
+	moonstoneStorageCount = 3
+	fieldArray = [[rocket,"Rocket",1,[10000,20000,50000,100000],"","res://Minigame1/minigame_1.tscn"], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-2]]
 	moneyGeneratorActiveCount = 0
 	moonstoneGeneratorActiveCount = 0
 	moneyStorageActiveCount = 0
 	moonstoneStorageActiveCount = 0
 	last_player_position = Vector2(168,131)
-	rocket_level = 1
 	savePlayerData()
 	saveFieldData()
 	

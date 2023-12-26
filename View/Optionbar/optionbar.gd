@@ -18,6 +18,8 @@ var level_index:int = 2
 var upgrade_cost_index:int = 3
 var image_index:int = 4
 var game_path_index:int = 5
+var ressource_amount:int = 6
+var max_storage_size:int = 7
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	costs_lable.text = "  " 
@@ -51,6 +53,7 @@ func set_optionbar(positon : Vector2,id:int):
 		set_rocket_image()
 	is_upgradeable()
 	set_building_texts()
+	set_bars()
 	
 func set_building_image():
 	building_rect.get_node("building_image").play(DataScript.fieldArray[building_id][image_index])
@@ -67,7 +70,7 @@ func is_upgradeable():
 		upgrade_button.modulate = Color.DIM_GRAY
 		upgrade_button.disabled = true
 
-func _on_play_button_pressed():
+func _on_play_1_button_pressed():
 	get_tree().change_scene_to_file(game_scene)
 
 func _on_upgrade_button_pressed():
@@ -94,6 +97,7 @@ func _on_confirm_button_pressed():
 	# 3 is the index for the level of the building
 	DataScript.edit_building(building_id,level_index, DataScript.fieldArray[building_id][level_index] + 1)
 	set_building_texts()
+	set_bars()
 	is_upgradeable()
 	reset_buttons()
 	
@@ -101,6 +105,25 @@ func set_building_texts():
 	if !is_max_level():
 		costs_lable.text = "  " + str(DataScript.fieldArray[building_id][upgrade_cost_index][DataScript.fieldArray[building_id][level_index] - 1])
 	building_level.text = "Level " + str(DataScript.fieldArray[building_id][level_index])
+
+func set_bars():
+	print("Gut " + str(DataScript.fieldArray[building_id][0]))
+	if DataScript.fieldArray[building_id][0] == 2 || DataScript.fieldArray[building_id][0] == 4:
+		$optionbar_rect/RessorceRect/moonetenbar.visible = true
+		$optionbar_rect/RessorceRect/Coin.visible = true
+		$optionbar_rect/RessorceRect/energybar.visible = false
+		$optionbar_rect/RessorceRect/Moonstone.visible = false
+		$optionbar_rect/RessorceRect/moonetenbar/mooneten_label.text = str(DataScript.fieldArray[building_id][ressource_amount]) + " / " + str(DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1])
+		$optionbar_rect/RessorceRect/moonetenbar.value = DataScript.fieldArray[building_id][ressource_amount]
+	if DataScript.fieldArray[building_id][0] == 3 || DataScript.fieldArray[building_id][0] == 5:
+		$optionbar_rect/RessorceRect/energybar.visible = true
+		$optionbar_rect/RessorceRect/Moonstone.visible = true
+		$optionbar_rect/RessorceRect/moonetenbar.visible = false
+		$optionbar_rect/RessorceRect/Coin.visible = false
+		$optionbar_rect/RessorceRect/energybar/energy_label.text = str(DataScript.fieldArray[building_id][ressource_amount]) + " / " + str(DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1])
+		$optionbar_rect/RessorceRect/energybar.value = DataScript.fieldArray[building_id][ressource_amount]
+	$optionbar_rect/RessorceRect/moonetenbar.max_value = DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1]
+	
 
 func reset_buttons():
 	$optionbar_rect/buttons_rect/buttons.visible = true

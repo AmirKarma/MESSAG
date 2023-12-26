@@ -133,25 +133,25 @@ func _on_buybutton_bought(bIndex):
 	if bIndex == DataScript.moonetenGenerator:
 		if DataScript.moneyGeneratorCount > 0:
 			DataScript.moneyGeneratorCount = DataScript.moneyGeneratorCount - 1
-			DataScript.set_building(fieldIndex, bIndex,"Moonetengenerator",[100,1000,2000,10000],"moonetenGenerator","res://Minigame2/minigame2.tscn")
+			DataScript.set_building(fieldIndex, bIndex,"Moonetengenerator",[100,1000,2000,10000],"moonetenGenerator","", 0, [1000,2000,5000,10000])
 			DataScript.moneyGeneratorActiveCount = DataScript.moneyGeneratorActiveCount + 1
 			DataScript.savePlayerData()
 	elif bIndex == DataScript.moonstoneGenerator:
 		if DataScript.moonstoneGeneratorCount > 0:
 			DataScript.moonstoneGeneratorCount = DataScript.moonstoneGeneratorCount - 1
-			DataScript.set_building(fieldIndex, bIndex,"Moonstonegenerator",[100,1000,2000,10000],"moonstoneGenerator","")
+			DataScript.set_building(fieldIndex, bIndex,"Moonstonegenerator",[100,1000,2000,10000],"moonstoneGenerator","", 0, [1000,2000,5000,10000])
 			DataScript.moonstoneGeneratorActiveCount = DataScript.moonstoneGeneratorActiveCount + 1
 			DataScript.savePlayerData()
 	elif bIndex == DataScript.moonetenStorage:
 		if DataScript.moneyStorageCount > 0:
 			DataScript.moneyStorageCount = DataScript.moneyStorageCount - 1
-			DataScript.set_building(fieldIndex, bIndex,"Moonetenstorage",[100,1000,2000,10000],"moonetenStorage","")
+			DataScript.set_building(fieldIndex, bIndex,"Moonetenstorage",[100,1000,2000,10000],"moonetenStorage","", 0, [1000,2000,5000,10000])
 			DataScript.moneyStorageActiveCount = DataScript.moneyStorageActiveCount + 1
 			DataScript.savePlayerData()
 	elif bIndex == DataScript.moonstoneStorage:
 		if DataScript.moonstoneStorageCount > 0:
 			DataScript.moonstoneStorageCount = DataScript.moonstoneStorageCount - 1
-			DataScript.set_building(fieldIndex, bIndex,"Moonstonestorage",[100,1000,2000,10000],"moonstoneStorage","")
+			DataScript.set_building(fieldIndex, bIndex,"Moonstonestorage",[100,1000,2000,10000],"moonstoneStorage","", 0, [1000,2000,5000,10000])
 			DataScript.moonstoneStorageActiveCount = DataScript.moonstoneStorageActiveCount + 1
 			DataScript.savePlayerData()
 			

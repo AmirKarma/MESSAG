@@ -44,9 +44,9 @@ var moonetenStorage:int = 4
 var moonstoneStorage:int = 5
 
 #field id´s -2: building on the field; -1: no building on the field
-var fieldArray := [[rocket,"Rocket",1,[10000,20000,50000,100000],"","res://Minigame1/minigame_1.tscn"], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-2]]
+var fieldArray := [[rocket,"Rocket",1,[10000,20000,50000,100000],"","res://Minigame1/minigame_1.tscn", 0, [1000,2000,5000,10000]], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-2]]
 var inventar:Array = []
-func set_building(field_index:int,building_index:int,building_name:String,upgrade_costs:Array,image:String,game_path:String):
+func set_building(field_index:int,building_index:int,building_name:String,upgrade_costs:Array,image:String,game_path:String, ressource_amount:int, storage_size:Array):
 	var building := []
 	building.append(building_index)
 	building.append(building_name)
@@ -54,6 +54,8 @@ func set_building(field_index:int,building_index:int,building_name:String,upgrad
 	building.append(upgrade_costs)
 	building.append(image)
 	building.append(game_path)
+	building.append(ressource_amount)
+	building.append(storage_size)
 	fieldArray[field_index] = building
 	saveFieldData()
 	
@@ -272,7 +274,7 @@ func resetStats():
 	moonstoneGeneratorCount = 3
 	moneyStorageCount = 3
 	moonstoneStorageCount = 3
-	fieldArray = [[rocket,"Rocket",1,[10000,20000,50000,100000],"","res://Minigame1/minigame_1.tscn"], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-2]]
+	fieldArray = [[rocket,"Rocket",1,[10000,20000,50000,100000],"","res://Minigame1/minigame_1.tscn", 0, [1000,2000,5000,10000]], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-2]]
 	moneyGeneratorActiveCount = 0
 	moonstoneGeneratorActiveCount = 0
 	moneyStorageActiveCount = 0

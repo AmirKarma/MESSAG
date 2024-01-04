@@ -99,14 +99,13 @@ func _on_cancel_button_pressed():
 	reset_buttons()
 
 func _on_confirm_button_pressed():
-	if DataScript.fieldArray[building_id][level_index] < 4:
-		DataScript.removeMooneten(DataScript.fieldArray[building_id][upgrade_cost_index][DataScript.fieldArray[building_id][level_index] - 1])
-		# 3 is the index for the level of the building
-		DataScript.edit_building(building_id,level_index, DataScript.fieldArray[building_id][level_index] + 1)
-		set_building_texts()
-		set_bars()
-		is_upgradeable()
-		reset_buttons()
+	DataScript.removeMooneten(DataScript.fieldArray[building_id][upgrade_cost_index][DataScript.fieldArray[building_id][level_index] - 1])
+	# 3 is the index for the level of the building
+	DataScript.edit_building(building_id,level_index, DataScript.fieldArray[building_id][level_index] + 1)
+	set_building_texts()
+	set_bars()
+	is_upgradeable()
+	reset_buttons()
 	
 func set_building_texts():
 	if !is_max_level():

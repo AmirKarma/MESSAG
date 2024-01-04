@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfwde8pm32ahm"]
+[gd_scene load_steps=8 format=3 uid="uid://bfwde8pm32ahm"]
 
 [ext_resource type="Script" path="res://Welt/Start_Menue/start_menue.gd" id="1_j38ne"]
 [ext_resource type="Texture2D" uid="uid://dmgaeaw8k83i2" path="res://Images/Background_1.png" id="2_eqwjw"]
 [ext_resource type="Texture2D" uid="uid://cviesfy3xnig0" path="res://Images/Mooneten.png" id="3_13emr"]
 [ext_resource type="Texture2D" uid="uid://c24lsh16am6o0" path="res://Images/generatedtext.png" id="7_de57x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h27fr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xkjao"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v73pn"]
 
 [node name="Start_Menue" type="Control"]
 layout_mode = 3
@@ -36,16 +42,19 @@ grow_vertical = 0
 [node name="Fortsetzen" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h27fr")
 text = "Fortsetzen"
 
 [node name="Neues Spiel" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xkjao")
 text = "Neues Spiel"
 
 [node name="Impressum" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_v73pn")
 text = "Impressum"
 
 [node name="Mooneten" type="Sprite2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://cdfejtgr3uct"]
+[gd_scene load_steps=45 format=3 uid="uid://cdfejtgr3uct"]
 
 [ext_resource type="Script" path="res://Welt/world.gd" id="1_fs3ho"]
 [ext_resource type="Texture2D" uid="uid://dbh5uk0ytof32" path="res://Welt/Background/Terrain_Ecken.png" id="2_2bpty"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://3s6ye2qf1hou" path="res://Welt/Background/Krater_Grau.png" id="3_dim4n"]
 [ext_resource type="PackedScene" uid="uid://cwo4kcdmsf7cr" path="res://Player/player.tscn" id="3_g0tsn"]
 [ext_resource type="PackedScene" uid="uid://d3nqblcu1fvpi" path="res://Welt/Rocket/rocket.tscn" id="4_x5ukb"]
-[ext_resource type="PackedScene" uid="uid://vs86hwyi0bag" path="res://Welt/Rover/rover.tscn" id="8_hxkyc"]
+[ext_resource type="PackedScene" uid="uid://vs86hwyi0bag" path="res://Welt/Shop/shop.tscn" id="8_hxkyc"]
 [ext_resource type="Texture2D" uid="uid://buayqmu5h76b5" path="res://Images/shop_1 (1).png" id="9_s3n4a"]
 [ext_resource type="Script" path="res://Welt/buildings.gd" id="11_0qq4f"]
 [ext_resource type="PackedScene" uid="uid://3d3na5hd1gfu" path="res://Welt/Buildings/building.tscn" id="11_nkqi8"]
@@ -24,7 +24,6 @@
 [ext_resource type="Script" path="res://Welt/Buildings/building10.gd" id="21_opylk"]
 [ext_resource type="Script" path="res://Welt/Buildings/building11.gd" id="22_hkswk"]
 [ext_resource type="Script" path="res://Welt/Buildings/building12.gd" id="23_dt3bb"]
-[ext_resource type="Script" path="res://Optionbar/optionbar.gd" id="25_bn4qf"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_afsc4"]
 tile_data = PackedInt32Array(0, 2, 0, 65536, 2, 1, 1, 65538, 0, 65537, 65538, 1, 2, 131074, 0, 65538, 131074, 1)
@@ -204,7 +203,7 @@ position = Vector2(47, 158)
 
 [node name="Rover" parent="." instance=ExtResource("8_hxkyc")]
 top_level = true
-position = Vector2(904, 240)
+position = Vector2(912, 256)
 
 [node name="ShopSchild2" type="Sprite2D" parent="."]
 position = Vector2(160, 314)
@@ -281,4 +280,3 @@ script = ExtResource("23_dt3bb")
 [node name="Optionbar" parent="." instance=ExtResource("12_mxp31")]
 visible = false
 top_level = true
-script = ExtResource("25_bn4qf")

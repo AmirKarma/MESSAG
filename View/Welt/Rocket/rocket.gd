@@ -3,7 +3,7 @@ var id:int = 0
 @onready var buildings:Node2D = get_node("/root/World/buildings")
 var pressed: bool = false
 
-func _process(delta):
+func _process(_delta):
 	buildings.building_distance(self)
 
 func _on_option_button_pressed():

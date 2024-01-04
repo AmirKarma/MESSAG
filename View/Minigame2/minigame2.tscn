@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://det7mjel5dohh"]
+[gd_scene load_steps=15 format=3 uid="uid://det7mjel5dohh"]
 
 [ext_resource type="Script" path="res://Minigame2/Background.gd" id="1_byurc"]
 [ext_resource type="Script" path="res://Minigame2/minigame2.gd" id="1_wjhoj"]
@@ -19,6 +19,10 @@ size = Vector2(160, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unto0"]
 size = Vector2(160, 100)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n81bd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_331s3"]
 
 [node name="minigame2" type="Node2D"]
 script = ExtResource("1_wjhoj")
@@ -125,10 +129,12 @@ vertical_alignment = 1
 
 [node name="Resume" type="Button" parent="Hud/PauseMenu/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n81bd")
 text = "Resume Game"
 
 [node name="Exit" type="Button" parent="Hud/PauseMenu/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_331s3")
 text = "Exit"
 
 [node name="PauseTimer" type="Timer" parent="Hud/PauseMenu"]

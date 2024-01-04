@@ -13,14 +13,14 @@ var optionbar_rect_size:Vector2
 var building_image_pos:Vector2
 var game_scene:String
 var building_id:int = 0
-var building_type:int = 0
-var name_index:int = 1
-var level_index:int = 2
-var upgrade_cost_index:int = 3
-var image_index:int = 4
-var game_path_index:int = 5
-var ressource_amount:int = 6
-var max_storage_size:int = 7
+const building_type:int = 0
+const name_index:int = 1
+const level_index:int = 2
+const upgrade_cost_index:int = 3
+const image_index:int = 4
+const game_path_index:int = 5
+const ressource_amount:int = 6
+const max_storage_size:int = 7
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	costs_lable.text = "  " 
@@ -97,11 +97,17 @@ func _on_confirm_button_pressed():
 	DataScript.removeMooneten(DataScript.fieldArray[building_id][upgrade_cost_index][DataScript.fieldArray[building_id][level_index] - 1])
 	# 3 is the index for the level of the building
 	DataScript.edit_building(building_id,level_index, DataScript.fieldArray[building_id][level_index] + 1)
+	rocket_upgrade()
 	set_building_texts()
 	set_bars()
-	is_upgradeable()
 	reset_buttons()
+	is_upgradeable()
 	
+	
+func rocket_upgrade():
+	if building_id == DataScript.fieldArray[building_id][building_type]:
+		DataScript.on_rocket_level_upgrade()
+
 func set_building_texts():
 	if !is_max_level():
 		costs_lable.text = "  " + str(DataScript.fieldArray[building_id][upgrade_cost_index][DataScript.fieldArray[building_id][level_index] - 1])

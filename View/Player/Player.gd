@@ -29,6 +29,9 @@ var free_field_pattern:Array
 var buildingIndex := -1
 var fieldIndex := -1
 
+const building_type:int = 0
+const building_level:int = 2
+
 var standart_camerazoom:Vector2 = Vector2(1,1)
 var standart_position:Vector2 = Vector2(0,0)
 
@@ -42,14 +45,11 @@ var standart_position:Vector2 = Vector2(0,0)
 @onready var camera:Camera2D = $Camera2D
 @onready var hud:CanvasLayer = get_node("/root/World/Player/Camera2D/HUD")
 
-func _ready():
-	$Inventar.connect("_on_buybutton_bought", _on_buybutton_bought)
-
 # Function called when unhandled input occurs
 func _unhandled_input(event):
 	if camera.zoom == standart_camerazoom:
 		if event.is_action_pressed('Click'):
-			$Inventar.visible = false
+			$Camera2D/HUD/Inventory.visible = false
 			set_free_field_pressed()
 			free_field_distance_check()
 			if !stand_still:
@@ -88,7 +88,7 @@ func set_free_field_pressed():
 
 # creates the free field pattern
 func create_pattern()-> Array:
-	var pattern:Array
+	var pattern:Array = []
 	pattern.append(clicked_tile)
 	var pattern_index = 0
 	while(len(pattern) < 6):
@@ -124,37 +124,15 @@ func open_menu(value):
 	buildingIndex = getBuildingIndex(fieldIndex)[0]
 	print(fieldIndex)
 	if buildingIndex == -1:
-		$Inventar.visible = true
+		$Camera2D/HUD/Inventory.set_inventory()
+		$Camera2D/HUD/Inventory.visible = true
 	
 
-func _on_buybutton_bought(bIndex):
-	$Inventar.visible = false
-	print("Ausgewählt: " + str(bIndex))
-	if bIndex == DataScript.moonetenGenerator:
-		if DataScript.moneyGeneratorCount > 0:
-			DataScript.moneyGeneratorCount = DataScript.moneyGeneratorCount - 1
-			DataScript.set_building(fieldIndex, bIndex,"Moonetengenerator",[100,1000,2000,10000],"moonetenGenerator","res://Minigame2/minigame2.tscn", 0, [1000,2000,5000,10000])
-			DataScript.moneyGeneratorActiveCount = DataScript.moneyGeneratorActiveCount + 1
-			DataScript.savePlayerData()
-	elif bIndex == DataScript.moonstoneGenerator:
-		if DataScript.moonstoneGeneratorCount > 0:
-			DataScript.moonstoneGeneratorCount = DataScript.moonstoneGeneratorCount - 1
-			DataScript.set_building(fieldIndex, bIndex,"Moonstonegenerator",[100,1000,2000,10000],"moonstoneGenerator","", 0, [1000,2000,5000,10000])
-			DataScript.moonstoneGeneratorActiveCount = DataScript.moonstoneGeneratorActiveCount + 1
-			DataScript.savePlayerData()
-	elif bIndex == DataScript.moonetenStorage:
-		if DataScript.moneyStorageCount > 0:
-			DataScript.moneyStorageCount = DataScript.moneyStorageCount - 1
-			DataScript.set_building(fieldIndex, bIndex,"Moonetenstorage",[100,1000,2000,10000],"moonetenStorage","", 0, [1000,2000,5000,10000])
-			DataScript.moneyStorageActiveCount = DataScript.moneyStorageActiveCount + 1
-			DataScript.savePlayerData()
-	elif bIndex == DataScript.moonstoneStorage:
-		if DataScript.moonstoneStorageCount > 0:
-			DataScript.moonstoneStorageCount = DataScript.moonstoneStorageCount - 1
-			DataScript.set_building(fieldIndex, bIndex,"Moonstonestorage",[100,1000,2000,10000],"moonstoneStorage","", 0, [1000,2000,5000,10000])
-			DataScript.moonstoneStorageActiveCount = DataScript.moonstoneStorageActiveCount + 1
-			DataScript.savePlayerData()
-			
+func place_building(bIndex:int):
+	$Camera2D/HUD/Inventory.visible = false
+	DataScript.set_building(fieldIndex,DataScript.inventory[bIndex])
+	DataScript.inventory.remove_at(bIndex)
+
 # Governs character movement
 func MovementLoop(delta):
 	if !stand_still:

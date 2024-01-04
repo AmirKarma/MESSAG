@@ -1,26 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4lfomd2r2ws"]
+[gd_scene load_steps=5 format=3 uid="uid://vs86hwyi0bag"]
 
-[ext_resource type="Script" path="res://Welt/Shop/Shop.gd" id="1_foi5v"]
-[ext_resource type="Texture2D" uid="uid://c45g51an7mwx8" path="res://Welt/Shop/Shop.png" id="2_w6q10"]
+[ext_resource type="Script" path="res://Welt/Shop/shop.gd" id="1_eaf0x"]
+[ext_resource type="Texture2D" uid="uid://dkwt3q8djnrvn" path="res://Welt/Shop/Rover_side.png" id="2_6r7s2"]
+[ext_resource type="PackedScene" uid="uid://dbs0inmxq5m68" path="res://Welt/Shop/shop_menu.tscn" id="3_8bu4q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ts3gw"]
 
 [node name="Shop" type="Node2D"]
-script = ExtResource("1_foi5v")
+script = ExtResource("1_eaf0x")
 
-[node name="OptionButton" type="OptionButton" parent="."]
+[node name="OptionButton" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -38.0
-offset_top = -140.0
-offset_right = 164.0
+offset_top = -40.0
+offset_right = 32.0
 offset_bottom = 15.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ts3gw")
 flat = true
 clip_text = true
-allow_reselect = true
 
-[node name="Shop" type="Sprite2D" parent="."]
-position = Vector2(61, -48)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_w6q10")
+[node name="shop_image" type="Sprite2D" parent="."]
+position = Vector2(-3.75, -17)
+scale = Vector2(0.0913086, 0.0859375)
+texture = ExtResource("2_6r7s2")
 
-[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
+[node name="shop_menu" parent="." instance=ExtResource("3_8bu4q")]
+visible = false
+top_level = true
+
 [connection signal="pressed" from="OptionButton" to="." method="_on_option_button_pressed"]

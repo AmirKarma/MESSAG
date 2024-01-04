@@ -30,11 +30,6 @@ var moonstoneGeneratorCount := 0
 var moneyStorageCount := 0
 var moonstoneStorageCount := 0
 
-var moneyGeneratorActiveCount := 0
-var moonstoneGeneratorActiveCount := 0
-var moneyStorageActiveCount := 0
-var moonstoneStorageActiveCount := 0
-
 # building ids
 var rocket:int = 0
 var shop:int = 1
@@ -42,6 +37,15 @@ var moonetenGenerator:int = 2
 var moonstoneGenerator:int = 3
 var moonetenStorage:int = 4
 var moonstoneStorage:int = 5
+
+var building_type:int = 0
+var name_index:int = 1
+var level_index:int = 2
+var upgrade_cost_index:int = 3
+var image_index:int = 4
+var game_path_index:int = 5
+var ressource_amount:int = 6
+var max_storage_size:int = 7
 
 #field id´s -2: building on the field; -1: no building on the field
 var fieldArray := [[rocket,"Rocket",1,[10000,20000,50000,100000],"","res://Minigame1/minigame_1.tscn", 0, [1000,2000,5000,10000]], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-2]]
@@ -89,10 +93,18 @@ func _process(delta):
 	
 # Function called when the timer times out
 func _on_timeout_timer():
-	var newMooneten = 50
-	if moneyGeneratorActiveCount > 0:
-		newMooneten = newMooneten + (moneyGeneratorActiveCount * newMooneten)
+	var newMooneten := 50
+	var ressourceAmount := 0
 	addMooneten(newMooneten)
+	for n in range(0,14):
+		if fieldArray[n][building_type] == moonetenGenerator || fieldArray[n][building_type] == moonstoneGenerator:
+			newMooneten = fieldArray[n][level_index] * newMooneten
+			if fieldArray[n][ressource_amount] <= fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1] - newMooneten:
+				ressourceAmount = fieldArray[n][ressource_amount] + newMooneten
+			else:
+				ressourceAmount = fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
+			edit_building(n, ressource_amount, ressourceAmount)
+			newMooneten = 50
 	timer.start()
 	
 # Setter function for mooneten variable
@@ -206,10 +218,6 @@ func savePlayerData():
 	file.store_var(moonstoneGeneratorCount)
 	file.store_var(moneyStorageCount)
 	file.store_var(moonstoneStorageCount)
-	file.store_var(moneyGeneratorActiveCount)
-	file.store_var(moonstoneGeneratorActiveCount)
-	file.store_var(moneyStorageActiveCount)
-	file.store_var(moonstoneStorageActiveCount)
 	file.store_var(last_player_position)
 	
 
@@ -227,12 +235,7 @@ func loadPlayerData():
 		moonstoneGeneratorCount = file.get_var()
 		moneyStorageCount = file.get_var()
 		moonstoneStorageCount = file.get_var()
-		moneyGeneratorActiveCount = file.get_var()
-		moonstoneGeneratorActiveCount = file.get_var()
-		moneyStorageActiveCount = file.get_var()
-		moonstoneStorageActiveCount = file.get_var()
 		last_player_position = file.get_var()
-		addOfflineMooneten()
 	else:
 		firstGame = true
 		unixLastTime = Time.get_unix_time_from_system()
@@ -249,6 +252,7 @@ func loadFieldData():
 		var file = FileAccess.open(fieldDataString, FileAccess.READ)
 		for n in range(0,14):
 			fieldArray[n] = file.get_var()
+		addOfflineMooneten()
 	else:
 		saveFieldData()
 # Function to add offline mooneten based on time elapsed since the last logout
@@ -256,12 +260,28 @@ func addOfflineMooneten():
 	var diff = Time.get_unix_time_from_system() - getUnixLastTime()
 	diff = diff / 60
 	diff = round(diff)
-	var offlineMooneten = diff * 50
-	if moneyGeneratorActiveCount > 0:
-		offlineMooneten = offlineMooneten + (moneyGeneratorActiveCount * offlineMooneten)
+	var offlineMooneten = diff * 5
 	if offlineMooneten > 1000:
 		offlineMooneten = 1000
 	addMooneten(offlineMooneten)
+	var ressourceAmount := 0
+	for n in range(0,14):
+		if fieldArray[n][building_type] == moonetenGenerator || fieldArray[n][building_type] == moonstoneGenerator:
+			offlineMooneten = fieldArray[n][level_index] * offlineMooneten
+			if offlineMooneten <= 1000:
+				if fieldArray[n][ressource_amount] <= fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1] - offlineMooneten:
+					ressourceAmount = fieldArray[n][ressource_amount] + offlineMooneten
+				else:
+					ressourceAmount = fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
+			else:
+				offlineMooneten = 1000
+				if fieldArray[n][ressource_amount] <= fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1] - offlineMooneten:
+					ressourceAmount = fieldArray[n][ressource_amount] + offlineMooneten
+				else:
+					ressourceAmount = fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
+			#print("Building: " + str(n) + " - Added: " + str(offlineMooneten) + " - RessourceAmount: " + str(ressourceAmount))
+			edit_building(n, ressource_amount, ressourceAmount)
+			offlineMooneten = diff * 5
 	
 func resetStats():
 	firstGame = true
@@ -275,10 +295,6 @@ func resetStats():
 	moneyStorageCount = 3
 	moonstoneStorageCount = 3
 	fieldArray = [[rocket,"Rocket",1,[10000,20000,50000,100000],"","res://Minigame1/minigame_1.tscn", 0, [1000,2000,5000,10000]], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-2]]
-	moneyGeneratorActiveCount = 0
-	moonstoneGeneratorActiveCount = 0
-	moneyStorageActiveCount = 0
-	moonstoneStorageActiveCount = 0
 	last_player_position = Vector2(168,131)
 	savePlayerData()
 	saveFieldData()

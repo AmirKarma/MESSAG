@@ -43,19 +43,19 @@ grow_vertical = 0
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_h27fr")
-text = "Fortsetzen"
+text = "Continue"
 
 [node name="Neues Spiel" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_xkjao")
-text = "Neues Spiel"
+text = "New Game"
 
 [node name="Impressum" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_v73pn")
-text = "Impressum"
+text = "Legal Notice"
 
 [node name="Mooneten" type="Sprite2D" parent="."]
 position = Vector2(268, 28)
@@ -73,6 +73,19 @@ position = Vector2(121, 35)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("7_de57x")
 
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+sdf_oversize = 0
+title = "Spielstand löschen?"
+initial_position = 2
+size = Vector2i(287, 109)
+unresizable = true
+max_size = Vector2i(400, 300)
+ok_button_text = "Ja"
+dialog_text = "Wenn du ein neues Spiel startest, 
+wird dein alter Spielstand gelöscht!"
+cancel_button_text = "Abbrechen"
+
 [connection signal="pressed" from="VBoxContainer/Fortsetzen" to="." method="_on_fortsetzen_pressed"]
 [connection signal="pressed" from="VBoxContainer/Neues Spiel" to="." method="_on_neues_spiel_pressed"]
 [connection signal="pressed" from="VBoxContainer/Impressum" to="." method="_on_impressum_pressed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

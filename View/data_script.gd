@@ -109,8 +109,8 @@ func edit_building(building_id:int,attribute_id:int, value):
 	fieldArray[building_id][attribute_id] = value
 	saveFieldData()
 # data storage location
-var ressourceBarDataString := "res://Player/playerData.dat"
-var fieldDataString := "res://Welt/fieldData.dat"
+var ressourceBarDataString := "user://playerData.dat"
+var fieldDataString := "user://fieldData.dat"
 
 #declare timer variable
 var timer

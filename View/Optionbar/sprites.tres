@@ -1,0 +1,54 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bj7s0ho04aub5"]
+
+[ext_resource type="Texture2D" uid="uid://bsdpd37oq8xnn" path="res://Welt/Game-Boy-Advance-Pokemon-Ruby-Sapphire-Buildings.png" id="1_38xc8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhh1g"]
+atlas = ExtResource("1_38xc8")
+region = Rect2(0, 0, 103, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad2mp"]
+atlas = ExtResource("1_38xc8")
+region = Rect2(73, 83, 73, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tprn0"]
+atlas = ExtResource("1_38xc8")
+region = Rect2(348, 83, 87, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u17np"]
+atlas = ExtResource("1_38xc8")
+region = Rect2(87, 166, 87, 83)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhh1g")
+}],
+"loop": true,
+"name": &"moonetenGenerator",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad2mp")
+}],
+"loop": true,
+"name": &"moonetenStorage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tprn0")
+}],
+"loop": true,
+"name": &"moonstoneGenerator",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u17np")
+}],
+"loop": true,
+"name": &"moonstoneStorage",
+"speed": 5.0
+}]

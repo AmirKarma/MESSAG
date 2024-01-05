@@ -7,11 +7,6 @@ func _ready():
 		$VBoxContainer/Fortsetzen.disabled = true
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func _on_fortsetzen_pressed():
 	if(!DataScript.isPlayingFirstTime()):
 		var maingame = load("res://Welt/world.tscn").instantiate()

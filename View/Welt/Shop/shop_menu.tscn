@@ -1,0 +1,345 @@
+[gd_scene load_steps=21 format=3 uid="uid://dbs0inmxq5m68"]
+
+[ext_resource type="Texture2D" uid="uid://cfrtbd53d1l6g" path="res://Welt/Shop/InventoryRect.png" id="1_3iqda"]
+[ext_resource type="Script" path="res://Welt/Shop/shop_menu.gd" id="1_hq72u"]
+[ext_resource type="FontFile" uid="uid://bmgg4pf2e6now" path="res://Welt/Shop/Merchant Copy.ttf" id="2_6kgqn"]
+[ext_resource type="SpriteFrames" uid="uid://bj7s0ho04aub5" path="res://Optionbar/sprites.tres" id="2_sojrs"]
+[ext_resource type="FontFile" uid="uid://b87a4ripf8q1k" path="res://Welt/Shop/04B_30__.TTF" id="2_tnovw"]
+[ext_resource type="Texture2D" uid="uid://cyhfc2wb72mli" path="res://Welt/Shop/close button.png" id="4_rsig6"]
+[ext_resource type="Texture2D" uid="uid://b50y1o5odckwc" path="res://Player/RessourceBar/coin.png" id="5_fqdp2"]
+[ext_resource type="Texture2D" uid="uid://2o774dqju385" path="res://Welt/Shop/close button pressed.png" id="5_p1kty"]
+[ext_resource type="FontFile" uid="uid://bao8wtv7uxfku" path="res://Optionbar/04B_30__.TTF" id="6_j3067"]
+[ext_resource type="Texture2D" uid="uid://bcjw06cry877x" path="res://Welt/Shop/button_texture.png" id="6_oilca"]
+[ext_resource type="Texture2D" uid="uid://blpllbfwmq0sr" path="res://Player/RessourceBar/lightning.png" id="7_35b6j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bc7vd"]
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_05oxn"]
+texture = ExtResource("6_oilca")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y05dy"]
+load_path = "res://.godot/imported/button_texture.png-123d234be187e5d6ea473de4382a5dcb.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_caq55"]
+texture = SubResource("CompressedTexture2D_y05dy")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_br4bw"]
+load_path = "res://.godot/imported/button_pressed_texture.png-e1fb9c1adb113e33232af41ec3f41d74.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i07bg"]
+texture = SubResource("CompressedTexture2D_br4bw")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="Theme" id="Theme_foeo3"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 8
+Button/fonts/font = ExtResource("6_j3067")
+Button/styles/hover = SubResource("StyleBoxTexture_05oxn")
+Button/styles/normal = SubResource("StyleBoxTexture_caq55")
+Button/styles/pressed = SubResource("StyleBoxTexture_i07bg")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lr0ve"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4usj4"]
+bg_color = Color(0.431373, 0.419608, 0.376471, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="shop_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hq72u")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(300, 160)
+layout_mode = 2
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 310.0
+offset_bottom = 170.0
+texture = ExtResource("1_3iqda")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = -75.0
+offset_right = 145.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Shop_label" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(290, 17)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tnovw")
+theme_override_font_sizes/font_size = 13
+text = "Shop"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Control" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Close_Button" type="TextureButton" parent="NinePatchRect/VBoxContainer/HBoxContainer/Button"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -20.0
+offset_top = 3.0
+offset_right = -9.0
+offset_bottom = 14.0
+texture_normal = ExtResource("4_rsig6")
+texture_pressed = ExtResource("5_p1kty")
+stretch_mode = 0
+
+[node name="Panel" type="Panel" parent="NinePatchRect/VBoxContainer"]
+custom_minimum_size = Vector2(290, 125)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_bc7vd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 3
+
+[node name="VSplitContainer" type="VSplitContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(290, 104)
+layout_mode = 2
+size_flags_horizontal = 4
+follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="HSplitContainer" type="HSplitContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Buiding_Card" type="NinePatchRect" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer"]
+self_modulate = Color(2.14293e-06, 0.677722, 0.368013, 1)
+custom_minimum_size = Vector2(80, 105)
+layout_mode = 2
+texture = ExtResource("1_3iqda")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card"]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 100.0
+theme_override_constants/separation = 3
+
+[node name="VSplitContainer" type="VSplitContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 1)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 10)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6kgqn")
+theme_override_font_sizes/font_size = 10
+text = "Moonetengenerator"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 40)
+layout_mode = 2
+
+[node name="building_image" type="AnimatedSprite2D" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/HSplitContainer"]
+position = Vector2(39.3562, 21.9062)
+scale = Vector2(0.556191, 0.423946)
+sprite_frames = ExtResource("2_sojrs")
+animation = &"moonetenGenerator"
+
+[node name="Count" type="Label" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_tnovw")
+theme_override_font_sizes/font_size = 3
+text = "0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="PriceHSplitContainer" type="HSplitContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(19, 10)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Coin" type="Sprite2D" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/HBoxContainer/HSplitContainer2"]
+position = Vector2(15, 4)
+scale = Vector2(0.018, 0.014)
+texture = ExtResource("5_fqdp2")
+
+[node name="Price" type="Label" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_tnovw")
+theme_override_font_sizes/font_size = 6
+text = "20000000"
+vertical_alignment = 1
+
+[node name="button" type="Control" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 10)
+layout_mode = 2
+theme = SubResource("Theme_foeo3")
+
+[node name="buy_button" type="Button" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/button"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.0
+offset_top = -7.0
+offset_right = 27.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lr0ve")
+text = "buy"
+
+[node name="Panel" type="Panel" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(286, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_4usj4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(45, 2.08165e-12)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(80, 12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/Panel/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/Panel/HBoxContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(4, 2.08165e-12)
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/Panel/HBoxContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(14, 2.08165e-12)
+layout_mode = 2
+
+[node name="Coin" type="Sprite2D" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/Panel/HBoxContainer/Panel/HBoxContainer/HSplitContainer"]
+position = Vector2(7, 6)
+scale = Vector2(0.0273438, 0.0234375)
+texture = ExtResource("5_fqdp2")
+
+[node name="Mooneten_amount" type="Label" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/Panel/HBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tnovw")
+theme_override_font_sizes/font_size = 7
+text = "20000000"
+vertical_alignment = 2
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(20, 2.08165e-12)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(80, 12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/Panel/HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/Panel/HBoxContainer/Panel2/HBoxContainer"]
+custom_minimum_size = Vector2(4, 2.08165e-12)
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/Panel/HBoxContainer/Panel2/HBoxContainer"]
+custom_minimum_size = Vector2(10, 2.08165e-12)
+layout_mode = 2
+
+[node name="Moonstone" type="Sprite2D" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/Panel/HBoxContainer/Panel2/HBoxContainer/HSplitContainer"]
+position = Vector2(7, 6)
+scale = Vector2(0.0388889, 0.0333333)
+texture = ExtResource("7_35b6j")
+
+[node name="Moonstone_amount" type="Label" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/Panel/HBoxContainer/Panel2/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tnovw")
+theme_override_font_sizes/font_size = 7
+text = "20000000"
+vertical_alignment = 2
+
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/Button/Close_Button" to="." method="_on_close_button_pressed"]

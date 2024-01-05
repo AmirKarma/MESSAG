@@ -28,6 +28,7 @@ func building_distance():
 
 func open_shop():
 	var optionbar_pos = player.get_node("Camera2D").get_screen_center_position() - get_viewport_rect().size / 2
+	shop_menu.set_shop()
 	shop_menu.position = optionbar_pos
 	shop_menu.visible = true
 	player.stand_still = true

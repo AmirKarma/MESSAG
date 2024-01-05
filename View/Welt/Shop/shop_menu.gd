@@ -97,30 +97,38 @@ func set_building_button(buidling_name: String,is_bought:bool):
 
 #to add a new button function of a new Buildingcard use on_buildingname_button_pressed for the function name
 func _on_Moonetengenerator_button_pressed():
-	DataScript.set_inventory(DataScript.moonetenGenerator,"Moonetengenerator",[100,1000,2000,10000],"moonetenGenerator","res://Minigame2/minigame2.tscn", 0, [1000,2000,5000,10000,20000])
-	set_mooneten(DataScript.MOONETEN_GENERATOR_CARD)
-	set_is_bought(DataScript.MOONETEN_GENERATOR_CARD)
-	set_shop()
+	var building_data = DataScript.shop_data
+	if DataScript.getMooneten() >= building_data[DataScript.MOONETEN_GENERATOR_CARD]["price"]:
+		DataScript.set_inventory(DataScript.moonetenGenerator,"Moonetengenerator",[100,1000,2000,10000],"moonetenGenerator","res://Minigame2/minigame2.tscn", 0, [1000,2000,5000,10000,20000])
+		set_mooneten(DataScript.MOONETEN_GENERATOR_CARD)
+		set_is_bought(DataScript.MOONETEN_GENERATOR_CARD)
+		set_shop()
 
 
 func _on_Moonetenstorage_button_pressed():
-	DataScript.set_inventory(DataScript.moonetenStorage,"Moonetenstorage",[100,1000,2000,10000],"moonetenStorage","", 0, [1000,2000,5000,10000,20000])
-	set_mooneten(DataScript.MOONETEN_STORAGE_CARD)
-	set_is_bought(DataScript.MOONETEN_STORAGE_CARD)
-	set_shop()
+	var building_data = DataScript.shop_data
+	if DataScript.getMooneten() >= building_data[DataScript.MOONETEN_STORAGE_CARD]["price"]:
+		DataScript.set_inventory(DataScript.moonetenStorage,"Moonetenstorage",[100,1000,2000,10000],"moonetenStorage","", 0, [1000,2000,5000,10000,20000])
+		set_mooneten(DataScript.MOONETEN_STORAGE_CARD)
+		set_is_bought(DataScript.MOONETEN_STORAGE_CARD)
+		set_shop()
 	
 
 func _on_Moonstonegenerator_button_pressed():
-	DataScript.set_inventory(DataScript.moonstoneGenerator,"Moonstonegenerator",[100,1000,2000,10000],"moonstoneGenerator","", 0, [1000,2000,5000,10000,20000])
-	set_mooneten(DataScript.MOONSTONE_GENERATOR_CARD)
-	set_is_bought(DataScript.MOONSTONE_GENERATOR_CARD)
-	set_shop()
+	var building_data = DataScript.shop_data
+	if DataScript.getMooneten() >= building_data[DataScript.MOONSTONE_GENERATOR_CARD]["price"]:
+		DataScript.set_inventory(DataScript.moonstoneGenerator,"Moonstonegenerator",[100,1000,2000,10000],"moonstoneGenerator","", 0, [1000,2000,5000,10000,20000])
+		set_mooneten(DataScript.MOONSTONE_GENERATOR_CARD)
+		set_is_bought(DataScript.MOONSTONE_GENERATOR_CARD)
+		set_shop()
 
 func _on_Moonstonestorage_button_pressed():
-	DataScript.set_inventory(DataScript.moonstoneStorage,"Moonstonestorage",[100,1000,2000,10000],"moonstoneStorage","", 0, [1000,2000,5000,10000,20000])
-	set_mooneten(DataScript.MOONSTONE_STORAGE_CARD)
-	set_is_bought(DataScript.MOONSTONE_STORAGE_CARD)
-	set_shop()
+	var building_data = DataScript.shop_data
+	if DataScript.getMooneten() >= building_data[DataScript.MOONSTONE_STORAGE_CARD]["price"]:
+		DataScript.set_inventory(DataScript.moonstoneStorage,"Moonstonestorage",[100,1000,2000,10000],"moonstoneStorage","", 0, [1000,2000,5000,10000,20000])
+		set_mooneten(DataScript.MOONSTONE_STORAGE_CARD)
+		set_is_bought(DataScript.MOONSTONE_STORAGE_CARD)
+		set_shop()
 	
 func set_is_bought(card_index:int):
 	var building_data = DataScript.shop_data

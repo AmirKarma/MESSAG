@@ -3,21 +3,21 @@ extends Sprite2D
 @onready var parent = $".."
 var pressed = false
 
-var links = false
-var rechts = false
-var vor = false
-var zurueck = false
 
 @export var maxlength= 23
 @export var deadzone= 5
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	maxlength *= 10* parent.scale.x
+	maxlength *= 15 * parent.scale.x
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+# Checking Joystick Position and does Spaceship Interaction
 func _process(delta):
+	
 	if pressed:
 		if get_global_mouse_position().distance_to(parent.global_position) <= maxlength:
 			global_position = get_global_mouse_position()
@@ -29,24 +29,46 @@ func _process(delta):
 		Input.is_action_pressed("vor")
 		Input.is_action_pressed("zurueck")
 		
-		
-		
-		if links:
-			Input.action_press("links")
-		else:
-			Input.action_release("links")
-		if rechts:
-			Input.action_press("rechts")
-		else:
-			Input.action_release("rechts")
-		if vor:
+		if(global_position.y < 122 && global_position.x > 274):
 			Input.action_press("vor")
-		else:
-			Input.action_release("vor")	
-		if zurueck:
+			Input.action_press("rechts")
+			Input.action_release("zurueck")
+			Input.action_release("links")
+		elif(global_position.y < 122 && global_position.x < 260):
+			Input.action_press("vor")
+			Input.action_press("links")
+			Input.action_release("zurueck")
+			Input.action_release("rechts")
+		elif(global_position.y > 135 && global_position.x < 260):
 			Input.action_press("zurueck")
-		else:
-			Input.action_release("zurueck")		
+			Input.action_press("links")
+			Input.action_release("vor")
+			Input.action_release("rechts")
+		elif(global_position.y > 135 && global_position.x > 274):
+			Input.action_press("zurueck")
+			Input.action_press("rechts")
+			Input.action_release("vor")
+			Input.action_release("links")
+		elif(global_position.y < 122):
+			Input.action_press("vor")
+			Input.action_release("rechts")
+			Input.action_release("zurueck")
+			Input.action_release("links")
+		elif(global_position.y > 135):
+			Input.action_press("zurueck")
+			Input.action_release("rechts")
+			Input.action_release("vor")
+			Input.action_release("links")
+		elif(global_position.x < 260):
+			Input.action_press("links")
+			Input.action_release("rechts")
+			Input.action_release("vor")
+			Input.action_release("zurueck")
+		elif(global_position.x > 274):
+			Input.action_press("rechts")
+			Input.action_release("links")
+			Input.action_release("vor")
+			Input.action_release("zurueck")			
 			
 	else:
 		global_position = lerp(global_position, parent.global_position, delta*10)
@@ -61,31 +83,6 @@ func _on_touch_on_off_button_down():
 	
 func _on_touch_on_off_button_up():
 	pressed = false
-
-
-func _on_links_mouse_entered():
-	links = true
-func _on_links_mouse_exited():
-	links= false
-
-func _on_rechts_mouse_entered():
-	rechts = true
-func _on_rechts_mouse_exited():
-	rechts = false
-
-func _on_vor_mouse_entered():
-	vor = true
-func _on_vor_mouse_exited():
-	vor = false
-
-
-func _on_zurück_mouse_entered():
-	zurueck = true
-func _on_zurück_mouse_exited():
-	zurueck = false
-
-
-
 
 
 

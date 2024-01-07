@@ -30,6 +30,9 @@ var moonstoneGeneratorCount := 0
 var moneyStorageCount := 0
 var moonstoneStorageCount := 0
 
+var maxMoonetenStorage := 0
+var maxMoonstoneStorage := 0
+
 # building ids
 const rocket:int = 0
 const shop:int = 1
@@ -63,8 +66,8 @@ const UPGRADE_PRICE_4 = 75000
 var shop_data: Array = [
 	{'building_id':moonetenGenerator, 'name': "Moonetengenerator", 'price': 200, 'is_bought': false},
 	{'building_id':moonstoneGenerator, 'name': "Moonstonegenerator", 'price': 200, 'is_bought': false},
-	{'building_id':moonetenStorage, 'name': "Moonetenstorage", 'price': 2000, 'is_bought': false},
-	{'building_id':moonstoneStorage, 'name': "Moonstonestorage", 'price': 2000, 'is_bought': false}
+	{'building_id':moonetenStorage, 'name': "Moonetenstorage", 'price': 1000, 'is_bought': false},
+	{'building_id':moonstoneStorage, 'name': "Moonstonestorage", 'price': 1000, 'is_bought': false}
 ]
 
 func on_rocket_level_upgrade():
@@ -126,12 +129,14 @@ func _ready():
 	timer.start()
 	loadPlayerData()
 	loadFieldData()
+	setMaxRessources()
 
 # Function called when the timer times out
 func _on_timeout_timer():
 	var newMooneten := 50
 	var ressourceAmount := 0
-	addMooneten(newMooneten)
+	if (getMooneten() + newMooneten) <= maxMoonetenStorage:
+		addMooneten(newMooneten)
 	for n in range(0,14):
 		if fieldArray[n][building_type] == moonetenGenerator || fieldArray[n][building_type] == moonstoneGenerator:
 			newMooneten = fieldArray[n][level_index] * newMooneten
@@ -298,7 +303,8 @@ func addOfflineMooneten():
 	var offlineMooneten = diff * 5
 	if offlineMooneten > 1000:
 		offlineMooneten = 1000
-	addMooneten(offlineMooneten)
+	if (getMooneten() + offlineMooneten) <= maxMoonetenStorage:	
+		addMooneten(offlineMooneten)
 	var ressourceAmount := 0
 	for n in range(0,14):
 		if fieldArray[n][building_type] == moonetenGenerator || fieldArray[n][building_type] == moonstoneGenerator:
@@ -318,6 +324,19 @@ func addOfflineMooneten():
 			edit_building(n, ressource_amount, ressourceAmount)
 			offlineMooneten = diff * 5
 	
+func setMaxRessources():
+	var tempMooneten := 0
+	var tempMoonstone := 0
+	for n in range(1,14):
+		if fieldArray[n][building_type] == moonetenStorage:
+			tempMooneten += fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
+		if fieldArray[n][building_type] == moonstoneStorage:
+			tempMoonstone += fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
+	tempMooneten += fieldArray[rocket][max_storage_size][fieldArray[rocket][level_index] - 1]
+	tempMoonstone += fieldArray[rocket][max_storage_size][fieldArray[rocket][level_index] - 1]
+	maxMoonetenStorage = tempMooneten
+	maxMoonstoneStorage = tempMoonstone
+
 func resetStats():
 	firstGame = true
 	mooneten = 0
@@ -334,10 +353,10 @@ func resetStats():
 	shop_data = [
 	{'building_id':moonetenGenerator, 'name': "Moonetengenerator", 'price': 200, 'is_bought': false},
 	{'building_id':moonstoneGenerator, 'name': "Moonstonegenerator", 'price': 200, 'is_bought': false},
-	{'building_id':moonetenStorage, 'name': "Moonetenstorage", 'price': 2000, 'is_bought': false},
-	{'building_id':moonstoneStorage, 'name': "Moonstonestorage", 'price': 2000, 'is_bought': false}
-]
+	{'building_id':moonetenStorage, 'name': "Moonetenstorage", 'price': 1000, 'is_bought': false},
+	{'building_id':moonstoneStorage, 'name': "Moonstonestorage", 'price': 1000, 'is_bought': false}]
 	inventory = []
+	setMaxRessources()
 	savePlayerData()
 	saveFieldData()
 	

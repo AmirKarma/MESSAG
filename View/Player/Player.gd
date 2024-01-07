@@ -132,6 +132,7 @@ func place_building(bIndex:int):
 	$Camera2D/HUD/Inventory.visible = false
 	DataScript.set_building(fieldIndex,DataScript.inventory[bIndex])
 	DataScript.inventory.remove_at(bIndex)
+	DataScript.setMaxRessources()
 
 # Governs character movement
 func MovementLoop(delta):

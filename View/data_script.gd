@@ -339,7 +339,7 @@ func setMaxRessources():
 
 func resetStats():
 	firstGame = true
-	mooneten = 1000
+	mooneten = 0
 	moonstone = 0
 	unixLastTime = Time.get_unix_time_from_system()
 	minigame2_highscore = 0

@@ -137,6 +137,8 @@ func _on_timeout_timer():
 	var ressourceAmount := 0
 	if (getMooneten() + newMooneten) <= maxMoonetenStorage:
 		addMooneten(newMooneten)
+	else :
+		setMooneten(maxMoonetenStorage)
 	for n in range(0,14):
 		if fieldArray[n][building_type] == moonetenGenerator || fieldArray[n][building_type] == moonstoneGenerator:
 			newMooneten = fieldArray[n][level_index] * newMooneten
@@ -305,6 +307,8 @@ func addOfflineMooneten():
 		offlineMooneten = 1000
 	if (getMooneten() + offlineMooneten) <= maxMoonetenStorage:	
 		addMooneten(offlineMooneten)
+	else:
+		setMooneten(maxMoonetenStorage)
 	var ressourceAmount := 0
 	for n in range(0,14):
 		if fieldArray[n][building_type] == moonetenGenerator || fieldArray[n][building_type] == moonstoneGenerator:

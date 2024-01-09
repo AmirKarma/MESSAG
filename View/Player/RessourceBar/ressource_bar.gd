@@ -18,7 +18,9 @@ func _process(_delta):
 
 
 func updateRessourceBar():
-	moonetenLabel.text = str(DataScript.getMooneten())
+	moonetenLabel.text = str(DataScript.getMooneten()) + " / " + str(DataScript.maxMoonetenStorage)
 	progressBarMoney.value = DataScript.getMooneten()
-	energyLabel.text = str(DataScript.getMoonstone())
+	progressBarMoney.max_value = DataScript.maxMoonetenStorage
+	energyLabel.text = str(DataScript.getMoonstone()) + " / " + str(DataScript.maxMoonstoneStorage)
 	progressBarEnergy.value = DataScript.getMoonstone()
+	progressBarEnergy.max_value = DataScript.maxMoonstoneStorage

@@ -16,13 +16,10 @@ func _on_fortsetzen_pressed():
 
 
 func _on_neues_spiel_pressed():
-	DataScript.resetStats()
-	var maingame = load("res://Welt/world.tscn").instantiate()
-	get_tree().root.add_child(maingame)
-	get_tree().current_scene.queue_free()
-	get_tree().current_scene = maingame
-	DataScript.setFirstGame(false)
-	
+	if !DataScript.firstGame:
+		$ConfirmationDialog.visible = true
+	else:
+		newGame()
 
 	
 
@@ -32,3 +29,15 @@ func _on_impressum_pressed():
 	get_tree().root.add_child(impressum)
 	get_tree().current_scene.queue_free()
 	get_tree().current_scene = impressum
+
+
+func _on_confirmation_dialog_confirmed():
+	newGame()
+
+func newGame():
+	DataScript.resetStats()
+	var maingame = load("res://Welt/world.tscn").instantiate()
+	get_tree().root.add_child(maingame)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = maingame
+	DataScript.setFirstGame(false)

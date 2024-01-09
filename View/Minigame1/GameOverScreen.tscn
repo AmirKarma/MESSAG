@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Minigame1/RetryButton.gd" id="1_ivxgs"]
 [ext_resource type="Script" path="res://Minigame1/GameOverScreen.gd" id="1_w773k"]
+[ext_resource type="Texture2D" uid="uid://d4bvoelmcyjy7" path="res://Minigame1/Space_Background.png" id="2_fnmu8"]
 [ext_resource type="Script" path="res://Minigame1/ExitButton.gd" id="2_p7hpq"]
-[ext_resource type="Texture2D" uid="uid://d4bvoelmcyjy7" path="res://Minigame1/Background_1.png" id="4_iglc3"]
 
 [sub_resource type="FontFile" id="FontFile_gwgbe"]
 cache/0/16/0/ascent = 0.0
@@ -69,7 +69,7 @@ modulate = Color(0.321569, 0.321569, 0.321569, 1)
 show_behind_parent = true
 position = Vector2(160, 90)
 scale = Vector2(0.333333, 0.333333)
-texture = ExtResource("4_iglc3")
+texture = ExtResource("2_fnmu8")
 
 [node name="GameOverText" type="Label" parent="."]
 layout_mode = 0

@@ -30,6 +30,9 @@ var moonstoneGeneratorCount := 0
 var moneyStorageCount := 0
 var moonstoneStorageCount := 0
 
+var maxMoonetenStorage := 0
+var maxMoonstoneStorage := 0
+
 # building ids
 const rocket:int = 0
 const shop:int = 1
@@ -69,8 +72,8 @@ var storage_max_storage_size:Array = [5000,10000,15000,20000,25000]
 var shop_data: Array = [
 	{'building_id':moonetenGenerator, 'name': "Moonetengenerator", 'price': 200, 'is_bought': false},
 	{'building_id':moonstoneGenerator, 'name': "Moonstonegenerator", 'price': 200, 'is_bought': false},
-	{'building_id':moonetenStorage, 'name': "Moonetenstorage", 'price': 2000, 'is_bought': false},
-	{'building_id':moonstoneStorage, 'name': "Moonstonestorage", 'price': 2000, 'is_bought': false}
+	{'building_id':moonetenStorage, 'name': "Moonetenstorage", 'price': 1000, 'is_bought': false},
+	{'building_id':moonstoneStorage, 'name': "Moonstonestorage", 'price': 1000, 'is_bought': false}
 ]
 func update_upgrade_costs(current_costs:Array,new_costs:Array):
 	for cost in new_costs:
@@ -136,8 +139,8 @@ func edit_building(building_id:int,attribute_id:int, value):
 	fieldArray[building_id][attribute_id] = value
 	saveFieldData()
 # data storage location
-var ressourceBarDataString := "res://Player/playerData.dat"
-var fieldDataString := "res://Welt/fieldData.dat"
+var ressourceBarDataString := "user://playerData.dat"
+var fieldDataString := "user://fieldData.dat"
 
 #declare timer variable
 var timer
@@ -153,12 +156,16 @@ func _ready():
 	timer.start()
 	loadPlayerData()
 	loadFieldData()
+	setMaxRessources()
 
 # Function called when the timer times out
 func _on_timeout_timer():
 	var newMooneten := 10
 	var ressourceAmount := 0
-	addMooneten(newMooneten)
+	if (getMooneten() + newMooneten) <= maxMoonetenStorage:
+		addMooneten(newMooneten)
+	else :
+		setMooneten(maxMoonetenStorage)
 	for n in range(0,14):
 		if fieldArray[n][building_type] == moonetenGenerator || fieldArray[n][building_type] == moonstoneGenerator:
 			newMooneten = fieldArray[n][level_index] * newMooneten
@@ -333,7 +340,10 @@ func addOfflineMooneten():
 	var offlineMooneten = diff * 5
 	if offlineMooneten > 1000:
 		offlineMooneten = 1000
-	addMooneten(offlineMooneten)
+	if (getMooneten() + offlineMooneten) <= maxMoonetenStorage:	
+		addMooneten(offlineMooneten)
+	else:
+		setMooneten(maxMoonetenStorage)
 	var ressourceAmount := 0
 	for n in range(0,14):
 		if fieldArray[n][building_type] == moonetenGenerator || fieldArray[n][building_type] == moonstoneGenerator:
@@ -353,6 +363,19 @@ func addOfflineMooneten():
 			edit_building(n, ressource_amount, ressourceAmount)
 			offlineMooneten = diff * 5
 	
+func setMaxRessources():
+	var tempMooneten := 0
+	var tempMoonstone := 0
+	for n in range(1,14):
+		if fieldArray[n][building_type] == moonetenStorage:
+			tempMooneten += fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
+		if fieldArray[n][building_type] == moonstoneStorage:
+			tempMoonstone += fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
+	tempMooneten += fieldArray[rocket][max_storage_size][fieldArray[rocket][level_index] - 1]
+	tempMoonstone += fieldArray[rocket][max_storage_size][fieldArray[rocket][level_index] - 1]
+	maxMoonetenStorage = tempMooneten
+	maxMoonstoneStorage = tempMoonstone
+
 func resetStats():
 	firstGame = true
 	mooneten = 0
@@ -369,14 +392,14 @@ func resetStats():
 	shop_data = [
 	{'building_id':moonetenGenerator, 'name': "Moonetengenerator", 'price': 200, 'is_bought': false},
 	{'building_id':moonstoneGenerator, 'name': "Moonstonegenerator", 'price': 200, 'is_bought': false},
-	{'building_id':moonetenStorage, 'name': "Moonetenstorage", 'price': 2000, 'is_bought': false},
-	{'building_id':moonstoneStorage, 'name': "Moonstonestorage", 'price': 2000, 'is_bought': false}
-]
+	{'building_id':moonetenStorage, 'name': "Moonetenstorage", 'price': 1000, 'is_bought': false},
+	{'building_id':moonstoneStorage, 'name': "Moonstonestorage", 'price': 1000, 'is_bought': false}]
 	inventory = []
 	generators_upgrade_costs = [1000,2500,5000,7500]
 	storage_upgrade_costs = [3000,9000,15000,25000]
 	generators_max_storage_size = [1000,2000,3000,4000,5000]
 	storage_max_storage_size = [5000,10000,15000,20000,25000]
+	setMaxRessources()
 	savePlayerData()
 	saveFieldData()
 	

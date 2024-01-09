@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://bfq6ogl4ncriu"]
 
 [ext_resource type="Script" path="res://Minigame1/minigame_1.gd" id="1_47igm"]
-[ext_resource type="PackedScene" uid="uid://cnscj3t5rp2x5" path="res://Minigame1/info.tscn" id="2_ybuk1"]
-[ext_resource type="Texture2D" uid="uid://d4bvoelmcyjy7" path="res://Minigame1/Background_1.png" id="3_1ykcl"]
+[ext_resource type="PackedScene" uid="uid://b6xe8654tk18d" path="res://Minigame1/info.tscn" id="2_ybuk1"]
 [ext_resource type="PackedScene" uid="uid://g40na2y72ch1" path="res://Minigame1/raumschiff.tscn" id="3_ydnmk"]
 [ext_resource type="Texture2D" uid="uid://b56jve8otmcps" path="res://Minigame1/Schuss2.png" id="6_86lsl"]
+[ext_resource type="Texture2D" uid="uid://d4bvoelmcyjy7" path="res://Minigame1/Space_Background.png" id="6_rv1y7"]
 [ext_resource type="Texture2D" uid="uid://mirwogqwtmbr" path="res://Minigame1/Restart.png" id="9_6v6t2"]
 [ext_resource type="PackedScene" uid="uid://wsxpcan07b4v" path="res://Minigame1/kometen.tscn" id="9_e5o5x"]
 [ext_resource type="Texture2D" uid="uid://tgdengqasqk3" path="res://Minigame1/Exit.png" id="10_5a5t6"]
@@ -17,11 +17,32 @@ script = ExtResource("1_47igm")
 
 [node name="info" parent="Punkte" instance=ExtResource("2_ybuk1")]
 
+[node name="Touchschuss" type="TouchScreenButton" parent="Punkte"]
+top_level = true
+position = Vector2(25, 108)
+scale = Vector2(0.210938, 0.3125)
+texture_normal = ExtResource("6_86lsl")
+action = "schuss"
+
+[node name="Touchrestart" type="TouchScreenButton" parent="Punkte"]
+top_level = true
+position = Vector2(292, 1)
+scale = Vector2(0.101563, 0.101563)
+texture_normal = ExtResource("9_6v6t2")
+action = "reset"
+
+[node name="Touchbacktomain" type="TouchScreenButton" parent="Punkte"]
+top_level = true
+position = Vector2(306, 1)
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("10_5a5t6")
+action = "debug"
+
 [node name="2833063-leuchtend-schimmernder-weltraum-hintergrund-vektor" type="Sprite2D" parent="."]
 show_behind_parent = true
 position = Vector2(160, 90)
 scale = Vector2(0.333333, 0.333333)
-texture = ExtResource("3_1ykcl")
+texture = ExtResource("6_rv1y7")
 
 [node name="Raumschiff" parent="." instance=ExtResource("3_ydnmk")]
 top_level = true
@@ -37,27 +58,6 @@ position = Vector2(158, 91)
 position = Vector2(-13, -13)
 
 [node name="Kanone" type="Node" parent="."]
-
-[node name="Touchschuss" type="TouchScreenButton" parent="."]
-top_level = true
-position = Vector2(25, 108)
-scale = Vector2(0.210938, 0.3125)
-texture_normal = ExtResource("6_86lsl")
-action = "schuss"
-
-[node name="Touchrestart" type="TouchScreenButton" parent="."]
-top_level = true
-position = Vector2(292, 1)
-scale = Vector2(0.101563, 0.101563)
-texture_normal = ExtResource("9_6v6t2")
-action = "reset"
-
-[node name="Touchbacktomain" type="TouchScreenButton" parent="."]
-top_level = true
-position = Vector2(306, 1)
-scale = Vector2(0.1, 0.1)
-texture_normal = ExtResource("10_5a5t6")
-action = "debug"
 
 [node name="AllKometen" type="Node" parent="."]
 

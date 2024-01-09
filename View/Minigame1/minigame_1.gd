@@ -77,7 +77,10 @@ func _spieler_stirbt():
 		get_tree().root.add_child(maingame)
 		get_tree().current_scene.queue_free()
 		get_tree().current_scene = maingame
-		DataScript.addMooneten(score)
+		if (DataScript.getMooneten() + score) <= DataScript.maxMoonetenStorage:
+			DataScript.addMooneten(score)
+		else:
+			DataScript.setMooneten(DataScript.maxMoonetenStorage)
 		
 	else:
 		# Respawn the player after a delay

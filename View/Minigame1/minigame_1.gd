@@ -12,6 +12,7 @@ extends Node2D
 
 # Timer variable for comet spawning
 var timer2
+var spawnTime := 10
 
 
 # Exported variable for score, connecting it to the UI
@@ -32,7 +33,7 @@ func _ready():
 	# Set up and start the timer for comet spawning
 	timer2 = Timer.new()
 	add_child(timer2)
-	timer2.wait_time = 5
+	timer2.wait_time = spawnTime
 	timer2.timeout.connect(new_kometen)
 	timer2.start()
 	
@@ -120,5 +121,6 @@ func new_kometen():
 	k.connect("zerstört", _kometen_zerstört)
 	kometen.call_deferred("add_child",k)
 	add_child(k)
+	spawnTime = spawnTime * 0.9
 	timer2.start()
 	

@@ -35,17 +35,20 @@ func _ready():
 	match size:
 		KometenGroesse.GROSS:
 			komet_geschw = komet_geschw_gross
-			komet.texture = preload("res://Minigame1/KometB.png")
-			
+			komet.texture = preload("res://Minigame1/Brocken_Gro.png")
+			komet.scale = Vector2(0.5,0.5)
 			
 		KometenGroesse.MITTEL:
-			komet.texture = preload("res://Minigame1/KometM.png")
+			komet.texture = preload("res://Minigame1/Brocken_Mittel.png")
 			kometenhitbox.set_deferred("shape", preload("res://Minigame1/Resourcen/kometen_mittel.tres"))
+			komet.scale = Vector2(0.5,0.5)
 			komet_geschw = komet_geschw_mittel
 		KometenGroesse.KLEIN:
 			komet_geschw = komet_geschw_klein
-			komet.texture = preload("res://Minigame1/KometK.png")
+			komet.texture = preload("res://Minigame1/Brocken_Klein.png")
+			komet.scale = Vector2(0.3,0.3)
 			kometenhitbox.set_deferred("shape", preload("res://Minigame1/Resourcen/kometen_klein.tres"))
+			
 		
 
 func _physics_process(delta):

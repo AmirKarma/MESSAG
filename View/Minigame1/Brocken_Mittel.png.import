@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://powtlhmqt6ko"
-path="res://.godot/imported/KometM.png-6afdd373e4b9b618dbe5da7de50bffe5.ctex"
+uid="uid://xgtnh2rgekud"
+path="res://.godot/imported/Brocken_Mittel.png-4be35e7a52400dc989d4539caf9bf63b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigame1/KometM.png"
-dest_files=["res://.godot/imported/KometM.png-6afdd373e4b9b618dbe5da7de50bffe5.ctex"]
+source_file="res://Minigame1/Brocken_Mittel.png"
+dest_files=["res://.godot/imported/Brocken_Mittel.png-4be35e7a52400dc989d4539caf9bf63b.ctex"]
 
 [params]
 

@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://3s6ye2qf1hou" path="res://Welt/Background/Krater_Grau.png" id="3_dim4n"]
 [ext_resource type="PackedScene" uid="uid://cwo4kcdmsf7cr" path="res://Player/player.tscn" id="3_g0tsn"]
 [ext_resource type="PackedScene" uid="uid://d3nqblcu1fvpi" path="res://Welt/Rocket/rocket.tscn" id="4_x5ukb"]
-[ext_resource type="PackedScene" uid="uid://vs86hwyi0bag" path="res://Welt/Shop/shop.tscn" id="8_hxkyc"]
+[ext_resource type="PackedScene" uid="uid://vs86hwyi0bag" path="res://Welt/Shop/Shop.tscn" id="8_hxkyc"]
 [ext_resource type="Texture2D" uid="uid://buayqmu5h76b5" path="res://Images/shop_1 (1).png" id="9_s3n4a"]
 [ext_resource type="Script" path="res://Welt/buildings.gd" id="11_0qq4f"]
 [ext_resource type="PackedScene" uid="uid://3d3na5hd1gfu" path="res://Welt/Buildings/building.tscn" id="11_nkqi8"]

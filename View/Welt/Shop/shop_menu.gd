@@ -11,8 +11,12 @@ extends Control
 @onready var moonstone_amount:Label = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/Panel/HBoxContainer/Panel2/HBoxContainer/Moonstone_amount
 @onready var buttons:Control = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/button
 @onready var buy_button:Button = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/button/buy_button
+@onready var mooneten_img:Sprite2D = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/HBoxContainer/HSplitContainer2/Coin
+@onready var moonstone_img:Sprite2D = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/HBoxContainer/HSplitContainer2/Moonstone
 @onready var player:CharacterBody2D = get_node("/root/World/Player")
 const building_type:int = 0
+var need_moonstone:bool = false
+var need_mooneten:bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_shop()
@@ -37,11 +41,23 @@ func reset_shop():
 
 func set_building_data(building_id:int,buidling_name: String, price: String,is_bougth:bool):
 	building_name.text = buidling_name
-	set_building_button(buidling_name,is_bougth)
+	set_building_button(buidling_name,is_bougth,int(price))
 	set_building_price(price)
 	set_building_count(building_id,is_bougth)
 	set_building_image(building_id)
+	needed_ressource_check(building_id)
+	set_ressource_img()
 	building_card.add_sibling(building_card.duplicate())
+	need_mooneten  = false
+	need_moonstone = false
+	
+func set_ressource_img():
+	if need_mooneten:
+		mooneten_img.visible = true
+		moonstone_img.visible = false
+	elif need_moonstone:
+		moonstone_img.visible = true
+		mooneten_img.visible = false
 	
 func set_building_count(building_id:int,is_bougth:bool):
 	var all_buildings:int = 0
@@ -79,7 +95,7 @@ func set_building_image(building_id:int):
 				
 var currentButton: Button = null
 
-func set_building_button(buidling_name: String,is_bought:bool):
+func set_building_button(buidling_name: String,is_bought:bool,price:int):
 	if currentButton != null:
 		buttons.remove_child(currentButton)
 		
@@ -91,6 +107,8 @@ func set_building_button(buidling_name: String,is_bought:bool):
 		set_card_disabled(button)
 	else:
 		set_card_enabled()
+	if !can_purchase(price):
+		button.disabled = true
 	buttons.add_child(button)
 
 	currentButton = button
@@ -98,18 +116,18 @@ func set_building_button(buidling_name: String,is_bought:bool):
 #to add a new button function of a new Buildingcard use on_buildingname_button_pressed for the function name
 func _on_Moonetengenerator_button_pressed():
 	var building_data = DataScript.shop_data
-	if DataScript.getMooneten() >= building_data[DataScript.MOONETEN_GENERATOR_CARD]["price"]:
-		DataScript.set_inventory(DataScript.moonetenGenerator,"Moonetengenerator",[100,1000,2000,10000],"moonetenGenerator","res://Minigame2/minigame2.tscn", 0, [1000,2000,5000,10000,20000])
-		set_mooneten(DataScript.MOONETEN_GENERATOR_CARD)
+	if DataScript.getMoonstone() >= building_data[DataScript.MOONETEN_GENERATOR_CARD]["price"]:
+		DataScript.set_inventory(DataScript.moonetenGenerator,"Moonetengenerator",DataScript.generators_upgrade_costs,"moonetenGenerator","res://Minigame2/minigame2.tscn", 0, DataScript.generators_max_storage_size)
+		set_moonstone(DataScript.MOONETEN_GENERATOR_CARD)
 		set_is_bought(DataScript.MOONETEN_GENERATOR_CARD)
 		set_shop()
 
 
 func _on_Moonetenstorage_button_pressed():
 	var building_data = DataScript.shop_data
-	if DataScript.getMooneten() >= building_data[DataScript.MOONETEN_STORAGE_CARD]["price"]:
-		DataScript.set_inventory(DataScript.moonetenStorage,"Moonetenstorage",[100,1000,2000,10000],"moonetenStorage","", 0, [1000,2000,5000,10000,20000])
-		set_mooneten(DataScript.MOONETEN_STORAGE_CARD)
+	if DataScript.getMoonstone() >= building_data[DataScript.MOONETEN_STORAGE_CARD]["price"]:
+		DataScript.set_inventory(DataScript.moonetenStorage,"Moonetenstorage",DataScript.storage_upgrade_costs,"moonetenStorage","", 0, DataScript.storage_max_storage_size)
+		set_moonstone(DataScript.MOONETEN_STORAGE_CARD)
 		set_is_bought(DataScript.MOONETEN_STORAGE_CARD)
 		set_shop()
 	
@@ -117,7 +135,7 @@ func _on_Moonetenstorage_button_pressed():
 func _on_Moonstonegenerator_button_pressed():
 	var building_data = DataScript.shop_data
 	if DataScript.getMooneten() >= building_data[DataScript.MOONSTONE_GENERATOR_CARD]["price"]:
-		DataScript.set_inventory(DataScript.moonstoneGenerator,"Moonstonegenerator",[100,1000,2000,10000],"moonstoneGenerator","", 0, [1000,2000,5000,10000,20000])
+		DataScript.set_inventory(DataScript.moonstoneGenerator,"Moonstonegenerator",DataScript.generators_upgrade_costs,"moonstoneGenerator","", 0, DataScript.generators_max_storage_size)
 		set_mooneten(DataScript.MOONSTONE_GENERATOR_CARD)
 		set_is_bought(DataScript.MOONSTONE_GENERATOR_CARD)
 		set_shop()
@@ -125,7 +143,7 @@ func _on_Moonstonegenerator_button_pressed():
 func _on_Moonstonestorage_button_pressed():
 	var building_data = DataScript.shop_data
 	if DataScript.getMooneten() >= building_data[DataScript.MOONSTONE_STORAGE_CARD]["price"]:
-		DataScript.set_inventory(DataScript.moonstoneStorage,"Moonstonestorage",[100,1000,2000,10000],"moonstoneStorage","", 0, [1000,2000,5000,10000,20000])
+		DataScript.set_inventory(DataScript.moonstoneStorage,"Moonstonestorage",DataScript.storage_upgrade_costs,"moonstoneStorage","", 0, DataScript.storage_max_storage_size)
 		set_mooneten(DataScript.MOONSTONE_STORAGE_CARD)
 		set_is_bought(DataScript.MOONSTONE_STORAGE_CARD)
 		set_shop()
@@ -134,9 +152,16 @@ func set_is_bought(card_index:int):
 	var building_data = DataScript.shop_data
 	building_data[card_index]["is_bought"] = true
 	
+func can_purchase(price) -> bool:
+	return DataScript.getMooneten() >= price
+	
 func set_mooneten(card_index:int):
 	var building_data = DataScript.shop_data
 	DataScript.removeMooneten(building_data[card_index]["price"])
+	
+func set_moonstone(card_index:int):
+	var building_data = DataScript.shop_data
+	DataScript.removeMoonstone(building_data[card_index]["price"])
 
 func set_card_disabled(button:Button):
 	button.disabled = true
@@ -150,3 +175,10 @@ func _on_close_button_pressed():
 	player.set_process(true)
 	player.set_physics_process(true)
 	player.get_node("Camera2D/HUD").visible = true
+
+func needed_ressource_check(building_id:int):
+	match(building_id):
+		DataScript.moonetenGenerator, DataScript.moonetenStorage:
+			need_moonstone = true
+		DataScript.moonstoneGenerator, DataScript.moonstoneStorage, DataScript.rocket:
+			need_mooneten = true

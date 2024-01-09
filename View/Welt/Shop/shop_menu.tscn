@@ -220,6 +220,11 @@ position = Vector2(15, 4)
 scale = Vector2(0.018, 0.014)
 texture = ExtResource("5_fqdp2")
 
+[node name="Moonstone" type="Sprite2D" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/HBoxContainer/HSplitContainer2"]
+position = Vector2(15, 4)
+scale = Vector2(0.0444445, 0.0222222)
+texture = ExtResource("7_35b6j")
+
 [node name="Price" type="Label" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4

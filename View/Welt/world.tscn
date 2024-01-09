@@ -203,7 +203,7 @@ position = Vector2(47, 158)
 
 [node name="Rover" parent="." instance=ExtResource("8_hxkyc")]
 top_level = true
-position = Vector2(912, 256)
+position = Vector2(911, 237)
 
 [node name="ShopSchild2" type="Sprite2D" parent="."]
 position = Vector2(160, 314)
@@ -220,61 +220,61 @@ top_level = true
 script = ExtResource("11_0qq4f")
 
 [node name="Building1" parent="buildings" instance=ExtResource("11_nkqi8")]
-position = Vector2(168, 48)
+position = Vector2(175, 48)
 script = ExtResource("13_2kpaw")
 
 [node name="Building2" parent="buildings" instance=ExtResource("11_nkqi8")]
-position = Vector2(554, 48)
+position = Vector2(560, 46)
 script = ExtResource("13_p0vve")
 
 [node name="Building3" parent="buildings" instance=ExtResource("11_nkqi8")]
 top_level = true
-position = Vector2(520, -144)
+position = Vector2(526, -145)
 script = ExtResource("14_6ejuk")
 
 [node name="Building4" parent="buildings" instance=ExtResource("11_nkqi8")]
 top_level = true
-position = Vector2(232, -144)
+position = Vector2(239, -145)
 script = ExtResource("15_d7vh8")
 
 [node name="Building5" parent="buildings" instance=ExtResource("11_nkqi8")]
 top_level = true
-position = Vector2(-120, -144)
+position = Vector2(-113, -145)
 script = ExtResource("16_nvfen")
 
 [node name="Building6" parent="buildings" instance=ExtResource("11_nkqi8")]
 top_level = true
-position = Vector2(-472, -80)
+position = Vector2(-465, -80)
 script = ExtResource("17_26sg5")
 
 [node name="Building7" parent="buildings" instance=ExtResource("11_nkqi8")]
 top_level = true
-position = Vector2(-272, 80)
+position = Vector2(-274, 79)
 script = ExtResource("18_0qkkk")
 
 [node name="Building8" parent="buildings" instance=ExtResource("11_nkqi8")]
 top_level = true
-position = Vector2(-152, 240)
+position = Vector2(-146, 239)
 script = ExtResource("19_xm11v")
 
 [node name="Building9" parent="buildings" instance=ExtResource("11_nkqi8")]
 top_level = true
-position = Vector2(-344, 336)
+position = Vector2(-339, 335)
 script = ExtResource("20_hp7r3")
 
 [node name="Building10" parent="buildings" instance=ExtResource("11_nkqi8")]
 top_level = true
-position = Vector2(72, 368)
+position = Vector2(79, 366)
 script = ExtResource("21_opylk")
 
 [node name="Building11" parent="buildings" instance=ExtResource("11_nkqi8")]
 top_level = true
-position = Vector2(361, 432)
+position = Vector2(368, 430)
 script = ExtResource("22_hkswk")
 
 [node name="Building12" parent="buildings" instance=ExtResource("11_nkqi8")]
 top_level = true
-position = Vector2(456, 240)
+position = Vector2(462, 239)
 script = ExtResource("23_dt3bb")
 
 [node name="Optionbar" parent="." instance=ExtResource("12_mxp31")]

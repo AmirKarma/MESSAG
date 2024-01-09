@@ -1,18 +1,18 @@
 [gd_scene load_steps=7 format=3 uid="uid://c6i4vynrrtudd"]
 
-[ext_resource type="Texture2D" uid="uid://b50y1o5odckwc" path="res://Player/RessourceBar/coin.png" id="1_cmysq"]
 [ext_resource type="Script" path="res://Player/RessourceBar/ressource_bar.gd" id="1_y8e31"]
-[ext_resource type="Texture2D" uid="uid://blpllbfwmq0sr" path="res://Player/RessourceBar/lightning.png" id="2_alw1l"]
+[ext_resource type="Texture2D" uid="uid://cuiv62xt4qge3" path="res://Images/Moonete.png" id="2_vfot7"]
+[ext_resource type="Texture2D" uid="uid://bxit1dcy7rct4" path="res://Images/Moonstone.png" id="3_8iqb5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifrfo"]
-bg_color = Color(0.913725, 0.701961, 0.309804, 1)
+bg_color = Color(0.85098, 0.792157, 0.333333, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pxeql"]
-bg_color = Color(0.392157, 0.392157, 0.392157, 1)
+bg_color = Color(0.47451, 0.74902, 0.878431, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
@@ -87,10 +87,10 @@ offset_right = 12.0
 offset_bottom = 15.0
 mouse_filter = 2
 
-[node name="Coin" type="Sprite2D" parent="Bars/Control"]
-position = Vector2(5, 5)
-scale = Vector2(0.0209961, 0.0185547)
-texture = ExtResource("1_cmysq")
+[node name="Moonete" type="Sprite2D" parent="Bars/Control"]
+position = Vector2(4, 5)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_vfot7")
 
 [node name="Control2" type="Control" parent="Bars"]
 layout_mode = 1
@@ -105,9 +105,9 @@ grow_vertical = 0
 mouse_filter = 2
 
 [node name="Moonstone" type="Sprite2D" parent="Bars/Control2"]
-position = Vector2(6, 6)
-scale = Vector2(0.0327222, 0.0327222)
-texture = ExtResource("2_alw1l")
+position = Vector2(5, 6)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_8iqb5")
 
 [node name="MoonetenLabel" type="Label" parent="Bars"]
 texture_filter = 1

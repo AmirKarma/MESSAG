@@ -160,7 +160,7 @@ func set_building_texts():
 
 func set_bars():
 	$optionbar_rect/RessorceRect/moonetenbar.visible = true
-	$optionbar_rect/RessorceRect/Coin.visible = true
+	$optionbar_rect/RessorceRect/Moonete.visible = true
 	$optionbar_rect/RessorceRect/moonstonebar.visible = true
 	$optionbar_rect/RessorceRect/Moonstone.visible = true
 	if DataScript.fieldArray[building_id][building_type] == DataScript.rocket:
@@ -178,7 +178,7 @@ func set_bars():
 		$optionbar_rect/RessorceRect/moonetenbar.max_value = DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1]
 	if DataScript.fieldArray[building_id][building_type] == DataScript.moonstoneGenerator || DataScript.fieldArray[building_id][building_type] == DataScript.moonstoneStorage:
 		$optionbar_rect/RessorceRect/moonetenbar.visible = false
-		$optionbar_rect/RessorceRect/Coin.visible = false
+		$optionbar_rect/RessorceRect/Moonete.visible = false
 		$optionbar_rect/RessorceRect/moonstonebar/moonstone_label.text = str(DataScript.fieldArray[building_id][ressource_amount]) + " / " + str(DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1])
 		$optionbar_rect/RessorceRect/moonstonebar.value = DataScript.fieldArray[building_id][ressource_amount]
 		$optionbar_rect/RessorceRect/moonstonebar.max_value = DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1]

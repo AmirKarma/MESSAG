@@ -38,14 +38,14 @@ const moonstoneGenerator:int = 3
 const moonetenStorage:int = 4
 const moonstoneStorage:int = 5
 
-var building_type:int = 0
-var name_index:int = 1
-var level_index:int = 2
-var upgrade_cost_index:int = 3
-var image_index:int = 4
-var game_path_index:int = 5
-var ressource_amount:int = 6
-var max_storage_size:int = 7
+const building_type:int = 0
+const name_index:int = 1
+const level_index:int = 2
+const upgrade_cost_index:int = 3
+const image_index:int = 4
+const game_path_index:int = 5
+const ressource_amount:int = 6
+const max_storage_size:int = 7
 
 # Constans for shopelements
 const MOONETEN_GENERATOR_CARD = 0
@@ -59,6 +59,12 @@ const UPGRADE_PRICE_2 = 10000
 const UPGRADE_PRICE_3 = 50000
 const UPGRADE_PRICE_4 = 75000
 
+var generators_upgrade_costs:Array = [1000,2500,5000,7500]
+var storage_upgrade_costs:Array = [3000,9000,15000,25000]
+var generators_max_storage_size:Array = [1000,2000,3000,4000,5000]
+var storage_max_storage_size:Array = [5000,10000,15000,20000,25000]
+
+
 # Shopdata as a Dictionary
 var shop_data: Array = [
 	{'building_id':moonetenGenerator, 'name': "Moonetengenerator", 'price': 200, 'is_bought': false},
@@ -66,20 +72,41 @@ var shop_data: Array = [
 	{'building_id':moonetenStorage, 'name': "Moonetenstorage", 'price': 2000, 'is_bought': false},
 	{'building_id':moonstoneStorage, 'name': "Moonstonestorage", 'price': 2000, 'is_bought': false}
 ]
+func update_upgrade_costs(current_costs:Array,new_costs:Array):
+	for cost in new_costs:
+		current_costs.append(cost)
+		
+	
+
+func update_storage_size(current_size:Array,new_size:Array):
+	for storage_size in new_size:
+		current_size.append(storage_size)
+
 
 func on_rocket_level_upgrade():
 	match fieldArray[rocket][2]:
 		2:
 			update_shop_data(MOONETEN_GENERATOR_CARD, UPGRADE_PRICE_1)
 			update_shop_data(MOONSTONE_GENERATOR_CARD, UPGRADE_PRICE_1)
+			update_upgrade_costs(generators_upgrade_costs,[10000,30000,60000,90000])
+			update_upgrade_costs(storage_upgrade_costs,[80000,120000,150000,180000])
+			update_storage_size(generators_max_storage_size,[6000,7000,8000,9000])
+			update_storage_size(storage_max_storage_size,[30000,35000,40000,45000])
 		3:
 			update_shop_data(MOONETEN_GENERATOR_CARD, UPGRADE_PRICE_2)
 			update_shop_data(MOONSTONE_GENERATOR_CARD, UPGRADE_PRICE_2)
 			update_shop_data(MOONETEN_STORAGE_CARD, UPGRADE_PRICE_3)
 			update_shop_data(MOONSTONE_STORAGE_CARD, UPGRADE_PRICE_3)
+			update_upgrade_costs(generators_upgrade_costs,[120000,150000,180000,210000])
+			update_upgrade_costs(storage_upgrade_costs,[230000,280000,330000,380000])
+			update_storage_size(generators_max_storage_size,[10000,12000,14000,18000])
+			update_storage_size(storage_max_storage_size,[50000,60000,70000,80000])
 		4:
 			update_shop_data(MOONETEN_GENERATOR_CARD, UPGRADE_PRICE_4)
-			update_shop_data(MOONSTONE_GENERATOR_CARD, UPGRADE_PRICE_4)
+			update_upgrade_costs(generators_upgrade_costs,[240000,280000,320000,1000000])
+			update_upgrade_costs(storage_upgrade_costs,[430000,500000,600000,700000])
+			update_storage_size(generators_max_storage_size,[20000,30000,40000,50000])
+			update_storage_size(storage_max_storage_size,[100000,120000,140000,160000])
 
 
 func update_shop_data(shop_id, new_price):
@@ -88,13 +115,13 @@ func update_shop_data(shop_id, new_price):
 	savePlayerData()
 
 #field id´s -2: building on the field; -1: no building on the field
-var fieldArray := [[rocket,"Rocket",1,[10000,20000,50000,100000],"","res://Minigame1/minigame_1.tscn", 0, [1000,2000,5000,10000]], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-2]]
+var fieldArray := [[rocket,"Rocket",1,[100000,200000,400000],"","res://Minigame1/minigame_1.tscn", 0, [1000,2000,5000,10000]], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-2]]
 var inventory:Array = []
 func set_building(field_index:int,building:Array):
 	fieldArray[field_index] = building
 	saveFieldData()
 	
-func set_inventory(building_index:int,building_name:String,upgrade_costs:Array,image:String,game_path:String, ressource_amount:int, storage_size:Array):
+func set_inventory(building_index:int,building_name:String,upgrade_costs:Array,image:String,game_path:String, building_ressource_amount:int, storage_size:Array):
 	var building := []
 	building.append(building_index)
 	building.append(building_name)
@@ -102,7 +129,7 @@ func set_inventory(building_index:int,building_name:String,upgrade_costs:Array,i
 	building.append(upgrade_costs)
 	building.append(image)
 	building.append(game_path)
-	building.append(ressource_amount)
+	building.append(building_ressource_amount)
 	building.append(storage_size)
 	inventory.append(building)
 func edit_building(building_id:int,attribute_id:int, value):
@@ -129,7 +156,7 @@ func _ready():
 
 # Function called when the timer times out
 func _on_timeout_timer():
-	var newMooneten := 50
+	var newMooneten := 10
 	var ressourceAmount := 0
 	addMooneten(newMooneten)
 	for n in range(0,14):
@@ -140,7 +167,7 @@ func _on_timeout_timer():
 			else:
 				ressourceAmount = fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
 			edit_building(n, ressource_amount, ressourceAmount)
-			newMooneten = 50
+			newMooneten = 10
 	timer.start()
 	
 # Setter function for mooneten variable
@@ -251,6 +278,10 @@ func savePlayerData():
 	file.store_var(last_player_position)
 	file.store_var(shop_data)
 	file.store_var(inventory)
+	file.store_var(generators_upgrade_costs)
+	file.store_var(storage_upgrade_costs)
+	file.store_var(generators_max_storage_size) 
+	file.store_var(storage_max_storage_size)
 	
 
 # Function to load player data from a file	
@@ -270,6 +301,10 @@ func loadPlayerData():
 		last_player_position = file.get_var()
 		shop_data = file.get_var()
 		inventory = file.get_var()
+		generators_upgrade_costs = file.get_var()
+		storage_upgrade_costs = file.get_var()
+		generators_max_storage_size = file.get_var()
+		storage_max_storage_size = file.get_var()
 		addOfflineMooneten()
 	else:
 		firstGame = true
@@ -329,7 +364,7 @@ func resetStats():
 	moonstoneGeneratorCount = 3
 	moneyStorageCount = 3
 	moonstoneStorageCount = 3
-	fieldArray = [[rocket,"Rocket",1,[10000,20000,50000,100000],"","res://Minigame1/minigame_1.tscn", 0, [1000,2000,5000,10000]], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-2]]
+	fieldArray = [[rocket,"Rocket",1,[100000,200000,400000],"","res://Minigame1/minigame_1.tscn", 0, [1000,2000,5000,10000]], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-2]]
 	last_player_position = Vector2(168,131)
 	shop_data = [
 	{'building_id':moonetenGenerator, 'name': "Moonetengenerator", 'price': 200, 'is_bought': false},
@@ -338,6 +373,10 @@ func resetStats():
 	{'building_id':moonstoneStorage, 'name': "Moonstonestorage", 'price': 2000, 'is_bought': false}
 ]
 	inventory = []
+	generators_upgrade_costs = [1000,2500,5000,7500]
+	storage_upgrade_costs = [3000,9000,15000,25000]
+	generators_max_storage_size = [1000,2000,3000,4000,5000]
+	storage_max_storage_size = [5000,10000,15000,20000,25000]
 	savePlayerData()
 	saveFieldData()
 	

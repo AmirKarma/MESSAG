@@ -1,11 +1,11 @@
 extends Control
 
 
-@onready var moonetenLabel = $MoonetenLabel
-@onready var progressBarMoney = $ProgressBarMoney
+@onready var moonetenLabel = $Bars/MoonetenLabel
+@onready var progressBarMoney = $Bars/ProgressBarMoney
 
-@onready var energyLabel = $EnergyLabel
-@onready var progressBarEnergy = $ProgressBarMoonstone
+@onready var energyLabel = $Bars/EnergyLabel
+@onready var progressBarEnergy = $Bars/ProgressBarMoonstone
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

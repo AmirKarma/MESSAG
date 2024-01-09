@@ -19,8 +19,8 @@ script = ExtResource("1_47igm")
 
 [node name="Touchschuss" type="TouchScreenButton" parent="Punkte"]
 top_level = true
-position = Vector2(25, 108)
-scale = Vector2(0.210938, 0.3125)
+position = Vector2(22, 112)
+scale = Vector2(0.273438, 0.3125)
 texture_normal = ExtResource("6_86lsl")
 action = "schuss"
 
@@ -65,13 +65,13 @@ position = Vector2(-13, -13)
 position = Vector2(288, 81)
 
 [node name="Kometen" parent="AllKometen" instance=ExtResource("9_e5o5x")]
-position = Vector2(36, 54)
+position = Vector2(22, 52)
 
 [node name="Kometen2" parent="AllKometen" instance=ExtResource("9_e5o5x")]
-position = Vector2(121, 156)
+position = Vector2(101, 160)
 
 [node name="Kometen4" parent="AllKometen" instance=ExtResource("9_e5o5x")]
-position = Vector2(172, 24)
+position = Vector2(194, 21)
 
 [node name="Joystick" parent="." instance=ExtResource("13_qrxh0")]
 top_level = true

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://2f17bkx8kduv"
-path="res://.godot/imported/schuss.png-fe3888635b93711636cacbfc22cabcad.ctex"
+path="res://.godot/imported/bullet.png-7e596a1eb35042b06b737b7fd04102b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigame1/schuss.png"
-dest_files=["res://.godot/imported/schuss.png-fe3888635b93711636cacbfc22cabcad.ctex"]
+source_file="res://Minigame1/bullet.png"
+dest_files=["res://.godot/imported/bullet.png-7e596a1eb35042b06b737b7fd04102b2.ctex"]
 
 [params]
 

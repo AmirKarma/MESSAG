@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://58lj862q1tqp"
-path="res://.godot/imported/Ship.png-310c987e77c46916c75c5513af1f52f1.ctex"
+uid="uid://xgtnh2rgekud"
+path="res://.godot/imported/chunks_middle.png-c69acbb884761340d2cade55b2a291bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigame1/Ship.png"
-dest_files=["res://.godot/imported/Ship.png-310c987e77c46916c75c5513af1f52f1.ctex"]
+source_file="res://Minigame1/chunks_middle.png"
+dest_files=["res://.godot/imported/chunks_middle.png-c69acbb884761340d2cade55b2a291bf.ctex"]
 
 [params]
 

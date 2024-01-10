@@ -2,76 +2,70 @@
 
 [ext_resource type="Script" path="res://Minigame1/minigame_1.gd" id="1_47igm"]
 [ext_resource type="PackedScene" uid="uid://b6xe8654tk18d" path="res://Minigame1/info.tscn" id="2_ybuk1"]
-[ext_resource type="PackedScene" uid="uid://g40na2y72ch1" path="res://Minigame1/raumschiff.tscn" id="3_ydnmk"]
-[ext_resource type="Texture2D" uid="uid://b56jve8otmcps" path="res://Minigame1/Schuss2.png" id="6_86lsl"]
+[ext_resource type="Texture2D" uid="uid://b56jve8otmcps" path="res://Minigame1/shot_button.png" id="3_f3oky"]
+[ext_resource type="PackedScene" uid="uid://g40na2y72ch1" path="res://Minigame1/spaceship.tscn" id="3_ydnmk"]
 [ext_resource type="Texture2D" uid="uid://d4bvoelmcyjy7" path="res://Minigame1/Space_Background.png" id="6_rv1y7"]
 [ext_resource type="Texture2D" uid="uid://mirwogqwtmbr" path="res://Minigame1/Restart.png" id="9_6v6t2"]
-[ext_resource type="PackedScene" uid="uid://wsxpcan07b4v" path="res://Minigame1/kometen.tscn" id="9_e5o5x"]
+[ext_resource type="PackedScene" uid="uid://wsxpcan07b4v" path="res://Minigame1/comet.tscn" id="9_e5o5x"]
 [ext_resource type="Texture2D" uid="uid://tgdengqasqk3" path="res://Minigame1/Exit.png" id="10_5a5t6"]
 [ext_resource type="PackedScene" uid="uid://bb0x0ox30dogx" path="res://Minigame1/joystick.tscn" id="13_qrxh0"]
 
 [node name="minigame1" type="Node2D"]
 script = ExtResource("1_47igm")
 
-[node name="Punkte" type="CanvasLayer" parent="."]
+[node name="Points" type="CanvasLayer" parent="."]
 
-[node name="info" parent="Punkte" instance=ExtResource("2_ybuk1")]
+[node name="info" parent="Points" instance=ExtResource("2_ybuk1")]
 
-[node name="Touchschuss" type="TouchScreenButton" parent="Punkte"]
+[node name="Touchschuss" type="TouchScreenButton" parent="Points"]
 top_level = true
 position = Vector2(22, 112)
 scale = Vector2(0.273438, 0.3125)
-texture_normal = ExtResource("6_86lsl")
+texture_normal = ExtResource("3_f3oky")
 action = "schuss"
 
-[node name="Touchrestart" type="TouchScreenButton" parent="Punkte"]
+[node name="Touchrestart" type="TouchScreenButton" parent="Points"]
 top_level = true
 position = Vector2(292, 1)
 scale = Vector2(0.101563, 0.101563)
 texture_normal = ExtResource("9_6v6t2")
 action = "reset"
 
-[node name="Touchbacktomain" type="TouchScreenButton" parent="Punkte"]
+[node name="Touchbacktomain" type="TouchScreenButton" parent="Points"]
 top_level = true
 position = Vector2(306, 1)
 scale = Vector2(0.1, 0.1)
 texture_normal = ExtResource("10_5a5t6")
 action = "debug"
 
-[node name="2833063-leuchtend-schimmernder-weltraum-hintergrund-vektor" type="Sprite2D" parent="."]
+[node name="Back" type="Sprite2D" parent="."]
 show_behind_parent = true
 position = Vector2(160, 90)
 scale = Vector2(0.333333, 0.333333)
 texture = ExtResource("6_rv1y7")
 
-[node name="Raumschiff" parent="." instance=ExtResource("3_ydnmk")]
+[node name="spaceship" parent="." instance=ExtResource("3_ydnmk")]
 top_level = true
 position = Vector2(157, 90)
 
-[node name="StartPosition" type="Marker2D" parent="."]
+[node name="startPos" type="Marker2D" parent="."]
 position = Vector2(157, 91)
 
 [node name="RespawnPos" type="Node2D" parent="."]
 position = Vector2(158, 91)
 
-[node name="SchussContainer" type="Node2D" parent="."]
+[node name="shootCont" type="Node2D" parent="."]
 position = Vector2(-13, -13)
 
-[node name="Kanone" type="Node" parent="."]
+[node name="Gun" type="Node" parent="."]
 
-[node name="AllKometen" type="Node" parent="."]
+[node name="AllComets" type="Node" parent="."]
 
-[node name="Kometen3" parent="AllKometen" instance=ExtResource("9_e5o5x")]
-position = Vector2(288, 81)
-
-[node name="Kometen" parent="AllKometen" instance=ExtResource("9_e5o5x")]
+[node name="Kometen" parent="AllComets" instance=ExtResource("9_e5o5x")]
 position = Vector2(22, 52)
 
-[node name="Kometen2" parent="AllKometen" instance=ExtResource("9_e5o5x")]
+[node name="Kometen2" parent="AllComets" instance=ExtResource("9_e5o5x")]
 position = Vector2(101, 160)
-
-[node name="Kometen4" parent="AllKometen" instance=ExtResource("9_e5o5x")]
-position = Vector2(194, 21)
 
 [node name="Joystick" parent="." instance=ExtResource("13_qrxh0")]
 top_level = true

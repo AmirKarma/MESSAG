@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xgtnh2rgekud"
-path="res://.godot/imported/Brocken_Mittel.png-4be35e7a52400dc989d4539caf9bf63b.ctex"
+uid="uid://cbfu1leedylph"
+path="res://.godot/imported/chunks_big.png-123fb4911296aa23014f23163414d675.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigame1/Brocken_Mittel.png"
-dest_files=["res://.godot/imported/Brocken_Mittel.png-4be35e7a52400dc989d4539caf9bf63b.ctex"]
+source_file="res://Minigame1/chunks_big.png"
+dest_files=["res://.godot/imported/chunks_big.png-123fb4911296aa23014f23163414d675.ctex"]
 
 [params]
 

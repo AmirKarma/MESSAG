@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kk6uquo8ryb4"
-path="res://.godot/imported/Brocken_Klein.png-8f00a97223b6b89846829435ee45b712.ctex"
+uid="uid://b56jve8otmcps"
+path="res://.godot/imported/shot_button.png-fa1734f1c898f0ed4566e05e36a00491.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigame1/Brocken_Klein.png"
-dest_files=["res://.godot/imported/Brocken_Klein.png-8f00a97223b6b89846829435ee45b712.ctex"]
+source_file="res://Minigame1/shot_button.png"
+dest_files=["res://.godot/imported/shot_button.png-fa1734f1c898f0ed4566e05e36a00491.ctex"]
 
 [params]
 

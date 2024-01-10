@@ -19,7 +19,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_73w8n")
 
-[node name="Punkte" type="Label" parent="."]
+[node name="Points" type="Label" parent="."]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 3.0
@@ -28,7 +28,7 @@ offset_bottom = 26.0
 text = "Punkte: 3123"
 label_settings = SubResource("LabelSettings_t3nfi")
 
-[node name="Leben" type="Label" parent="."]
+[node name="Lives" type="Label" parent="."]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 18.0

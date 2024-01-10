@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b56jve8otmcps"
-path="res://.godot/imported/Schuss2.png-0475004238363ab7cf17729ab9f9df73.ctex"
+uid="uid://kk6uquo8ryb4"
+path="res://.godot/imported/chunks_small.png-62efd9210784aa841665346499f9f7cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigame1/Schuss2.png"
-dest_files=["res://.godot/imported/Schuss2.png-0475004238363ab7cf17729ab9f9df73.ctex"]
+source_file="res://Minigame1/chunks_small.png"
+dest_files=["res://.godot/imported/chunks_small.png-62efd9210784aa841665346499f9f7cd.ctex"]
 
 [params]
 

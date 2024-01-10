@@ -7,16 +7,20 @@ extends Control
 @onready var energyLabel = $Bars/EnergyLabel
 @onready var progressBarEnergy = $Bars/ProgressBarMoonstone
 
-# Called when the node enters the scene tree for the first time.
+# Function: _ready
+# Description: This function is called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Function: _process
+# Description: Called every frame. 'delta' is the elapsed time since the previous frame.
+# This function updates the resource bar.
 func _process(_delta):
 	updateRessourceBar()
 
 
-
+# Function: updateResourceBar
+# Description: Updates the resource bar display with current mooneten and moonstone values.
 func updateRessourceBar():
 	moonetenLabel.text = str(DataScript.getMooneten()) + " / " + str(DataScript.maxMoonetenStorage)
 	progressBarMoney.value = DataScript.getMooneten()

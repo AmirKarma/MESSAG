@@ -3,36 +3,53 @@ extends CharacterBody2D
 
 # Maximum speed of the character
 var max_speed := 100
+
 # Current speed of the character
 var speed := 0
+
 # Acceleration of the character
 var acceleration := 400
+
 # Direction in which the character is moving
 var move_direction
+
 # Indicates whether the character is moving
 var moving := false
+
 # Destination for movement
 var destination := Vector2()
+
 # Vector for character movement
 var movement := Vector2()
+
 # Indicates whether the free-field key is pressed
 var free_field_pressed:bool = false
+
 # Indicates whether the character is standing still
 var stand_still:bool = false
+
 # Clicked tile and its center
 var clicked_tile
 var clicked_tile_center
+
 # Data of the tile and pattern for free fields
 var tile_data
 var free_field_pattern:Array
 
+# Holds the index of the current building and the current field.
 var buildingIndex := -1
 var fieldIndex := -1
 
+# Represents the index for the building type in data structures.
 const building_type:int = 0
+
+# Represents the index for the building level in data structures.
 const building_level:int = 2
 
+# Represents the standard camera zoom.
 var standart_camerazoom:Vector2 = Vector2(1,1)
+
+# Represents the standard camera position.
 var standart_position:Vector2 = Vector2(0,0)
 
 # References to other nodes and resources in the game
@@ -45,7 +62,11 @@ var standart_position:Vector2 = Vector2(0,0)
 @onready var camera:Camera2D = $Camera2D
 @onready var hud:CanvasLayer = get_node("/root/World/Player/Camera2D/HUD")
 
-# Function called when unhandled input occurs
+# Function: _unhandled_input
+# Description: Handles unhandled input events. If the camera zoom is at the standard value,
+# checks for a click event and processes it by setting free field pressed, checking distance,
+# setting the pattern, and initiating movement. If the camera is not at the standard zoom,
+# resets the camera.
 func _unhandled_input(event):
 	if camera.zoom == standart_camerazoom:
 		if event.is_action_pressed('Click'):
@@ -59,20 +80,25 @@ func _unhandled_input(event):
 				animationState.travel("Run")
 	else:
 		reset_camera()
-		
+
+# Function: reset_camera
+# Description: Resets the camera properties to default values, makes the HUD visible,
+# and sets the modulate color to white.
 func reset_camera():
 	camera.zoom = standart_camerazoom
 	camera.position = standart_position
 	hud.visible = true
 	modulate = Color.WHITE
 
-
-# Sets the pattern for free fields if the tile is clickable
+# Function: set_pattern
+# Description: Sets the free field pattern if the tile data is clickable.
 func set_pattern():
 	if tile_data.get_custom_data('clickable'):
 			free_field_pattern = create_pattern()
 
-# Activates the free-field key and sets the click status
+# Function: set_free_field_pressed
+# Description: Sets the free field pressed state based on the clicked tile's data.
+# If the tile is clickable, the state is set to true; otherwise, it's set to false.
 func set_free_field_pressed():
 	#Tilemapcoords
 	clicked_tile = map.local_to_map(get_global_mouse_position())
@@ -86,7 +112,9 @@ func set_free_field_pressed():
 			free_field_pressed = false
 			stand_still = false
 
-# creates the free field pattern
+# Function: create_pattern
+# Description: Creates a pattern of clickable tiles around the clicked tile, up to a limit of 6.
+# Returns the pattern as an Array.
 func create_pattern()-> Array:
 	var pattern:Array = []
 	pattern.append(clicked_tile)
@@ -100,13 +128,17 @@ func create_pattern()-> Array:
 		pattern_index += 1
 	return pattern
 	
-# Called every physics process
+# Function: _physics_process
+# Description: Updates the player's movement and performs a free field distance check.
+# Sets the last player position for reference.
 func _physics_process(delta):
 	MovementLoop(delta)
 	free_field_distance_check()
 	DataScript.set_last_player_position(position)
-	
-# Checks the distance to the free field
+
+# Function: free_field_distance_check
+# Description: Checks if the player is close to a free field, opens the menu if conditions are met,
+# and resets the free field pressed state. Otherwise, sets the pattern for movement.
 func free_field_distance_check():
 	if free_field_pressed:
 		if (position.distance_to(clicked_tile_center) < 35 or stand_still) and free_field_pattern.has(clicked_tile):
@@ -117,8 +149,11 @@ func free_field_distance_check():
 		else :
 			stand_still = false
 			set_pattern()
-			
-# Opens a menu and returns the index of the field
+
+# Function: open_menu
+# Description: Opens the menu based on the provided value, which represents a position.
+# Retrieves the field and building indices, and if there is no building at the location,
+# opens the inventory menu.
 func open_menu(value):
 	fieldIndex = getFieldIndex(value)
 	buildingIndex = getBuildingIndex(fieldIndex)[0]
@@ -126,15 +161,20 @@ func open_menu(value):
 	if buildingIndex == -1:
 		$Camera2D/HUD/Inventory.set_inventory()
 		$Camera2D/HUD/Inventory.visible = true
-	
 
+# Function: place_building
+# Description: Places a building at the specified field index and updates the inventory.
+# Hides the inventory menu after placing the building and updates the maximum resources.
 func place_building(bIndex:int):
 	$Camera2D/HUD/Inventory.visible = false
 	DataScript.set_building(fieldIndex,DataScript.inventory[bIndex])
 	DataScript.inventory.remove_at(bIndex)
 	DataScript.setMaxRessources()
 
-# Governs character movement
+# Function: MovementLoop
+# Description: Handles movement based on navigation and animation parameters.
+# The character accelerates towards the target position, moves along the navigation path,
+# and updates the animation state accordingly.
 func MovementLoop(delta):
 	if !stand_still:
 		if moving == false:
@@ -158,8 +198,11 @@ func MovementLoop(delta):
 	else:
 		animationState.travel("Idle")
 		speed = 0
-		
-# Returns the index of the field based on the global position
+
+
+# Function: getFieldIndex
+# Description: Returns the field index based on the provided coordinates.
+# Returns -1 if the coordinates do not correspond to any field.
 func getFieldIndex(value):
 	if(value.x >= 16 && value.x <= 80):
 		if(value.y >= 144 && value.y <= 176):
@@ -204,10 +247,14 @@ func getFieldIndex(value):
 		if(value.y >= 240 && value.y <= 272):
 			return 13
 	return -1
-	
+
+# Function: getBuildingIndex
+# Description: Returns the building index from the fieldArray based on the provided value.
 func getBuildingIndex(value):
 	return DataScript.fieldArray[value]
-		
+
+# Function: player_shop_method
+# Description: Placeholder function for the player's shop method. Implementation needed.
 func player_shop_method():
 	pass
 

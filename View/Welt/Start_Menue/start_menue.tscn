@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfwde8pm32ahm"]
+[gd_scene load_steps=7 format=3 uid="uid://bfwde8pm32ahm"]
 
 [ext_resource type="Script" path="res://Welt/Start_Menue/start_menue.gd" id="1_j38ne"]
 [ext_resource type="Texture2D" uid="uid://dmgaeaw8k83i2" path="res://Images/Background_1.png" id="2_eqwjw"]
-[ext_resource type="Texture2D" uid="uid://cviesfy3xnig0" path="res://Images/Mooneten.png" id="3_13emr"]
 [ext_resource type="Texture2D" uid="uid://c24lsh16am6o0" path="res://Images/generatedtext.png" id="7_de57x"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h27fr"]
@@ -60,7 +59,6 @@ text = "Legal Notice"
 [node name="Mooneten" type="Sprite2D" parent="."]
 position = Vector2(268, 28)
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("3_13emr")
 
 [node name="Generatedtext" type="Sprite2D" parent="."]
 modulate = Color(0.796078, 0.00392157, 0.372549, 1)

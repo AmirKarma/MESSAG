@@ -40,7 +40,7 @@ func reset_inventory():
 
 func set_building_data(building_id:int,buidling_name: String,level:int,inventory_index:int):
 	set_buidling_name(buidling_name)
-	set_building_button(buidling_name,inventory_index)
+	set_building_button(inventory_index)
 	set_building_level(level)
 	set_building_image(building_id)
 	building_card.add_sibling(building_card.duplicate())
@@ -70,7 +70,7 @@ func set_building_image(building_id:int):
 				building_image.play("moonstoneStorage")
 
 
-func set_building_button(buidling_name: String,inventory_index:int):
+func set_building_button(inventory_index:int):
 	if currentButton != null:
 		buttons.remove_child(currentButton)
 		

@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cyhfc2wb72mli" path="res://Welt/Shop/close button.png" id="4_g7pi1"]
 [ext_resource type="Texture2D" uid="uid://2o774dqju385" path="res://Welt/Shop/close button pressed.png" id="5_xi37g"]
 [ext_resource type="FontFile" uid="uid://bmgg4pf2e6now" path="res://Welt/Shop/Merchant Copy.ttf" id="6_b01ub"]
-[ext_resource type="SpriteFrames" uid="uid://bj7s0ho04aub5" path="res://Optionbar/sprites.tres" id="7_05dlm"]
+[ext_resource type="SpriteFrames" uid="uid://bqpdqveuisbci" path="res://Welt/Buildings/building.tres" id="7_3jbb4"]
 [ext_resource type="FontFile" uid="uid://bao8wtv7uxfku" path="res://Optionbar/04B_30__.TTF" id="8_gyum0"]
 [ext_resource type="Texture2D" uid="uid://bcjw06cry877x" path="res://Welt/Shop/button_texture.png" id="9_ub1cj"]
 [ext_resource type="Script" path="res://Player/Inventory/place_button.gd" id="10_x0vre"]
@@ -179,9 +179,9 @@ custom_minimum_size = Vector2(2.08165e-12, 40)
 layout_mode = 2
 
 [node name="building_image" type="AnimatedSprite2D" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/HSplitContainer"]
-position = Vector2(39.3562, 21.9062)
-scale = Vector2(0.556191, 0.423946)
-sprite_frames = ExtResource("7_05dlm")
+position = Vector2(39.88, 19.3868)
+scale = Vector2(0.455, 0.322081)
+sprite_frames = ExtResource("7_3jbb4")
 animation = &"moonetenGenerator"
 
 [node name="Count" type="Label" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer"]

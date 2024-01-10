@@ -5,7 +5,7 @@ extends Control
 
 # Player resources and game data variables
 var firstGame := false
-var mooneten := 0 
+var mooneten := 0
 var moonstone := 0
 var unixLastTime := 0 #logout time
 var minigame_one_highscore := 0
@@ -154,9 +154,10 @@ func _ready():
 	timer.wait_time = 60
 	timer.timeout.connect(_on_timeout_timer)
 	timer.start()
-	loadPlayerData()
 	loadFieldData()
 	setMaxRessources()
+	loadPlayerData()
+	
 
 # Function called when the timer times out
 func _on_timeout_timer():
@@ -311,7 +312,7 @@ func loadPlayerData():
 		generators_upgrade_costs = file.get_var()
 		storage_upgrade_costs = file.get_var()
 		generators_max_storage_size = file.get_var()
-		storage_max_storage_size = file.get_var()
+		storage_max_storage_size = file.get_var()	
 		addOfflineMooneten()
 	else:
 		firstGame = true
@@ -329,7 +330,6 @@ func loadFieldData():
 		var file = FileAccess.open(fieldDataString, FileAccess.READ)
 		for n in range(0,14):
 			fieldArray[n] = file.get_var()
-		addOfflineMooneten()
 	else:
 		saveFieldData()
 # Function to add offline mooneten based on time elapsed since the last logout
@@ -344,6 +344,7 @@ func addOfflineMooneten():
 		addMooneten(offlineMooneten)
 	else:
 		setMooneten(maxMoonetenStorage)
+	
 	var ressourceAmount := 0
 	for n in range(0,14):
 		if fieldArray[n][building_type] == moonetenGenerator || fieldArray[n][building_type] == moonstoneGenerator:

@@ -16,10 +16,10 @@ func _on_fortsetzen_pressed():
 
 
 func _on_neues_spiel_pressed():
-	#if !DataScript.firstGame:
-	#	$ConfirmationDialog.visible = true
-	#else:
-	newGame()
+	if !DataScript.firstGame:
+		$ConfirmationDialog.visible = true
+	else:
+		newGame()
 
 	
 

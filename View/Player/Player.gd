@@ -34,7 +34,7 @@ const building_level:int = 2
 
 var standart_camerazoom:Vector2 = Vector2(1,1)
 var standart_position:Vector2 = Vector2(0,0)
-
+var mapShowPressed: bool = false
 # References to other nodes and resources in the game
 @onready var world : Node2D = get_tree().get_root().get_node("World")
 @onready var animationPlayer = $AnimationPlayer
@@ -44,7 +44,16 @@ var standart_position:Vector2 = Vector2(0,0)
 @onready var map : TileMap = world.get_node('TileMap')
 @onready var camera:Camera2D = $Camera2D
 @onready var hud:CanvasLayer = get_node("/root/World/Player/Camera2D/HUD")
+@onready var player:CharacterBody2D = get_node("/root/World/Player")
+@onready var mapButton: TextureButton = get_node("Camera2D/HUD/mapButton")
+@onready var ressourceBar: Control = get_node("/root/World/Player/Camera2D/HUD/RessourceBar")
 
+func _process(delta):
+	if mapShowPressed:
+		player.modulate = Color.RED
+		camera.zoom = Vector2(0.18,0.2)
+		camera.position = Vector2(248,160) - player.position
+	
 # Function called when unhandled input occurs
 func _unhandled_input(event):
 	if camera.zoom == standart_camerazoom:
@@ -211,3 +220,13 @@ func getBuildingIndex(value):
 func player_shop_method():
 	pass
 
+func _on_map_button_pressed():
+	mapShowPressed = not mapShowPressed
+	if mapShowPressed :
+		mapButton.texture_normal = load("res://Player/mapExit.png")
+	else : 
+		mapButton.texture_normal = load("res://Player/mapShow.png")
+	ressourceBar.visible =  not mapShowPressed
+	player.modulate = Color.RED
+	camera.zoom = Vector2(0.18,0.2)
+	camera.position = Vector2(248,160) - player.position

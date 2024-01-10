@@ -1,10 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://cwo4kcdmsf7cr"]
+[gd_scene load_steps=28 format=3 uid="uid://cwo4kcdmsf7cr"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_3qcmq"]
 [ext_resource type="Texture2D" uid="uid://d26fe4t3pqew4" path="res://Images/astronaut.png" id="2_8dut7"]
 [ext_resource type="PackedScene" uid="uid://c6i4vynrrtudd" path="res://Player/RessourceBar/ressource_bar.tscn" id="3_0wfbp"]
 [ext_resource type="PackedScene" uid="uid://dbaqm4nbxf7gd" path="res://Player/Inventory/Inventory.tscn" id="3_6bgg2"]
-[ext_resource type="Script" path="res://Player/ShowMap.gd" id="5_8ipg2"]
+[ext_resource type="Texture2D" uid="uid://2inr4jqsjser" path="res://Player/DALL·E 2024-01-10 13.50.14 - Design a simplified rectangular 2D pixel art 'map' button for a video game. The button should have clean, sharp rectangular edges and a minimalistic d (2).png" id="5_lkb5n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yw0jl"]
 radius = 6.0
@@ -184,11 +184,6 @@ states/Run/node = SubResource("AnimationNodeBlendSpace2D_6fsyd")
 states/Run/position = Vector2(630, 100)
 transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_bg58m"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_0ra76"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_dwgmt")]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nl1mb"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_c3aix"]
-size = Vector2(10, 10)
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_3qcmq")
 
@@ -229,16 +224,16 @@ anchor_left = -0.025
 offset_left = 8.0
 grow_vertical = 2
 
-[node name="ShowMap" type="Button" parent="Camera2D/HUD"]
-offset_left = 296.0
-offset_top = 153.0
-offset_right = 307.0
-offset_bottom = 163.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_nl1mb")
-icon = SubResource("PlaceholderTexture2D_c3aix")
-flat = true
-icon_alignment = 1
-script = ExtResource("5_8ipg2")
-
 [node name="Inventory" parent="Camera2D/HUD" instance=ExtResource("3_6bgg2")]
 visible = false
+
+[node name="mapButton" type="TextureButton" parent="Camera2D/HUD"]
+offset_left = 274.0
+offset_top = 135.0
+offset_right = 319.0
+offset_bottom = 180.0
+texture_normal = ExtResource("5_lkb5n")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="Camera2D/HUD/mapButton" to="." method="_on_map_button_pressed"]

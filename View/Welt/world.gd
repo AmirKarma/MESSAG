@@ -3,16 +3,20 @@
 
 extends Node2D
 
+# Variable for the player node
 @onready var player = $Player
 
-# Called when the node enters the scene tree for the first time.
+# Function: _ready
+# Description: Initializes the player's position and enables y-sorting. 
+# 			   Disables auto-accept quit for custom handling.
 func _ready():
 	player.position = DataScript.get_last_player_position()
 	y_sort_enabled = true
 	get_tree().set_auto_accept_quit(false)
 	
 
-# Notification function called for window management events
+# Function: _notification
+# Description: Handles notifications from the window manager, specifically close and go back requests.
 func _notification(what):
 	# Handle a close request from the window manager
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://cdfejtgr3uct"]
+[gd_scene load_steps=45 format=3 uid="uid://cdfejtgr3uct"]
 
 [ext_resource type="Script" path="res://Welt/world.gd" id="1_fs3ho"]
 [ext_resource type="Texture2D" uid="uid://dbh5uk0ytof32" path="res://Welt/Background/Terrain_Ecken.png" id="2_2bpty"]
@@ -24,7 +24,6 @@
 [ext_resource type="Script" path="res://Welt/Buildings/building10.gd" id="21_opylk"]
 [ext_resource type="Script" path="res://Welt/Buildings/building11.gd" id="22_hkswk"]
 [ext_resource type="Script" path="res://Welt/Buildings/building12.gd" id="23_dt3bb"]
-[ext_resource type="Texture2D" uid="uid://bko6x35t6vvry" path="res://Images/Shop.png" id="25_kx227"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_afsc4"]
 tile_data = PackedInt32Array(0, 2, 0, 65536, 2, 1, 1, 65538, 0, 65537, 65538, 1, 2, 131074, 0, 65538, 131074, 1)
@@ -286,4 +285,3 @@ top_level = true
 top_level = true
 position = Vector2(911, 238)
 scale = Vector2(0.225586, 0.216797)
-texture = ExtResource("25_kx227")

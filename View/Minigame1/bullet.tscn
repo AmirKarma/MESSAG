@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://th2ea82xp615"]
 
-[ext_resource type="Script" path="res://Minigame1/schuss.gd" id="1_xrdhj"]
-[ext_resource type="Texture2D" uid="uid://2f17bkx8kduv" path="res://Minigame1/schuss.png" id="2_1ure2"]
+[ext_resource type="Script" path="res://Minigame1/bullet.gd" id="1_10dwa"]
+[ext_resource type="Texture2D" uid="uid://2f17bkx8kduv" path="res://Minigame1/bullet.png" id="2_beqyo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opgdf"]
 size = Vector2(2, 21.5)
@@ -9,12 +9,12 @@ size = Vector2(2, 21.5)
 [node name="Schuss" type="Area2D"]
 collision_layer = 8
 collision_mask = 5
-script = ExtResource("1_xrdhj")
+script = ExtResource("1_10dwa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.98023e-08, -0.375001)
 scale = Vector2(0.222222, 0.393519)
-texture = ExtResource("2_1ure2")
+texture = ExtResource("2_beqyo")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(0.3, 0.35)

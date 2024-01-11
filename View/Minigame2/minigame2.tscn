@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Minigame2/Background.gd" id="1_byurc"]
 [ext_resource type="Script" path="res://Minigame2/minigame2.gd" id="1_wjhoj"]
 [ext_resource type="Texture2D" uid="uid://cp3olla0v3mdx" path="res://Minigame2/Img/background-black.png" id="3_j0lcg"]
-[ext_resource type="Texture2D" uid="uid://blup8s04ergik" path="res://Minigame1/Rakete.png" id="3_jhdig"]
+[ext_resource type="Texture2D" uid="uid://blup8s04ergik" path="res://Minigame1/rocket.png" id="3_jhdig"]
 [ext_resource type="Script" path="res://Minigame2/Player.gd" id="4_iemfn"]
 [ext_resource type="Script" path="res://Minigame2/Overlay.gd" id="6_ehkd1"]
 [ext_resource type="Texture2D" uid="uid://b570jwv50m17d" path="res://Minigame2/Img/pixilart-drawing.png" id="7_pkj05"]

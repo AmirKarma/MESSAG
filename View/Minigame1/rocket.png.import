@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2f17bkx8kduv"
-path="res://.godot/imported/schuss.png-fe3888635b93711636cacbfc22cabcad.ctex"
+uid="uid://blup8s04ergik"
+path="res://.godot/imported/rocket.png-69fbf56454c8c197b5fcc3c0a8534f29.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigame1/schuss.png"
-dest_files=["res://.godot/imported/schuss.png-fe3888635b93711636cacbfc22cabcad.ctex"]
+source_file="res://Minigame1/rocket.png"
+dest_files=["res://.godot/imported/rocket.png-69fbf56454c8c197b5fcc3c0a8534f29.ctex"]
 
 [params]
 

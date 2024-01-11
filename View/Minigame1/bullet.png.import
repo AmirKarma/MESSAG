@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbfu1leedylph"
-path="res://.godot/imported/Brocken_Gro.png-fb1fbea26faeb861f360a4ee17e19db5.ctex"
+uid="uid://2f17bkx8kduv"
+path="res://.godot/imported/bullet.png-7e596a1eb35042b06b737b7fd04102b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigame1/Brocken_Gro.png"
-dest_files=["res://.godot/imported/Brocken_Gro.png-fb1fbea26faeb861f360a4ee17e19db5.ctex"]
+source_file="res://Minigame1/bullet.png"
+dest_files=["res://.godot/imported/bullet.png-7e596a1eb35042b06b737b7fd04102b2.ctex"]
 
 [params]
 

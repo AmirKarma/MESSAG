@@ -28,6 +28,10 @@ var minigame2_timerSpeed
 # Constant representing the game speed in Mini-Game 2 as a 2D vector (horizontal speed = 0, vertical speed = 10).
 const minigame2_gameSpeed := Vector2(0, 10)
 
+# Variable to track whether the player is currently in the building menu.
+# If true, the player is in the building menu; otherwise, false.
+var is_in_building_menu:bool = false
+
 # Variables for the maximum amount of Mooneten/Moonstone the player is able to store.
 var maxMoonetenStorage := 0
 var maxMoonstoneStorage := 0

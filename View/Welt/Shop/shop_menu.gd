@@ -34,6 +34,9 @@ func _ready():
 # Description: Sets up the shop by resetting it, populating it with building data, and updating resource amounts.
 func set_shop():
 	reset_shop()
+	
+	DataScript.is_in_building_menu = true
+	
 	building_card.visible = true
 	var building_data = DataScript.shop_data.duplicate(true)
 	building_data.reverse()
@@ -227,10 +230,12 @@ func set_card_enabled():
 # Function: _on_close_button_pressed
 # Description: Called when the close button is pressed. Hides the building card, enables player processes, and makes HUD visible.
 func _on_close_button_pressed():
+	DataScript.is_in_building_menu = false
 	visible = false
 	player.set_process(true)
 	player.set_physics_process(true)
 	player.get_node("Camera2D/HUD").visible = true
+	
 
 # Function: needed_ressource_check
 # Description: Checks the building type and sets the appropriate resource requirements.

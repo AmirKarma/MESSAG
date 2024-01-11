@@ -7,3 +7,4 @@ extends Control
 	set(value):
 		# Update the text of the Score label with the new score value
 		score.text = "Score: " + str(value).pad_decimals(0)
+

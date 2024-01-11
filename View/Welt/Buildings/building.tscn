@@ -1,70 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://3d3na5hd1gfu"]
+[gd_scene load_steps=7 format=3 uid="uid://3d3na5hd1gfu"]
 
-[ext_resource type="Texture2D" uid="uid://bsdpd37oq8xnn" path="res://Welt/Game-Boy-Advance-Pokemon-Ruby-Sapphire-Buildings.png" id="1_b34qc"]
 [ext_resource type="Script" path="res://Welt/Buildings/building.gd" id="1_sjs5k"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nhh1g"]
-atlas = ExtResource("1_b34qc")
-region = Rect2(0, 0, 103, 83)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ad2mp"]
-atlas = ExtResource("1_b34qc")
-region = Rect2(73, 83, 73, 83)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tprn0"]
-atlas = ExtResource("1_b34qc")
-region = Rect2(348, 83, 87, 83)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u17np"]
-atlas = ExtResource("1_b34qc")
-region = Rect2(87, 166, 87, 83)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8u80g"]
-atlas = ExtResource("1_b34qc")
-region = Rect2(0, 83, 72, 83)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_hv1wp"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nhh1g")
-}],
-"loop": true,
-"name": &"moonetenGenerator",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ad2mp")
-}],
-"loop": true,
-"name": &"moonetenStorage",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tprn0")
-}],
-"loop": true,
-"name": &"moonstoneGenerator",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u17np")
-}],
-"loop": true,
-"name": &"moonstoneStorage",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8u80g")
-}],
-"loop": true,
-"name": &"shopPlay",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://bqpdqveuisbci" path="res://Welt/Buildings/building.tres" id="2_qk0k0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kaxb7"]
 
@@ -78,44 +15,43 @@ animations = [{
 script = ExtResource("1_sjs5k")
 
 [node name="icon" type="AnimatedSprite2D" parent="."]
-position = Vector2(4.59376, 1.90735e-06)
 scale = Vector2(0.721983, 0.554217)
-sprite_frames = SubResource("SpriteFrames_hv1wp")
-animation = &"moonetenStorage"
+sprite_frames = ExtResource("2_qk0k0")
+animation = &"moonetenGenerator"
 
 [node name="MoonetenGeneratorButton" type="Button" parent="."]
 visible = false
-offset_left = -29.0
-offset_top = -23.0
-offset_right = 39.0
-offset_bottom = 22.0
+offset_left = -40.0
+offset_top = -28.0
+offset_right = 40.0
+offset_bottom = 36.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kaxb7")
 flat = true
 
 [node name="MoonetenStorageButton" type="Button" parent="."]
 visible = false
-offset_left = -20.0
-offset_top = -16.0
-offset_right = 28.0
-offset_bottom = 24.0
+offset_left = -40.0
+offset_top = -28.0
+offset_right = 40.0
+offset_bottom = 36.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_608ix")
 flat = true
 
 [node name="MoonstoneGeneratorButton" type="Button" parent="."]
 visible = false
-offset_left = -26.0
-offset_top = -13.0
-offset_right = 22.0
-offset_bottom = 19.0
+offset_left = -40.0
+offset_top = -28.0
+offset_right = 40.0
+offset_bottom = 36.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_xjkiy")
 flat = true
 
 [node name="MoonstoneStorageButton" type="Button" parent="."]
 visible = false
-offset_left = -27.0
-offset_top = -20.0
-offset_right = 31.0
-offset_bottom = 23.0
+offset_left = -40.0
+offset_top = -28.0
+offset_right = 40.0
+offset_bottom = 36.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8n4sj")
 flat = true
 

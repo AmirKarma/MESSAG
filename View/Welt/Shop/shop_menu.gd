@@ -11,7 +11,7 @@ extends Control
 @onready var moonstone_amount:Label = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/Panel/HBoxContainer/Panel2/HBoxContainer/Moonstone_amount
 @onready var buttons:Control = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/button
 @onready var buy_button:Button = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/button/buy_button
-@onready var mooneten_img:Sprite2D = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/HBoxContainer/HSplitContainer2/Coin
+@onready var mooneten_img:Sprite2D = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/HBoxContainer/HSplitContainer2/Moonete
 @onready var moonstone_img:Sprite2D = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/HBoxContainer/HSplitContainer2/Moonstone
 @onready var player:CharacterBody2D = get_node("/root/World/Player")
 
@@ -196,10 +196,13 @@ func set_is_bought(card_index:int):
 # Description: Checks if the player has enough Mooneten to purchase a building with the given price.
 # Returns: True if the player can purchase, otherwise false.
 func can_purchase(price) -> bool:
-	return DataScript.getMooneten() >= price
+	if need_mooneten:
+		return DataScript.getMooneten() >= price 
+	elif need_moonstone:
+		return DataScript.getMoonstone() >= price
+	else:
+		return false
 
-# Function: set_mooneten
-# Description: Removes the Mooneten cost of the building at the given card_index from the player's resources.
 func set_mooneten(card_index:int):
 	var building_data = DataScript.shop_data
 	DataScript.removeMooneten(building_data[card_index]["price"])

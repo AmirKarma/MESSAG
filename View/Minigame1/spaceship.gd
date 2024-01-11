@@ -35,9 +35,11 @@ func _ready():
 	timer1 = Timer.new()
 	add_child(timer1)
 	timer1.wait_time = 3
+	timer1.timeout.connect(playerCollisionRespawn)
+	
 
 # Process function for handling user input
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_pressed("schuss"):
 		
 		if !shot_cooldown:
@@ -85,7 +87,7 @@ func respawn(pos):
 		velocity = Vector2.ZERO
 		sprite.visible = true
 		timer1.start()
-		timer1.timeout.connect(playerCollisionRespawn)
+		
 
 # Function to handle respawn after a collision
 func playerCollisionRespawn():

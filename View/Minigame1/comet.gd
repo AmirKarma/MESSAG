@@ -3,10 +3,10 @@ class_name Comet extends Area2D
 signal destroyed(position, size)
 
 var movement_vector := Vector2(0, -1)
-var comet_speed := 30
-var comet_speed_large = randf_range(20,30)
-var comet_speed_medium = randf_range(35,45)
-var comet_speed_small = randf_range(50,60)
+var comet_speed : float = 30
+var comet_speed_large : float = randf_range(20,30)
+var comet_speed_medium : float = randf_range(35,45)
+var comet_speed_small : float = randf_range(50,60)
 
 @onready var comet_sprite = $Sprite2D
 @onready var comet_hitbox = $CollisionShape2D

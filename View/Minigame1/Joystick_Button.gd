@@ -22,7 +22,8 @@ func _process(delta):
 		if get_global_mouse_position().distance_to(parent.global_position) <= maxlength:
 			global_position = get_global_mouse_position()
 		else:
-			var angle = parent.global_position.angle_to_point(get_global_mouse_position())
+			pass
+			#var angle = parent.global_position.angle_to_point(get_global_mouse_position())
 			
 		Input.is_action_pressed("links")
 		Input.is_action_pressed("rechts")

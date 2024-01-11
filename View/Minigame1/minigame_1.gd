@@ -14,7 +14,7 @@ extends Node2D
 
 # Timer variable for comet spawning
 var comet_spawn_timer
-var spawn_time := 10
+var spawn_time : float = 10
 
 # Factor for Score to add on Comet destruction
 var score_to_comet_factor := 0.1
@@ -32,7 +32,7 @@ func _ready():
 	# Initialize score and lives
 	score = 0
 	lives = 3
-
+	
 	# Set up and start the timer for comet spawning
 	comet_spawn_timer = Timer.new()
 	add_child(comet_spawn_timer)
@@ -43,13 +43,15 @@ func _ready():
 	# Connect signals for player events
 	player.connect("cannon_shot", _player_shoot)
 	player.connect("player_dead", _player_dies)
+	
+	for i in range(2):
+		new_comet()
 
-	# Connect signals for comet destruction
-	for comet in comets.get_children():
-		comet.connect("destroyed", _comet_destroyed)
+	
+	
 
 # Process function called every frame
-func _process(delta):
+func _process(_delta):
 	# Check for debug input to return to the main game
 	if Input.is_action_just_pressed("debug"):
 		var maingame = load("res://Welt/world.tscn").instantiate()
@@ -94,22 +96,22 @@ func _player_shoot(shot):
 	cannon.add_child(shot)
 
 # Function called when a comet is destroyed
-func _comet_destroyed(position, size, points):
+func _comet_destroyed(com_position, size, points):
 	# Update the score and spawn new comets based on the destroyed comet's size
 	score += points
 	for i in range(2):
 		match size:
 			Comet.CometSize.LARGE:
-				spawn_comet(position, Comet.CometSize.MEDIUM)
+				spawn_comet(com_position, Comet.CometSize.MEDIUM)
 			Comet.CometSize.MEDIUM:
-				spawn_comet(position, Comet.CometSize.SMALL)
+				spawn_comet(com_position, Comet.CometSize.SMALL)
 			Comet.CometSize.SMALL:
 				pass
 
 # Function to spawn a comet at a given position and size
-func spawn_comet(position, size):
+func spawn_comet(spawn_position, size):
 	var comet = comet_scene.instantiate()
-	comet.global_position = position
+	comet.global_position = spawn_position
 	comet.size = size
 	comet.connect("destroyed", _comet_destroyed)
 	comets.call_deferred("add_child", comet)
@@ -118,7 +120,7 @@ func spawn_comet(position, size):
 func new_comet():
 	var comet = comet_scene.instantiate()
 	comet.connect("destroyed", _comet_destroyed)
-	comets.call_deferred("add_child", comet)
-	add_child(comet)
+	#comets.call_deferred("add_child", comet)
+	comets.add_child(comet)
 	spawn_time = spawn_time * 0.9
 	comet_spawn_timer.start()

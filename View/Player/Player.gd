@@ -68,18 +68,19 @@ var standart_position:Vector2 = Vector2(0,0)
 # setting the pattern, and initiating movement. If the camera is not at the standard zoom,
 # resets the camera.
 func _unhandled_input(event):
-	if camera.zoom == standart_camerazoom:
-		if event.is_action_pressed('Click'):
-			$Camera2D/HUD/Inventory.visible = false
-			set_free_field_pressed()
-			free_field_distance_check()
-			if !stand_still:
-				set_pattern()
-				moving = true
-				nav.target_position = get_global_mouse_position()
-				animationState.travel("Run")
-	else:
-		reset_camera()
+	if !DataScript.is_in_building_menu:
+		if camera.zoom == standart_camerazoom:
+			if event.is_action_pressed('Click'):
+				$Camera2D/HUD/Inventory.visible = false
+				set_free_field_pressed()
+				free_field_distance_check()
+				if !stand_still:
+					set_pattern()
+					moving = true
+					nav.target_position = get_global_mouse_position()
+					animationState.travel("Run")
+		else:
+			reset_camera()
 
 # Function: reset_camera
 # Description: Resets the camera properties to default values, makes the HUD visible,

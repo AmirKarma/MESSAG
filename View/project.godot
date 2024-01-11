@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Softwaretechnik"
+config/name="MESSAG"
 run/main_scene="res://Welt/Start_Menue/start_menue.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="MESSAG"

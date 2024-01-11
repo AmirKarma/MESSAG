@@ -49,6 +49,7 @@ func _on_close_button_pressed():
 # Function: hide_optionbar
 # Description: Hides the option bar, enables player processes, and makes HUD visible.
 func hide_optionbar():
+	DataScript.is_in_building_menu = false
 	self.visible = false
 	player.set_process(true)
 	player.set_physics_process(true)
@@ -59,6 +60,7 @@ func hide_optionbar():
 # Handles visibility of buttons, plays scenes if applicable, and checks upgrade eligibility.
 func set_optionbar(positon : Vector2,id:int):
 	self.position = positon
+	DataScript.is_in_building_menu = true
 	building_id = id
 	building_name.text = DataScript.fieldArray[id][name_index]
 	if DataScript.fieldArray[building_id][game_path_index] == "":

@@ -26,6 +26,7 @@ func building_distance(building:Node2D):
 # Function: open_optionbar
 # Description: Opens the option bar for a specific building.
 func open_optionbar(id:int):
+	DataScript.is_in_building_menu = true
 	var optionbar_pos = player.get_node("Camera2D").get_screen_center_position() - get_viewport_rect().size / 2
 	optionbar.set_optionbar(optionbar_pos,id)
 	optionbar.set_visible(true)

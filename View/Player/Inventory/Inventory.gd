@@ -28,8 +28,6 @@ func _ready():
 func set_inventory():
 	reset_inventory()
 	
-	DataScript.is_in_building_menu = true
-	
 	building_card.visible = true
 	var shop_data = DataScript.shop_data
 	if !DataScript.inventory.is_empty():

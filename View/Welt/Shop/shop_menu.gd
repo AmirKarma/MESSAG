@@ -35,8 +35,6 @@ func _ready():
 func set_shop():
 	reset_shop()
 	
-	DataScript.is_in_building_menu = true
-	
 	building_card.visible = true
 	var building_data = DataScript.shop_data.duplicate(true)
 	building_data.reverse()
@@ -60,11 +58,11 @@ func reset_shop():
 # and adds a duplicate of the building card.
 func set_building_data(building_id:int,buidling_name: String, price: String,is_bougth:bool):
 	building_name.text = buidling_name
+	needed_ressource_check(building_id)
 	set_building_button(buidling_name,is_bougth,int(price))
 	set_building_price(price)
 	set_building_count(building_id,is_bougth)
 	set_building_image(building_id)
-	needed_ressource_check(building_id)
 	set_ressource_img()
 	building_card.add_sibling(building_card.duplicate())
 	need_mooneten  = false

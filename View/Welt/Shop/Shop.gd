@@ -32,6 +32,7 @@ func building_distance():
 # Function: open_shop
 # Description: Opens the shop menu. Calculates the position of the shop menu relative to the player's camera.
 func open_shop():
+	DataScript.is_in_building_menu = true
 	var optionbar_pos = player.get_node("Camera2D").get_screen_center_position() - get_viewport_rect().size / 2
 	shop_menu.set_shop()
 	shop_menu.position = optionbar_pos

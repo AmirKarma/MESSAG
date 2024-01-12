@@ -60,7 +60,6 @@ func hide_optionbar():
 # Handles visibility of buttons, plays scenes if applicable, and checks upgrade eligibility.
 func set_optionbar(positon : Vector2,id:int):
 	self.position = positon
-	DataScript.is_in_building_menu = true
 	building_id = id
 	building_name.text = DataScript.fieldArray[id][name_index]
 	if DataScript.fieldArray[building_id][game_path_index] == "":

@@ -160,6 +160,7 @@ func open_menu(value):
 	buildingIndex = getBuildingIndex(fieldIndex)[0]
 	print(fieldIndex)
 	if buildingIndex == -1:
+		DataScript.is_in_building_menu = true
 		$Camera2D/HUD/Inventory.set_inventory()
 		$Camera2D/HUD/Inventory.visible = true
 

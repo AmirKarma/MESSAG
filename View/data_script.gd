@@ -135,13 +135,19 @@ func set_building(field_index:int,building:Array):
 	fieldArray[field_index] = building
 	saveFieldData()
 
+# Function: remove_building
+# Description: Rmoves the data for a building at a specific field index and saves field data.
+func remove_building(field_index:int):
+	fieldArray[field_index] = [-1]
+	saveFieldData()
+
 # Function: set_inventory
 # Description: Sets the inventory data for a building at a specific building index.
-func set_inventory(building_index:int,building_name:String,upgrade_costs:Array,image:String,game_path:String, building_ressource_amount:int, storage_size:Array):
+func set_inventory(building_index:int,building_name:String,building_level:int, upgrade_costs:Array,image:String,game_path:String, building_ressource_amount:int, storage_size:Array):
 	var building := []
 	building.append(building_index)
 	building.append(building_name)
-	building.append(1)#building level
+	building.append(building_level)#building level
 	building.append(upgrade_costs)
 	building.append(image)
 	building.append(game_path)

@@ -13,6 +13,9 @@ extends Control
 @onready var upgrade_warning:Panel = $optionbar_rect/buttons_rect/buttons/Upgrade_warning
 @onready var mooneten_img:Sprite2D = $optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HBoxContainer/Mooneten
 @onready var moonstone_img:Sprite2D = $optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HBoxContainer/Moonstone
+@onready var confirm_button2:Button = $optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HSplitContainer/confirm_button2
+@onready var warn_lable:Label = $optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HBoxContainer/warn_lable
+@onready var cancel_button2:Button = $optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HSplitContainer/cancel_button2
 @onready var player:CharacterBody2D = get_node("/root/World/Player")
 var optionbar_rect_size:Vector2
 var building_image_pos:Vector2
@@ -252,6 +255,7 @@ func set_bars():
 func reset_buttons():
 	$optionbar_rect/buttons_rect/buttons.visible = true
 	$optionbar_rect/buttons_rect/CenterContainer.visible = false
+	$optionbar_rect/buttons_rect/CenterContainer2.visible = false
 	confirm_button.modulate = Color.WHITE
 	confirm_button.disabled = false
 	upgrade_button.modulate = Color.WHITE
@@ -302,6 +306,15 @@ func _on_collect_button_pressed():
 # Description: Handles the event when the remove button is pressed for a specific building.
 # Checks the building type and updates resource amounts accordingly.
 func _on_remove_button_pressed():
+	$optionbar_rect/buttons_rect/buttons.visible = false
+	$optionbar_rect/buttons_rect/CenterContainer2.visible = true
+
+
+func _on_cancel_button_2_pressed():
+	reset_buttons()
+
+
+func _on_confirm_button_2_pressed():
 	if DataScript.fieldArray[building_id][building_type] == DataScript.moonetenGenerator:
 		DataScript.set_inventory(DataScript.moonetenGenerator,"Moonetengenerator", DataScript.fieldArray[building_id][level_index],DataScript.generators_upgrade_costs,"moonetenGenerator","res://Minigame2/minigame2.tscn", 0, DataScript.generators_max_storage_size)
 		DataScript.remove_building(building_id)
@@ -321,3 +334,4 @@ func _on_remove_button_pressed():
 		if DataScript.getMooneten() > DataScript.maxMoonetenStorage:
 			DataScript.setMooneten(DataScript.maxMoonetenStorage)
 	hide_optionbar()
+	reset_buttons()

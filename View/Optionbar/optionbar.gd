@@ -304,16 +304,19 @@ func _on_collect_button_pressed():
 
 # Function: _on_remove_button_pressed
 # Description: Handles the event when the remove button is pressed for a specific building.
-# Checks the building type and updates resource amounts accordingly.
 func _on_remove_button_pressed():
 	$optionbar_rect/buttons_rect/buttons.visible = false
 	$optionbar_rect/buttons_rect/CenterContainer2.visible = true
 
-
+# Function: _on_cancel_button_2_pressed
+# Description: Handles the event when the cancel button is pressed.
+# Calls the reset_buttons function.
 func _on_cancel_button_2_pressed():
 	reset_buttons()
 
-
+# Function: _on_confirm_button_2_pressed
+# Description: Handles the event when the confirm button is pressed.
+# Places building in inventory and updates UI elements.
 func _on_confirm_button_2_pressed():
 	if DataScript.fieldArray[building_id][building_type] == DataScript.moonetenGenerator:
 		DataScript.set_inventory(DataScript.moonetenGenerator,"Moonetengenerator", DataScript.fieldArray[building_id][level_index],DataScript.generators_upgrade_costs,"moonetenGenerator","res://Minigame2/minigame2.tscn", 0, DataScript.generators_max_storage_size)

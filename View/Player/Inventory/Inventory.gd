@@ -27,6 +27,7 @@ func _ready():
 # and populating it with data from the inventory and shop_data.
 func set_inventory():
 	reset_inventory()
+	
 	building_card.visible = true
 	var shop_data = DataScript.shop_data
 	if !DataScript.inventory.is_empty():
@@ -108,4 +109,5 @@ func set_building_button(inventory_index:int):
 # Description: Handles the event when the close button is pressed.
 # Hides the container.
 func _on_close_button_pressed():
+	DataScript.is_in_building_menu = false
 	visible = false

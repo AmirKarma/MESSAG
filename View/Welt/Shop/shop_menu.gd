@@ -34,6 +34,7 @@ func _ready():
 # Description: Sets up the shop by resetting it, populating it with building data, and updating resource amounts.
 func set_shop():
 	reset_shop()
+	
 	building_card.visible = true
 	var building_data = DataScript.shop_data.duplicate(true)
 	building_data.reverse()
@@ -57,11 +58,11 @@ func reset_shop():
 # and adds a duplicate of the building card.
 func set_building_data(building_id:int,buidling_name: String, price: String,is_bougth:bool):
 	building_name.text = buidling_name
+	needed_ressource_check(building_id)
 	set_building_button(buidling_name,is_bougth,int(price))
 	set_building_price(price)
 	set_building_count(building_id,is_bougth)
 	set_building_image(building_id)
-	needed_ressource_check(building_id)
 	set_ressource_img()
 	building_card.add_sibling(building_card.duplicate())
 	need_mooneten  = false
@@ -145,7 +146,7 @@ func set_building_button(buidling_name: String,is_bought:bool,price:int):
 func _on_Moonetengenerator_button_pressed():
 	var building_data = DataScript.shop_data
 	if DataScript.getMoonstone() >= building_data[DataScript.MOONETEN_GENERATOR_CARD]["price"]:
-		DataScript.set_inventory(DataScript.moonetenGenerator,"Moonetengenerator",DataScript.generators_upgrade_costs,"moonetenGenerator","res://Minigame2/minigame2.tscn", 0, DataScript.generators_max_storage_size)
+		DataScript.set_inventory(DataScript.moonetenGenerator,"Moonetengenerator", 1,DataScript.generators_upgrade_costs,"moonetenGenerator","res://Minigame2/minigame2.tscn", 0, DataScript.generators_max_storage_size)
 		set_moonstone(DataScript.MOONETEN_GENERATOR_CARD)
 		set_is_bought(DataScript.MOONETEN_GENERATOR_CARD)
 		set_shop()
@@ -157,7 +158,7 @@ func _on_Moonetengenerator_button_pressed():
 func _on_Moonetenstorage_button_pressed():
 	var building_data = DataScript.shop_data
 	if DataScript.getMoonstone() >= building_data[DataScript.MOONETEN_STORAGE_CARD]["price"]:
-		DataScript.set_inventory(DataScript.moonetenStorage,"Moonetenstorage",DataScript.storage_upgrade_costs,"moonetenStorage","", 0, DataScript.storage_max_storage_size)
+		DataScript.set_inventory(DataScript.moonetenStorage,"Moonetenstorage",1,DataScript.storage_upgrade_costs,"moonetenStorage","", 0, DataScript.storage_max_storage_size)
 		set_moonstone(DataScript.MOONETEN_STORAGE_CARD)
 		set_is_bought(DataScript.MOONETEN_STORAGE_CARD)
 		set_shop()
@@ -169,7 +170,7 @@ func _on_Moonetenstorage_button_pressed():
 func _on_Moonstonegenerator_button_pressed():
 	var building_data = DataScript.shop_data
 	if DataScript.getMooneten() >= building_data[DataScript.MOONSTONE_GENERATOR_CARD]["price"]:
-		DataScript.set_inventory(DataScript.moonstoneGenerator,"Moonstonegenerator",DataScript.generators_upgrade_costs,"moonstoneGenerator","", 0, DataScript.generators_max_storage_size)
+		DataScript.set_inventory(DataScript.moonstoneGenerator,"Moonstonegenerator",1,DataScript.generators_upgrade_costs,"moonstoneGenerator","", 0, DataScript.generators_max_storage_size)
 		set_mooneten(DataScript.MOONSTONE_GENERATOR_CARD)
 		set_is_bought(DataScript.MOONSTONE_GENERATOR_CARD)
 		set_shop()
@@ -181,7 +182,7 @@ func _on_Moonstonegenerator_button_pressed():
 func _on_Moonstonestorage_button_pressed():
 	var building_data = DataScript.shop_data
 	if DataScript.getMooneten() >= building_data[DataScript.MOONSTONE_STORAGE_CARD]["price"]:
-		DataScript.set_inventory(DataScript.moonstoneStorage,"Moonstonestorage",DataScript.storage_upgrade_costs,"moonstoneStorage","", 0, DataScript.storage_max_storage_size)
+		DataScript.set_inventory(DataScript.moonstoneStorage,"Moonstonestorage",1,DataScript.storage_upgrade_costs,"moonstoneStorage","", 0, DataScript.storage_max_storage_size)
 		set_mooneten(DataScript.MOONSTONE_STORAGE_CARD)
 		set_is_bought(DataScript.MOONSTONE_STORAGE_CARD)
 		set_shop()
@@ -227,10 +228,12 @@ func set_card_enabled():
 # Function: _on_close_button_pressed
 # Description: Called when the close button is pressed. Hides the building card, enables player processes, and makes HUD visible.
 func _on_close_button_pressed():
+	DataScript.is_in_building_menu = false
 	visible = false
 	player.set_process(true)
 	player.set_physics_process(true)
 	player.get_node("Camera2D/HUD").visible = true
+	
 
 # Function: needed_ressource_check
 # Description: Checks the building type and sets the appropriate resource requirements.

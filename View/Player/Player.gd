@@ -61,6 +61,12 @@ var standart_position:Vector2 = Vector2(0,0)
 @onready var map : TileMap = world.get_node('TileMap')
 @onready var camera:Camera2D = $Camera2D
 @onready var hud:CanvasLayer = get_node("/root/World/Player/Camera2D/HUD")
+@onready var resourceBar:Control = get_node("/root/World/Player/Camera2D/HUD/RessourceBar")
+@onready var mapButton:TextureButton = get_node("/root/World/Player/Camera2D/HUD/showMap")
+
+var mapShowPressed: bool = false
+var showMapTexture: Resource = load("res://Player/mapShow.png")
+var exitMapTexture: Resource = load("res://Player/mapExit.png")
 
 # Function: _unhandled_input
 # Description: Handles unhandled input events. If the camera zoom is at the standard value,
@@ -68,26 +74,27 @@ var standart_position:Vector2 = Vector2(0,0)
 # setting the pattern, and initiating movement. If the camera is not at the standard zoom,
 # resets the camera.
 func _unhandled_input(event):
-	if camera.zoom == standart_camerazoom:
-		if event.is_action_pressed('Click'):
-			$Camera2D/HUD/Inventory.visible = false
-			set_free_field_pressed()
-			free_field_distance_check()
-			if !stand_still:
-				set_pattern()
-				moving = true
-				nav.target_position = get_global_mouse_position()
-				animationState.travel("Run")
-	else:
-		reset_camera()
+	if !DataScript.is_in_building_menu:
+		if camera.zoom == standart_camerazoom:
+			if event.is_action_pressed('Click'):
+				$Camera2D/HUD/Inventory.visible = false
+				set_free_field_pressed()
+				free_field_distance_check()
+				if !stand_still:
+					set_pattern()
+					moving = true
+					nav.target_position = get_global_mouse_position()
+					animationState.travel("Run")
+		else:
+			reset_camera()
 
 # Function: reset_camera
-# Description: Resets the camera properties to default values, makes the HUD visible,
+# Description: Resets the camera properties to default values, makes the resource bar visible,
 # and sets the modulate color to white.
 func reset_camera():
 	camera.zoom = standart_camerazoom
 	camera.position = standart_position
-	hud.visible = true
+	resourceBar.visible = true
 	modulate = Color.WHITE
 
 # Function: set_pattern
@@ -159,6 +166,7 @@ func open_menu(value):
 	buildingIndex = getBuildingIndex(fieldIndex)[0]
 	print(fieldIndex)
 	if buildingIndex == -1:
+		DataScript.is_in_building_menu = true
 		$Camera2D/HUD/Inventory.set_inventory()
 		$Camera2D/HUD/Inventory.visible = true
 
@@ -166,6 +174,7 @@ func open_menu(value):
 # Description: Places a building at the specified field index and updates the inventory.
 # Hides the inventory menu after placing the building and updates the maximum resources.
 func place_building(bIndex:int):
+	DataScript.is_in_building_menu = false
 	$Camera2D/HUD/Inventory.visible = false
 	DataScript.set_building(fieldIndex,DataScript.inventory[bIndex])
 	DataScript.inventory.remove_at(bIndex)
@@ -258,3 +267,14 @@ func getBuildingIndex(value):
 func player_shop_method():
 	pass
 
+func _on_showMap_button_pressed():
+	mapShowPressed = not mapShowPressed
+	if mapShowPressed :
+		mapButton.texture_normal = exitMapTexture
+		resourceBar.visible = false
+		self.modulate = Color.RED
+		camera.zoom = Vector2(0.18,0.2)
+		camera.position = Vector2(248,160) - self.position
+	else : 
+		reset_camera()
+		mapButton.texture_normal = showMapTexture

@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://vs86hwyi0bag"]
 
-[ext_resource type="Script" path="res://Welt/Shop/shop.gd" id="1_eaf0x"]
+[ext_resource type="Script" path="res://Welt/Shop/Shop.gd" id="1_xowjy"]
 [ext_resource type="PackedScene" uid="uid://dbs0inmxq5m68" path="res://Welt/Shop/shop_menu.tscn" id="3_8bu4q"]
 [ext_resource type="Texture2D" uid="uid://4stqf23dv5n2" path="res://Welt/Shop/Shopkeeper_Spritesheet.png" id="4_76gy3"]
 
@@ -64,7 +64,7 @@ animations = [{
 }]
 
 [node name="Shop" type="Node2D"]
-script = ExtResource("1_eaf0x")
+script = ExtResource("1_xowjy")
 
 [node name="OptionButton" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)

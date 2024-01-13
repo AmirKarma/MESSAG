@@ -174,6 +174,7 @@ func open_menu(value):
 # Description: Places a building at the specified field index and updates the inventory.
 # Hides the inventory menu after placing the building and updates the maximum resources.
 func place_building(bIndex:int):
+	DataScript.is_in_building_menu = false
 	$Camera2D/HUD/Inventory.visible = false
 	DataScript.set_building(fieldIndex,DataScript.inventory[bIndex])
 	DataScript.inventory.remove_at(bIndex)

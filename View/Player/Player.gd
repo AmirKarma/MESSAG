@@ -61,6 +61,12 @@ var standart_position:Vector2 = Vector2(0,0)
 @onready var map : TileMap = world.get_node('TileMap')
 @onready var camera:Camera2D = $Camera2D
 @onready var hud:CanvasLayer = get_node("/root/World/Player/Camera2D/HUD")
+@onready var resourceBar:Control = get_node("/root/World/Player/Camera2D/HUD/RessourceBar")
+@onready var mapButton:TextureButton = get_node("/root/World/Player/Camera2D/HUD/showMap")
+
+var mapShowPressed: bool = false
+var showMapTexture: Resource = load("res://Player/mapShow.png")
+var exitMapTexture: Resource = load("res://Player/mapExit.png")
 
 # Function: _unhandled_input
 # Description: Handles unhandled input events. If the camera zoom is at the standard value,
@@ -83,12 +89,12 @@ func _unhandled_input(event):
 			reset_camera()
 
 # Function: reset_camera
-# Description: Resets the camera properties to default values, makes the HUD visible,
+# Description: Resets the camera properties to default values, makes the resource bar visible,
 # and sets the modulate color to white.
 func reset_camera():
 	camera.zoom = standart_camerazoom
 	camera.position = standart_position
-	hud.visible = true
+	resourceBar.visible = true
 	modulate = Color.WHITE
 
 # Function: set_pattern
@@ -260,3 +266,14 @@ func getBuildingIndex(value):
 func player_shop_method():
 	pass
 
+func _on_showMap_button_pressed():
+	mapShowPressed = not mapShowPressed
+	if mapShowPressed :
+		mapButton.texture_normal = exitMapTexture
+		resourceBar.visible = false
+		self.modulate = Color.RED
+		camera.zoom = Vector2(0.18,0.2)
+		camera.position = Vector2(248,160) - self.position
+	else : 
+		reset_camera()
+		mapButton.texture_normal = showMapTexture

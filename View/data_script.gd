@@ -473,8 +473,8 @@ func setMaxRessources():
 # Description: Resets various game-related statistics to their initial values.
 func resetStats():
 	firstGame = true
-	mooneten = 0
-	moonstone = 0
+	mooneten = 1000
+	moonstone = 1000
 	unixLastTime = Time.get_unix_time_from_system()
 	minigame2_highscore = 0
 	minigame_one_highscore = 0

@@ -136,6 +136,7 @@ func disable_upgrade_button():
 # Description: Handles the event when the play 1 button is pressed.
 # Changes the scene to the specified game scene.
 func _on_play_1_button_pressed():
+	DataScript.is_in_building_menu = false
 	get_tree().change_scene_to_file(game_scene)
 
 # Function: _on_upgrade_button_pressed

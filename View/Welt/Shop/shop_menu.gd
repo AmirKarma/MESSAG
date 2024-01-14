@@ -146,7 +146,7 @@ func set_building_button(buidling_name: String,is_bought:bool,price:int):
 func _on_Moonetengenerator_button_pressed():
 	var building_data = DataScript.shop_data
 	if DataScript.getMoonstone() >= building_data[DataScript.MOONETEN_GENERATOR_CARD]["price"]:
-		DataScript.set_inventory(DataScript.moonetenGenerator,"Moonetengenerator", 1,DataScript.generators_upgrade_costs,"moonetenGenerator","res://Minigame2/minigame2.tscn", 0, DataScript.generators_max_storage_size)
+		DataScript.set_inventory(DataScript.moonetenGenerator,"Moonetengenerator",1,DataScript.generators_upgrade_costs,"moonetenGenerator","res://Minigame2/Scenes/minigame2.tscn", 0, DataScript.generators_max_storage_size)
 		set_moonstone(DataScript.MOONETEN_GENERATOR_CARD)
 		set_is_bought(DataScript.MOONETEN_GENERATOR_CARD)
 		set_shop()

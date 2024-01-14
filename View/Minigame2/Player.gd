@@ -76,7 +76,7 @@ func _on_area_2d_area_entered(area):
 	
 func _score2Moonstone():
 	# Add Score * Factor to Comet. 
-	if (DataScript.getMoonstone() + DataScript.getMinigame2_score() * score_to_moonstone_factor) <= DataScript.maxMoonstoneStorageetenStorage:
+	if (DataScript.getMoonstone() + DataScript.getMinigame2_score() * score_to_moonstone_factor) <= DataScript.maxMoonstoneStorage:
 		DataScript.addMoonstone(DataScript.getMinigame2_score() * score_to_moonstone_factor)
 	else:
 		DataScript.setMoonstone(DataScript.maxMoonstoneStorage)

@@ -85,9 +85,3 @@ func _on_touch_on_off_button_down():
 func _on_touch_on_off_button_up():
 	pressed = false
 
-
-
-
-
-
-

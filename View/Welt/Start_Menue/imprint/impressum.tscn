@@ -1,12 +1,13 @@
-[gd_scene load_steps=30 format=3 uid="uid://dv6ip25omgyd4"]
+[gd_scene load_steps=31 format=3 uid="uid://dv6ip25omgyd4"]
 
 [ext_resource type="Script" path="res://Welt/Start_Menue/imprint/impressum.gd" id="1_6d73a"]
 [ext_resource type="Texture2D" uid="uid://dbh5uk0ytof32" path="res://Welt/Background/Terrain_Ecken.png" id="2_47eev"]
+[ext_resource type="Texture2D" uid="uid://c2pmgkw7lkrrc" path="res://Images/MESSAG_.png" id="2_h7xhy"]
 [ext_resource type="Texture2D" uid="uid://ddhd05dwexuff" path="res://Welt/Background/Terrain_Grau.png" id="3_xsd3d"]
 [ext_resource type="Texture2D" uid="uid://3s6ye2qf1hou" path="res://Welt/Background/Krater_Grau.png" id="4_au0g2"]
 [ext_resource type="Texture2D" uid="uid://l6tk56uxldul" path="res://Welt/Start_Menue/imprint/image/GoBack.png" id="5_6abaq"]
-[ext_resource type="Texture2D" uid="uid://c24lsh16am6o0" path="res://Images/generatedtext.png" id="6_2weck"]
 [ext_resource type="Texture2D" uid="uid://blup8s04ergik" path="res://Minigame1/rocket.png" id="7_k2jkf"]
+[ext_resource type="Texture2D" uid="uid://bclj0a7q2347j" path="res://Images/names_.png" id="8_q7ibh"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_afsc4"]
 tile_data = PackedInt32Array(0, 2, 0, 65536, 2, 1, 1, 65538, 0, 65537, 65538, 1, 2, 131074, 0, 65538, 131074, 1)
@@ -174,6 +175,7 @@ outline_size = 1
 outline_color = Color(0.0470588, 0.0784314, 0.0235294, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_gwl8v"]
+font_size = 12
 font_color = Color(0, 0, 0, 1)
 
 [node name="Impressum" type="Control"]
@@ -182,14 +184,21 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 2.0
-offset_top = -6.0
+offset_top = -2.0
 offset_right = 2.0
-offset_bottom = -6.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6d73a")
 
+[node name="Messag" type="Sprite2D" parent="."]
+top_level = true
+position = Vector2(156, 28)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_h7xhy")
+
 [node name="TileMap" type="TileMap" parent="."]
+show_behind_parent = true
 position = Vector2(-2, 1)
 tile_set = SubResource("TileSet_3lmys")
 format = 2
@@ -200,11 +209,8 @@ position = Vector2(1, 9)
 scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("5_6abaq")
 
-[node name="Generatedtext" type="Sprite2D" parent="."]
-position = Vector2(189, 44)
-texture = ExtResource("6_2weck")
-
 [node name="Label" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 123.0
 offset_top = 58.0
@@ -219,10 +225,10 @@ label_settings = SubResource("LabelSettings_qa7p6")
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
-offset_left = 65.0
-offset_top = 54.0
-offset_right = 105.0
-offset_bottom = 80.0
+offset_left = 105.0
+offset_top = 53.0
+offset_right = 124.0
+offset_bottom = 79.0
 text = "by"
 label_settings = SubResource("LabelSettings_gwl8v")
 
@@ -230,5 +236,10 @@ label_settings = SubResource("LabelSettings_gwl8v")
 position = Vector2(45.25, 120)
 scale = Vector2(0.832031, 0.882812)
 texture = ExtResource("7_k2jkf")
+
+[node name="Names2" type="Sprite2D" parent="."]
+position = Vector2(220, 117)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_q7ibh")
 
 [connection signal="pressed" from="TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]

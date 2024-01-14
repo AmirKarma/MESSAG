@@ -73,7 +73,9 @@ func _on_area_2d_area_entered(area):
 	overlayPauseButton.visible = false
 	gameoverScreen.visible = true
 	_score2Moonstone()
-	
+
+# Function: _score2Moonstone
+# Description: Adds the product of Minigame2 score and a specified factor to the Moonstone resource, ensuring it does not exceed the maximum storage limit.	
 func _score2Moonstone():
 	# Add Score * Factor to Comet. 
 	if (DataScript.getMoonstone() + DataScript.getMinigame2_score() * score_to_moonstone_factor) <= DataScript.maxMoonstoneStorage:

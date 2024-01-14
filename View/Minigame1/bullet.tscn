@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opgdf"]
 size = Vector2(2, 21.5)
 
-[node name="Schuss" type="Area2D"]
+[node name="bullet" type="Area2D"]
 collision_layer = 8
 collision_mask = 5
 script = ExtResource("1_10dwa")

@@ -98,7 +98,7 @@ var fieldDataString := "user://fieldData.dat"
 # Declare last player position variable.
 var last_player_position: Vector2 = Vector2(168,131)
 
-#Declares the timer
+#Declares the timer.
 var timer:Timer
 
 # Function: _ready

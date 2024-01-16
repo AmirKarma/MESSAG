@@ -5,7 +5,7 @@ extends Control
 # Description: Disables the "Fortsetzen" button if it is the first time playing.
 func _ready():
 	if(DataScript.isPlayingFirstTime()):
-		$VBoxContainer/Fortsetzen.disabled = true
+		$VBoxContainer/Buttons/Fortsetzen.disabled = true
 
 # Function: _on_fortsetzen_pressed
 # Description: Initiates the main game scene if it is not the first time playing.

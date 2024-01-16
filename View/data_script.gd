@@ -484,7 +484,6 @@ func loadFieldData():
 # Function: addOfflineMooneten
 # Description: Adds mooneten resources based on the time the player was offline.
 # It calculates the offlineMooneten amount and distributes it among generators.
-# Players can earn up to 1000 mooneten while being offline.
 func addOfflineMooneten():
 	var diff = Time.get_unix_time_from_system() - getUnixLastTime()
 	diff = diff / 60
@@ -492,11 +491,6 @@ func addOfflineMooneten():
 	var offlineMooneten = diff * 5
 	if offlineMooneten > 1000:
 		offlineMooneten = 1000
-	if (getMooneten() + offlineMooneten) <= maxMoonetenStorage:	
-		addMooneten(offlineMooneten)
-	else:
-		setMooneten(maxMoonetenStorage)
-	
 	var ressourceAmount := 0
 	for n in range(0,14):
 		if fieldArray[n][building_type] == moonetenGenerator:

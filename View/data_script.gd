@@ -54,6 +54,10 @@ const game_path_index:int = 5
 const ressource_amount:int = 6
 const max_storage_size:int = 7
 
+# Variables for ressource indices of the field array.
+const mooneten_amount:int = 0
+const moonstone_amount:int = 1
+
 # Constans for shopelements.
 const MOONETEN_GENERATOR_CARD = 0
 const MOONSTONE_GENERATOR_CARD = 1
@@ -82,7 +86,7 @@ var shop_data: Array = [
 ]
 
 # Field array holds all the data of the buildings.
-var fieldArray := [[rocket,"Rocket",1,[100000,200000,400000],"","res://Minigame1/minigame_1.tscn", 0, [1000,2000,5000,10000]], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-2]]
+var fieldArray := [[rocket,"Rocket",1,[100000,200000,400000],"","res://Minigame1/minigame_1.tscn", [0, 0], [1000,2000,5000,10000]], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-2]]
 
 # Declare inventory array.
 var inventory:Array = []
@@ -91,11 +95,11 @@ var inventory:Array = []
 var ressourceBarDataString := "user://playerData.dat"
 var fieldDataString := "user://fieldData.dat"
 
-# Declare timer variable.
-var timer
-
 # Declare last player position variable.
 var last_player_position: Vector2 = Vector2(168,131)
+
+#Declares the timer.
+var timer:Timer
 
 # Function: _ready
 # Description: Called when the node is ready. Initializes and starts the timer, loads field and player data, and sets maximum resources.
@@ -108,25 +112,29 @@ func _ready():
 	loadFieldData()
 	setMaxRessources()
 	loadPlayerData()
+	updateStorageBuildingCapacity()
 
 # Function: _on_timeout_timer
 # Description: Called when the timeout timer expires. Adds new mooneten to the player's resources and updates buildings.
 func _on_timeout_timer():
 	var newMooneten := 10
 	var ressourceAmount := 0
-	if (getMooneten() + newMooneten) <= maxMoonetenStorage:
-		addMooneten(newMooneten)
-	else :
-		setMooneten(maxMoonetenStorage)
 	for n in range(0,14):
-		if fieldArray[n][building_type] == moonetenGenerator || fieldArray[n][building_type] == moonstoneGenerator:
+		if fieldArray[n][building_type] == moonetenGenerator:
 			newMooneten = fieldArray[n][level_index] * newMooneten
-			if fieldArray[n][ressource_amount] <= fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1] - newMooneten:
-				ressourceAmount = fieldArray[n][ressource_amount] + newMooneten
+			if fieldArray[n][ressource_amount][mooneten_amount] <= fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1] - newMooneten:
+				ressourceAmount = fieldArray[n][ressource_amount][mooneten_amount] + newMooneten
 			else:
 				ressourceAmount = fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
-			edit_building(n, ressource_amount, ressourceAmount)
-			newMooneten = 10
+			fieldArray[n][ressource_amount][mooneten_amount] = ressourceAmount
+		elif fieldArray[n][building_type] == moonstoneGenerator:
+			newMooneten = fieldArray[n][level_index] * newMooneten
+			if fieldArray[n][ressource_amount][moonstone_amount] <= fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1] - newMooneten:
+				ressourceAmount = fieldArray[n][ressource_amount][moonstone_amount] + newMooneten
+			else:
+				ressourceAmount = fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
+			fieldArray[n][ressource_amount][moonstone_amount] = ressourceAmount
+		newMooneten = 10
 	timer.start()
 
 # Function: set_building
@@ -143,7 +151,7 @@ func remove_building(field_index:int):
 
 # Function: set_inventory
 # Description: Sets the inventory data for a building at a specific building index.
-func set_inventory(building_index:int,building_name:String, building_level:int,upgrade_costs:Array,image:String,game_path:String, building_ressource_amount:int, storage_size:Array):
+func set_inventory(building_index:int,building_name:String, building_level:int,upgrade_costs:Array,image:String,game_path:String, building_ressource_amount:Array, storage_size:Array):
 	var building := []
 	building.append(building_index)
 	building.append(building_name)
@@ -214,6 +222,7 @@ func update_shop_data(shop_id, new_price):
 func setMooneten(value):
 	mooneten = value
 	savePlayerData()
+	updateStorageBuildingCapacity()
 
 # Function: getMooneten
 # Description: Getter function for the mooneten variable.
@@ -228,6 +237,7 @@ func getMooneten():
 func addMooneten(value):
 	mooneten = mooneten + value
 	savePlayerData()
+	updateStorageBuildingCapacity()
 
 # Function: removeMooneten
 # Description: Subtracts the specified value from the mooneten variable and saves player data.
@@ -236,6 +246,7 @@ func addMooneten(value):
 func removeMooneten(value):
 	mooneten = mooneten - value
 	savePlayerData()
+	updateStorageBuildingCapacity()
 
 # Function: setUnixLastTime
 # Description: Setter function for the unixLastTime variable.
@@ -258,6 +269,7 @@ func getUnixLastTime():
 func setMoonstone(value):
 	moonstone = value
 	savePlayerData()
+	updateStorageBuildingCapacity()
 
 # Function: getMoonstone
 # Description: Getter function for the moonstone variable.
@@ -272,6 +284,7 @@ func getMoonstone():
 func addMoonstone(value):
 	moonstone = moonstone + value
 	savePlayerData()
+	updateStorageBuildingCapacity()
 
 # Function: removeMoonstone
 # Description: Subtracts the specified value from the moonstone variable and saves player data.
@@ -280,6 +293,7 @@ func addMoonstone(value):
 func removeMoonstone(value):
 	moonstone = moonstone - value
 	savePlayerData()
+	updateStorageBuildingCapacity()
 
 # Function: setM1Score
 # Description: Setter function for the minigame_one_score variable.
@@ -360,6 +374,54 @@ func set_last_player_position(value):
 	last_player_position = value
 	savePlayerData()
 
+# Function: updateStorageBuildingCapacity
+# Description: Updates the storage capacity of specific buildings in the fieldArray based on their type.
+#              It resets the current capacity and then sets the updated capacity for each eligible building.
+func updateStorageBuildingCapacity():
+	resetStorageBuildingCapacity()
+	setStorageBuildingCapacity()
+	
+# Function: resetStorageBuildingCapacity
+# Description: Resets the current resource capacity of storage buildings in the fieldArray.
+func resetStorageBuildingCapacity():
+	for n in range(0,14):
+		if fieldArray[n][building_type] == rocket || fieldArray[n][building_type] == moonetenStorage || fieldArray[n][building_type] == moonstoneStorage:
+			fieldArray[n][ressource_amount][mooneten_amount] = 0
+			fieldArray[n][ressource_amount][moonstone_amount] = 0
+
+# Function: setStorageBuildingCapacity
+# Description: Sets the updated resource capacity for eligible storage buildings in the fieldArray.
+func setStorageBuildingCapacity():
+	var i : int = 0
+	var spaceAvailable : int = 0
+	var tempMooneten : int = getMooneten()
+	while i < 14 && tempMooneten > 0:
+		if fieldArray[i][building_type] == rocket || fieldArray[i][building_type] == moonetenStorage:
+			spaceAvailable = fieldArray[i][max_storage_size][fieldArray[i][level_index] - 1] - fieldArray[i][ressource_amount][mooneten_amount]
+			if spaceAvailable > 0:
+				if tempMooneten <= spaceAvailable:
+					fieldArray[i][ressource_amount][mooneten_amount] += tempMooneten
+					tempMooneten = 0
+				else:
+					fieldArray[i][ressource_amount][mooneten_amount] = fieldArray[i][max_storage_size][fieldArray[i][level_index] - 1]
+					tempMooneten -= spaceAvailable
+		i += 1
+	
+	spaceAvailable = 0
+	i = 0
+	var tempMoonstone : int = getMoonstone()
+	while i < 14 && tempMoonstone > 0:
+		if fieldArray[i][building_type] == rocket || fieldArray[i][building_type] == moonstoneStorage:
+			spaceAvailable = fieldArray[i][max_storage_size][fieldArray[i][level_index] - 1] - fieldArray[i][ressource_amount][moonstone_amount]
+			if spaceAvailable > 0:
+				if tempMoonstone <= spaceAvailable:
+					fieldArray[i][ressource_amount][moonstone_amount] += tempMoonstone
+					tempMoonstone = 0
+				else:
+					fieldArray[i][ressource_amount][moonstone_amount] = fieldArray[i][max_storage_size][fieldArray[i][level_index] - 1]
+					tempMoonstone -= spaceAvailable
+		i += 1
+
 # Function: savePlayerData
 # Description: Saves player data to a file.
 func savePlayerData():
@@ -437,22 +499,37 @@ func addOfflineMooneten():
 	
 	var ressourceAmount := 0
 	for n in range(0,14):
-		if fieldArray[n][building_type] == moonetenGenerator || fieldArray[n][building_type] == moonstoneGenerator:
+		if fieldArray[n][building_type] == moonetenGenerator:
 			offlineMooneten = fieldArray[n][level_index] * offlineMooneten
 			if offlineMooneten <= 1000:
-				if fieldArray[n][ressource_amount] <= fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1] - offlineMooneten:
-					ressourceAmount = fieldArray[n][ressource_amount] + offlineMooneten
+				if fieldArray[n][ressource_amount][mooneten_amount] <= fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1] - offlineMooneten:
+					ressourceAmount = fieldArray[n][ressource_amount][mooneten_amount] + offlineMooneten
 				else:
 					ressourceAmount = fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
 			else:
 				offlineMooneten = 1000
-				if fieldArray[n][ressource_amount] <= fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1] - offlineMooneten:
-					ressourceAmount = fieldArray[n][ressource_amount] + offlineMooneten
+				if fieldArray[n][ressource_amount][mooneten_amount] <= fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1] - offlineMooneten:
+					ressourceAmount = fieldArray[n][ressource_amount][mooneten_amount] + offlineMooneten
 				else:
 					ressourceAmount = fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
 			#print("Building: " + str(n) + " - Added: " + str(offlineMooneten) + " - RessourceAmount: " + str(ressourceAmount))
-			edit_building(n, ressource_amount, ressourceAmount)
-			offlineMooneten = diff * 5
+			fieldArray[n][ressource_amount][mooneten_amount] = ressourceAmount
+		elif fieldArray[n][building_type] == moonstoneGenerator:
+			offlineMooneten = fieldArray[n][level_index] * offlineMooneten
+			if offlineMooneten <= 1000:
+				if fieldArray[n][ressource_amount][moonstone_amount] <= fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1] - offlineMooneten:
+					ressourceAmount = fieldArray[n][ressource_amount][moonstone_amount] + offlineMooneten
+				else:
+					ressourceAmount = fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
+			else:
+				offlineMooneten = 1000
+				if fieldArray[n][ressource_amount][moonstone_amount] <= fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1] - offlineMooneten:
+					ressourceAmount = fieldArray[n][ressource_amount][moonstone_amount] + offlineMooneten
+				else:
+					ressourceAmount = fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
+			#print("Building: " + str(n) + " - Added: " + str(offlineMooneten) + " - RessourceAmount: " + str(ressourceAmount))
+			fieldArray[n][ressource_amount][moonstone_amount] = ressourceAmount
+		offlineMooneten = diff * 5
 
 # Function: setMaxRessources
 # Description: Sets the maximum storage capacity for mooneten and moonstone based on buildings.
@@ -473,12 +550,12 @@ func setMaxRessources():
 # Description: Resets various game-related statistics to their initial values.
 func resetStats():
 	firstGame = true
-	mooneten = 1000
-	moonstone = 1000
+	mooneten = 0
+	moonstone = 0
 	unixLastTime = Time.get_unix_time_from_system()
 	minigame2_highscore = 0
 	minigame_one_highscore = 0
-	fieldArray = [[rocket,"Rocket",1,[100000,200000,400000],"","res://Minigame1/minigame_1.tscn", 0, [1000,2000,5000,10000]], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-2]]
+	fieldArray = [[rocket,"Rocket",1,[100000,200000,400000],"","res://Minigame1/minigame_1.tscn", [0, 0], [1000,2000,5000,10000]], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-2]]
 	last_player_position = Vector2(168,131)
 	shop_data = [
 	{'building_id':moonetenGenerator, 'name': "Moonetengenerator", 'price': 200, 'is_bought': false},

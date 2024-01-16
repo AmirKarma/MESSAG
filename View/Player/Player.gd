@@ -54,6 +54,7 @@ var standart_position:Vector2 = Vector2(0,0)
 
 # References to other nodes and resources in the game
 @onready var world : Node2D = get_tree().get_root().get_node("World")
+@onready var buildings: Node2D = world.get_node("buildings")
 @onready var animationPlayer = $AnimationPlayer
 @onready var animationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
@@ -68,25 +69,41 @@ var mapShowPressed: bool = false
 var showMapTexture: Resource = load("res://Player/mapShow.png")
 var exitMapTexture: Resource = load("res://Player/mapExit.png")
 
+var screen_is_pressed:bool = false
+var player_is_moving:bool = false
+
 # Function: _unhandled_input
-# Description: Handles unhandled input events. If the camera zoom is at the standard value,
-# checks for a click event and processes it by setting free field pressed, checking distance,
-# setting the pattern, and initiating movement. If the camera is not at the standard zoom,
-# resets the camera.
+# Description: Handles unhandled input events, specifically for mouse clicks.
+# If not in the building menu, the camera zoom is at the standard value,
+# and the 'Click' action is pressed, sets the screen_is_pressed flag to true,
+# and calls the set_free_field_pressed function.
+# If the 'Click' action is released, sets the screen_is_pressed flag to false.
+# If the camera zoom is not at the standard value, calls the reset_camera function.
 func _unhandled_input(event):
 	if !DataScript.is_in_building_menu:
 		if camera.zoom == standart_camerazoom:
 			if event.is_action_pressed('Click'):
-				$Camera2D/HUD/Inventory.visible = false
+				player_is_moving = true
+				screen_is_pressed = true
 				set_free_field_pressed()
-				free_field_distance_check()
-				if !stand_still:
-					set_pattern()
-					moving = true
-					nav.target_position = get_global_mouse_position()
-					animationState.travel("Run")
+			if event.is_action_released('Click'):
+				player_is_moving = false
+				screen_is_pressed = false
 		else:
 			reset_camera()
+
+# Function: player_movement
+# Description: Manages player movement based on screen touch input.
+# If the screen is pressed and the player is not instructed to stand still,
+# sets the movement pattern, enables movement, sets the target position to the global mouse position,
+# and triggers the "Run" animation state.
+func player_movement():
+	if screen_is_pressed:
+		if !stand_still:
+			set_pattern()
+			moving = true
+			nav.target_position = get_global_mouse_position()
+			animationState.travel("Run")
 
 # Function: reset_camera
 # Description: Resets the camera properties to default values, makes the resource bar visible,
@@ -96,6 +113,7 @@ func reset_camera():
 	camera.position = standart_position
 	resourceBar.visible = true
 	modulate = Color.WHITE
+	mapButton.texture_normal = showMapTexture
 
 # Function: set_pattern
 # Description: Sets the free field pattern if the tile data is clickable.
@@ -139,6 +157,7 @@ func create_pattern()-> Array:
 # Description: Updates the player's movement and performs a free field distance check.
 # Sets the last player position for reference.
 func _physics_process(delta):
+	player_movement()
 	MovementLoop(delta)
 	free_field_distance_check()
 	DataScript.set_last_player_position(position)
@@ -151,22 +170,24 @@ func free_field_distance_check():
 		if (position.distance_to(clicked_tile_center) < 35 or stand_still) and free_field_pattern.has(clicked_tile):
 			moving = false
 			stand_still = true
-			open_menu(clicked_tile_center)
+			open_inventory(clicked_tile_center)
 			free_field_pressed = false
 		else :
 			stand_still = false
 			set_pattern()
 
-# Function: open_menu
+# Function: open_inventory
 # Description: Opens the menu based on the provided value, which represents a position.
 # Retrieves the field and building indices, and if there is no building at the location,
 # opens the inventory menu.
-func open_menu(value):
+func open_inventory(value):
 	fieldIndex = getFieldIndex(value)
 	buildingIndex = getBuildingIndex(fieldIndex)[0]
 	print(fieldIndex)
 	if buildingIndex == -1:
 		DataScript.is_in_building_menu = true
+		$Camera2D/HUD/showMap.visible = false
+		$Camera2D/HUD/RessourceBar.visible = false
 		$Camera2D/HUD/Inventory.set_inventory()
 		$Camera2D/HUD/Inventory.visible = true
 
@@ -194,17 +215,16 @@ func MovementLoop(delta):
 			speed += acceleration * delta
 			if speed > max_speed:
 				speed = max_speed
-		movement = position.direction_to(nav.target_position) * speed
-		move_direction = nav.get_next_path_position() - global_position
-		move_direction = move_direction.normalized()
-		if position.distance_to(nav.target_position) > 10:
-			animationTree.set("parameters/Idle/blend_position", movement)
-			animationTree.set("parameters/Run/blend_position", movement)
-
-			velocity = velocity.lerp(move_direction * speed, speed * delta)
-			move_and_slide()
-		else:
-			moving = false
+			movement = position.direction_to(nav.target_position) * speed
+			move_direction = nav.get_next_path_position() - global_position
+			move_direction = move_direction.normalized()
+			if position.distance_to(nav.target_position) > 10:
+				animationTree.set("parameters/Idle/blend_position", movement)
+				animationTree.set("parameters/Run/blend_position", movement)
+				velocity = velocity.lerp(move_direction * speed, speed * delta)
+				move_and_slide()
+			else:
+				moving = false
 	else:
 		animationState.travel("Idle")
 		speed = 0
@@ -263,11 +283,6 @@ func getFieldIndex(value):
 func getBuildingIndex(value):
 	return DataScript.fieldArray[value]
 
-# Function: player_shop_method
-# Description: Placeholder function for the player's shop method. Implementation needed.
-func player_shop_method():
-	pass
-
 func _on_showMap_button_pressed():
 	mapShowPressed = not mapShowPressed
 	if mapShowPressed :
@@ -278,4 +293,4 @@ func _on_showMap_button_pressed():
 		camera.position = Vector2(248,160) - self.position
 	else : 
 		reset_camera()
-		mapButton.texture_normal = showMapTexture
+		

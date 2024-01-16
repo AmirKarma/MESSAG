@@ -13,9 +13,9 @@ extends Control
 @onready var upgrade_warning:Panel = $optionbar_rect/buttons_rect/buttons/Upgrade_warning
 @onready var mooneten_img:Sprite2D = $optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HBoxContainer/Mooneten
 @onready var moonstone_img:Sprite2D = $optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HBoxContainer/Moonstone
-@onready var confirm_button2:Button = $optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HSplitContainer/confirm_button2
-@onready var warn_lable:Label = $optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HBoxContainer/warn_lable
-@onready var cancel_button2:Button = $optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HSplitContainer/cancel_button2
+@onready var confirm_button2:Button = $optionbar_rect/buttons_rect/CenterContainer2/VBoxContainer/HSplitContainer/confirm_button2
+@onready var warn_lable:Label = $optionbar_rect/buttons_rect/CenterContainer2/VBoxContainer/HBoxContainer/warn_lable
+@onready var cancel_button2:Button = $optionbar_rect/buttons_rect/CenterContainer2/VBoxContainer/HSplitContainer/cancel_button2
 @onready var player:CharacterBody2D = get_node("/root/World/Player")
 var optionbar_rect_size:Vector2
 var building_image_pos:Vector2

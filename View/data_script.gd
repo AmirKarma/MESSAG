@@ -95,11 +95,11 @@ var inventory:Array = []
 var ressourceBarDataString := "user://playerData.dat"
 var fieldDataString := "user://fieldData.dat"
 
-# Declare timer variable.
-var timer
-
 # Declare last player position variable.
 var last_player_position: Vector2 = Vector2(168,131)
+
+#Declares the timer
+var timer:Timer
 
 # Function: _ready
 # Description: Called when the node is ready. Initializes and starts the timer, loads field and player data, and sets maximum resources.
@@ -119,10 +119,6 @@ func _ready():
 func _on_timeout_timer():
 	var newMooneten := 10
 	var ressourceAmount := 0
-	if (getMooneten() + newMooneten) <= maxMoonetenStorage:
-		addMooneten(newMooneten)
-	else :
-		setMooneten(maxMoonetenStorage)
 	for n in range(0,14):
 		if fieldArray[n][building_type] == moonetenGenerator:
 			newMooneten = fieldArray[n][level_index] * newMooneten
@@ -377,17 +373,24 @@ func get_last_player_position():
 func set_last_player_position(value):
 	last_player_position = value
 	savePlayerData()
-	
+
+# Function: updateStorageBuildingCapacity
+# Description: Updates the storage capacity of specific buildings in the fieldArray based on their type.
+#              It resets the current capacity and then sets the updated capacity for each eligible building.
 func updateStorageBuildingCapacity():
 	resetStorageBuildingCapacity()
 	setStorageBuildingCapacity()
 	
+# Function: resetStorageBuildingCapacity
+# Description: Resets the current resource capacity of storage buildings in the fieldArray.
 func resetStorageBuildingCapacity():
 	for n in range(0,14):
 		if fieldArray[n][building_type] == rocket || fieldArray[n][building_type] == moonetenStorage || fieldArray[n][building_type] == moonstoneStorage:
 			fieldArray[n][ressource_amount][mooneten_amount] = 0
 			fieldArray[n][ressource_amount][moonstone_amount] = 0
-	
+
+# Function: setStorageBuildingCapacity
+# Description: Sets the updated resource capacity for eligible storage buildings in the fieldArray.
 func setStorageBuildingCapacity():
 	var i : int = 0
 	var spaceAvailable : int = 0

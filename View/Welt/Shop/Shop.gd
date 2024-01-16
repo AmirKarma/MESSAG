@@ -16,7 +16,7 @@ func _process(_delta):
 # Description: Checks the distance between the player and the building. If the 'pressed' variable is true and the player is close enough to the building,
 #              it opens the shop menu, sets the player's state, and triggers the 'open_shop' function.
 func building_distance():
-	if(pressed == true):
+	if(pressed and !player.player_is_moving):
 		shop_menu.visible = false
 		if player.position.distance_to(position) < 50:
 			pressed = false
@@ -28,6 +28,8 @@ func building_distance():
 			player.stand_still = false
 			player.nav.target_position = position
 			player.animationState.travel("Run")
+	else:
+		pressed = false
 
 # Function: open_shop
 # Description: Opens the shop menu. Calculates the position of the shop menu relative to the player's camera.

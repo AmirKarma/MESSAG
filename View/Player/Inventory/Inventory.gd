@@ -9,7 +9,7 @@ extends Control
 @onready var place_button:Button = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/button/place_button
 @onready var empty_lable:Label = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/Empty_lable
 @onready var scroll_container:ScrollContainer = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer
-
+@onready var player:CharacterBody2D = get_node("/root/World/Player")
 # Constants for building type and building level
 const building_type:int = 0
 const building_level:int = 2
@@ -111,3 +111,5 @@ func set_building_button(inventory_index:int):
 func _on_close_button_pressed():
 	DataScript.is_in_building_menu = false
 	visible = false
+	player.get_node("Camera2D/HUD/RessourceBar").visible = true
+	player.get_node("Camera2D/HUD/showMap").visible = true

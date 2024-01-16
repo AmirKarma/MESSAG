@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dbaqm4nbxf7gd"]
+[gd_scene load_steps=20 format=3 uid="uid://dbaqm4nbxf7gd"]
 
 [ext_resource type="Script" path="res://Player/Inventory/Inventory.gd" id="1_g2o8q"]
 [ext_resource type="Texture2D" uid="uid://cfrtbd53d1l6g" path="res://Welt/Shop/InventoryRect.png" id="2_hpgjl"]
@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://bao8wtv7uxfku" path="res://Optionbar/04B_30__.TTF" id="8_gyum0"]
 [ext_resource type="Texture2D" uid="uid://bcjw06cry877x" path="res://Welt/Shop/button_texture.png" id="9_ub1cj"]
 [ext_resource type="Script" path="res://Player/Inventory/place_button.gd" id="10_x0vre"]
+[ext_resource type="FontFile" uid="uid://dmehj4ikin7cw" path="res://Player/Inventory/04B_30__.TTF" id="11_tfvfj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7deq0"]
 corner_radius_top_left = 2
@@ -220,6 +221,7 @@ script = ExtResource("10_x0vre")
 visible = false
 custom_minimum_size = Vector2(2.08165e-12, 100)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("11_tfvfj")
 text = "no buildings in here"
 horizontal_alignment = 1
 vertical_alignment = 1

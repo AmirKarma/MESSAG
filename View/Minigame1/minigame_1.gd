@@ -12,6 +12,23 @@ extends Node2D
 @onready var lives_display = $Points/info
 @onready var respawn_position = $RespawnPos
 
+# Variables: gameover_screen, overlay_score, overlay_pause_button, score_label, highscore_label
+# Description: Hold references to UI elements in the game.
+# - gameover_screen: Reference to the game over screen.
+# - overlay_score: Reference to the label displaying the current score in the overlay.
+# - overlay_pause_button: Reference to the touchscreen button for pausing the game in the overlay.
+# - score_label: Onready reference to the label displaying the score in the game.
+# - highscore_label: Onready reference to the label displaying the high score in the game.
+# - overlay_touchshot: Reference to the shoot button
+# - joystick: Reference to the joystick 
+var gameover_screen: Control
+var overlay_score: Control
+var overlay_pause_button: TouchScreenButton
+var overlay_touchshot: TouchScreenButton
+var joystick:Node2D
+@onready var score_label: Label
+@onready var highscore_label: Label
+
 # Timer variable for comet spawning
 var comet_spawn_timer
 var spawn_time : float = 10
@@ -29,6 +46,7 @@ var score_to_comet_factor := 0.1
 var comet_scene = preload("res://Minigame1/comet.tscn")
 
 func _ready():
+	initialize_ui_references()
 	# Initialize score and lives
 	score = 0
 	lives = 3
@@ -47,8 +65,16 @@ func _ready():
 	for i in range(2):
 		new_comet()
 
-	
-	
+# Function: initialize_ui_references
+# Description: Initializes UI references when the node enters the scene tree.
+func initialize_ui_references():
+	gameover_screen = get_node("Points/GameOverScreen")
+	score_label = gameover_screen.get_node("scoreLabel")
+	highscore_label = gameover_screen.get_node("highscoreLabel")
+	overlay_score = get_node("Points/info")
+	overlay_pause_button = get_node("Points/PauseButton")
+	overlay_touchshot = get_node("Points/Touchshot")
+	joystick = get_node("Joystick")
 
 # Process function called every frame
 func _process(_delta):
@@ -62,6 +88,16 @@ func _process(_delta):
 	# Check for reset input to reload the current scene
 	elif Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
+		
+# Function: update_high_score
+# Description: Sets the high score to the current score.
+func update_high_score():
+	highscore_label.text = "Highscore: " + str(DataScript.getM1HighScore())
+	
+# Function: update_score
+# Description: Updates the current score.
+func update_score():
+	score_label.text = "Score: " + str(DataScript.getM1Score())
 
 # Variable for player lives, connecting it to the UI
 var lives := 3:
@@ -77,20 +113,29 @@ func _player_dies():
 	if lives <= 0:
 		# Save the score and transition to the game over screen
 		DataScript.setM1Score(score)
-		var maingame = load("res://Minigame1/GameOverScreen.tscn").instantiate()
-		get_tree().root.add_child(maingame)
-		get_tree().current_scene.queue_free()
-		get_tree().current_scene = maingame
 		# Add Score * Factor to Comet. 
 		if (DataScript.getMooneten() + score * score_to_comet_factor) <= DataScript.maxMoonetenStorage:
 			DataScript.addMooneten(score * score_to_comet_factor)
 		else:
 			DataScript.setMooneten(DataScript.maxMoonetenStorage)
+		set_game_over_screen()
 	else:
 		# Respawn the player after a delay
 		await get_tree().create_timer(1).timeout
 		player.respawn(respawn_position.global_position)
 
+# Function: set_game_over_screen
+# Description: Makes the Gameoverscreen visiable and all other Gui elements will be disabled
+func set_game_over_screen():
+	update_score()
+	update_high_score()
+	get_tree().paused = true
+	joystick.visible = false
+	overlay_touchshot.visible = false
+	overlay_score.visible = false
+	overlay_pause_button.visible = false
+	gameover_screen.visible = true
+		
 # Function called when the player shoots
 func _player_shoot(shot):
 	cannon.add_child(shot)

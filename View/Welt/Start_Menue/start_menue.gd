@@ -38,3 +38,4 @@ func newGame():
 	DataScript.resetStats()
 	get_tree().change_scene_to_file("res://Welt/world.tscn")
 	DataScript.setFirstGame(false)
+	DataScript.updateStorageBuildingCapacity()

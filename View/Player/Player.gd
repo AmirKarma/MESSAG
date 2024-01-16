@@ -179,6 +179,7 @@ func place_building(bIndex:int):
 	DataScript.set_building(fieldIndex,DataScript.inventory[bIndex])
 	DataScript.inventory.remove_at(bIndex)
 	DataScript.setMaxRessources()
+	DataScript.updateStorageBuildingCapacity()
 
 # Function: MovementLoop
 # Description: Handles movement based on navigation and animation parameters.

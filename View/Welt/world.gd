@@ -21,11 +21,11 @@ func _ready():
 func _notification(what):
 	# Handle a close request from the window manager
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		DataScript.setUnixLastTime(Time.get_unix_time_from_system())
+		DataScript.set_unix_last_time(Time.get_unix_time_from_system())
 		DataScript.set_last_player_position(player.position)
 		get_tree().quit()
 	# Handle a go back request from the window manager
 	elif what == NOTIFICATION_WM_GO_BACK_REQUEST:
-		DataScript.setUnixLastTime(Time.get_unix_time_from_system())
+		DataScript.set_unix_last_time(Time.get_unix_time_from_system())
 		DataScript.set_last_player_position(player.position)
 		get_tree().quit()

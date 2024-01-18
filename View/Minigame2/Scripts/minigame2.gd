@@ -78,7 +78,7 @@ func move_enemies(delta):
 # Function: set_score
 # Description: Updates the HUD overlay score display using the score from DataScript.
 func set_score():
-	overlay.score = DataScript.getMinigame2_score()
+	overlay.score = DataScript.get_minigame2_score()
 
 
 # Function: spawn_enemies

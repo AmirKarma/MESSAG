@@ -37,8 +37,6 @@ max-line-length: 100
 max-public-methods: 20
 max-returns: 6
 mixed-tabs-and-spaces: null
-no-elif-return: null
-no-else-return: null
 private-method-call: null
 signal-name: '[a-z][a-z0-9]*(_[a-z0-9]+)*'
 sub-class-name: _?([A-Z][a-z0-9]*)+

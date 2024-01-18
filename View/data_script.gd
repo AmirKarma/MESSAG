@@ -136,7 +136,8 @@ var last_player_position: Vector2 = Vector2(168, 131)
 var timer:Timer
 
 # Function: _ready
-# Description: Called when the node is ready. Initializes and starts the timer, loads field and player data, and sets maximum resources.
+# Description: Called when the node is ready.
+# Initializes and starts the timer, loads field and player data, and sets maximum resources.
 func _ready():
 	print(minigame2_timer)
 	timer = Timer.new()
@@ -151,7 +152,8 @@ func _ready():
 
 
 # Function: _on_timeout_timer
-# Description: Called when the timeout timer expires. Adds new mooneten to the player's resources and updates buildings.
+# Description: Called when the timeout timer expires.
+# Adds new mooneten to the player's resources and updates buildings.
 func _on_timeout_timer():
 	var newMooneten: int = 10
 	var ressourceAmount: int = 0
@@ -234,7 +236,8 @@ func update_storage_size(current_size: Array, new_size: Array):
 
 
 # Function: on_rocket_level_upgrade
-# Description: Called when the rocket level is upgraded. Updates shop data based on the rocket level.
+# Description: Called when the rocket level is upgraded.
+# Updates shop data based on the rocket level.
 func on_rocket_level_upgrade():
 	match fieldArray[rocket][2]:
 		2:
@@ -262,165 +265,166 @@ func on_rocket_level_upgrade():
 
 
 # Function: update_shop_data
-# Description: Updates the price and is_bought status for a specific shop item and saves player data.
+# Description: Updates the price and is_bought status
+# for a specific shop item and saves player data.
 func update_shop_data(shop_id, new_price):
 	shop_data[shop_id]["price"] = new_price
 	shop_data[shop_id]["is_bought"] = false
 	savePlayerData()
 
 
-# Function: setMooneten
+# Function: set_mooneten
 # Description: Setter function for the mooneten variable.
 # Parameters:
 #   - value: New value to set for mooneten.
-func setMooneten(value):
+func set_mooneten(value):
 	mooneten = value
 	savePlayerData()
 	updateStorageBuildingCapacity()
 
 
-# Function: getMooneten
+# Function: get_mooneten
 # Description: Getter function for the mooneten variable.
 # Returns: The value of mooneten.
-func getMooneten():
+func get_mooneten():
 	return mooneten
 
 
-# Function: addMooneten
+# Function: add_mooneten
 # Description: Adds the specified value to the mooneten variable and saves player data.
 # Parameters:
 #   - value: The amount to add to the mooneten variable.
-func addMooneten(value):
+func add_mooneten(value):
 	mooneten = mooneten + value
 	savePlayerData()
 	updateStorageBuildingCapacity()
 
 
-# Function: removeMooneten
+# Function: remove_mooneten
 # Description: Subtracts the specified value from the mooneten variable and saves player data.
 # Parameters:
 #   - value: The amount to subtract from the mooneten variable.
-func removeMooneten(value):
+func remove_mooneten(value):
 	mooneten = mooneten - value
 	savePlayerData()
 	updateStorageBuildingCapacity()
 
 
-# Function: setUnixLastTime
+# Function: set_unix_last_time
 # Description: Setter function for the unixLastTime variable.
 # Parameters:
 #   - value: New value to set for unixLastTime.
-func setUnixLastTime(value):
+func set_unix_last_time(value):
 	unixLastTime = value
 	savePlayerData()
 
 
-# Function: getUnixLastTime
+# Function: get_unix_last_time
 # Description: Getter function for the unixLastTime variable.
 # Returns: The value of unixLastTime.
-func getUnixLastTime():
+func get_unix_last_time():
 	return unixLastTime
 
 
-# Function: setMoonstone
+# Function: set_moonstone
 # Description: Setter function for the moonstone variable.
 # Parameters:
 #   - value: New value to set for moonstone.
-func setMoonstone(value):
+func set_moonstone(value):
 	moonstone = value
 	savePlayerData()
 	updateStorageBuildingCapacity()
 
 
-# Function: getMoonstone
+# Function: get_moonstone
 # Description: Getter function for the moonstone variable.
 # Returns: The value of moonstone.
-func getMoonstone():
+func get_moonstone():
 	return moonstone
 
 
-# Function: addMoonstone
+# Function: add_moonstone
 # Description: Adds the specified value to the moonstone variable and saves player data.
 # Parameters:
 #   - value: The amount to add to the moonstone variable.
-func addMoonstone(value):
+func add_moonstone(value):
 	moonstone = moonstone + value
 	savePlayerData()
 	updateStorageBuildingCapacity()
 
 
-# Function: removeMoonstone
+# Function: remove_moonstone
 # Description: Subtracts the specified value from the moonstone variable and saves player data.
 # Parameters:
 #   - value: The amount to subtract from the moonstone variable.
-func removeMoonstone(value):
+func remove_moonstone(value):
 	moonstone = moonstone - value
 	savePlayerData()
 	updateStorageBuildingCapacity()
 
 
-# Function: setM1Score
+# Function: set_minigame1_score
 # Description: Setter function for the minigame_one_score variable.
 # Parameters:
 #   - value: New score value to set minigame_one_score.
-func setM1Score(value):
+func set_minigame1_score(value):
 	minigame_one_score = value
 	if minigame_one_score >= minigame_one_highscore:
 		minigame_one_highscore = minigame_one_score
 		savePlayerData()
 
 
-# Function: setMinigame2_highscore
+# Function: set_minigame2_highscore
 # Description: Setter function for the minigame2_highscore variable.
 # Parameters:
 #   - value: New highscore value to set minigame2_highscore.
-func setMinigame2_highscore(value):
+func set_minigame2_highscore(value):
 	if value > minigame2_highscore:
 		minigame2_highscore = value
 		savePlayerData()
 
 
-# Function: getMinigame2_highscore
+# Function: get_minigame2_highscore
 # Description: Getter function for the minigame2_highscore variable.
 # Returns: The value of minigame2_highscore.
-func getMinigame2_highscore():
+func get_minigame2_highscore():
 	return minigame2_highscore
 
 
-# Function: getM1Score
+# Function: get_minigame1_score
 # Description: Getter function for the minigame_one_score variable.
 # Returns: The value of minigame_one_score.
-func getM1Score():
+func get_minigame1_score():
 	return minigame_one_score
 
 
-# Function: setMinigame2_score
+# Function: set_minigame2_score
 # Description: Setter function for the minigame2_score variable.
 # Parameters:
 #   - value: New score value to set minigame2_score.
-func setMinigame2_score(value):
+func set_minigame2_score(value):
 	minigame2_score = value
 	savePlayerData()
 
 
-# Function: getMinigame2_score
+# Function: get_minigame2_score
 # Description: Getter function for the minigame2_score variable.
 # Returns: The value of minigame2_score.
-func getMinigame2_score():
+func get_minigame2_score():
 	return minigame2_score
 
 
-# Function: getM1HighScore
+# Function: get_minigame1_highscore
 # Description: Getter function for the minigame_one_highscore variable.
 # Returns: The value of minigame_one_highscore.
-func getM1HighScore():
+func get_minigame1_highscore():
 	return minigame_one_highscore
 
 
-# Function: isPlayingFirstTime
+# Function: is_playing_first_time
 # Description: Checks if the game is being played for the first time.
 # Returns: True if it's the first time, False otherwise.
-func isPlayingFirstTime():
+func is_playing_first_time():
 	return firstGame
 
 
@@ -563,7 +567,7 @@ func loadFieldData():
 # Description: Adds mooneten resources based on the time the player was offline.
 # It calculates the offlineMooneten amount and distributes it among generators.
 func addOfflineMooneten():
-	var time_difference: float = float(Time.get_unix_time_from_system() - getUnixLastTime())
+	var time_difference: float = float(Time.get_unix_time_from_system() - get_unix_last_time())
 	var diff: float = time_difference / 60.0  # Keep diff as float for precision
 	var rounded_diff: int = round(diff)  # Round the result when necessary
 	var offlineMooneten: int = rounded_diff * 5
@@ -603,7 +607,6 @@ func addOfflineMooneten():
 					ressourceAmount = fieldArray[n][ressource_amount][moonstone_amount] + offlineMooneten
 				else:
 					ressourceAmount = fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
-			#print("Building: " + str(n) + " - Added: " + str(offlineMooneten) + " - RessourceAmount: " + str(ressourceAmount))
 			fieldArray[n][ressource_amount][moonstone_amount] = ressourceAmount
 		offlineMooneten = diff * 5
 

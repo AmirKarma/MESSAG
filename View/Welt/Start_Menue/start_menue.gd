@@ -11,7 +11,7 @@ func _ready():
 # Function: _on_fortsetzen_pressed
 # Description: Initiates the main game scene if it is not the first time playing.
 func _on_fortsetzen_pressed():
-	if !DataScript.isPlayingFirstTime():
+	if !DataScript.is_playing_first_time():
 		get_tree().change_scene_to_file("res://Welt/world.tscn")
 
 

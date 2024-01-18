@@ -20,8 +20,8 @@ func _process(_delta):
 # Function: updateResourceBar
 # Description: Updates the resource bar display with current mooneten and moonstone values.
 func updateRessourceBar():
-	moonetenLabel.text = str(DataScript.getMooneten()) + " / " + str(DataScript.maxMoonetenStorage)
-	progressBarMoney.value = DataScript.getMooneten()
+	moonetenLabel.text = str(DataScript.get_mooneten()) + " / " + str(DataScript.maxMoonetenStorage)
+	progressBarMoney.value = DataScript.get_mooneten()
 	progressBarMoney.max_value = DataScript.maxMoonetenStorage
 	moonstone_label.text = str(DataScript.getMoonstone()) + " / " + str(DataScript.maxMoonstoneStorage)
 	processbar_moonstone.value = DataScript.getMoonstone()

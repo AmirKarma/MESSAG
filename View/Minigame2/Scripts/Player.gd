@@ -89,14 +89,14 @@ func _on_area_2d_area_entered(_area):
 # Function: update_high_score
 # Description: Sets the high score to the current score.
 func update_high_score():
-	DataScript.setMinigame2_highscore(DataScript.getMinigame2_score())
-	highscore_label.text = "Highscore: " + str(DataScript.getMinigame2_highscore())
+	DataScript.set_minigame2_highscore(DataScript.get_minigame2_score())
+	highscore_label.text = "Highscore: " + str(DataScript.get_minigame2_highscore())
 
 
 # Function: update_ui_labels
 # Description: Updates UI labels with current score information.
 func update_ui_labels():
-	score_label.text = "Score: " + str(DataScript.getMinigame2_score())
+	score_label.text = "Score: " + str(DataScript.get_minigame2_score())
 
 
 # Function: end_game

@@ -55,8 +55,8 @@ func set_shop():
 	for data in building_data:
 		set_building_data(data["building_id"], data["name"], str(data["price"]), data["is_bought"])
 
-	mooneten_amount.text = str(DataScript.getMooneten())
-	moonstone_amount.text = str(DataScript.getMoonstone())
+	mooneten_amount.text = str(DataScript.get_mooneten())
+	moonstone_amount.text = str(DataScript.get_moonstone())
 	building_card.visible = false
 
 
@@ -224,23 +224,23 @@ func set_is_bought(card_index: int):
 # Returns: True if the player can purchase, otherwise false.
 func can_purchase(price) -> bool:
 	if need_mooneten:
-		return DataScript.getMooneten() >= price
+		return DataScript.get_mooneten() >= price
 	elif need_moonstone:
-		return DataScript.getMoonstone() >= price
+		return DataScript.get_moonstone() >= price
 	else:
 		return false
 
 
 func set_mooneten(card_index: int):
 	var building_data: Array = DataScript.shop_data
-	DataScript.removeMooneten(building_data[card_index]["price"])
+	DataScript.remove_mooneten(building_data[card_index]["price"])
 
 
 # Function: set_moonstone
 # Description: Removes the Moonstone cost of the building at the given card_index from the player's resources.
 func set_moonstone(card_index: int):
 	var building_data: Array = DataScript.shop_data
-	DataScript.removeMoonstone(building_data[card_index]["price"])
+	DataScript.remove_moonstone(building_data[card_index]["price"])
 
 
 # Function: set_card_disabled

@@ -199,7 +199,7 @@ func upgrade_check():
 # Returns true if the condition is met, false otherwise.
 func is_not_enough_mooneten():
 	return (
-		DataScript.getMooneten()
+		DataScript.get_mooneten()
 		< DataScript.fieldArray[building_id][upgrade_cost_index][
 			DataScript.fieldArray[building_id][level_index] - 1
 		]
@@ -211,7 +211,7 @@ func is_not_enough_mooneten():
 # Returns true if the condition is met, false otherwise.
 func is_not_enough_moonstone():
 	return (
-		DataScript.getMoonstone()
+		DataScript.get_moonstone()
 		< DataScript.fieldArray[building_id][upgrade_cost_index][
 			DataScript.fieldArray[building_id][level_index] - 1
 		]
@@ -240,7 +240,7 @@ func _on_cancel_button_pressed():
 # Checks for needed resources, deducts the cost, upgrades the building, and updates UI elements.
 func _on_confirm_button_pressed():
 	if need_mooneten:
-		DataScript.removeMooneten(
+		DataScript.remove_mooneten(
 			DataScript.fieldArray[building_id][upgrade_cost_index][
 				DataScript.fieldArray[building_id][level_index] - 1
 			]
@@ -249,7 +249,7 @@ func _on_confirm_button_pressed():
 			building_id, level_index, DataScript.fieldArray[building_id][level_index] + 1
 		)
 	elif need_moonstone:
-		DataScript.removeMoonstone(
+		DataScript.remove_moonstone(
 			DataScript.fieldArray[building_id][upgrade_cost_index][
 				DataScript.fieldArray[building_id][level_index] - 1
 			]
@@ -396,8 +396,8 @@ func _on_confirm_button_2_pressed():
 		DataScript.set_inventory(DataScript.moonstoneStorage,"Moonstonestorage", DataScript.fieldArray[building_id][level_index],DataScript.storage_upgrade_costs,"moonstoneStorage","", [0, 0], DataScript.storage_max_storage_size)
 		DataScript.remove_building(building_id)
 		DataScript.setMaxRessources()
-		if DataScript.getMoonstone() > DataScript.maxMoonstoneStorage:
-			DataScript.setMoonstone(DataScript.maxMoonstoneStorage)
+		if DataScript.get_moonstone() > DataScript.maxMoonstoneStorage:
+			DataScript.set_moonstone(DataScript.maxMoonstoneStorage)
 	elif DataScript.fieldArray[building_id][building_type] == DataScript.moonetenStorage:
 		DataScript.set_inventory(DataScript.moonetenStorage,"Moonetenstorage", DataScript.fieldArray[building_id][level_index],DataScript.storage_upgrade_costs,"moonetenStorage","", [0, 0], DataScript.storage_max_storage_size)
 		DataScript.remove_building(building_id)

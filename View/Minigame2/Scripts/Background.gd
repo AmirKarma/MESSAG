@@ -12,4 +12,4 @@ func _process(delta):
 	scroll_base_offset += delta * DataScript.minigame2_gameSpeed * DataScript.minigame2_timer
 
 	# Set the score in Minigame 2 using the updated Y-coordinate of the scroll base offset
-	DataScript.setMinigame2_score(scroll_base_offset.y)
+	DataScript.set_minigame2_score(scroll_base_offset.y)

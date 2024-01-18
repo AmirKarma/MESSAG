@@ -2,15 +2,30 @@
 name: CI
 
 on:
-
   push:
     branches: [ main, feature ]
   pull_request:
     branches: [ main, feature ]
 
   workflow_dispatch:
-
+    
 jobs:
+  check_datatypes:
+    name: Run Python script
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: python .github/workflows/check_datatypes.py
+
+  static-checks:
+    name: 'Static checks'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: Scony/godot-gdscript-toolkit@master
+      - run: gdformat ./View/
+      - run: gdlint ./View/
+
   build:
     runs-on: ubuntu-latest
 

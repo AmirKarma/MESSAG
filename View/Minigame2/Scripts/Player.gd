@@ -30,15 +30,18 @@ func _ready():
 	init_player()
 	initialize_ui_references()
 
+
 # Function: init_player
 # Description: Initializes the Player Startposition.
 func init_player():
 	global_position.x = FIRST_LANE
 	global_position.y = get_viewport_rect().size.y - 20
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	player_movement()
+
 
 # Function: initialize_ui_references
 # Description: Initializes UI references when the node enters the scene tree.
@@ -59,16 +62,19 @@ func player_movement():
 	move_player("ui_left", -LANE_LENGTH)
 	move_player("ui_right", LANE_LENGTH)
 
+
 # Function: move_player
 # Description: Moves the player based on user input and lane boundaries.
 func move_player(action, delta_x):
 	if Input.is_action_just_pressed(action) and is_within_lane_bounds(delta_x):
 		global_position.x += delta_x
 
+
 # Function: is_within_lane_bounds
 # Description: Checks if the player is within the first and last lane boundaries.
 func is_within_lane_bounds(delta_x):
 	return FIRST_LANE <= global_position.x + delta_x && global_position.x + delta_x <= LAST_LANE
+
 
 # Function: _on_area_2d_area_entered
 # Description: Called when the Player node detects another area entering it.
@@ -79,16 +85,19 @@ func _on_area_2d_area_entered(_area):
 	add_moonstone_to_storage()
 	end_game()
 
+
 # Function: update_high_score
 # Description: Sets the high score to the current score.
 func update_high_score():
 	DataScript.setMinigame2_highscore(DataScript.getMinigame2_score())
 	highscore_label.text = "Highscore: " + str(DataScript.getMinigame2_highscore())
 
+
 # Function: update_ui_labels
 # Description: Updates UI labels with current score information.
 func update_ui_labels():
 	score_label.text = "Score: " + str(DataScript.getMinigame2_score())
+
 
 # Function: end_game
 # Description: Pauses the game, hides overlay elements, and shows the game over screen.

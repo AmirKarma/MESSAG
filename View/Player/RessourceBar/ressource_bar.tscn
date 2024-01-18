@@ -20,6 +20,7 @@ corner_radius_bottom_left = 12
 
 [sub_resource type="SystemFont" id="SystemFont_1gtge"]
 font_names = PackedStringArray("Comic Sans MS")
+subpixel_positioning = 0
 
 [node name="RessourceBar" type="Control"]
 layout_mode = 3

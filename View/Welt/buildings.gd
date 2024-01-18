@@ -1,11 +1,12 @@
 extends Node2D
 
 # Nodes for the scene
-@onready var player:CharacterBody2D = get_node("/root/World/Player")
-@onready var optionbar:Control = get_node("/root/World/Optionbar")
+@onready var player: CharacterBody2D = get_node("/root/World/Player")
+@onready var optionbar: Control = get_node("/root/World/Optionbar")
 
 #Variable for the current building index
-var building_index:int = 0
+var building_index: int = 0
+
 
 var player_is_moving:bool = false
 
@@ -27,24 +28,28 @@ func building_distance(building:Node2D):
 	else:
 		building.pressed = false
 
+
 # Function: open_optionbar
 # Description: Opens the option bar for a specific building.
-func open_optionbar(id:int):
+func open_optionbar(id: int):
 	DataScript.is_in_building_menu = true
-	var optionbar_pos = player.get_node("Camera2D").get_screen_center_position() - get_viewport_rect().size / 2
-	optionbar.set_optionbar(optionbar_pos,id)
+	var optionbar_pos: Vector2 = (
+		player.get_node("Camera2D").get_screen_center_position() - get_viewport_rect().size / 2
+	)
+	optionbar.set_optionbar(optionbar_pos, id)
 	optionbar.set_visible(true)
 	player.stand_still = true
 	player.set_process(false)
 	player.set_physics_process(false)
 	player.get_node("Camera2D/HUD").visible = false
 
+
 # Function: updateBuildings
 # Description: Updates the visibility and animation of building icons based on the data in DataScript.fieldArray.
-func updateBuildings(building:Node2D):
-	for n in range(1,13):
+func updateBuildings(building: Node2D):
+	for n in range(1, 13):
 		if building.id == n:
-			if DataScript.fieldArray[n][building_index] == DataScript.moonetenGenerator :
+			if DataScript.fieldArray[n][building_index] == DataScript.moonetenGenerator:
 				building.visible = true
 				building.icon.play("moonetenGenerator")
 				building.mooneten_generator_button.visible = true
@@ -62,4 +67,3 @@ func updateBuildings(building:Node2D):
 				building.moonstone_storage_button.visible = true
 			else:
 				building.visible = false
-

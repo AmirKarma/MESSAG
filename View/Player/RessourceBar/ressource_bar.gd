@@ -1,11 +1,14 @@
 extends Control
 
+@onready var moonetenLabel: Node = $Bars/MoonetenLabel
+@onready var progressBarMoney: Node = $Bars/ProgressBarMoney
 
-@onready var moonetenLabel = $Bars/MoonetenLabel
-@onready var progressBarMoney = $Bars/ProgressBarMoney
+@onready var energyLabel: Node = $Bars/EnergyLabel
+@onready var progressBarEnergy: Node = $Bars/ProgressBarMoonstone
 
 @onready var moonstone_label = $Bars/MoonstoneLabel
 @onready var processbar_moonstone = $Bars/ProgressBarMoonstone
+
 
 # Function: _process
 # Description: Called every frame. 'delta' is the elapsed time since the previous frame.

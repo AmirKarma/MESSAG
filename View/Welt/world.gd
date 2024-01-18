@@ -4,16 +4,17 @@
 extends Node2D
 
 # Variable for the player node
-@onready var player = $Player
+@onready var player: CharacterBody2D = $Player
+
 
 # Function: _ready
-# Description: Initializes the player's position and enables y-sorting. 
+# Description: Initializes the player's position and enables y-sorting.
 # 			   Disables auto-accept quit for custom handling.
 func _ready():
 	player.position = DataScript.get_last_player_position()
 	y_sort_enabled = true
 	get_tree().set_auto_accept_quit(false)
-	
+
 
 # Function: _notification
 # Description: Handles notifications from the window manager, specifically close and go back requests.

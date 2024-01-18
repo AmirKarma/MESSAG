@@ -3,14 +3,14 @@
 extends Node2D
 
 # References to scene elements using the @onready keyword
-@onready var player_spawn_pos = $startPos
-@onready var shot_container = $shootCont
-@onready var cannon = $Gun
-@onready var player = $spaceship
-@onready var comets = $AllComets
-@onready var score_display = $Points/info
-@onready var lives_display = $Points/info
-@onready var respawn_position = $RespawnPos
+@onready var player_spawn_pos: Marker2D = $startPos
+@onready var shot_container: Node2D = $shootCont
+@onready var cannon: Node = $Gun
+@onready var player: spaceship = $spaceship
+@onready var comets: Node = $AllComets
+@onready var score_display: Control = $Points/info
+@onready var lives_display: Control = $Points/info
+@onready var respawn_position: Node2D = $RespawnPos
 
 # Variables: gameover_screen, overlay_score, overlay_pause_button, score_label, highscore_label
 # Description: Hold references to UI elements in the game.
@@ -30,27 +30,28 @@ var joystick:Node2D
 @onready var highscore_label: Label
 
 # Timer variable for comet spawning
-var comet_spawn_timer
-var spawn_time : float = 10
+var comet_spawn_timer: Timer
+var spawn_time: float = 10
 
 # Factor for Score to add on Comet destruction
-var score_to_comet_factor := 0.1
+var score_to_comet_factor: float = 0.1
 
 # Exported variable for score, connecting it to the UI
-@export var score := 0:
+@export var score: float = 0:
 	set(points):
 		score = points
 		score_display.points = score
 
 # Preload the comet scene for instantiation
-var comet_scene = preload("res://Minigame1/comet.tscn")
+var comet_scene: PackedScene = preload("res://Minigame1/comet.tscn")
+
 
 func _ready():
 	initialize_ui_references()
 	# Initialize score and lives
 	score = 0
 	lives = 3
-	
+
 	# Set up and start the timer for comet spawning
 	comet_spawn_timer = Timer.new()
 	add_child(comet_spawn_timer)
@@ -61,7 +62,7 @@ func _ready():
 	# Connect signals for player events
 	player.connect("cannon_shot", _player_shoot)
 	player.connect("player_dead", _player_dies)
-	
+
 	for i in range(2):
 		new_comet()
 
@@ -80,7 +81,7 @@ func initialize_ui_references():
 func _process(_delta):
 	# Check for debug input to return to the main game
 	if Input.is_action_just_pressed("debug"):
-		var maingame = load("res://Welt/world.tscn").instantiate()
+		var maingame: Node = load("res://Welt/world.tscn").instantiate()
 		get_tree().root.add_child(maingame)
 		get_tree().current_scene.queue_free()
 		get_tree().current_scene = maingame
@@ -99,11 +100,13 @@ func update_high_score():
 func update_score():
 	score_label.text = "Score: " + str(DataScript.getM1Score())
 
+
 # Variable for player lives, connecting it to the UI
-var lives := 3:
+var lives: int = 3:
 	set(value):
 		lives = value
 		lives_display.lives = lives
+
 
 # Function called when the player dies
 func _player_dies():
@@ -140,6 +143,7 @@ func set_game_over_screen():
 func _player_shoot(shot):
 	cannon.add_child(shot)
 
+
 # Function called when a comet is destroyed
 func _comet_destroyed(com_position, size, points):
 	# Update the score and spawn new comets based on the destroyed comet's size
@@ -153,17 +157,19 @@ func _comet_destroyed(com_position, size, points):
 			Comet.CometSize.SMALL:
 				pass
 
+
 # Function to spawn a comet at a given position and size
 func spawn_comet(spawn_position, size):
-	var comet = comet_scene.instantiate()
+	var comet: Comet = comet_scene.instantiate()
 	comet.global_position = spawn_position
 	comet.size = size
 	comet.connect("destroyed", _comet_destroyed)
 	comets.call_deferred("add_child", comet)
 
+
 # Function to spawn a new comet periodically using the timer
 func new_comet():
-	var comet = comet_scene.instantiate()
+	var comet: Comet = comet_scene.instantiate()
 	comet.connect("destroyed", _comet_destroyed)
 	#comets.call_deferred("add_child", comet)
 	comets.add_child(comet)

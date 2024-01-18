@@ -295,7 +295,7 @@ func _on_collect_button_pressed():
 			if (DataScript.getMoonstone() + DataScript.fieldArray[building_id][ressource_amount][moonstone_amount]) > DataScript.maxMoonstoneStorage:
 				var temp : int = DataScript.getMoonstone()
 				DataScript.addMoonstone(DataScript.maxMoonstoneStorage - DataScript.getMoonstone())
-				DataScript.fieldArray[building_id][ressource_amount][moonstone_amount] = DataScript.fieldArray[building_id][ressource_amount] - (DataScript.maxMoonstoneStorage - temp)
+				DataScript.fieldArray[building_id][ressource_amount][moonstone_amount] = DataScript.fieldArray[building_id][ressource_amount][moonstone_amount] - (DataScript.maxMoonstoneStorage - temp)
 				set_bars()
 			else:
 				DataScript.addMoonstone(DataScript.fieldArray[building_id][ressource_amount][moonstone_amount])

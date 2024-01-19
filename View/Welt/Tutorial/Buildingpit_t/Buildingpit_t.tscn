@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3dwxoja81dxw"]
+
+[ext_resource type="Script" path="res://Welt/Tutorial/Buildingpit_t/Buildingpit_t.gd" id="1_dt6oy"]
+[ext_resource type="Texture2D" uid="uid://2pbyjrosicbe" path="res://Welt/Tutorial/Buildingpit_t/Bauplätze.PNG" id="1_iymgk"]
+[ext_resource type="FontFile" uid="uid://b87a4ripf8q1k" path="res://Welt/Shop/04B_30__.TTF" id="2_owdgi"]
+[ext_resource type="Texture2D" uid="uid://4e0q3e07d03x" path="res://Welt/Tutorial/Buildingpit_t/Gebäude_plazieren.PNG" id="4_f6j7b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ber23"]
+size = Vector2(350, 250)
+
+[sub_resource type="LabelSettings" id="LabelSettings_feqtv"]
+font = ExtResource("2_owdgi")
+font_size = 12
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Buildingpit_t" type="Node2D"]
+script = ExtResource("1_dt6oy")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(160, 89)
+shape = SubResource("RectangleShape2D_ber23")
+
+[node name="Bauplätze" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+scale = Vector2(0.252765, 0.253521)
+texture = ExtResource("1_iymgk")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 124.0
+offset_top = 3.0
+offset_right = 364.0
+offset_bottom = 63.0
+text = "U can place ur 
+purchased Buildings 
+in the Buildingpits"
+label_settings = SubResource("LabelSettings_feqtv")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 93.0
+offset_right = 119.0
+offset_bottom = 161.0
+text = "Click in 
+the pit to 
+open ur 
+Inventory"
+label_settings = SubResource("LabelSettings_feqtv")
+
+[node name="GebäudePlazieren" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(160, 89.5)
+scale = Vector2(0.25, 0.249304)
+texture = ExtResource("4_f6j7b")
+
+[node name="inv_text" type="Label" parent="."]
+visible = false
+offset_left = 19.0
+offset_top = 149.0
+offset_right = 339.0
+offset_bottom = 209.0
+text = "Here u see ur purchased 
+Buildings"
+label_settings = SubResource("LabelSettings_feqtv")
+
+[connection signal="pressed" from="TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]

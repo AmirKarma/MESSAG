@@ -91,6 +91,7 @@ grow_vertical = 2
 color = Color(1, 1, 1, 0.352941)
 
 [node name="GameOverText2" type="Label" parent="."]
+layout_mode = 0
 offset_left = 30.0
 offset_top = 9.0
 offset_right = 290.0

@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://cwo4kcdmsf7cr"]
+[gd_scene load_steps=28 format=3 uid="uid://cwo4kcdmsf7cr"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_3qcmq"]
 [ext_resource type="Texture2D" uid="uid://d26fe4t3pqew4" path="res://Images/astronaut.png" id="2_8dut7"]
 [ext_resource type="PackedScene" uid="uid://c6i4vynrrtudd" path="res://Player/RessourceBar/ressource_bar.tscn" id="3_0wfbp"]
-[ext_resource type="PackedScene" uid="uid://djmdat0ledp8m" path="res://Player/inventar.tscn" id="3_w3aec"]
+[ext_resource type="PackedScene" uid="uid://dbaqm4nbxf7gd" path="res://Player/Inventory/Inventory.tscn" id="3_6bgg2"]
+[ext_resource type="Texture2D" uid="uid://dcu4w02pdj7nh" path="res://Player/mapShow.png" id="6_gexft"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yw0jl"]
 radius = 6.0
@@ -204,15 +205,14 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
 tree_root = SubResource("AnimationNodeStateMachine_i8lqd")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/Idle/blend_position = Vector2(-0.00642675, 1.1)
 parameters/Run/blend_position = Vector2(0, 0)
-
-[node name="Inventar" parent="." instance=ExtResource("3_w3aec")]
-visible = false
-position = Vector2(-48, -40)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
@@ -226,3 +226,17 @@ anchors_preset = -1
 anchor_left = -0.025
 offset_left = 8.0
 grow_vertical = 2
+
+[node name="showMap" type="TextureButton" parent="Camera2D/HUD"]
+offset_left = 275.0
+offset_top = 137.0
+offset_right = 312.0
+offset_bottom = 172.0
+texture_normal = ExtResource("6_gexft")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Inventory" parent="Camera2D/HUD" instance=ExtResource("3_6bgg2")]
+visible = false
+
+[connection signal="pressed" from="Camera2D/HUD/showMap" to="." method="_on_showMap_button_pressed"]

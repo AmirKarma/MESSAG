@@ -1,0 +1,347 @@
+[gd_scene load_steps=37 format=3 uid="uid://det7mjel5dohh"]
+
+[ext_resource type="Script" path="res://Minigame2/Scripts/minigame2.gd" id="1_hejj1"]
+[ext_resource type="Script" path="res://Minigame2/Scripts/Background.gd" id="2_r1cj5"]
+[ext_resource type="Texture2D" uid="uid://dbh5uk0ytof32" path="res://Welt/Background/Terrain_Ecken.png" id="4_lubxe"]
+[ext_resource type="Texture2D" uid="uid://ddhd05dwexuff" path="res://Welt/Background/Terrain_Grau.png" id="5_qcsgn"]
+[ext_resource type="Texture2D" uid="uid://3s6ye2qf1hou" path="res://Welt/Background/Krater_Grau.png" id="6_o33q1"]
+[ext_resource type="Script" path="res://Minigame2/Scripts/Player.gd" id="6_oecr4"]
+[ext_resource type="Texture2D" uid="uid://b570jwv50m17d" path="res://Minigame2/Img/pixilart-drawing.png" id="7_pkj05"]
+[ext_resource type="Texture2D" uid="uid://43g07mw1smpe" path="res://Minigame2/Img/Mooncar.png" id="8_apb1e"]
+[ext_resource type="Script" path="res://Minigame2/Scripts/Overlay.gd" id="8_ro0n2"]
+[ext_resource type="PackedScene" uid="uid://c1jwxw4rf3vfw" path="res://Minigame2/Scenes/GameOverScreenMinigame2.tscn" id="9_eukno"]
+[ext_resource type="Script" path="res://Minigame2/Scripts/PauseMenu.gd" id="10_nu426"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_afsc4"]
+tile_data = PackedInt32Array(0, 2, 0, 65536, 2, 1, 1, 65538, 0, 65537, 65538, 1, 2, 131074, 0, 65538, 131074, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hch0c"]
+texture = ExtResource("4_lubxe")
+separation = Vector2i(1, 1)
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0xsbr"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_mlxup"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_5ydpt"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_dt2jg"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6p666"]
+vertices = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6cr1r"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_uvlyl"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ejs0n"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_yeg0b"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m6s5r"]
+texture = ExtResource("5_qcsgn")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0xsbr")
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dt2jg")
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_uvlyl")
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_mlxup")
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_6p666")
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_ejs0n")
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_5ydpt")
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_6cr1r")
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_yeg0b")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_juhib"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_4mix3"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_74ad7"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_wqftl"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0k77i"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ter3m"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ehnb"]
+texture = ExtResource("6_o33q1")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_juhib")
+0:0/0/custom_data_0 = true
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_74ad7")
+1:0/0/custom_data_0 = true
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0k77i")
+2:0/0/custom_data_0 = true
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_ter3m")
+2:1/0/custom_data_0 = true
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_wqftl")
+1:1/0/custom_data_0 = true
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_4mix3")
+0:1/0/custom_data_0 = true
+
+[sub_resource type="TileSet" id="TileSet_p6rd5"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+navigation_layer_0/layers = 1
+custom_data_layer_0/name = "clickable"
+custom_data_layer_0/type = 1
+sources/1 = SubResource("TileSetAtlasSource_m6s5r")
+sources/2 = SubResource("TileSetAtlasSource_0ehnb")
+sources/0 = SubResource("TileSetAtlasSource_hch0c")
+pattern_0 = SubResource("TileMapPattern_afsc4")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcre6"]
+radius = 0.05
+height = 0.19
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_alqvg"]
+size = Vector2(160, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unto0"]
+size = Vector2(160, 100)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n81bd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_331s3"]
+
+[node name="minigame2" type="Node2D"]
+script = ExtResource("1_hejj1")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("2_r1cj5")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(2.08165e-12, 180)
+
+[node name="TileMap" type="TileMap" parent="ParallaxBackground/ParallaxLayer"]
+tile_set = SubResource("TileSet_p6rd5")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 131072, 1, 65536, 131072, 1, 131072, 131072, 1, 196608, 131072, 1, 262144, 131072, 1, 327680, 131072, 1, 1, 131072, 1, 65537, 131072, 1, 131073, 131072, 1, 196609, 131072, 1, 262145, 131072, 1, 327681, 131072, 1, 2, 131072, 1, 65538, 131072, 1, 131074, 131072, 1, 196610, 131072, 1, 262146, 131072, 1, 327682, 131072, 1, 3, 131072, 1, 65539, 131072, 1, 131075, 131072, 1, 196611, 131072, 1, 262147, 131072, 1, 327683, 131072, 1, 4, 131072, 1, 65540, 131072, 1, 131076, 131072, 1, 196612, 131072, 1, 262148, 131072, 1, 327684, 131072, 1, 5, 131072, 1, 65541, 131072, 1, 131077, 131072, 1, 196613, 131072, 1, 262149, 131072, 1, 327685, 131072, 1, 6, 131072, 1, 65542, 131072, 1, 131078, 131072, 1, 196614, 131072, 1, 262150, 131072, 1, 327686, 131072, 1, 7, 131072, 1, 65543, 131072, 1, 131079, 131072, 1, 196615, 131072, 1, 262151, 131072, 1, 327687, 131072, 1, 8, 131072, 1, 65544, 131072, 1, 131080, 131072, 1, 196616, 131072, 1, 262152, 131072, 1, 327688, 131072, 1, 9, 131072, 1, 65545, 131072, 1, 131081, 131072, 1, 196617, 131072, 1, 262153, 131072, 1, 327689, 131072, 1)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(160, 128)
+scale = Vector2(85, 125)
+script = ExtResource("6_oecr4")
+
+[node name="Cart" type="Sprite2D" parent="Player"]
+scale = Vector2(0.00904616, 0.00617763)
+texture = ExtResource("8_apb1e")
+
+[node name="Area2D" type="Area2D" parent="Player" groups=["Player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+shape = SubResource("CapsuleShape2D_bcre6")
+
+[node name="Minigame2_timer" type="Timer" parent="."]
+wait_time = 0.333
+autostart = true
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="Overlay" type="Control" parent="Hud"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+script = ExtResource("8_ro0n2")
+
+[node name="TouchRight" type="TouchScreenButton" parent="Hud/Overlay"]
+position = Vector2(240, 130)
+shape = SubResource("RectangleShape2D_alqvg")
+action = "ui_right"
+
+[node name="TouchLeft" type="TouchScreenButton" parent="Hud/Overlay"]
+position = Vector2(80, 130)
+shape = SubResource("RectangleShape2D_unto0")
+action = "ui_left"
+
+[node name="Score" type="Label" parent="Hud/Overlay"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 1.0
+offset_right = 80.0
+offset_bottom = 27.0
+text = "Score:"
+vertical_alignment = 1
+
+[node name="PauseButton" type="TouchScreenButton" parent="Hud/Overlay"]
+position = Vector2(283, 8)
+texture_normal = ExtResource("7_pkj05")
+action = "pause"
+
+[node name="PauseMenu" type="Control" parent="Hud"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+script = ExtResource("10_nu426")
+
+[node name="PauseBackround" type="ColorRect" parent="Hud/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="CenterContainer" type="CenterContainer" parent="Hud/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Hud/PauseMenu/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Hud/PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Resume" type="Button" parent="Hud/PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n81bd")
+text = "Resume Game"
+
+[node name="Exit" type="Button" parent="Hud/PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_331s3")
+text = "Exit"
+
+[node name="PauseTimer" type="Timer" parent="Hud/PauseMenu"]
+
+[node name="Countdown" type="Control" parent="Hud"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseBackround" type="ColorRect" parent="Hud/Countdown"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="CountdownLabel" type="Label" parent="Hud/Countdown"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverScreen" parent="Hud" instance=ExtResource("9_eukno")]
+process_mode = 3
+visible = false
+
+[connection signal="area_entered" from="Player/Area2D" to="Player" method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Minigame2_timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Hud/PauseMenu/CenterContainer/VBoxContainer/Resume" to="Hud/PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="Hud/PauseMenu/CenterContainer/VBoxContainer/Exit" to="Hud/PauseMenu" method="_on_exit_pressed"]
+[connection signal="timeout" from="Hud/PauseMenu/PauseTimer" to="Hud/PauseMenu" method="_on_pause_timer_timeout"]

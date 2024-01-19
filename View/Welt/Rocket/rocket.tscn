@@ -22,20 +22,19 @@ OptionButton/colors/font_pressed_color = Color(1, 1, 0.164706, 1)
 y_sort_enabled = true
 script = ExtResource("1_owhly")
 
-[node name="OptionButton" type="OptionButton" parent="."]
+[node name="OptionButton" type="Button" parent="."]
 clip_children = 1
 texture_filter = 1
-offset_left = -16.0
-offset_top = -49.0
-offset_right = 17.0
-offset_bottom = 50.0
+offset_left = -17.0
+offset_top = -90.0
+offset_right = 16.0
+offset_bottom = 9.0
 theme = SubResource("Theme_xonwc")
 flat = true
 clip_text = true
-allow_reselect = true
 
 [node name="rocketSprite" type="Sprite2D" parent="."]
+position = Vector2(-1, -38)
 texture = ExtResource("2_1kb1i")
 
-[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="OptionButton" to="." method="_on_option_button_pressed"]

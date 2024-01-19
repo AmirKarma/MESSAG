@@ -1,32 +1,22 @@
 extends Node2D
 
-@onready var optionButton = $OptionButton
-@onready var rocketSprite = $rocketSprite
+# ID of the building
+var id: int = 0
 
+# Node for the scene
+@onready var buildings: Node2D = get_node("/root/World/buildings")
+
+# Variable holdes the value of pressed
 var pressed: bool = false
-var world
-var player
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	world = get_tree().get_root().get_node("World")
-	player = world.get_node("Player")
-		
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if pressed:
-		if player.position.distance_to(position) < 50:
-			pressed = false
-		elif player.nav.target_position != position - Vector2(20,20):
-			pressed = false
 
 
+# Function: _process
+# Description: This function is called every frame and invokes the 'building_distance' method of the 'buildings' object.
+func _process(_delta):
+	buildings.building_distance(self)
+
+
+# Function: _on_option_button_pressed
+# Description: Called when the option button is pressed. Sets the 'pressed' variable to true.
 func _on_option_button_pressed():
 	pressed = true
-	optionButton.get_popup().hide()
-	if player.position.distance_to(position) > 50:
-		player.stand_still = false
-		player.moving = true
-		player.nav.target_position = position - Vector2(20,20)
-		player.animationState.travel("Run")
-

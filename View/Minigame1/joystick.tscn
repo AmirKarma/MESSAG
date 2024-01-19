@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb0x0ox30dogx"]
+
+[ext_resource type="Script" path="res://Minigame1/Joystick.gd" id="1_omhvu"]
+[ext_resource type="Texture2D" uid="uid://di7qqdaji8hoa" path="res://Minigame1/Joystick1.png" id="2_egdsm"]
+[ext_resource type="Texture2D" uid="uid://cxe7me17v5fqy" path="res://Minigame1/Joystick2.png" id="3_r4x0a"]
+[ext_resource type="Script" path="res://Minigame1/Joystick_Button.gd" id="4_atxf2"]
+
+[node name="Joystick" type="Node2D"]
+position = Vector2(90, 67)
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_omhvu")
+
+[node name="Joystick1" type="Sprite2D" parent="."]
+texture = ExtResource("2_egdsm")
+
+[node name="Joystick2" type="Sprite2D" parent="."]
+texture = ExtResource("3_r4x0a")
+script = ExtResource("4_atxf2")
+
+[node name="touchOnOff" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -630.0
+offset_top = -470.0
+offset_right = 640.0
+offset_bottom = 450.0
+
+[node name="vor" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -250.0
+offset_top = -650.0
+offset_right = 270.0
+offset_bottom = -110.0
+
+[node name="zurück" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -240.0
+offset_top = 120.0
+offset_right = 250.0
+offset_bottom = 800.0
+
+[node name="rechts" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 140.0
+offset_top = -340.0
+offset_right = 768.0
+offset_bottom = 360.0
+
+[node name="links" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -780.0
+offset_top = -350.0
+offset_right = -152.0
+offset_bottom = 350.0
+
+[connection signal="button_down" from="touchOnOff" to="Joystick2" method="_on_touch_on_off_button_down"]
+[connection signal="button_up" from="touchOnOff" to="Joystick2" method="_on_touch_on_off_button_up"]
+[connection signal="mouse_entered" from="vor" to="Joystick2" method="_on_vor_mouse_entered"]
+[connection signal="mouse_exited" from="vor" to="Joystick2" method="_on_vor_mouse_exited"]
+[connection signal="mouse_entered" from="zurück" to="Joystick2" method="_on_zurück_mouse_entered"]
+[connection signal="mouse_exited" from="zurück" to="Joystick2" method="_on_zurück_mouse_exited"]
+[connection signal="mouse_entered" from="rechts" to="Joystick2" method="_on_rechts_mouse_entered"]
+[connection signal="mouse_exited" from="rechts" to="Joystick2" method="_on_rechts_mouse_exited"]
+[connection signal="mouse_entered" from="links" to="Joystick2" method="_on_links_mouse_entered"]
+[connection signal="mouse_exited" from="links" to="Joystick2" method="_on_links_mouse_exited"]

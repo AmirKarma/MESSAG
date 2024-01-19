@@ -1,0 +1,118 @@
+[gd_scene load_steps=9 format=3 uid="uid://djvcmma4a72cc"]
+
+[ext_resource type="Script" path="res://Minigame1/RetryButton.gd" id="1_ivxgs"]
+[ext_resource type="Script" path="res://Minigame1/GameOverScreen.gd" id="1_w773k"]
+[ext_resource type="Script" path="res://Minigame1/ExitButton.gd" id="2_p7hpq"]
+[ext_resource type="Texture2D" uid="uid://d4bvoelmcyjy7" path="res://Minigame1/Background_1.png" id="4_iglc3"]
+
+[sub_resource type="FontFile" id="FontFile_gwgbe"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/200/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/200/0/ascent = 0.0
+cache/0/200/0/descent = 0.0
+cache/0/200/0/underline_position = 0.0
+cache/0/200/0/underline_thickness = 0.0
+cache/0/200/0/scale = 1.0
+cache/0/200/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/200/0/kerning_overrides/200/0 = Vector2(0, 0)
+cache/0/200/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/50/0/ascent = 0.0
+cache/0/50/0/descent = 0.0
+cache/0/50/0/underline_position = 0.0
+cache/0/50/0/underline_thickness = 0.0
+cache/0/50/0/scale = 1.0
+cache/0/50/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/50/0/kerning_overrides/200/0 = Vector2(0, 0)
+cache/0/50/0/kerning_overrides/50/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2fllk"]
+font = SubResource("FontFile_gwgbe")
+font_size = 50
+
+[sub_resource type="FontFile" id="FontFile_tv01g"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/30/0 = Vector2(0, 0)
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+cache/0/30/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/30/0/kerning_overrides/30/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w7qst"]
+font = SubResource("FontFile_tv01g")
+font_size = 30
+
+[node name="GameOverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w773k")
+
+[node name="Background1" type="Sprite2D" parent="."]
+modulate = Color(0.321569, 0.321569, 0.321569, 1)
+show_behind_parent = true
+position = Vector2(160, 90)
+scale = Vector2(0.333333, 0.333333)
+texture = ExtResource("4_iglc3")
+
+[node name="GameOverText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 292.0
+offset_bottom = 70.0
+text = "Game Over"
+label_settings = SubResource("LabelSettings_2fllk")
+
+[node name="scoreLableMain" type="Label" parent="."]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 51.0
+offset_right = 124.0
+offset_bottom = 95.0
+text = "Score:"
+label_settings = SubResource("LabelSettings_w7qst")
+
+[node name="highscoreLableMain" type="Label" parent="."]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 80.0
+offset_right = 124.0
+offset_bottom = 124.0
+text = "Score:"
+label_settings = SubResource("LabelSettings_w7qst")
+
+[node name="RetryButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 125.0
+offset_right = 140.0
+offset_bottom = 161.0
+theme_override_font_sizes/font_size = 20
+text = "Retry"
+script = ExtResource("1_ivxgs")
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 125.0
+offset_right = 280.0
+offset_bottom = 161.0
+theme_override_font_sizes/font_size = 20
+text = "Exit"
+script = ExtResource("2_p7hpq")

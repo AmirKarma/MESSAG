@@ -1,20 +1,21 @@
 extends Control
 
 # Holds the current value for a timer in seconds.
-var timer_seconds:int
+var timer_seconds: int
 
 # Reference to the node managing a countdown in the game.
-var countdown:Control
+var countdown: Control
 
 # Reference to the label node displaying countdown information.
-var countdown_label:Label
+var countdown_label: Label
 
 # Controls the pause state in the game.
-var is_paused: 
-	set(value): 
+var is_paused:
+	set(value):
 		is_paused = value
 		visible = is_paused
-		
+
+
 # Function: _ready
 # Description: Called when the node enters the scene tree for the first time.
 # Initializes references to the countdown nodes, sets initial variables for pause state and timer.
@@ -24,6 +25,7 @@ func _ready():
 	is_paused = false
 	timer_seconds = 2
 
+
 # Function: _unhandled_input
 # Description: Handles unhandled input events.
 # Toggles the pause state and updates the game's paused status when the "pause" action is pressed.
@@ -31,17 +33,20 @@ func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
 		toggle_pause_state()
 		set_game_state()
-		
+
+
 # Function: toggle_pause_state
 # Description: Toggles the game's pause state and handles related actions.
 func toggle_pause_state():
 	is_paused = !is_paused
-	
+
+
 # Function: set_game_state
 # Description: Sets the game state to either paused or unpaused based on the value of 'is_paused'.
 #              If 'is_paused' is true, the game is paused; otherwise, it is unpaused.
 func set_game_state():
 	get_tree().paused = is_paused
+
 
 # Function: _on_resume_pressed
 # Description: Handles the event when the resume button is pressed.
@@ -59,6 +64,7 @@ func _on_exit_pressed():
 	toggle_pause_state()
 	load_world_scene()
 
+
 # Description: Loads and switches to the "world.tscn" scene.
 func load_world_scene():
 	get_tree().change_scene_to_file("res://Welt/world.tscn")
@@ -74,11 +80,13 @@ func _on_pause_timer_timeout():
 	else:
 		reset_countdown()
 
+
 # Function: update_countdown_label
 # Description: Updates the countdown label with the current timer value.
 func update_countdown_label():
 	countdown_label.text = str(timer_seconds)
 	timer_seconds -= 1
+
 
 # Function: reset_countdown
 # Description: Resets the countdown values and manages related actions.
@@ -88,4 +96,3 @@ func reset_countdown():
 	countdown.visible = false
 	$PauseTimer.stop()
 	set_game_state()
-

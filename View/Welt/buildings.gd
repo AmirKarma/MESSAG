@@ -7,13 +7,13 @@ extends Node2D
 #Variable for the current building index
 var building_index: int = 0
 
+var player_is_moving: bool = false
 
-var player_is_moving:bool = false
 
 # Function: building_distance
 # Description: Checks the distance between the player and a building. If the player is close enough, opens the option bar.
-func building_distance(building:Node2D):
-	if(building.pressed and !player.player_is_moving):
+func building_distance(building: Node2D):
+	if building.pressed and !player.player_is_moving:
 		optionbar.set_visible(false)
 		if player.position.distance_to(building.position) < 50:
 			building.pressed = false
@@ -49,7 +49,7 @@ func open_optionbar(id: int):
 func updateBuildings(building: Node2D):
 	for n in range(1, 13):
 		if building.id == n:
-			if DataScript.fieldArray[n][building_index] == DataScript.moonetenGenerator:
+			if DataScript.fieldArray[n][building_index] == DataScript.MOONETEN_GENERATOR:
 				building.visible = true
 				building.icon.play("moonetenGenerator")
 				building.mooneten_generator_button.visible = true

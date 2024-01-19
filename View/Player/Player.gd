@@ -70,8 +70,9 @@ var mapShowPressed: bool = false
 var showMapTexture: Resource = load("res://Player/mapShow.png")
 var exitMapTexture: Resource = load("res://Player/mapExit.png")
 
-var screen_is_pressed:bool = false
-var player_is_moving:bool = false
+var screen_is_pressed: bool = false
+var player_is_moving: bool = false
+
 
 # Function: _unhandled_input
 # Description: Handles unhandled input events, specifically for mouse clicks.
@@ -83,15 +84,16 @@ var player_is_moving:bool = false
 func _unhandled_input(event):
 	if !DataScript.is_in_building_menu:
 		if camera.zoom == standart_camerazoom:
-			if event.is_action_pressed('Click'):
+			if event.is_action_pressed("Click"):
 				player_is_moving = true
 				screen_is_pressed = true
 				set_free_field_pressed()
-			if event.is_action_released('Click'):
+			if event.is_action_released("Click"):
 				player_is_moving = false
 				screen_is_pressed = false
 		else:
 			reset_camera()
+
 
 # Function: player_movement
 # Description: Manages player movement based on screen touch input.
@@ -105,6 +107,7 @@ func player_movement():
 			moving = true
 			nav.target_position = get_global_mouse_position()
 			animationState.travel("Run")
+
 
 # Function: reset_camera
 # Description: Resets the camera properties to default values, makes the resource bar visible,
@@ -188,6 +191,7 @@ func free_field_distance_check():
 			stand_still = false
 			set_pattern()
 
+
 # Function: open_inventory
 # Description: Opens the menu based on the provided value, which represents a position.
 # Retrieves the field and building indices, and if there is no building at the location,
@@ -211,10 +215,10 @@ func place_building(bIndex: int):
 	DataScript.is_in_building_menu = false
 	$Camera2D/HUD/Inventory.visible = false
 	reset_camera()
-	DataScript.set_building(fieldIndex,DataScript.inventory[bIndex])
+	DataScript.set_building(fieldIndex, DataScript.inventory[bIndex])
 	DataScript.inventory.remove_at(bIndex)
-	DataScript.setMaxRessources()
-	DataScript.updateStorageBuildingCapacity()
+	DataScript.set_max_ressources()
+	DataScript.update_storage_building_capacity()
 
 
 # Function: MovementLoop
@@ -299,6 +303,7 @@ func getFieldIndex(value):
 func getBuildingIndex(value):
 	return DataScript.fieldArray[value]
 
+
 func _on_showMap_button_pressed():
 	mapShowPressed = not mapShowPressed
 	if mapShowPressed:
@@ -309,4 +314,3 @@ func _on_showMap_button_pressed():
 		camera.position = Vector2(248, 160) - self.position
 	else:
 		reset_camera()
-		

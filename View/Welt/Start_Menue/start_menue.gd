@@ -4,7 +4,7 @@ extends Control
 # Function: _ready
 # Description: Disables the "Fortsetzen" button if it is the first time playing.
 func _ready():
-	if(DataScript.isPlayingFirstTime()):
+	if DataScript.is_playing_first_time():
 		$VBoxContainer/Buttons/Fortsetzen.disabled = true
 
 
@@ -21,7 +21,7 @@ func _on_neues_spiel_pressed():
 	if !DataScript.firstGame:
 		$ConfirmationDialog.visible = true
 	else:
-		newGame()
+		new_game()
 
 
 # Function: _on_impressum_pressed
@@ -33,13 +33,14 @@ func _on_impressum_pressed():
 # Function: _on_confirmation_dialog_confirmed
 # Description: Initiates a new game when the confirmation dialog is confirmed.
 func _on_confirmation_dialog_confirmed():
-	newGame()
+	new_game()
 
 
-# Function: newGame
-# Description: Starts a new game by resetting stats, loading and instantiating the main game scene, and replacing the current scene with the main game.
-func newGame():
-	DataScript.resetStats()
+# Function: new_game
+# Description: Starts a new game by resetting stats, loading
+# and instantiating the main game scene, and replacing the current scene with the main game.
+func new_game():
+	DataScript.reset_stats()
 	get_tree().change_scene_to_file("res://Welt/world.tscn")
-	DataScript.setFirstGame(false)
-	DataScript.updateStorageBuildingCapacity()
+	DataScript.set_first_game(false)
+	DataScript.update_storage_building_capacity()

@@ -128,7 +128,7 @@ func set_building_price(price: String):
 # Description: Sets the image for a building in the shop based on its building_id.
 func set_building_image(building_id: int):
 	match building_id:
-		DataScript.moonetenGenerator:
+		DataScript.MOONETEN_GENERATOR:
 			building_image.play("moonetenGenerator")
 		DataScript.moonstoneGenerator:
 			building_image.play("moonstoneGenerator")
@@ -166,8 +166,17 @@ func set_building_button(buidling_name: String, is_bought: bool, price: int):
 # the cost from the player's resources, sets the building as bought, and updates the shop.
 func _on_Moonetengenerator_button_pressed():
 	var building_data: Array = DataScript.shop_data
-	if DataScript.getMoonstone() >= building_data[DataScript.MOONETEN_GENERATOR_CARD]["price"]:
-		DataScript.set_inventory(DataScript.moonetenGenerator,"Moonetengenerator",1,DataScript.generators_upgrade_costs,"moonetenGenerator","res://Minigame2/Scenes/minigame2.tscn", [0, 0], DataScript.generators_max_storage_size)
+	if DataScript.get_moonstone() >= building_data[DataScript.MOONETEN_GENERATOR_CARD]["price"]:
+		DataScript.set_inventory(
+			DataScript.MOONETEN_GENERATOR,
+			"Moonetengenerator",
+			1,
+			DataScript.generators_upgrade_costs,
+			"moonetenGenerator",
+			"res://Minigame2/Scenes/minigame2.tscn",
+			[0, 0],
+			DataScript.generators_max_storage_size
+		)
 		set_moonstone(DataScript.MOONETEN_GENERATOR_CARD)
 		set_is_bought(DataScript.MOONETEN_GENERATOR_CARD)
 		set_shop()
@@ -179,8 +188,17 @@ func _on_Moonetengenerator_button_pressed():
 # the cost from the player's resources, sets the building as bought, and updates the shop.
 func _on_Moonetenstorage_button_pressed():
 	var building_data: Array = DataScript.shop_data
-	if DataScript.getMoonstone() >= building_data[DataScript.MOONETEN_STORAGE_CARD]["price"]:
-		DataScript.set_inventory(DataScript.moonetenStorage,"Moonetenstorage",1,DataScript.storage_upgrade_costs,"moonetenStorage","", [0, 0], DataScript.storage_max_storage_size)
+	if DataScript.get_moonstone() >= building_data[DataScript.MOONETEN_STORAGE_CARD]["price"]:
+		DataScript.set_inventory(
+			DataScript.moonetenStorage,
+			"Moonetenstorage",
+			1,
+			DataScript.storage_upgrade_costs,
+			"moonetenStorage",
+			"",
+			[0, 0],
+			DataScript.storage_max_storage_size
+		)
 		set_moonstone(DataScript.MOONETEN_STORAGE_CARD)
 		set_is_bought(DataScript.MOONETEN_STORAGE_CARD)
 		set_shop()
@@ -192,8 +210,17 @@ func _on_Moonetenstorage_button_pressed():
 # the cost from the player's resources, sets the building as bought, and updates the shop.
 func _on_Moonstonegenerator_button_pressed():
 	var building_data: Array = DataScript.shop_data
-	if DataScript.getMooneten() >= building_data[DataScript.MOONSTONE_GENERATOR_CARD]["price"]:
-		DataScript.set_inventory(DataScript.moonstoneGenerator,"Moonstonegenerator",1,DataScript.generators_upgrade_costs,"moonstoneGenerator","", [0, 0], DataScript.generators_max_storage_size)
+	if DataScript.get_mooneten() >= building_data[DataScript.MOONSTONE_GENERATOR_CARD]["price"]:
+		DataScript.set_inventory(
+			DataScript.moonstoneGenerator,
+			"Moonstonegenerator",
+			1,
+			DataScript.generators_upgrade_costs,
+			"moonstoneGenerator",
+			"",
+			[0, 0],
+			DataScript.generators_max_storage_size
+		)
 		set_mooneten(DataScript.MOONSTONE_GENERATOR_CARD)
 		set_is_bought(DataScript.MOONSTONE_GENERATOR_CARD)
 		set_shop()
@@ -205,8 +232,17 @@ func _on_Moonstonegenerator_button_pressed():
 # the cost from the player's resources, sets the building as bought, and updates the shop.
 func _on_Moonstonestorage_button_pressed():
 	var building_data: Array = DataScript.shop_data
-	if DataScript.getMooneten() >= building_data[DataScript.MOONSTONE_STORAGE_CARD]["price"]:
-		DataScript.set_inventory(DataScript.moonstoneStorage,"Moonstonestorage",1,DataScript.storage_upgrade_costs,"moonstoneStorage","", [0, 0], DataScript.storage_max_storage_size)
+	if DataScript.get_mooneten() >= building_data[DataScript.MOONSTONE_STORAGE_CARD]["price"]:
+		DataScript.set_inventory(
+			DataScript.moonstoneStorage,
+			"Moonstonestorage",
+			1,
+			DataScript.storage_upgrade_costs,
+			"moonstoneStorage",
+			"",
+			[0, 0],
+			DataScript.storage_max_storage_size
+		)
 		set_mooneten(DataScript.MOONSTONE_STORAGE_CARD)
 		set_is_bought(DataScript.MOONSTONE_STORAGE_CARD)
 		set_shop()
@@ -270,7 +306,7 @@ func _on_close_button_pressed():
 # Description: Checks the building type and sets the appropriate resource requirements.
 func needed_ressource_check(building_id: int):
 	match building_id:
-		DataScript.moonetenGenerator, DataScript.moonetenStorage:
+		DataScript.MOONETEN_GENERATOR, DataScript.moonetenStorage:
 			need_moonstone = true
-		DataScript.moonstoneGenerator, DataScript.moonstoneStorage, DataScript.rocket:
+		DataScript.moonstoneGenerator, DataScript.moonstoneStorage, DataScript.ROCKET:
 			need_mooneten = true

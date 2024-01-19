@@ -280,8 +280,3 @@ script = ExtResource("23_dt3bb")
 [node name="Optionbar" parent="." instance=ExtResource("12_mxp31")]
 visible = false
 top_level = true
-
-[node name="Shop" type="Sprite2D" parent="."]
-top_level = true
-position = Vector2(911, 238)
-scale = Vector2(0.225586, 0.216797)

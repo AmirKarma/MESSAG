@@ -6,7 +6,7 @@ extends CharacterBody2D
 const FIRST_LANE = 64
 const LAST_LANE = 256
 const LANE_LENGTH = 64
-const SCORE_TO_MOONETEN_FACTOR : float = 0.01
+const SCORE_TO_MOONETEN_FACTOR: float = 0.01
 
 # Variables: gameover_screen, overlay_score, overlay_pause_button, score_label, highscore_label
 # Description: Hold references to UI elements in the game.
@@ -107,9 +107,13 @@ func end_game():
 	overlay_pause_button.visible = false
 	gameover_screen.visible = true
 
+
 # Function: _score2Moonstone
-# Description: Adds the product of Minigame2 score and a specified factor to the Moonstone resource, ensuring it does not exceed the maximum storage limit.	
+# Description: Adds the product of Minigame2 score and a specified factor to the Moonstone resource, ensuring it does not exceed the maximum storage limit.
 func add_moonstone_to_storage():
-	# Add Score * Factor to Comet. 
-	if (DataScript.getMoonstone() + DataScript.getMinigame2_score() * SCORE_TO_MOONETEN_FACTOR) <= DataScript.maxMoonstoneStorage:
-		DataScript.addMoonstone(DataScript.getMinigame2_score() * SCORE_TO_MOONETEN_FACTOR)
+	# Add Score * Factor to Comet.
+	if (
+		(DataScript.get_moonstone() + DataScript.get_minigame2_score() * SCORE_TO_MOONETEN_FACTOR)
+		<= DataScript.maxMoonstoneStorage
+	):
+		DataScript.add_moonstone(DataScript.get_minigame2_score() * SCORE_TO_MOONETEN_FACTOR)

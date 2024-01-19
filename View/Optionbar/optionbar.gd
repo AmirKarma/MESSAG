@@ -35,10 +35,10 @@ const level_index: int = 2
 const upgrade_cost_index: int = 3
 const image_index: int = 4
 const game_path_index: int = 5
-const ressource_amount: int = 6
+const RESSOURCE_AMOUNT: int = 6
 const max_storage_size: int = 7
-const mooneten_amount:int = 0
-const moonstone_amount:int = 1
+const mooneten_amount: int = 0
+const moonstone_amount: int = 1
 var need_moonstone: bool = false
 var need_mooneten: bool = false
 
@@ -86,17 +86,17 @@ func set_optionbar(positon: Vector2, id: int):
 		play_button.visible = true
 		game_scene = DataScript.fieldArray[building_id][game_path_index]
 	if (
-		DataScript.fieldArray[building_id][building_type] == DataScript.moonetenGenerator
+		DataScript.fieldArray[building_id][building_type] == DataScript.MOONETEN_GENERATOR
 		|| DataScript.fieldArray[building_id][building_type] == DataScript.moonstoneGenerator
 	):
 		collect_button.visible = true
 	else:
 		collect_button.visible = false
-	if DataScript.fieldArray[building_id][building_type] == DataScript.rocket:
+	if DataScript.fieldArray[building_id][building_type] == DataScript.ROCKET:
 		remove_button.visible = false
 	else:
 		remove_button.visible = true
-	if id != DataScript.rocket:
+	if id != DataScript.ROCKET:
 		set_building_image()
 	else:
 		set_rocket_image()
@@ -130,7 +130,7 @@ func is_upgradeable():
 		disable_upgrade_button()
 		$optionbar_rect/buttons_rect/buttons/Upgrade_warning/Label.text = "Rocket Level is too low!"
 		upgrade_warning.visible = true
-	elif building_id == DataScript.rocket and !is_rocket_upgradeable():
+	elif building_id == DataScript.ROCKET and !is_rocket_upgradeable():
 		disable_upgrade_button()
 		$optionbar_rect/buttons_rect/buttons/Upgrade_warning/Label.text = "You need to buy all Buildings in the Shop to upgrade the Rocket!"
 		upgrade_warning.visible = true
@@ -262,7 +262,7 @@ func _on_confirm_button_pressed():
 	set_bars()
 	reset_buttons()
 	is_upgradeable()
-	DataScript.setMaxRessources()
+	DataScript.set_max_ressources()
 
 
 # Function: rocket_upgrade
@@ -297,25 +297,92 @@ func set_bars():
 	$optionbar_rect/RessorceRect/Moonete.visible = true
 	$optionbar_rect/RessorceRect/moonstonebar.visible = true
 	$optionbar_rect/RessorceRect/Moonstone.visible = true
-	if DataScript.fieldArray[building_id][building_type] == DataScript.rocket:
-		$optionbar_rect/RessorceRect/moonetenbar/mooneten_label.text = str(DataScript.fieldArray[building_id][ressource_amount][mooneten_amount]) + " / " + str(DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1])
-		$optionbar_rect/RessorceRect/moonetenbar.value = DataScript.fieldArray[building_id][ressource_amount][mooneten_amount]
-		$optionbar_rect/RessorceRect/moonetenbar.max_value = DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1]
-		$optionbar_rect/RessorceRect/moonstonebar/moonstone_label.text = str(DataScript.fieldArray[building_id][ressource_amount][moonstone_amount]) + " / " + str(DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1])
-		$optionbar_rect/RessorceRect/moonstonebar.value = DataScript.fieldArray[building_id][ressource_amount][moonstone_amount]
-		$optionbar_rect/RessorceRect/moonstonebar.max_value = DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1]
-	if DataScript.fieldArray[building_id][building_type] == DataScript.moonetenGenerator || DataScript.fieldArray[building_id][building_type] == DataScript.moonetenStorage:
+	if DataScript.fieldArray[building_id][building_type] == DataScript.ROCKET:
+		$optionbar_rect/RessorceRect/moonetenbar/mooneten_label.text = (
+			str(DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][mooneten_amount])
+			+ " / "
+			+ str(
+				DataScript.fieldArray[building_id][max_storage_size][
+					DataScript.fieldArray[building_id][level_index] - 1
+				]
+			)
+		)
+		$optionbar_rect/RessorceRect/moonetenbar.value = (
+			DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][mooneten_amount]
+		)
+		$optionbar_rect/RessorceRect/moonetenbar.max_value = (
+			DataScript
+			. fieldArray[building_id][max_storage_size][
+				DataScript.fieldArray[building_id][level_index] - 1
+			]
+		)
+		$optionbar_rect/RessorceRect/moonstonebar/moonstone_label.text = (
+			str(DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][moonstone_amount])
+			+ " / "
+			+ str(
+				DataScript.fieldArray[building_id][max_storage_size][
+					DataScript.fieldArray[building_id][level_index] - 1
+				]
+			)
+		)
+		$optionbar_rect/RessorceRect/moonstonebar.value = (
+			DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][moonstone_amount]
+		)
+		$optionbar_rect/RessorceRect/moonstonebar.max_value = (
+			DataScript
+			. fieldArray[building_id][max_storage_size][
+				DataScript.fieldArray[building_id][level_index] - 1
+			]
+		)
+	if (
+		DataScript.fieldArray[building_id][building_type] == DataScript.MOONETEN_GENERATOR
+		|| DataScript.fieldArray[building_id][building_type] == DataScript.moonetenStorage
+	):
 		$optionbar_rect/RessorceRect/moonstonebar.visible = false
 		$optionbar_rect/RessorceRect/Moonstone.visible = false
-		$optionbar_rect/RessorceRect/moonetenbar/mooneten_label.text = str(DataScript.fieldArray[building_id][ressource_amount][mooneten_amount]) + " / " + str(DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1])
-		$optionbar_rect/RessorceRect/moonetenbar.value = DataScript.fieldArray[building_id][ressource_amount][mooneten_amount]
-		$optionbar_rect/RessorceRect/moonetenbar.max_value = DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1]
-	if DataScript.fieldArray[building_id][building_type] == DataScript.moonstoneGenerator || DataScript.fieldArray[building_id][building_type] == DataScript.moonstoneStorage:
+		$optionbar_rect/RessorceRect/moonetenbar/mooneten_label.text = (
+			str(DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][mooneten_amount])
+			+ " / "
+			+ str(
+				DataScript.fieldArray[building_id][max_storage_size][
+					DataScript.fieldArray[building_id][level_index] - 1
+				]
+			)
+		)
+		$optionbar_rect/RessorceRect/moonetenbar.value = (
+			DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][mooneten_amount]
+		)
+		$optionbar_rect/RessorceRect/moonetenbar.max_value = (
+			DataScript
+			. fieldArray[building_id][max_storage_size][
+				DataScript.fieldArray[building_id][level_index] - 1
+			]
+		)
+	if (
+		DataScript.fieldArray[building_id][building_type] == DataScript.moonstoneGenerator
+		|| DataScript.fieldArray[building_id][building_type] == DataScript.moonstoneStorage
+	):
 		$optionbar_rect/RessorceRect/moonetenbar.visible = false
 		$optionbar_rect/RessorceRect/Moonete.visible = false
-		$optionbar_rect/RessorceRect/moonstonebar/moonstone_label.text = str(DataScript.fieldArray[building_id][ressource_amount][moonstone_amount]) + " / " + str(DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1])
-		$optionbar_rect/RessorceRect/moonstonebar.value = DataScript.fieldArray[building_id][ressource_amount][moonstone_amount]
-		$optionbar_rect/RessorceRect/moonstonebar.max_value = DataScript.fieldArray[building_id][max_storage_size][DataScript.fieldArray[building_id][level_index] - 1]
+		$optionbar_rect/RessorceRect/moonstonebar/moonstone_label.text = (
+			str(DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][moonstone_amount])
+			+ " / "
+			+ str(
+				DataScript.fieldArray[building_id][max_storage_size][
+					DataScript.fieldArray[building_id][level_index] - 1
+				]
+			)
+		)
+		$optionbar_rect/RessorceRect/moonstonebar.value = (
+			DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][moonstone_amount]
+		)
+		$optionbar_rect/RessorceRect/moonstonebar.max_value = (
+			DataScript
+			. fieldArray[building_id][max_storage_size][
+				DataScript.fieldArray[building_id][level_index] - 1
+			]
+		)
+
 
 # Function: reset_buttons
 # Description: Resets the appearance and functionality of buttons in the option bar.
@@ -334,9 +401,9 @@ func reset_buttons():
 func needed_ressource_check():
 	print(DataScript.fieldArray[building_id][building_type])
 	match DataScript.fieldArray[building_id][building_type]:
-		DataScript.moonetenGenerator, DataScript.moonetenStorage:
+		DataScript.MOONETEN_GENERATOR, DataScript.moonetenStorage:
 			need_moonstone = true
-		DataScript.moonstoneGenerator, DataScript.moonstoneStorage, DataScript.rocket:
+		DataScript.moonstoneGenerator, DataScript.moonstoneStorage, DataScript.ROCKET:
 			need_mooneten = true
 
 
@@ -344,27 +411,51 @@ func needed_ressource_check():
 # Description: Handles the event when the collect button is pressed for a specific building.
 # Checks the building type and updates resource amounts accordingly.
 func _on_collect_button_pressed():
-	if DataScript.fieldArray[building_id][building_type] == DataScript.moonetenGenerator:
-		if DataScript.fieldArray[building_id][ressource_amount][mooneten_amount] > 0:
-			if (DataScript.getMooneten() + DataScript.fieldArray[building_id][ressource_amount][mooneten_amount]) > DataScript.maxMoonetenStorage: 
-				var temp : int = DataScript.getMooneten()
-				DataScript.addMooneten(DataScript.maxMoonetenStorage - DataScript.getMooneten())
-				DataScript.fieldArray[building_id][ressource_amount][mooneten_amount] = DataScript.fieldArray[building_id][ressource_amount] - (DataScript.maxMoonetenStorage - temp)
+	if DataScript.fieldArray[building_id][building_type] == DataScript.MOONETEN_GENERATOR:
+		if DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][mooneten_amount] > 0:
+			if (
+				(
+					DataScript.get_mooneten()
+					+ DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][mooneten_amount]
+				)
+				> DataScript.maxMoonetenStorage
+			):
+				var temp: int = DataScript.get_mooneten()
+				DataScript.add_mooneten(DataScript.maxMoonetenStorage - DataScript.get_mooneten())
+				DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][mooneten_amount] = (
+					DataScript.fieldArray[building_id][RESSOURCE_AMOUNT]
+					- (DataScript.maxMoonetenStorage - temp)
+				)
 				set_bars()
 			else:
-				DataScript.addMooneten(DataScript.fieldArray[building_id][ressource_amount][mooneten_amount])
-				DataScript.fieldArray[building_id][ressource_amount][mooneten_amount] = 0
+				DataScript.add_mooneten(
+					DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][mooneten_amount]
+				)
+				DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][mooneten_amount] = 0
 				set_bars()
 	elif DataScript.fieldArray[building_id][building_type] == DataScript.moonstoneGenerator:
-		if DataScript.fieldArray[building_id][ressource_amount][moonstone_amount] > 0:
-			if (DataScript.getMoonstone() + DataScript.fieldArray[building_id][ressource_amount][moonstone_amount]) > DataScript.maxMoonstoneStorage:
-				var temp : int = DataScript.getMoonstone()
-				DataScript.addMoonstone(DataScript.maxMoonstoneStorage - DataScript.getMoonstone())
-				DataScript.fieldArray[building_id][ressource_amount][moonstone_amount] = DataScript.fieldArray[building_id][ressource_amount][moonstone_amount] - (DataScript.maxMoonstoneStorage - temp)
+		if DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][moonstone_amount] > 0:
+			if (
+				(
+					DataScript.get_moonstone()
+					+ DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][moonstone_amount]
+				)
+				> DataScript.maxMoonstoneStorage
+			):
+				var temp: int = DataScript.get_moonstone()
+				DataScript.add_moonstone(
+					DataScript.maxMoonstoneStorage - DataScript.get_moonstone()
+				)
+				DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][moonstone_amount] = (
+					DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][moonstone_amount]
+					- (DataScript.maxMoonstoneStorage - temp)
+				)
 				set_bars()
 			else:
-				DataScript.addMoonstone(DataScript.fieldArray[building_id][ressource_amount][moonstone_amount])
-				DataScript.fieldArray[building_id][ressource_amount][moonstone_amount] = 0
+				DataScript.add_moonstone(
+					DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][moonstone_amount]
+				)
+				DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][moonstone_amount] = 0
 				set_bars()
 
 
@@ -386,24 +477,60 @@ func _on_cancel_button_2_pressed():
 # Description: Handles the event when the confirm button is pressed.
 # Places building in inventory and updates UI elements.
 func _on_confirm_button_2_pressed():
-	if DataScript.fieldArray[building_id][building_type] == DataScript.moonetenGenerator:
-		DataScript.set_inventory(DataScript.moonetenGenerator,"Moonetengenerator", DataScript.fieldArray[building_id][level_index],DataScript.generators_upgrade_costs,"moonetenGenerator","res://Minigame2/minigame2.tscn", [0, 0], DataScript.generators_max_storage_size)
+	if DataScript.fieldArray[building_id][building_type] == DataScript.MOONETEN_GENERATOR:
+		DataScript.set_inventory(
+			DataScript.MOONETEN_GENERATOR,
+			"Moonetengenerator",
+			DataScript.fieldArray[building_id][level_index],
+			DataScript.generators_upgrade_costs,
+			"MOONETEN_GENERATOR",
+			"res://Minigame2/minigame2.tscn",
+			[0, 0],
+			DataScript.generators_max_storage_size
+		)
 		DataScript.remove_building(building_id)
 	elif DataScript.fieldArray[building_id][building_type] == DataScript.moonstoneGenerator:
-		DataScript.set_inventory(DataScript.moonstoneGenerator,"Moonstonegenerator", DataScript.fieldArray[building_id][level_index],DataScript.generators_upgrade_costs,"moonstoneGenerator","", [0, 0], DataScript.generators_max_storage_size)
+		DataScript.set_inventory(
+			DataScript.moonstoneGenerator,
+			"Moonstonegenerator",
+			DataScript.fieldArray[building_id][level_index],
+			DataScript.generators_upgrade_costs,
+			"moonstoneGenerator",
+			"",
+			[0, 0],
+			DataScript.generators_max_storage_size
+		)
 		DataScript.remove_building(building_id)
 	elif DataScript.fieldArray[building_id][building_type] == DataScript.moonstoneStorage:
-		DataScript.set_inventory(DataScript.moonstoneStorage,"Moonstonestorage", DataScript.fieldArray[building_id][level_index],DataScript.storage_upgrade_costs,"moonstoneStorage","", [0, 0], DataScript.storage_max_storage_size)
+		DataScript.set_inventory(
+			DataScript.moonstoneStorage,
+			"Moonstonestorage",
+			DataScript.fieldArray[building_id][level_index],
+			DataScript.storage_upgrade_costs,
+			"moonstoneStorage",
+			"",
+			[0, 0],
+			DataScript.storage_max_storage_size
+		)
 		DataScript.remove_building(building_id)
-		DataScript.setMaxRessources()
+		DataScript.set_max_ressources()
 		if DataScript.get_moonstone() > DataScript.maxMoonstoneStorage:
 			DataScript.set_moonstone(DataScript.maxMoonstoneStorage)
 	elif DataScript.fieldArray[building_id][building_type] == DataScript.moonetenStorage:
-		DataScript.set_inventory(DataScript.moonetenStorage,"Moonetenstorage", DataScript.fieldArray[building_id][level_index],DataScript.storage_upgrade_costs,"moonetenStorage","", [0, 0], DataScript.storage_max_storage_size)
+		DataScript.set_inventory(
+			DataScript.moonetenStorage,
+			"Moonetenstorage",
+			DataScript.fieldArray[building_id][level_index],
+			DataScript.storage_upgrade_costs,
+			"moonetenStorage",
+			"",
+			[0, 0],
+			DataScript.storage_max_storage_size
+		)
 		DataScript.remove_building(building_id)
-		DataScript.setMaxRessources()
-		if DataScript.getMooneten() > DataScript.maxMoonetenStorage:
-			DataScript.setMooneten(DataScript.maxMoonetenStorage)
-	DataScript.updateStorageBuildingCapacity()
+		DataScript.set_max_ressources()
+		if DataScript.get_mooneten() > DataScript.maxMoonetenStorage:
+			DataScript.set_mooneten(DataScript.maxMoonetenStorage)
+	DataScript.update_storage_building_capacity()
 	hide_optionbar()
 	reset_buttons()

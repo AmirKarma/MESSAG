@@ -123,7 +123,7 @@ text = "1000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MoonstoneLabel" type="Label" parent="Bars"]
+[node name="EnergyLabel" type="Label" parent="Bars"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 42.0

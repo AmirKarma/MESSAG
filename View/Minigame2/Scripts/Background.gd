@@ -9,7 +9,7 @@ extends ParallaxBackground
 
 func _process(delta):
 	# Update the scroll base offset using the delta time, game speed, and timer
-	scroll_base_offset += delta * DataScript.minigame2_gameSpeed * DataScript.minigame2_timer
+	scroll_base_offset += delta * DataScript.MINIGAME2_GAMESPEED * DataScript.minigame2_timer
 
 	# Set the score in Minigame 2 using the updated Y-coordinate of the scroll base offset
 	DataScript.set_minigame2_score(scroll_base_offset.y)

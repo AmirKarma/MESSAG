@@ -1,15 +1,22 @@
 extends Control
 
 # Variables for the nodes
-@onready var building_name: Label = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/Name
-@onready var building_count:Label = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/Count
-@onready var building_image:AnimatedSprite2D = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/HSplitContainer/building_image
-@onready var building_card:NinePatchRect = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card
-@onready var buttons:Control = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/button
-@onready var place_button:Button = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/button/place_button
-@onready var empty_lable:Label = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/Empty_lable
-@onready var scroll_container:ScrollContainer = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer
-@onready var player:CharacterBody2D = get_node("/root/World/Player")
+@onready
+var building_name: Label = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/Name
+@onready
+var building_count: Label = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/Count
+@onready
+var building_image: AnimatedSprite2D = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/HSplitContainer/building_image
+@onready
+var building_card: NinePatchRect = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card
+@onready
+var buttons: Control = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/button
+@onready
+var place_button: Button = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/button/place_button
+@onready var empty_lable: Label = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/Empty_lable
+@onready
+var scroll_container: ScrollContainer = $NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer
+@onready var player: CharacterBody2D = get_node("/root/World/Player")
 # Constants for building type and building level
 const building_type: int = 0
 const building_level: int = 2
@@ -97,7 +104,7 @@ func set_building_level(count: int):
 # Description: Sets the building image animation based on the provided building_id.
 func set_building_image(building_id: int):
 	match building_id:
-		DataScript.moonetenGenerator:
+		DataScript.MOONETEN_GENERATOR:
 			building_image.play("moonetenGenerator")
 		DataScript.moonstoneGenerator:
 			building_image.play("moonstoneGenerator")

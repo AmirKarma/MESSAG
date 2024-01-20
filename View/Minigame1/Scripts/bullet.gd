@@ -21,8 +21,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 # Function called when the bullet enters an area
 func _on_area_entered(area):
-	print(area)
 	if area is Comet:
 		area.destruction()  # Call the destruction function of the comet
 		queue_free()  # Queue the bullet for removal
-	#pass
+	

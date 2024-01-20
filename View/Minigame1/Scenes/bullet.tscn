@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://th2ea82xp615"]
 
-[ext_resource type="Script" path="res://Minigame1/Scripts/bullet.gd" id="1_pkvbr"]
+[ext_resource type="Script" path="res://Minigame1/Scripts/bullet.gd" id="1_sfhim"]
 [ext_resource type="Texture2D" uid="uid://2f17bkx8kduv" path="res://Minigame1/Assets/bullet.png" id="2_kirvd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opgdf"]
@@ -9,7 +9,7 @@ size = Vector2(2, 21.5)
 [node name="bullet" type="Area2D"]
 collision_layer = 8
 collision_mask = 5
-script = ExtResource("1_pkvbr")
+script = ExtResource("1_sfhim")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.98023e-08, -0.375001)

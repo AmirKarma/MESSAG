@@ -1,6 +1,7 @@
 # Comet script
+extends Area2D
 
-class_name Comet extends Area2D
+class_name Comet 
 
 # Signal for communication with other nodes
 signal destroyed(position, size)

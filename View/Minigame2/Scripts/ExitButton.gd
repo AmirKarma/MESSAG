@@ -8,7 +8,7 @@ extends Button
 
 func _pressed():
 	# Change the scene to "world.tscn" in the "Welt" directory
-	get_tree().change_scene_to_file("res://Welt/world.tscn")
+	get_tree().change_scene_to_file("res://World/Scene/world.tscn")
 
 	# Resume the game by setting the game tree's paused state to false
 	get_tree().paused = false

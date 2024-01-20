@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://vs86hwyi0bag"]
+
+[ext_resource type="Script" path="res://Welt/Shop/Shop.gd" id="1_xowjy"]
+[ext_resource type="PackedScene" uid="uid://dbs0inmxq5m68" path="res://Welt/Shop/shop_menu.tscn" id="3_8bu4q"]
+[ext_resource type="Texture2D" uid="uid://4stqf23dv5n2" path="res://Welt/Shop/Shopkeeper_Spritesheet.png" id="4_76gy3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ts3gw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vyis"]
+atlas = ExtResource("4_76gy3")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1s8s"]
+atlas = ExtResource("4_76gy3")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umknq"]
+atlas = ExtResource("4_76gy3")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p15vp"]
+atlas = ExtResource("4_76gy3")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhur6"]
+atlas = ExtResource("4_76gy3")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1gmy"]
+atlas = ExtResource("4_76gy3")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anfx7"]
+atlas = ExtResource("4_76gy3")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6wifh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vyis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1s8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umknq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p15vp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhur6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1gmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anfx7")
+}],
+"loop": true,
+"name": &"Shop",
+"speed": 5.0
+}]
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_xowjy")
+
+[node name="OptionButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -38.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 32.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ts3gw")
+flat = true
+clip_text = true
+
+[node name="shop_menu" parent="." instance=ExtResource("3_8bu4q")]
+visible = false
+top_level = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6wifh")
+animation = &"Shop"
+autoplay = "Shop"
+frame = 4
+frame_progress = 0.41038
+
+[connection signal="pressed" from="OptionButton" to="." method="_on_option_button_pressed"]

@@ -113,4 +113,7 @@ func _on_map_pressed():
 		_label_visible_false()
 		map_lable.visible = true
 	else:
-		print("Map_Szene")
+		var start_m: Node = load("res://Start_Menue/Scene/start_menue.tscn").instantiate()
+		get_tree().root.add_child(start_m)
+		get_tree().current_scene.queue_free()
+		get_tree().current_scene = start_m

@@ -67,7 +67,7 @@ func _on_exit_pressed():
 
 # Description: Loads and switches to the "world.tscn" scene.
 func load_world_scene():
-	get_tree().change_scene_to_file("res://Welt/world.tscn")
+	get_tree().change_scene_to_file("res://World/world.tscn")
 	get_tree().paused = false
 
 

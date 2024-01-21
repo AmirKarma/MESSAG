@@ -45,9 +45,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -116.0
-offset_top = -110.0
+offset_top = -125.0
 offset_right = -21.0
-offset_bottom = -19.0
+offset_bottom = -2.0
 grow_horizontal = 0
 grow_vertical = 0
 
@@ -79,6 +79,13 @@ offset_bottom = 90.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_v73pn")
 text = "Legal Notice"
 
+[node name="Button" type="Button" parent="VBoxContainer/Buttons"]
+layout_mode = 2
+offset_top = 93.0
+offset_right = 95.0
+offset_bottom = 120.0
+text = "Tutorial"
+
 [node name="Logo" type="Sprite2D" parent="."]
 top_level = true
 position = Vector2(126, 34)
@@ -98,4 +105,5 @@ dialog_text = "You will loose all youre progress"
 [connection signal="pressed" from="VBoxContainer/Buttons/Fortsetzen" to="." method="_on_fortsetzen_pressed"]
 [connection signal="pressed" from="VBoxContainer/Buttons/Neues Spiel" to="." method="_on_neues_spiel_pressed"]
 [connection signal="pressed" from="VBoxContainer/Buttons/Impressum" to="." method="_on_impressum_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/Button" to="." method="_on_button_pressed"]
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

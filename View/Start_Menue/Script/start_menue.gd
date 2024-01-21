@@ -44,3 +44,10 @@ func new_game():
 	get_tree().change_scene_to_file("res://World/Scene/world.tscn")
 	DataScript.set_first_game(false)
 	DataScript.update_storage_building_capacity()
+
+
+func _on_button_pressed():
+	var tutorial: Node = load("res://Tutorial/Tutorial_1.tscn").instantiate()
+	get_tree().root.add_child(tutorial)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = tutorial

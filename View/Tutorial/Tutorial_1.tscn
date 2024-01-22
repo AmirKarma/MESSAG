@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://Tutorial/Tutorial_1.gd" id="1_0clwk"]
 [ext_resource type="Texture2D" uid="uid://g2cjvjkn41y" path="res://Tutorial/Map.png" id="1_i4uy2"]
 [ext_resource type="FontFile" uid="uid://b87a4ripf8q1k" path="res://World/Shop/Assets/04B_30__.TTF" id="2_n6rrp"]
-[ext_resource type="Texture2D" uid="uid://c2pmgkw7lkrrc" path="res://Start_Menue/Assets/MESSAG_.png" id="3_xuo0c"]
 [ext_resource type="Texture2D" uid="uid://bg6yw5vyjqns7" path="res://Tutorial/Minigame1.PNG" id="4_hj8mu"]
 [ext_resource type="Texture2D" uid="uid://c008boupmllw3" path="res://Tutorial/Minigame2.PNG" id="5_q88tn"]
 [ext_resource type="Texture2D" uid="uid://cuiv62xt4qge3" path="res://Player/RessourceBar/Assets/Moonete.png" id="6_4cfg6"]
@@ -29,6 +28,12 @@ shadow_offset = Vector2(2, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_505lb"]
 size = Vector2(600, 150)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ignjf"]
+font = ExtResource("9_7txew")
+font_size = 27
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h1wkr"]
 
@@ -75,20 +80,18 @@ scale = Vector2(0.252366, 0.252809)
 texture = ExtResource("1_i4uy2")
 
 [node name="Label" type="Label" parent="Background"]
-visible = false
 offset_left = -606.262
 offset_top = -225.467
 offset_right = -73.2625
 offset_bottom = -193.467
-text = "Mobile Enhanced Space Strategie Game"
+text = "Mobile Enhanced Space Strategy Game"
 label_settings = SubResource("LabelSettings_qt388")
 
 [node name="description" type="Label" parent="Background"]
-visible = false
-offset_left = -3.96252
-offset_top = -340.178
-offset_right = 617.037
-offset_bottom = -47.1777
+offset_left = -7.92505
+offset_top = -332.267
+offset_right = 643.075
+offset_bottom = -39.2664
 text = "Welcome to MESSAG, where 
 your interstellar adventure
 begins on the moon! 
@@ -104,10 +107,13 @@ label_settings = SubResource("LabelSettings_40q64")
 position = Vector2(-324.925, -276.889)
 shape = SubResource("RectangleShape2D_505lb")
 
-[node name="Messag" type="Sprite2D" parent="."]
-position = Vector2(78, 17)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_xuo0c")
+[node name="MESSAG" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 6.0
+offset_right = 156.0
+offset_bottom = 37.0
+text = "MESSAG"
+label_settings = SubResource("LabelSettings_ignjf")
 
 [node name="bp" type="Node" parent="."]
 
@@ -264,16 +270,15 @@ position = Vector2(296, 156)
 shape = SubResource("RectangleShape2D_xrpju")
 
 [node name="Map_label" type="Label" parent="Map"]
-visible = false
 offset_left = 237.0
-offset_top = 121.0
-offset_right = 352.0
-offset_bottom = 149.0
+offset_top = 120.0
+offset_right = 318.0
+offset_bottom = 142.0
 text = "To Switch back
 to the Player"
 label_settings = SubResource("LabelSettings_hepyl")
 
-[node name="Label" type="Label" parent="."]
+[node name="discription" type="Label" parent="."]
 offset_left = 136.0
 offset_top = 166.0
 offset_right = 306.0
@@ -295,4 +300,4 @@ label_settings = SubResource("LabelSettings_wvwu2")
 [connection signal="pressed" from="mg_back/Mg2" to="." method="_on_mg_2_pressed"]
 [connection signal="pressed" from="mg_back/Mg1" to="." method="_on_mg_1_pressed"]
 [connection signal="pressed" from="Currency" to="." method="_on_currency_pressed"]
-[connection signal="pressed" from="Map/Map" to="." method="_on_map_pressed"]
+[connection signal="released" from="Map/Map" to="." method="_on_map_released"]

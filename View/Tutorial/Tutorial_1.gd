@@ -108,7 +108,7 @@ func _on_mg_2_pressed():
 		get_tree().current_scene = minigame2_t
 
 
-func _on_map_pressed():
+func _on_map_released():
 	if map_lable.visible == false:
 		_label_visible_false()
 		map_lable.visible = true

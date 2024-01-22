@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfwde8pm32ahm"]
+[gd_scene load_steps=12 format=3 uid="uid://bfwde8pm32ahm"]
 
 [ext_resource type="Script" path="res://Start_Menue/Script/start_menue.gd" id="1_og3e3"]
 [ext_resource type="Texture2D" uid="uid://dmgaeaw8k83i2" path="res://Start_Menue/Assets/Background_1.png" id="2_bsmnq"]
 [ext_resource type="FontFile" uid="uid://dccnoqqfrkh70" path="res://Start_Menue/Assets/04B_30__.TTF" id="3_btdkr"]
-[ext_resource type="Texture2D" uid="uid://c2pmgkw7lkrrc" path="res://Start_Menue/Assets/MESSAG_.png" id="4_drdf0"]
 
 [sub_resource type="Theme" id="Theme_asx08"]
 default_font = ExtResource("3_btdkr")
@@ -15,12 +14,24 @@ default_font_size = 8
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v73pn"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_3tk6l"]
+font = ExtResource("3_btdkr")
+font_size = 42
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y7k0d"]
 
 [sub_resource type="Theme" id="Theme_klyxg"]
 default_font = ExtResource("3_btdkr")
 default_font_size = 10
 Button/styles/focus = SubResource("StyleBoxEmpty_y7k0d")
+
+[sub_resource type="LabelSettings" id="LabelSettings_pcfc8"]
+font = ExtResource("3_btdkr")
+font_size = 7
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Start_Menue" type="Control"]
 layout_mode = 3
@@ -45,9 +56,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -116.0
-offset_top = -110.0
+offset_top = -125.0
 offset_right = -21.0
-offset_bottom = -19.0
+offset_bottom = -2.0
 grow_horizontal = 0
 grow_vertical = 0
 
@@ -71,19 +82,28 @@ offset_bottom = 60.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_xkjao")
 text = "New Game"
 
+[node name="Button" type="Button" parent="VBoxContainer/Buttons"]
+layout_mode = 2
+offset_top = 63.0
+offset_right = 95.0
+offset_bottom = 89.0
+text = "Tutorial"
+
 [node name="Impressum" type="Button" parent="VBoxContainer/Buttons"]
 layout_mode = 2
-offset_top = 64.0
+offset_top = 93.0
 offset_right = 95.0
-offset_bottom = 90.0
+offset_bottom = 119.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_v73pn")
 text = "Legal Notice"
 
-[node name="Logo" type="Sprite2D" parent="."]
-top_level = true
-position = Vector2(126, 34)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("4_drdf0")
+[node name="MESSAG" type="Label" parent="."]
+offset_left = 12.0
+offset_top = 6.0
+offset_right = 254.0
+offset_bottom = 52.0
+text = "MESSAG"
+label_settings = SubResource("LabelSettings_3tk6l")
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
 canvas_cull_mask = 4293918721
@@ -95,7 +115,17 @@ max_size = Vector2i(290, 125)
 theme = SubResource("Theme_klyxg")
 dialog_text = "You will loose all youre progress"
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 49.0
+offset_right = 278.0
+offset_bottom = 72.0
+text = "Mobile Enhanced Space Strategie Game"
+label_settings = SubResource("LabelSettings_pcfc8")
+
 [connection signal="pressed" from="VBoxContainer/Buttons/Fortsetzen" to="." method="_on_fortsetzen_pressed"]
 [connection signal="pressed" from="VBoxContainer/Buttons/Neues Spiel" to="." method="_on_neues_spiel_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Buttons/Impressum" to="." method="_on_impressum_pressed"]
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

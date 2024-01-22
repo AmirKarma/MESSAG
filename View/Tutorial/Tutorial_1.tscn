@@ -1,0 +1,303 @@
+[gd_scene load_steps=21 format=3 uid="uid://dnvqb24u8x1ex"]
+
+[ext_resource type="Script" path="res://Tutorial/Tutorial_1.gd" id="1_0clwk"]
+[ext_resource type="Texture2D" uid="uid://g2cjvjkn41y" path="res://Tutorial/Map.png" id="1_i4uy2"]
+[ext_resource type="FontFile" uid="uid://b87a4ripf8q1k" path="res://World/Shop/Assets/04B_30__.TTF" id="2_n6rrp"]
+[ext_resource type="Texture2D" uid="uid://bg6yw5vyjqns7" path="res://Tutorial/Minigame1.PNG" id="4_hj8mu"]
+[ext_resource type="Texture2D" uid="uid://c008boupmllw3" path="res://Tutorial/Minigame2.PNG" id="5_q88tn"]
+[ext_resource type="Texture2D" uid="uid://cuiv62xt4qge3" path="res://Player/RessourceBar/Assets/Moonete.png" id="6_4cfg6"]
+[ext_resource type="Texture2D" uid="uid://bxit1dcy7rct4" path="res://Player/RessourceBar/Assets/Moonstone.png" id="7_ptro7"]
+[ext_resource type="FontFile" uid="uid://dccnoqqfrkh70" path="res://Start_Menue/Assets/04B_30__.TTF" id="9_7txew"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qt388"]
+line_spacing = 5.0
+font = ExtResource("2_n6rrp")
+font_size = 18
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_40q64"]
+font = ExtResource("2_n6rrp")
+font_size = 26
+font_color = Color(0.807843, 0.807843, 0.807843, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_505lb"]
+size = Vector2(600, 150)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ignjf"]
+font = ExtResource("9_7txew")
+font_size = 27
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1wkr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bmm1k"]
+font = ExtResource("2_n6rrp")
+font_size = 7
+font_color = Color(0, 0, 0, 1)
+outline_size = 4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_de8f3"]
+size = Vector2(65, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xsl8m"]
+size = Vector2(60, 80)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ym0j5"]
+font = ExtResource("2_n6rrp")
+font_size = 18
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrpju"]
+size = Vector2(30, 30)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hepyl"]
+font = ExtResource("2_n6rrp")
+font_size = 7
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_wvwu2"]
+font = ExtResource("9_7txew")
+font_size = 4
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Tutorial_1" type="Node2D"]
+script = ExtResource("1_0clwk")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+scale = Vector2(0.252366, 0.252809)
+texture = ExtResource("1_i4uy2")
+
+[node name="Label" type="Label" parent="Background"]
+offset_left = -606.262
+offset_top = -225.467
+offset_right = -73.2625
+offset_bottom = -193.467
+text = "Mobile Enhanced Space Strategy Game"
+label_settings = SubResource("LabelSettings_qt388")
+
+[node name="description" type="Label" parent="Background"]
+offset_left = -7.92505
+offset_top = -332.267
+offset_right = 643.075
+offset_bottom = -39.2664
+text = "Welcome to MESSAG, where 
+your interstellar adventure
+begins on the moon! 
+In this tutorial, we'll guide 
+you through the basics of 
+the game to help you establish 
+and expand your MESSAG base.
+
+"
+label_settings = SubResource("LabelSettings_40q64")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Background"]
+position = Vector2(-324.925, -276.889)
+shape = SubResource("RectangleShape2D_505lb")
+
+[node name="MESSAG" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 6.0
+offset_right = 156.0
+offset_bottom = 37.0
+text = "MESSAG"
+label_settings = SubResource("LabelSettings_ignjf")
+
+[node name="bp" type="Node" parent="."]
+
+[node name="BuildingPits" type="TouchScreenButton" parent="bp"]
+position = Vector2(65, 76)
+shape = SubResource("RectangleShape2D_h1wkr")
+
+[node name="BuildingPits2" type="TouchScreenButton" parent="bp"]
+position = Vector2(90, 109)
+shape = SubResource("RectangleShape2D_h1wkr")
+
+[node name="BuildingPits3" type="TouchScreenButton" parent="bp"]
+position = Vector2(54, 128)
+shape = SubResource("RectangleShape2D_h1wkr")
+
+[node name="BuildingPits4" type="TouchScreenButton" parent="bp"]
+position = Vector2(130, 131)
+shape = SubResource("RectangleShape2D_h1wkr")
+
+[node name="BuildingPits5" type="TouchScreenButton" parent="bp"]
+position = Vector2(183, 151)
+shape = SubResource("RectangleShape2D_h1wkr")
+
+[node name="BuildingPits6" type="TouchScreenButton" parent="bp"]
+position = Vector2(200, 109)
+shape = SubResource("RectangleShape2D_h1wkr")
+
+[node name="BuildingPits7" type="TouchScreenButton" parent="bp"]
+position = Vector2(218, 71)
+shape = SubResource("RectangleShape2D_h1wkr")
+
+[node name="Building Pit Label" type="Label" parent="bp"]
+visible = false
+offset_left = 58.0
+offset_top = 99.0
+offset_right = 214.0
+offset_bottom = 121.0
+text = "Buildingpits
+to place purchased buildings"
+label_settings = SubResource("LabelSettings_bmm1k")
+horizontal_alignment = 1
+
+[node name="SpaceShip" type="TouchScreenButton" parent="."]
+position = Vector2(124, 83)
+shape = SubResource("RectangleShape2D_h1wkr")
+
+[node name="Spaceship Label" type="Label" parent="SpaceShip"]
+visible = false
+offset_left = -59.0
+offset_top = -34.0
+offset_right = 66.0
+offset_bottom = -12.0
+text = "Spaceship
+Minigame for Mooneten "
+label_settings = SubResource("LabelSettings_bmm1k")
+horizontal_alignment = 1
+
+[node name="Shop" type="TouchScreenButton" parent="."]
+position = Vector2(281, 105)
+shape = SubResource("RectangleShape2D_h1wkr")
+
+[node name="Shop Label" type="Label" parent="Shop"]
+visible = false
+offset_left = -80.0
+offset_right = 33.0
+offset_bottom = 22.0
+text = "Shop
+To buy new Buildings"
+label_settings = SubResource("LabelSettings_bmm1k")
+horizontal_alignment = 1
+
+[node name="mg_back" type="ColorRect" parent="."]
+offset_left = 2.0
+offset_top = 141.0
+offset_right = 133.0
+offset_bottom = 179.0
+color = Color(0, 0, 0, 1)
+
+[node name="Minigame1" type="Sprite2D" parent="mg_back"]
+position = Vector2(33, 19)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("4_hj8mu")
+
+[node name="Minigame2" type="Sprite2D" parent="mg_back"]
+position = Vector2(98, 19.0375)
+scale = Vector2(0.05, 0.0501046)
+texture = ExtResource("5_q88tn")
+
+[node name="Minigame2" type="Button" parent="mg_back/Minigame2"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -642.0
+offset_top = -358.0
+offset_right = 640.0
+offset_bottom = 359.0
+
+[node name="Mooneten Game Label" type="Label" parent="mg_back"]
+visible = false
+layout_mode = 0
+offset_top = -9.0
+offset_right = 78.0
+offset_bottom = 7.0
+text = "Mooneten Game"
+label_settings = SubResource("LabelSettings_bmm1k")
+horizontal_alignment = 1
+
+[node name="Moonstone Game Label" type="Label" parent="mg_back"]
+visible = false
+layout_mode = 0
+offset_left = 62.0
+offset_top = -9.0
+offset_right = 146.0
+offset_bottom = 7.0
+text = "Moonstone Game"
+label_settings = SubResource("LabelSettings_bmm1k")
+horizontal_alignment = 1
+
+[node name="Mg2" type="TouchScreenButton" parent="mg_back"]
+position = Vector2(98, 19)
+shape = SubResource("RectangleShape2D_de8f3")
+
+[node name="Mg1" type="TouchScreenButton" parent="mg_back"]
+position = Vector2(33, 19)
+shape = SubResource("RectangleShape2D_de8f3")
+
+[node name="Currency" type="TouchScreenButton" parent="."]
+position = Vector2(17, 52)
+scale = Vector2(0.252366, 0.252809)
+shape = SubResource("RectangleShape2D_xsl8m")
+
+[node name="Moonete" type="Sprite2D" parent="Currency"]
+position = Vector2(-1.39684, -20.1733)
+scale = Vector2(2.63506, 2.37333)
+texture = ExtResource("6_4cfg6")
+
+[node name="Moonstone" type="Sprite2D" parent="Currency"]
+position = Vector2(-0.406219, 16.4156)
+scale = Vector2(2.3775, 2.37333)
+texture = ExtResource("7_ptro7")
+
+[node name="Currency Label" type="Label" parent="Currency"]
+visible = false
+offset_left = 34.3518
+offset_top = -26.5366
+offset_right = 145.352
+offset_bottom = -3.53662
+text = "Mooneten and Moonstone 
+are the currencies"
+label_settings = SubResource("LabelSettings_ym0j5")
+
+[node name="Map" type="Node" parent="."]
+
+[node name="Map" type="TouchScreenButton" parent="Map"]
+position = Vector2(296, 156)
+shape = SubResource("RectangleShape2D_xrpju")
+
+[node name="Map_label" type="Label" parent="Map"]
+offset_left = 237.0
+offset_top = 120.0
+offset_right = 318.0
+offset_bottom = 142.0
+text = "To Switch back
+to the Player"
+label_settings = SubResource("LabelSettings_hepyl")
+
+[node name="discription" type="Label" parent="."]
+offset_left = 136.0
+offset_top = 166.0
+offset_right = 306.0
+offset_bottom = 189.0
+text = "Press on an object to learn more about it. 
+Press twice for information."
+label_settings = SubResource("LabelSettings_wvwu2")
+
+[connection signal="pressed" from="Background/TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]
+[connection signal="pressed" from="bp/BuildingPits" to="." method="_on_building_pits_pressed"]
+[connection signal="pressed" from="bp/BuildingPits2" to="." method="_on_building_pits_2_pressed"]
+[connection signal="pressed" from="bp/BuildingPits3" to="." method="_on_building_pits_3_pressed"]
+[connection signal="pressed" from="bp/BuildingPits4" to="." method="_on_building_pits_4_pressed"]
+[connection signal="pressed" from="bp/BuildingPits5" to="." method="_on_building_pits_5_pressed"]
+[connection signal="pressed" from="bp/BuildingPits6" to="." method="_on_building_pits_6_pressed"]
+[connection signal="pressed" from="bp/BuildingPits7" to="." method="_on_building_pits_7_pressed"]
+[connection signal="pressed" from="SpaceShip" to="." method="_on_space_ship_pressed"]
+[connection signal="pressed" from="Shop" to="." method="_on_shop_pressed"]
+[connection signal="pressed" from="mg_back/Mg2" to="." method="_on_mg_2_pressed"]
+[connection signal="pressed" from="mg_back/Mg1" to="." method="_on_mg_1_pressed"]
+[connection signal="pressed" from="Currency" to="." method="_on_currency_pressed"]
+[connection signal="released" from="Map/Map" to="." method="_on_map_released"]

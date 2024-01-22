@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://dr30s20460c5p"]
+
+[ext_resource type="Script" path="res://Tutorial/Minigame2/minigame2_t.gd" id="1_itcip"]
+[ext_resource type="Texture2D" uid="uid://cjxpkrhjqeuvg" path="res://Tutorial/Minigame2/Minigame2.PNG" id="1_picdc"]
+[ext_resource type="FontFile" uid="uid://dccnoqqfrkh70" path="res://Start_Menue/Assets/04B_30__.TTF" id="2_hs7kd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k8yte"]
+font = ExtResource("2_hs7kd")
+font_size = 38
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o7xko"]
+font = ExtResource("2_hs7kd")
+font_size = 10
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xl47u"]
+size = Vector2(350, 200)
+
+[node name="minigame2_t" type="Node2D"]
+script = ExtResource("1_itcip")
+
+[node name="Minigame2" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+scale = Vector2(0.250587, 0.251046)
+texture = ExtResource("1_picdc")
+
+[node name="ColorRect2" type="ColorRect" parent="Minigame2"]
+self_modulate = Color(0.886275, 0, 0.215686, 0.278431)
+offset_left = 35.9157
+offset_top = 67.7166
+offset_right = 637.916
+offset_bottom = 358.717
+
+[node name="ColorRect" type="ColorRect" parent="Minigame2"]
+self_modulate = Color(0.886275, 0, 0.215686, 0.278431)
+offset_left = -638.0
+offset_top = 68.0
+offset_right = -36.0
+offset_bottom = 359.0
+
+[node name="Left" type="Label" parent="Minigame2"]
+offset_left = -514.791
+offset_top = 191.2
+offset_right = -225.791
+offset_bottom = 233.2
+text = "Move Left"
+label_settings = SubResource("LabelSettings_k8yte")
+
+[node name="Right" type="Label" parent="Minigame2/Left"]
+offset_left = 718.312
+offset_top = -6.10352e-05
+offset_right = 1027.31
+offset_bottom = 41.9999
+text = "Move Right"
+label_settings = SubResource("LabelSettings_k8yte")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 22.0
+offset_right = 220.0
+offset_bottom = 78.0
+text = "Yield to oncoming vehicles.
+The score will be 
+converted to Moonstone 
+at the end."
+label_settings = SubResource("LabelSettings_o7xko")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(161, 92)
+shape = SubResource("RectangleShape2D_xl47u")
+
+[connection signal="pressed" from="TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]

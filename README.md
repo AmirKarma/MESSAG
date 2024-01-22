@@ -107,7 +107,7 @@ Certainly! Let's create a separate section for the closing statements:
 
 Thank you for exploring MESSAG, our captivating 2D pixel art mobile game set on the lunar surface. We hope you enjoy navigating the lunar terrain, playing exciting mini-games, and expanding your lunar colony.
 
-For more in-depth information about each game component and a detailed overview of the development process, please visit our [Wiki page](wiki/Development-Process).
+For more in-depth information about each game component and a detailed overview of the development process, please visit our [Wiki page](https://github.com/AmirKarma/MESSAG/wiki).
 
 Feel free to provide feedback, report issues, or share your experiences with us. Your input is invaluable as we continue to enhance and refine the MESSAG gaming experience.
 

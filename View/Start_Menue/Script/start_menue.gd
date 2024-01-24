@@ -45,7 +45,8 @@ func new_game():
 	DataScript.set_first_game(false)
 	DataScript.update_storage_building_capacity()
 
-
+# Function: _on_button_pressed
+# Description: Replacing the current scene with the tutorial screen.
 func _on_button_pressed():
 	var tutorial: Node = load("res://Tutorial/Tutorial_1.tscn").instantiate()
 	get_tree().root.add_child(tutorial)

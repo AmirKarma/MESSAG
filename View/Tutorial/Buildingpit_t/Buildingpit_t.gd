@@ -13,7 +13,9 @@ func _process(delta):
 	pass
 
 
-
+# Function called when the screen is pressed.
+# First Sets a Overlay + Lable Visible true, if its pressed again, change the current scene back
+# to main tutorial
 func _on_touch_screen_button_pressed():
 	if building_inv.visible == false:
 		building_inv.visible = true

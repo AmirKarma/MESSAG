@@ -112,7 +112,6 @@ func end_game():
 # Description: Adds the product of Minigame2 score and a specified factor to the Moonstone resource, ensuring it does not exceed the maximum storage limit.
 func add_moonstone_to_storage():
 	# Add Score * Factor to Comet.
-	print(DataScript.get_minigame2_score() * SCORE_TO_MOONETEN_FACTOR)
 	if (
 		(DataScript.get_moonstone() + DataScript.get_minigame2_score() * SCORE_TO_MOONETEN_FACTOR)
 		<= DataScript.maxMoonstoneStorage

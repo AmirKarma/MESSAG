@@ -1,5 +1,6 @@
 extends Node2D
 
+
 # Define onready variables for various labels in the scene
 @onready var building_pit_label : Node = $"bp/Building Pit Label"
 @onready var spaceship_label : Node = $"SpaceShip/Spaceship Label"
@@ -10,7 +11,6 @@ extends Node2D
 @onready var discription : Node = $Background/description
 @onready var map_lable : Node = $Map/Map_label
 @onready var press_again : Node = $"press again"
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -55,6 +55,7 @@ func _on_shop_pressed():
 		get_tree().root.add_child(shop_tutorial)
 		get_tree().current_scene.queue_free()
 		get_tree().current_scene = shop_tutorial
+
 
 
 # Function called when the space ship is pressed.

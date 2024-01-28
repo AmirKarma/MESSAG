@@ -12,7 +12,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_qt388"]
 line_spacing = 5.0
 font = ExtResource("2_n6rrp")
-font_size = 18
+font_size = 15
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
@@ -80,11 +80,11 @@ scale = Vector2(0.252366, 0.252809)
 texture = ExtResource("1_i4uy2")
 
 [node name="Label" type="Label" parent="Background"]
-offset_left = -606.262
+offset_left = -622.112
 offset_top = -225.467
-offset_right = -73.2625
+offset_right = 52.8877
 offset_bottom = -193.467
-text = "Mobile Enhanced Space Strategy Game"
+text = "Mobile Enhanced Space Strategy Adventure Game"
 label_settings = SubResource("LabelSettings_qt388")
 
 [node name="description" type="Label" parent="Background"]
@@ -270,12 +270,14 @@ position = Vector2(296, 156)
 shape = SubResource("RectangleShape2D_xrpju")
 
 [node name="Map_label" type="Label" parent="Map"]
-offset_left = 237.0
+offset_left = 162.0
 offset_top = 120.0
-offset_right = 318.0
-offset_bottom = 142.0
-text = "To Switch back
-to the Player"
+offset_right = 320.0
+offset_bottom = 186.0
+text = "             To Switch back
+             to the Player
+Press again to switch 
+back to main menue"
 label_settings = SubResource("LabelSettings_hepyl")
 
 [node name="discription" type="Label" parent="."]
@@ -283,8 +285,17 @@ offset_left = 136.0
 offset_top = 166.0
 offset_right = 306.0
 offset_bottom = 189.0
-text = "Press on an object to learn more about it. 
-Press twice for information."
+rotation = -0.0011361
+text = "Press on an object to learn more about it. "
+label_settings = SubResource("LabelSettings_wvwu2")
+
+[node name="press again" type="Label" parent="."]
+visible = false
+offset_left = 136.0
+offset_top = 173.0
+offset_right = 306.0
+offset_bottom = 196.0
+text = "Press twice for information."
 label_settings = SubResource("LabelSettings_wvwu2")
 
 [connection signal="pressed" from="Background/TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]

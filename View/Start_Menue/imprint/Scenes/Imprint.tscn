@@ -206,6 +206,7 @@ grow_vertical = 2
 script = ExtResource("1_k7oj3")
 
 [node name="Label3" type="Label" parent="."]
+layout_mode = 0
 offset_left = 49.0
 offset_top = 7.0
 offset_right = 279.0
@@ -261,6 +262,7 @@ scale = Vector2(0.832031, 0.882812)
 texture = ExtResource("7_70v7d")
 
 [node name="Label4" type="Label" parent="."]
+layout_mode = 0
 offset_left = 104.0
 offset_top = 68.0
 offset_right = 333.0

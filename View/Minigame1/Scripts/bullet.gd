@@ -6,7 +6,7 @@ extends Area2D
 @export var shot_speed: int = 500
 
 # Movement vector for the bullet
-var movement_vector: Vector2 = Vector2(0, -1)
+var movement_vector := Vector2(0, -1)
 
 
 # Physics process function for handling movement

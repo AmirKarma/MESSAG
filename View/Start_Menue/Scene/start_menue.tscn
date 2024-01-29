@@ -98,6 +98,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_v73pn")
 text = "Legal Notice"
 
 [node name="MESSAG" type="Label" parent="."]
+layout_mode = 0
 offset_left = 12.0
 offset_top = 6.0
 offset_right = 254.0

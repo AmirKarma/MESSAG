@@ -36,14 +36,39 @@ var spawn_time: float = 10
 # Factor for Score to add on Comet destruction
 var score_to_comet_factor: float = 0.1
 
+# Preload the comet scene for instantiation
+var comet_scene: PackedScene = preload("res://Minigame1/Scenes/comet.tscn")
+
+
+# Function: initialize_ui_references
+# Description: Initializes UI references when the node enters the scene tree.
+func initialize_ui_references():
+	gameover_screen = get_node("Points/GameOverScreen")
+	score_label = gameover_screen.get_node("scoreLabel")
+	highscore_label = gameover_screen.get_node("highscoreLabel")
+	overlay_score = get_node("Points/info")
+	overlay_pause_button = get_node("Points/PauseButton")
+	overlay_touchshot = get_node("Points/Touchshot")
+	joystick = get_node("Joystick")
+
+
 # Exported variable for score, connecting it to the UI
 @export var score: float = 0:
 	set(points):
 		score = points
 		score_display.points = score
+		
+		
+# Function: update_high_score
+# Description: Sets the high score to the current score.
+func update_high_score():
+	highscore_label.text = "Highscore: " + str(DataScript.get_minigame1_highscore())
 
-# Preload the comet scene for instantiation
-var comet_scene: PackedScene = preload("res://Minigame1/Scenes/comet.tscn")
+
+# Function: update_score
+# Description: Updates the current score.
+func update_score():
+	score_label.text = "Score: " + str(DataScript.get_minigame1_score())		
 
 
 func _ready():
@@ -67,18 +92,6 @@ func _ready():
 		new_comet()
 
 
-# Function: initialize_ui_references
-# Description: Initializes UI references when the node enters the scene tree.
-func initialize_ui_references():
-	gameover_screen = get_node("Points/GameOverScreen")
-	score_label = gameover_screen.get_node("scoreLabel")
-	highscore_label = gameover_screen.get_node("highscoreLabel")
-	overlay_score = get_node("Points/info")
-	overlay_pause_button = get_node("Points/PauseButton")
-	overlay_touchshot = get_node("Points/Touchshot")
-	joystick = get_node("Joystick")
-
-
 # Process function called every frame
 func _process(_delta):
 	# Check for debug input to return to the main game
@@ -91,18 +104,6 @@ func _process(_delta):
 	# Check for reset input to reload the current scene
 	elif Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
-
-
-# Function: update_high_score
-# Description: Sets the high score to the current score.
-func update_high_score():
-	highscore_label.text = "Highscore: " + str(DataScript.get_minigame1_highscore())
-
-
-# Function: update_score
-# Description: Updates the current score.
-func update_score():
-	score_label.text = "Score: " + str(DataScript.get_minigame1_score())
 
 
 # Variable for player lives, connecting it to the UI
@@ -154,20 +155,6 @@ func _player_shoot(shot):
 	
 
 
-# Function called when a comet is destroyed
-func _comet_destroyed(com_position, size, points):
-	# Update the score and spawn new comets based on the destroyed comet's size
-	score += points
-	for i in range(2):
-		match size:
-			Comet.CometSize.LARGE:
-				spawn_comet(com_position, Comet.CometSize.MEDIUM)
-			Comet.CometSize.MEDIUM:
-				spawn_comet(com_position, Comet.CometSize.SMALL)
-			Comet.CometSize.SMALL:
-				pass
-
-
 # Function to spawn a comet at a given position and size
 func spawn_comet(spawn_position, size):
 	var comet: Comet = comet_scene.instantiate()
@@ -185,3 +172,17 @@ func new_comet():
 	comets.add_child(comet)
 	spawn_time = spawn_time * 0.9
 	comet_spawn_timer.start()
+	
+# Function called when a comet is destroyed
+func _comet_destroyed(com_position, size, points):
+	# Update the score and spawn new comets based on the destroyed comet's size
+	score += points
+	for i in range(2):
+		match size:
+			Comet.CometSize.LARGE:
+				spawn_comet(com_position, Comet.CometSize.MEDIUM)
+			Comet.CometSize.MEDIUM:
+				spawn_comet(com_position, Comet.CometSize.SMALL)
+			Comet.CometSize.SMALL:
+				pass
+

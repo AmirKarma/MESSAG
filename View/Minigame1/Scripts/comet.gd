@@ -20,19 +20,6 @@ var comet_speed_small: float = randf_range(50, 60)
 enum CometSize { LARGE, MEDIUM, SMALL }
 @export var size: int = CometSize.LARGE
 
-# Points awarded for comet destruction
-var points: int:
-	get:
-		match size:
-			CometSize.LARGE:
-				return 10
-			CometSize.MEDIUM:
-				return 15
-			CometSize.SMALL:
-				return 25
-			_:
-				return 0
-
 
 # Called when the node is added to the scene
 func _ready():
@@ -84,9 +71,23 @@ func _physics_process(delta):
 func destruction():
 	emit_signal("destroyed", global_position, size, points)
 	queue_free()
+	
+	
+# Points awarded for comet destruction
+var points: int:
+	get:
+		match size:
+			CometSize.LARGE:
+				return 10
+			CometSize.MEDIUM:
+				return 15
+			CometSize.SMALL:
+				return 25
+			_:
+				return 0	
 
 
-# Function called when a body enters the comet's area
+# Function called when Spaceship body enters the comet's area
 func _on_body_entered(body):
 	if body is spaceship:
 		var spaceship: spaceship = body

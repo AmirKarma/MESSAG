@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bb0x0ox30dogx"]
+
+[ext_resource type="Texture2D" uid="uid://di7qqdaji8hoa" path="res://Minigame1/Assets/Joystick1.png" id="2_egdsm"]
+[ext_resource type="Texture2D" uid="uid://cxe7me17v5fqy" path="res://Minigame1/Assets/Joystick2.png" id="3_r4x0a"]
+[ext_resource type="Script" path="res://Minigame1/Scripts/Joystick_Button.gd" id="4_atxf2"]
+
+[node name="Joystick" type="Node2D"]
+position = Vector2(90, 67)
+scale = Vector2(0.1, 0.1)
+
+[node name="Joystick1" type="Sprite2D" parent="."]
+texture = ExtResource("2_egdsm")
+
+[node name="Joystick2" type="Sprite2D" parent="."]
+texture = ExtResource("3_r4x0a")
+script = ExtResource("4_atxf2")
+
+[node name="touchOnOff" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -630.0
+offset_top = -470.0
+offset_right = 640.0
+offset_bottom = 450.0
+
+[connection signal="button_down" from="touchOnOff" to="Joystick2" method="_on_touch_on_off_button_down"]
+[connection signal="button_up" from="touchOnOff" to="Joystick2" method="_on_touch_on_off_button_up"]

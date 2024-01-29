@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnidngfg4ljsf"]
+
+[ext_resource type="Script" path="res://Tutorial/Minigame1/minigame1_t.gd" id="1_7ltma"]
+[ext_resource type="Texture2D" uid="uid://4rt5buc5h083" path="res://Tutorial/Minigame1/Minigame1.PNG" id="2_pxiqa"]
+[ext_resource type="FontFile" uid="uid://dccnoqqfrkh70" path="res://Start_Menue/Assets/04B_30__.TTF" id="3_ad2ih"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k6vor"]
+font = ExtResource("3_ad2ih")
+font_size = 15
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_il0ov"]
+font = ExtResource("3_ad2ih")
+font_size = 12
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c1akh"]
+font = ExtResource("3_ad2ih")
+font_size = 14
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p57xk"]
+size = Vector2(350, 200)
+
+[node name="minigame1_t" type="Node2D"]
+script = ExtResource("1_7ltma")
+
+[node name="Minigame1" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(160, 90)
+scale = Vector2(0.250587, 0.252101)
+texture = ExtResource("2_pxiqa")
+
+[node name="movement" type="Label" parent="."]
+offset_left = 213.0
+offset_top = 142.0
+offset_right = 328.0
+offset_bottom = 182.0
+text = "move the 
+Spaceship"
+label_settings = SubResource("LabelSettings_k6vor")
+
+[node name="minigame1" type="Label" parent="."]
+offset_left = 72.0
+offset_top = 4.0
+offset_right = 496.0
+offset_bottom = 68.0
+text = "Shoot the Comets 
+to get Points.
+Your Points will be 
+converted to Mooneten"
+label_settings = SubResource("LabelSettings_il0ov")
+
+[node name="Schuss" type="Label" parent="."]
+offset_left = 5.0
+offset_top = 144.0
+offset_right = 111.0
+offset_bottom = 184.0
+text = "to 
+shoot"
+label_settings = SubResource("LabelSettings_c1akh")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(162, 91)
+shape = SubResource("RectangleShape2D_p57xk")
+
+[connection signal="pressed" from="TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]

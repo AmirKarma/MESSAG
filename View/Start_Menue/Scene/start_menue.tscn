@@ -29,7 +29,7 @@ Button/styles/focus = SubResource("StyleBoxEmpty_y7k0d")
 
 [sub_resource type="LabelSettings" id="LabelSettings_pcfc8"]
 font = ExtResource("3_btdkr")
-font_size = 7
+font_size = 6
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
@@ -122,7 +122,7 @@ offset_left = 11.0
 offset_top = 49.0
 offset_right = 278.0
 offset_bottom = 72.0
-text = "Mobile Enhanced Space Strategie Game"
+text = "Mobile Enhanced Space Strategy Adventure Game"
 label_settings = SubResource("LabelSettings_pcfc8")
 
 [connection signal="pressed" from="VBoxContainer/Buttons/Fortsetzen" to="." method="_on_fortsetzen_pressed"]

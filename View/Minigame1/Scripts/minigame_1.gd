@@ -152,7 +152,6 @@ func set_game_over_screen():
 # Function called when the player shoots
 func _player_shoot(shot):
 	cannon.add_child(shot)
-	
 
 
 # Function to spawn a comet at a given position and size

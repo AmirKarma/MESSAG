@@ -10,7 +10,8 @@ func _ready():
 func _process(delta):
 	pass
 
-
+# Function called when the screen is pressed.
+# change the current scene back to main tutorial
 func _on_touch_screen_button_pressed():
 	var tutorial1: Node = load("res://Tutorial/Tutorial_1.tscn").instantiate()
 	get_tree().root.add_child(tutorial1)

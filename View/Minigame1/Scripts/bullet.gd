@@ -6,7 +6,7 @@ extends Area2D
 @export var shot_speed: int = 500
 
 # Movement vector for the bullet
-var movement_vector := Vector2(0, -1)
+var movement_vector: Vector2 = Vector2(0, -1)
 
 
 # Physics process function for handling movement
@@ -19,7 +19,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
 
-# Function called when the bullet enters an area
+# Function called when the bullet enters an Comet
 func _on_area_entered(area):
 	if area is Comet:
 		area.destruction()  # Call the destruction function of the comet

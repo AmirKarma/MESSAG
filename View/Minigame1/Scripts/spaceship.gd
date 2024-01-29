@@ -81,16 +81,6 @@ func _physics_process(delta):
 		global_position.x = 0
 
 
-# Respawn function
-func respawn(pos):
-	if alive == false:
-		alive = true
-		global_position = pos
-		velocity = Vector2.ZERO
-		sprite.visible = true
-		timer1.start()
-
-
 # Function to handle respawn after a collision
 func playerCollisionRespawn():
 	collision.set_deferred("disabled", false)
@@ -106,6 +96,15 @@ func dead():
 		collision.set_deferred("disabled", true)
 		emit_signal("player_dead")
 
+		
+# Respawn function
+func respawn(pos):
+	if alive == false:
+		alive = true
+		global_position = pos
+		velocity = Vector2.ZERO
+		sprite.visible = true
+		timer1.start()		
 
 # Function to handle shooting
 func shoot():
@@ -114,3 +113,4 @@ func shoot():
 		shot_instance.global_position = Gun.global_position
 		shot_instance.rotation = rotation
 		emit_signal("cannon_shot", shot_instance)
+

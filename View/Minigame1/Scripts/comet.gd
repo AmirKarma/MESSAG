@@ -27,26 +27,25 @@ func _ready():
 
 	# Set properties based on comet size
 	match size:
-		CometSize.LARGE:
-			comet_speed = comet_speed_large
-			comet_sprite.texture = preload("res://Minigame1/Assets/chunks_big.png")
-			comet_sprite.scale = Vector2(0.5, 0.5)
-
-		CometSize.MEDIUM:
-			comet_sprite.texture = preload("res://Minigame1/Assets/chunks_middle.png")
-			comet_hitbox.set_deferred(
-				"shape", preload("res://Minigame1/Assets/chunks_middle.tres")
-			)
-			comet_sprite.scale = Vector2(0.5, 0.5)
-			comet_speed = comet_speed_medium
 		CometSize.SMALL:
 			comet_speed = comet_speed_small
 			comet_sprite.texture = preload("res://Minigame1/Assets/chunks_small.png")
 			comet_sprite.scale = Vector2(0.3, 0.3)
 			comet_hitbox.set_deferred(
 				"shape", preload("res://Minigame1/Assets/chunks_small.tres")
-			)
-
+				)
+		CometSize.MEDIUM:
+			comet_sprite.texture = preload("res://Minigame1/Assets/chunks_middle.png")
+			comet_hitbox.set_deferred(
+				"shape", preload("res://Minigame1/Assets/chunks_middle.tres")
+				)
+			comet_sprite.scale = Vector2(0.5, 0.5)
+			comet_speed = comet_speed_medium
+		CometSize.LARGE:
+			comet_speed = comet_speed_large
+			comet_sprite.texture = preload("res://Minigame1/Assets/chunks_big.png")
+			comet_sprite.scale = Vector2(0.5, 0.5)
+		
 
 # Physics process function for handling movement
 func _physics_process(delta):

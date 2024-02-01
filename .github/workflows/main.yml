@@ -38,6 +38,8 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          accept-android-sdk-licenses: 'no'
 
       - name: exportGame
         uses: firebelley/godot-export@v5.2.1

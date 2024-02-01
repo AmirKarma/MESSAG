@@ -50,33 +50,54 @@ Embark on your "Lunar Odyssey" and craft a cosmic masterpiece, building your lun
 ***
 ### **Celestial Minigames Unveiled:**
 
-*Minigame 1: Comet Commander*
+#### *Minigame 1: Comet Commander*
 
 ![Minigame - Comet Commander](Images/image_minigame1.png)
 ![Minigame - Comet Commander - GameOver Screen](Images/image_minigame1_gameover.png)
 
-Embark on an intergalactic adventure by triggering the first minigame through the interface of the main base, your trusty rocket. Assume control of a nimble spacecraft, tasked with the mission of intercepting and obliterating oncoming comets. Unlike traditional space debris, these comets defy fragmentation, persistently reappearing in the cosmic expanse. Exercise caution, for each collision with a comet deducts one of your three precious lives. As the game concludes, a portion of your hard-earned points transforms into Moonites, bolstering your lunar resources and enhancing your spacefaring arsenal.
+Embark on an intergalactic adventure by triggering the first minigame through the interface of the main base, your trusty rocket. Assume control of a nimble spacecraft, tasked with the mission of intercepting and obliterating oncoming comets. Unlike traditional space debris, these comets defy fragmentation, persistently reappearing in the cosmic expanse. Exercise caution, for each collision with a comet deducts one of your three precious lives. As the game concludes, a portion of your hard-earned points transforms into Mooneten, bolstering your lunar resources and enhancing your spacefaring arsenal.
 
-*Minigame 2: Lunar Dodger*
+#### *Minigame 2: Lunar Dodger*
 
 ![Minigame - Lunar Dodger](Images/image_minigame2.png)
 ![Minigame - Lunar Dodger - GameOver Screen](Images/image_minigame2_gameover.png)
 
-For a unique lunar thrill, initiate the second minigame via the Moonite Generator. Take the helm of a lunar rover, navigating with finesse to dodge oncoming lunar rovers. A collision with another rover marks the culmination of the game. In the aftermath, a fraction of your accumulated points transmutes into Moonstones, a valuable addition to your lunar treasury, poised to fund further cosmic endeavors.
+For a unique lunar thrill, initiate the second minigame via the Mooneten-Generator. Take the helm of a lunar rover, navigating with finesse to dodge oncoming lunar rovers. A collision with another rover marks the culmination of the game. In the aftermath, a fraction of your accumulated points transmutes into Moonstones, a valuable addition to your lunar treasury, poised to fund further cosmic endeavors.
 
 Embark on these enthralling cosmic challenges, honing your spacefaring skills and accumulating invaluable resources that will play a pivotal role in your ongoing lunar conquest. The vastness of the cosmos awaits, and these captivating lunar exploits are your ticket to celestial mastery.
+***
+### **Resource Mastery:**
 
+In the cosmic economy of your game, two essential resources reign supreme—*Mooneten* and *Moonstones*.
+
+**Mooneten:**
+![Mooneten](Images/Mooneten.png)
+Obtainable through the daring exploits of Minigame 1, Comet Commander, Mooneten represent the spoils of celestial warfare. Successfully navigate the treacherous comet-laden space, and your coffers will be enriched with this primary lunar currency.
+
+**Moonstones:**
+![Moonstones](Images/Moonstones.png)
+The lunar landscape is also home to Minigame 2, Lunar Dodger, where adept maneuvering of your moon rover yields Moonstones. Evade collisions with fellow lunar rovers, and these precious gems become part of your lunar treasury.
+
+**Generator Bounty:**
+
+In addition to minigame triumphs, the Mooneten Generator and Moonstone Generator play crucial roles in resource acquisition. These structures act as cosmic wellsprings, consistently generating Mooneten and Moonstones, respectively, ensuring a steady influx of resources to fuel your lunar ambitions.
+
+**Currency in the Cosmos:**
+
+Both Mooneten and Moonstones serve as the universal currency in your lunar realm. Navigate to the shop armed with these cosmic riches, and unlock a plethora of structures to expand and enrich your celestial domain.
+
+**Cosmic Commerce:**
+
+Utilize your hard-earned lunar resources wisely in the shop to acquire new buildings, strategically enhancing and broadening your lunar landscape. Resource management becomes the key to unlocking the full potential of your cosmic conquest.
+
+Master the delicate balance of Mooneten and Moonstones, and watch as your lunar world flourishes with each strategic investment in the expansive and captivating cosmos you're building.
+***
 #### 3. Shop and Building Placement
 
 The shop offers a variety of generators and storage buildings for purchase. After acquisition, players can place these buildings on predefined fields to boost their resource production.
 
 ![Shop and Building Placement](images/screenshot3.png)
 
-#### 4. Resource Management
-
-Players can use their collected Moonets and Moonstones to acquire more buildings or upgrade their equipment. Effective resource management is crucial for success on the Moon.
-
-![Resource Management](images/screenshot4.png)
 
 #### 5. Progression and Challenges
 

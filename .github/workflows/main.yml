@@ -42,20 +42,20 @@ jobs:
 #          path: |
 #            /home/runner/.local/share/godot/archives/
 
-      - name: Create Release
-        uses: actions/create-release@v1
-        if: github.ref == 'refs/heads/main'
-        with:
-          tag_name: v1.0.0
-          release_name: Release 1.0.0
-          body: |
-            This is the first release.
-          draft: false
-          prerelease: false
-          create_release: true
-          archive_output: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Create Release
+#        uses: actions/create-release@v1
+#        if: github.ref == 'refs/heads/main'
+#        with:
+#          tag_name: v1.0.0
+#          release_name: Release 1.0.0
+#          body: |
+#            This is the first release.
+#          draft: false
+#          prerelease: false
+#          create_release: true
+#          archive_output: true
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 #      - name: Artifacts
 #        uses: actions/upload-artifact@v3

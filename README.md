@@ -1,3 +1,4 @@
+
 # MESSAG - 2D Pixel Art Mobile Game for IOS and Android
 
 ## Overview
@@ -8,19 +9,62 @@ Welcome to MESSAG, an engaging 2D pixel art mobile game set on the lunar surface
 
 Players have the opportunity to play various mini-games to earn Moonets and Moonstones. Using these resources, they can purchase generators and storage buildings in the shop. Placing these buildings on predefined fields on the lunar surface increases resource production.
 
-### Results
+## Results
 
-#### 1. Lunar Surface and Character Control
+### **Start Menu Exploration:**
 
-The lunar surface has been intricately designed, and character control is achieved by simply tapping on the screen. Players can freely navigate the surface.
+![Start Menu of MESSAG](Images/image_start_menu.png)
 
-![Lunar Surface and Character Control](images/screenshot1.png)
+Immerse yourself in the engaging world of our game through the enticing "MESSAG" section in the start menu. Here, you'll encounter a selection of options tailored to enhance your gaming experience:
 
-#### 2. Mini-Games
+1. **Continue Your Adventure:**
+   Rediscover the thrill by choosing the "Continue" option, seamlessly picking up from your previous gaming session. Your journey unfolds exactly where you left off, ensuring a continuous and captivating narrative.
 
-Various entertaining mini-games are available for players to earn Moonets and Moonstones. The mini-games are diverse and challenging.
+2. **Embark on a New Game:**
+   Ignite a fresh chapter in your gaming odyssey by selecting "New Game." This option offers you the opportunity to delve into uncharted territories, unveiling new challenges and exciting storylines.
 
-![Mini-Games](images/screenshot2.png)
+3. **Guided Exploration with Tutorial:**
+   Elevate your gameplay with the enriching "Tutorial" option. Whether you're a seasoned player or a newcomer, this interactive guide provides valuable insights, ensuring a comprehensive understanding of the game mechanics and features.
+
+4. **Legal Insight in "Legal Notice":**
+   Delve into the legal intricacies and foundational aspects of our game by navigating to the "Legal Notice" section under "MESSAG." Here, you'll find comprehensive information, ensuring transparency and a clear understanding of the legal framework surrounding our gaming universe.
+
+This thoughtfully designed start menu is crafted to offer you a seamless, informative, and immersive experience right from the outset.
+***
+### **Lunar Odyssey Unveiled:**
+
+![Spawn Point](Images/image_spawnpoint.png)
+![Full Map](Images/image_full_map.png)
+
+Embark on a celestial adventure as you initiate the "New Game" option, materializing on the moon's surface adjacent to the rocket—your primary base. Opting for "Continue" seamlessly places you at your last exploration point, allowing fluid traversal through the expansive lunar landscape with a mere click on the screen.
+
+**A Dozen Plots of Potential:**
+
+Dive into a world of creativity and strategy with 12 strategically positioned plots awaiting your architectural prowess. Each plot serves as a canvas for constructing buildings, enabling you to sculpt and expand your lunar haven.
+
+**Charting the Celestial Canvas:**
+
+To gain a comprehensive view of your lunar dominion, a quick tap on the Map button in the lower right corner unfolds the celestial canvas. This feature offers a panoramic overview, facilitating strategic planning and providing a visual feast of your lunar surroundings.
+
+Embark on your "Lunar Odyssey" and craft a cosmic masterpiece, building your lunar legacy one plot at a time. Explore the vastness of possibilities and shape your celestial destiny in this captivating lunar experience.
+***
+### **Celestial Minigames Unveiled:**
+
+*Minigame 1: Comet Commander*
+
+![Minigame - Comet Commander](Images/image_minigame1.png)
+![Minigame - Comet Commander - GameOver Screen](Images/image_minigame1_gameover.png)
+
+Embark on an intergalactic adventure by triggering the first minigame through the interface of the main base, your trusty rocket. Assume control of a nimble spacecraft, tasked with the mission of intercepting and obliterating oncoming comets. Unlike traditional space debris, these comets defy fragmentation, persistently reappearing in the cosmic expanse. Exercise caution, for each collision with a comet deducts one of your three precious lives. As the game concludes, a portion of your hard-earned points transforms into Moonites, bolstering your lunar resources and enhancing your spacefaring arsenal.
+
+*Minigame 2: Lunar Dodger*
+
+![Minigame - Lunar Dodger](Images/image_minigame2.png)
+![Minigame - Lunar Dodger - GameOver Screen](Images/image_minigame2_gameover.png)
+
+For a unique lunar thrill, initiate the second minigame via the Moonite Generator. Take the helm of a lunar rover, navigating with finesse to dodge oncoming lunar rovers. A collision with another rover marks the culmination of the game. In the aftermath, a fraction of your accumulated points transmutes into Moonstones, a valuable addition to your lunar treasury, poised to fund further cosmic endeavors.
+
+Embark on these enthralling cosmic challenges, honing your spacefaring skills and accumulating invaluable resources that will play a pivotal role in your ongoing lunar conquest. The vastness of the cosmos awaits, and these captivating lunar exploits are your ticket to celestial mastery.
 
 #### 3. Shop and Building Placement
 

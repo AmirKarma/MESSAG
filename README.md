@@ -1,4 +1,5 @@
 
+
 # MESSAG - 2D Pixel Art Mobile Game for IOS and Android
 
 ## Overview
@@ -200,37 +201,50 @@ The organization of folders within the `/View` directory helps maintain a clear 
 
 Additionally, the `/data_script.gd` file stores crucial game data, and the `/project.godot` file is the main configuration file for the Godot game engine.
 
-## System Setup and Execution
+## System Setup and Contribution
 
-1. **Download Source Code**
+If you're eager to dive into the lunar adventure without the hassle of development, follow these simple steps to experience the game:
 
-   Clone the repository from [GitHub Link].
+1. **Game Installation:**
+   - Head over to the [Releases](https://github.com/AmirKarma/MESSAG/releases) section of this repository.
+   - Download the provided .apk file for Android or the corresponding package for iOS.
 
-   ```bash
-   git clone https://github.com/YourUsername/MESSAG.git
-   ```
+2. **Device Compatibility:**
+   - Ensure your Android device allows installations from unknown sources. For iOS, follow the standard installation procedure.
 
-2. **Install Dependencies**
+3. **Installation:**
+   - Install the game by following the standard app installation process on your device.
 
-   Ensure you have all the required dependencies installed. Use the following:
+4. **Game Launch:**
+   - Locate the game icon on your device and tap to launch the cosmic odyssey.
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+Enjoy the lunar conquest and cosmic challenges!
+***
+If you're keen on exploring the intricacies of the lunar universe and contributing to the project, follow these steps:
 
-3. **Start the Game**
+1. **Clone the Repository:**
+   - Open your terminal or Git Bash.
+   - Run the following command to clone the repository:
+     ```
+     git clone https://github.com/AmirKarma/MESSAG.git
+     ```
 
-   Run the game on your local development device:
+2. **Navigate to the Project:**
+   - Move into the cloned directory using the command:
+     ```
+     cd MESSAG
+     ```
 
-   ```bash
-   python main.py
-   ```
+3. **Open in Godot:**
+   - Inside the cloned folder, you'll find a file named `project.godot`.
+   - Open Godot Engine and choose "Import" in the project manager.
+   - Select the `project.godot` file to open the lunar project in Godot.
 
-4. **Test and Enjoy**
+4. **Embark on Your Cosmic Coding Journey:**
+   - Explore the codebase, tweak the gameplay, or contribute new features!
+   - Refer to the [Contribution Guide](https://github.com/AmirKarma/MESSAG/wiki/Contribution-Guide) in the Wiki page for guidelines on contributing to the project.
 
-   Verify that the game functions as expected. Play different mini-games, buy buildings in the shop, and experience the fascinating world of MESSAG!
-
-Certainly! Let's create a separate section for the closing statements:
+With the repository cloned and the project loaded in Godot, you're now ready to immerse yourself in the lunar coding adventure. May your cosmic contributions shine brightly in the vastness of the open-source galaxy!
 
 ## Conclusion
 

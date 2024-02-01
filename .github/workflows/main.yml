@@ -49,13 +49,6 @@ jobs:
           relative_project_path: ./View/
           archive_output: true
 
-#      - name: Artifacts
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: build 
-#          path: |
-#            /home/runner/.local/share/godot/archives/
-
       - name: Create Release
         uses: actions/create-release@v1
         if: github.ref == 'refs/heads/main'
@@ -71,11 +64,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-#      - name: Artifacts
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: build 
-#          path: |
-#            /home/runner/.local/share/godot/archives/
-          
-      
+      - name: Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build 
+          path: |
+            /home/runner/.local/share/godot/archives/
+          retention-days: 2

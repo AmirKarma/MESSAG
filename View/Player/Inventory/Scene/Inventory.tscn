@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dbaqm4nbxf7gd"]
+[gd_scene load_steps=13 format=3 uid="uid://dbaqm4nbxf7gd"]
 
 [ext_resource type="Script" path="res://Player/Inventory/Scripts/Inventory.gd" id="1_xb1fh"]
 [ext_resource type="Texture2D" uid="uid://cfrtbd53d1l6g" path="res://World/Shop/Assets/InventoryRect.png" id="2_056w3"]
@@ -7,8 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://2o774dqju385" path="res://World/Shop/Assets/close button pressed.png" id="5_urs2j"]
 [ext_resource type="FontFile" uid="uid://bmgg4pf2e6now" path="res://World/Shop/Assets/Merchant Copy.ttf" id="6_tdtt5"]
 [ext_resource type="SpriteFrames" uid="uid://bqpdqveuisbci" path="res://World/Buildings/Assets/building.tres" id="7_tkub4"]
-[ext_resource type="FontFile" uid="uid://bao8wtv7uxfku" path="res://Optionbar/Assets/04B_30__.TTF" id="8_2a128"]
-[ext_resource type="Texture2D" uid="uid://bcjw06cry877x" path="res://World/Shop/Assets/button_texture.png" id="9_r46re"]
+[ext_resource type="Theme" uid="uid://cv5efycwbspf2" path="res://Optionbar/Assets/buttonAssets.tres" id="8_3kxa2"]
 [ext_resource type="Script" path="res://Player/Inventory/Scripts/place_button.gd" id="10_nx052"]
 [ext_resource type="FontFile" uid="uid://dmehj4ikin7cw" path="res://Player/Inventory/Assets/04B_30__.TTF" id="11_43lug"]
 
@@ -17,41 +16,6 @@ corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0jrjm"]
-texture = ExtResource("9_r46re")
-texture_margin_left = 3.0
-texture_margin_top = 3.0
-texture_margin_right = 3.0
-texture_margin_bottom = 3.0
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wios0"]
-load_path = "res://.godot/imported/button_texture.png-123d234be187e5d6ea473de4382a5dcb.ctex"
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_34u2w"]
-texture = SubResource("CompressedTexture2D_wios0")
-texture_margin_left = 3.0
-texture_margin_top = 3.0
-texture_margin_right = 3.0
-texture_margin_bottom = 2.0
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_to8b2"]
-load_path = "res://.godot/imported/button_pressed_texture.png-e1fb9c1adb113e33232af41ec3f41d74.ctex"
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_elxks"]
-texture = SubResource("CompressedTexture2D_to8b2")
-texture_margin_left = 3.0
-texture_margin_top = 3.0
-texture_margin_right = 3.0
-texture_margin_bottom = 2.0
-
-[sub_resource type="Theme" id="Theme_g1v6n"]
-Button/colors/font_color = Color(1, 1, 1, 1)
-Button/font_sizes/font_size = 8
-Button/fonts/font = ExtResource("8_2a128")
-Button/styles/hover = SubResource("StyleBoxTexture_0jrjm")
-Button/styles/normal = SubResource("StyleBoxTexture_34u2w")
-Button/styles/pressed = SubResource("StyleBoxTexture_elxks")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mpn8c"]
 
@@ -197,7 +161,7 @@ vertical_alignment = 1
 [node name="button" type="Control" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 10)
 layout_mode = 2
-theme = SubResource("Theme_g1v6n")
+theme = ExtResource("8_3kxa2")
 
 [node name="place_button" type="Button" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/button"]
 visible = false

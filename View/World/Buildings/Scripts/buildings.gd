@@ -13,20 +13,24 @@ var player_is_moving: bool = false
 # Function: building_distance
 # Description: Checks the distance between the player and a building. If the player is close enough, opens the option bar.
 func building_distance(building: Node2D):
-	if building.pressed and !player.player_is_moving:
-		optionbar.set_visible(false)
-		if player.position.distance_to(building.position) < 50:
-			building.pressed = false
-			player.stand_still = true
-			player.moving = false
-			open_optionbar(building.id)
+	if player.camera.zoom == player.standart_camerazoom:
+		if building.pressed and !player.player_is_moving:
+			optionbar.set_visible(false)
+			if player.position.distance_to(building.position) < 50:
+				building.pressed = false
+				player.stand_still = true
+				player.moving = false
+				open_optionbar(building.id)
+			else:
+				player.moving = true
+				player.stand_still = false
+				player.nav.target_position = building.position
+				player.animationState.travel("Run")
 		else:
-			player.moving = true
-			player.stand_still = false
-			player.nav.target_position = building.position
-			player.animationState.travel("Run")
+			building.pressed = false
 	else:
 		building.pressed = false
+
 
 
 # Function: open_optionbar

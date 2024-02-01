@@ -31,6 +31,37 @@ Immerse yourself in the engaging world of our game through the enticing "MESSAG"
 
 This thoughtfully designed start menu is crafted to offer you a seamless, informative, and immersive experience right from the outset.
 ***
+### **Celestial Guided Learning:**
+
+![Tutorial](Images/image_tutorial.png)
+
+Embark on a journey of cosmic comprehension with the interactive tutorial, accessible directly from the start menu. This educational odyssey guides you through the intricacies of the game, unraveling all essential features within the lunar realm.
+
+*Highlights of the Tutorial:*
+
+1. **Navigational Insight:**
+   - Learn to navigate the expansive lunar landscape with ease, understanding the controls and interface.
+
+2. **Minigame Mastery:**
+   - Master the two thrilling minigames - Comet Commander and Lunar Dodger - unraveling strategies for success.
+
+3. **Resource Management:**
+   - Delve into the art of resource gathering, emphasizing the roles of Mooneten and Moonstones in your cosmic conquest.
+
+4. **Building Your Empire:**
+   - Understand the significance of structures like Mooneten and Moonstone Generators, as well as Storages, in shaping your lunar realm.
+
+5. **Shop Savvy:**
+   - Navigate the celestial emporium, discovering how to wisely spend Mooneten and Moonstones for optimal lunar development.
+
+6. **Inventory Insights:**
+   - Explore the inventory system, where acquired structures are managed and strategically placed on the lunar field.
+
+7. **Upgrades Unveiled:**
+   - Grasp the concept of upgrades, enhancing the efficiency and capabilities of your lunar structures for sustained growth.
+
+The tutorial serves as your cosmic guide, ensuring you command every aspect of your lunar empire with confidence and finesse. Launch it from the start menu and immerse yourself in the cosmic wisdom that will pave the way for your triumphant celestial journey.
+***
 ### **Lunar Odyssey Unveiled:**
 
 ![Spawn Point](Images/image_spawnpoint.png)
@@ -92,19 +123,49 @@ Utilize your hard-earned lunar resources wisely in the shop to acquire new build
 
 Master the delicate balance of Mooneten and Moonstones, and watch as your lunar world flourishes with each strategic investment in the expansive and captivating cosmos you're building.
 ***
-#### 3. Shop and Building Placement
+### **Celestial Architectural Ensemble:**
 
-The shop offers a variety of generators and storage buildings for purchase. After acquisition, players can place these buildings on predefined fields to boost their resource production.
+1. **Mooneten Generator:**
+![Moonetengenerator](Images/image_mooneten_generator.png)
+![Moonetengenerator Inventory](Images/image_optionbar_mooneten_generator.png)
+   - The pulsating heart of your lunar economy, the Mooneten Generator tirelessly produces Mooneten at regular intervals.
+   - Resources accumulate within the generator, awaiting your strategic collection to fund your lunar aspirations.
+   - Elevate your lunar production by upgrading the generator, unlocking the potential for increased Mooneten yield per minute.
 
-![Shop and Building Placement](images/screenshot3.png)
+2. **Moonstone Generator:**
+![Moonstonegenerator](Images/image_moonstone_generator.png)
+![Moonstonegenerator Inventory](Images/image_optionbar_moonstone_generator.png)
+   - A cosmic gem in your lunar infrastructure, the Moonstone Generator diligently crafts Moonstones over time.
+   - These precious lunar gems are stored within the generator, ready for your collection to fuel your celestial ventures.
+   - Optimize your lunar resource generation by upgrading the Moonstone Generator, ensuring a continuous and bountiful supply.
 
+3. **Mooneten Storage:**
+![Moonetenstorage](Images/image_mooneten_storage.png)
+![Moonetenstorage Inventory](Images/image_optionbar_mooneten_storage.png)
+   - A lunar vault designed to securely harbor your amassed Mooneten resources, protecting them from the cosmic expanse.
+   - Upgrade the storage facility to expand its capacity, allowing for the accumulation of larger reserves of Mooneten, ready to be deployed when needed.
 
-#### 5. Progression and Challenges
+4. **Moonstone Storage:**
+![Moonstonestorage](Images/image_moonstone_storage.png)
+![Moonstonestorage Inventory](Images/image_optionbar_moonstone_storage.png)
+   - The lunar repository for your valuable Moonstones, ensuring their safekeeping and strategic utilization.
+   - Enhance your cosmic treasury by upgrading the Moonstone Storage, providing ample space for the ever-growing collection of Moonstones.
 
-The game features advanced mechanics where players can overcome challenges and maximize their progression on the lunar surface.
+As your Mooneten and Moonstone Generators diligently toil, their produced resources beckon for collection, while the Storage units stand as guardians of your celestial wealth. Upgrade these structures judiciously to harmonize production and storage, unlocking the full potential of your lunar empire. The cosmic ballet of production, collection, and strategic upgrades forms the cornerstone of your celestial prosperity.
+***
+### **Celestial Marketplace Highlights:**
 
-![Progression and Challenges](images/screenshot5.png)
+![Shop](Images/image_shop.png)
+![Shop Interface](Images/image_shop_inventory.png)
 
+Step into the cosmic marketplace, where Mooneten and Moonstones hold the key to lunar expansion. Within this celestial emporium, discover essential structures like the *Mooneten Generator*, *Moonstone Generator*, *Mooneten Storage*, and *Moonstone Storage*. Strategically invest your resources to build, expand, and thrive in the vastness of your lunar empire. The lunar frontier beckons, and these highlighted structures are your gateway to celestial prosperity.
+***
+### **Cosmic Inventory Management:**
+
+![Inventory](Images/image_full_inventory.png)
+![Shop Interface](Images/image_shop_inventory.png)
+
+Upon purchasing buildings from the shop, they seamlessly manifest in your inventory. Access your inventory by tapping on an available building plot, revealing a selection of owned structures. Choose from the buildings you possess and strategically place them on the field. Navigate this cosmic inventory to sculpt and enhance your lunar realm, ensuring every building finds its optimal place in the celestial tapestry of your burgeoning empire.
 
 ## Files and Directories
 

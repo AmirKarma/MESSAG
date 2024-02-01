@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dbs0inmxq5m68"]
+[gd_scene load_steps=14 format=3 uid="uid://dbs0inmxq5m68"]
 
 [ext_resource type="Script" path="res://World/Shop/Scripts/shop_menu.gd" id="1_tdwdc"]
 [ext_resource type="Texture2D" uid="uid://cfrtbd53d1l6g" path="res://World/Shop/Assets/InventoryRect.png" id="2_v4xso"]
@@ -9,49 +9,13 @@
 [ext_resource type="SpriteFrames" uid="uid://bqpdqveuisbci" path="res://World/Buildings/Assets/building.tres" id="7_rgtvk"]
 [ext_resource type="Texture2D" uid="uid://cuiv62xt4qge3" path="res://Player/RessourceBar/Assets/Moonete.png" id="8_mudqo"]
 [ext_resource type="Texture2D" uid="uid://bxit1dcy7rct4" path="res://Player/RessourceBar/Assets/Moonstone.png" id="9_3ecpw"]
-[ext_resource type="FontFile" uid="uid://bao8wtv7uxfku" path="res://Optionbar/Assets/04B_30__.TTF" id="10_f7277"]
-[ext_resource type="Texture2D" uid="uid://bcjw06cry877x" path="res://World/Shop/Assets/button_texture.png" id="11_6obk7"]
+[ext_resource type="Theme" uid="uid://cv5efycwbspf2" path="res://Optionbar/Assets/buttonAssets.tres" id="10_frcpq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bc7vd"]
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_05oxn"]
-texture = ExtResource("11_6obk7")
-texture_margin_left = 3.0
-texture_margin_top = 3.0
-texture_margin_right = 3.0
-texture_margin_bottom = 3.0
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y05dy"]
-load_path = "res://.godot/imported/button_texture.png-123d234be187e5d6ea473de4382a5dcb.ctex"
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_caq55"]
-texture = SubResource("CompressedTexture2D_y05dy")
-texture_margin_left = 3.0
-texture_margin_top = 3.0
-texture_margin_right = 3.0
-texture_margin_bottom = 2.0
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_br4bw"]
-load_path = "res://.godot/imported/button_pressed_texture.png-e1fb9c1adb113e33232af41ec3f41d74.ctex"
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i07bg"]
-texture = SubResource("CompressedTexture2D_br4bw")
-texture_margin_left = 3.0
-texture_margin_top = 3.0
-texture_margin_right = 3.0
-texture_margin_bottom = 2.0
-
-[sub_resource type="Theme" id="Theme_foeo3"]
-Button/colors/font_color = Color(1, 1, 1, 1)
-Button/font_sizes/font_size = 8
-Button/fonts/font = ExtResource("10_f7277")
-Button/styles/hover = SubResource("StyleBoxTexture_05oxn")
-Button/styles/normal = SubResource("StyleBoxTexture_caq55")
-Button/styles/pressed = SubResource("StyleBoxTexture_i07bg")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lr0ve"]
 
@@ -238,7 +202,7 @@ vertical_alignment = 1
 [node name="button" type="Control" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 10)
 layout_mode = 2
-theme = SubResource("Theme_foeo3")
+theme = ExtResource("10_frcpq")
 
 [node name="buy_button" type="Button" parent="NinePatchRect/VBoxContainer/Panel/VBoxContainer/ScrollContainer/HBoxContainer/Buiding_Card/VBoxContainer/button"]
 visible = false

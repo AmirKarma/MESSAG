@@ -70,12 +70,10 @@ Embark on these enthralling cosmic challenges, honing your spacefaring skills an
 
 In the cosmic economy of your game, two essential resources reign supreme—*Mooneten* and *Moonstones*.
 
-**Mooneten:**
-![Mooneten](Images/Mooneten.png)
+![Mooneten](Images/Mooneten.png) **Mooneten:**
 Obtainable through the daring exploits of Minigame 1, Comet Commander, Mooneten represent the spoils of celestial warfare. Successfully navigate the treacherous comet-laden space, and your coffers will be enriched with this primary lunar currency.
 
-**Moonstones:**
-![Moonstones](Images/Moonstones.png)
+![Moonstones](Images/Moonstones.png) **Moonstones:**
 The lunar landscape is also home to Minigame 2, Lunar Dodger, where adept maneuvering of your moon rover yields Moonstones. Evade collisions with fellow lunar rovers, and these precious gems become part of your lunar treasury.
 
 **Generator Bounty:**

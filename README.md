@@ -125,27 +125,31 @@ Master the delicate balance of Mooneten and Moonstones, and watch as your lunar 
 ***
 ### **Celestial Architectural Ensemble:**
 
-1. **Mooneten Generator:**
+#### 1. **Mooneten Generator:**
+   
 ![Moonetengenerator](Images/image_mooneten_generator.png)
 ![Moonetengenerator Inventory](Images/image_optionbar_mooneten_generator.png)
    - The pulsating heart of your lunar economy, the Mooneten Generator tirelessly produces Mooneten at regular intervals.
    - Resources accumulate within the generator, awaiting your strategic collection to fund your lunar aspirations.
    - Elevate your lunar production by upgrading the generator, unlocking the potential for increased Mooneten yield per minute.
 
-2. **Moonstone Generator:**
+#### 2. **Moonstone Generator:**
+
 ![Moonstonegenerator](Images/image_moonstone_generator.png)
 ![Moonstonegenerator Inventory](Images/image_optionbar_moonstone_generator.png)
    - A cosmic gem in your lunar infrastructure, the Moonstone Generator diligently crafts Moonstones over time.
    - These precious lunar gems are stored within the generator, ready for your collection to fuel your celestial ventures.
    - Optimize your lunar resource generation by upgrading the Moonstone Generator, ensuring a continuous and bountiful supply.
 
-3. **Mooneten Storage:**
+#### 3. **Mooneten Storage:**
+   
 ![Moonetenstorage](Images/image_mooneten_storage.png)
 ![Moonetenstorage Inventory](Images/image_optionbar_mooneten_storage.png)
    - A lunar vault designed to securely harbor your amassed Mooneten resources, protecting them from the cosmic expanse.
    - Upgrade the storage facility to expand its capacity, allowing for the accumulation of larger reserves of Mooneten, ready to be deployed when needed.
 
-4. **Moonstone Storage:**
+#### 4. **Moonstone Storage:**
+
 ![Moonstonestorage](Images/image_moonstone_storage.png)
 ![Moonstonestorage Inventory](Images/image_optionbar_moonstone_storage.png)
    - The lunar repository for your valuable Moonstones, ensuring their safekeeping and strategic utilization.

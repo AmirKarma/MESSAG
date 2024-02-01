@@ -163,7 +163,6 @@ Step into the cosmic marketplace, where Mooneten and Moonstones hold the key to 
 ### **Cosmic Inventory Management:**
 
 ![Inventory](Images/image_full_inventory.png)
-![Shop Interface](Images/image_shop_inventory.png)
 
 Upon purchasing buildings from the shop, they seamlessly manifest in your inventory. Access your inventory by tapping on an available building plot, revealing a selection of owned structures. Choose from the buildings you possess and strategically place them on the field. Navigate this cosmic inventory to sculpt and enhance your lunar realm, ensuring every building finds its optimal place in the celestial tapestry of your burgeoning empire.
 

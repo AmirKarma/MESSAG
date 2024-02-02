@@ -85,7 +85,6 @@ func _physics_process(delta):
 func playerCollisionRespawn():
 	collision.set_deferred("disabled", false)
 	process_mode = Node.PROCESS_MODE_INHERIT
-	print("Respawn")
 
 
 # Function to handle player death

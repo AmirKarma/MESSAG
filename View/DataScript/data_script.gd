@@ -140,7 +140,6 @@ var timer: Timer
 # Description: Called when the node is ready.
 # Initializes and starts the timer, loads field and player data, and sets maximum resources.
 func _ready():
-	print(minigame2_timer)
 	timer = Timer.new()
 	add_child(timer)
 	timer.wait_time = 60

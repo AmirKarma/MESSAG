@@ -2,7 +2,7 @@
 
 
 # MESSAG - 2D Pixel Art Mobile Game for IOS and Android
-
+***
 ## Overview
 
 Welcome to MESSAG, an engaging 2D pixel art mobile game set on the lunar surface! In this game, players control a character, move them by tapping on the screen, and embark on adventures on the Moon. The focus is on collecting resources (Moonets and Moonstones) through mini-games and expanding the lunar colony by purchasing and placing generators and storage buildings.
@@ -10,7 +10,7 @@ Welcome to MESSAG, an engaging 2D pixel art mobile game set on the lunar surface
 ### Gameplay Mechanics
 
 Players have the opportunity to play various mini-games to earn Moonets and Moonstones. Using these resources, they can purchase generators and storage buildings in the shop. Placing these buildings on predefined fields on the lunar surface increases resource production.
-
+***
 ## Results
 
 ### **Start Menu Exploration:**
@@ -171,7 +171,7 @@ Step into the cosmic marketplace, where Mooneten and Moonstones hold the key to 
 ![Inventory](Images/image_full_inventory.png)
 
 Upon purchasing buildings from the shop, they seamlessly manifest in your inventory. Access your inventory by tapping on an available building plot, revealing a selection of owned structures. Choose from the buildings you possess and strategically place them on the field. Navigate this cosmic inventory to sculpt and enhance your lunar realm, ensuring every building finds its optimal place in the celestial tapestry of your burgeoning empire.
-
+***
 ## Files and Directories
 
 - `/View`: The main directory containing all views and resources for the game.
@@ -226,7 +226,7 @@ Upon purchasing buildings from the shop, they seamlessly manifest in your invent
 
   - `/debug.keystore`: Debug keystore file for Android development (relevant only for Android developers).
 - `/Images`: Contains images used for the README.
-
+***
 ## System Setup and Contribution
 
 If you're eager to dive into the lunar adventure without the hassle of development, follow these simple steps to experience the game:
@@ -271,7 +271,7 @@ If you're keen on exploring the intricacies of the lunar universe and contributi
    - Refer to the [Contribution Guide](https://github.com/AmirKarma/MESSAG/wiki/Contribution-Guide) in the Wiki page for guidelines on contributing to the project.
 
 With the repository cloned and the project loaded in Godot, you're now ready to immerse yourself in the lunar coding adventure. May your cosmic contributions shine brightly in the vastness of the open-source galaxy!
-
+***
 ## Conclusion
 
 Thank you for exploring MESSAG, our captivating 2D pixel art mobile game set on the lunar surface. We hope you enjoy navigating the lunar terrain, playing exciting mini-games, and expanding your lunar colony.
@@ -281,3 +281,4 @@ For more in-depth information about each game component and a detailed overview 
 Feel free to provide feedback, report issues, or share your experiences with us. Your input is invaluable as we continue to enhance and refine the MESSAG gaming experience.
 
 Get ready to embark on an extraordinary lunar adventure – enjoy playing MESSAG!
+***

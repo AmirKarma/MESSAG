@@ -1,5 +1,6 @@
 
 
+
 # MESSAG - 2D Pixel Art Mobile Game for IOS and Android
 
 ## Overview
@@ -173,33 +174,58 @@ Upon purchasing buildings from the shop, they seamlessly manifest in your invent
 
 ## Files and Directories
 
-1. **/View/Images**
-   - Contains pixel art graphics and images used in the game.
+- `/View`: The main directory containing all views and resources for the game.
+  - `/DataScript`: Contains script files responsible for data processing and control.
 
-2. **/View/Minigame1**
-   - Implementation files for the first mini-game.
+  - `/Tutorial`: Contains subdirectories for various tutorial elements.
+    - `/Buildingpit_t`: Resources and scenes for the building pit tutorial.
+    - `/Minigame1`: Resources and scenes for the first minigame in the tutorial.
+    - `/Minigame2`: Resources and scenes for the second minigame in the tutorial.
+    - `/Shop_t`: Resources and scenes for the shop tutorial.
 
-3. **/View/Minigame2**
-   - Implementation files for the second mini-game.
+  - `/Minigame1`: Contains resources, scenes, and scripts for the first minigame.
+    - `/Assets`: Game assets such as textures or models.
+    - `/Scenes`: Godot scene files for the minigame.
+    - `/Scripts`: Script files for the logic of the minigame.
 
-4. **/View/Optionbar**
-   - Code and assets related to the in-game options bar.
+  - `/Minigame2`: Contains resources, scenes, and scripts for the second minigame.
+    - `/Assets`: Game assets such as textures or models.
+    - `/Scenes`: Godot scene files for the minigame.
+    - `/Scripts`: Script files for the logic of the minigame.
 
-5. **/View/Player**
-   - Code and resources for the player character.
+  - `/Optionbar`: Contains resources, scenes, and scripts for the options bar in the game.
+    - `/Assets`: Graphic resources for the options bar.
+    - `/Scene`: Godot scene files for the options bar.
+    - `/Scripts`: Script files for the logic of the options bar.
 
-6. **/View/Welt**
-   - Components and scripts related to the game world.
+  - `/Player`: Contains resources, scenes, and scripts for the player character in the game.
+    - `/Assets`: Graphic resources for the player character.
+    - `/Inventory`: Resources and scripts for the player's inventory system.
+    - `/MapButton`: Resources and scripts for the player's map button.
+    - `/RessourceBar`: Resources and scripts for the player's resource bar.
+    - `/Scene`: Godot scene files for the player character.
+    - `/Script`: Script files for the logic of the player.
 
-7. **/View/data_script.gd**
-   - Game data script containing information about resources, buildings, and other game-related data.
+  - `/Start_Menu`: Contains resources, scenes, and scripts for the game's start menu.
+    - `/Assets`: Graphic resources for the start menu.
+    - `/Imprint`: Information and resources for the game's imprint.
+    - `/Scene`: Godot scene files for the start menu.
+    - `/Script`: Script files for the logic of the start menu.
 
-8. **/View/project.godot**
-   - The main Godot project file.
+  - `/World`: Contains resources, scenes, and scripts for the game world.
+    - `/Assets`: General game assets such as textures or models.
+    - `/Buildings`: Resources and scenes for buildings in the game world.
+    - `/Rocket`: Resources and scenes for rockets in the game.
+    - `/Script`: Script files for the logic of the game world.
+    - `/Scene`: Godot scene files for the game world.
+    - `/Shop`: Resources and scenes for the in-game shop.
 
-The organization of folders within the `/View` directory helps maintain a clear and modular structure for different aspects of the game. The mini-game folders contain specific implementations, while the `/Optionbar`, `/Player`, and `/Welt` directories focus on distinct elements of the game's user interface, character, and world, respectively.
+  - `/project.godot`: The main configuration file for the Godot project.
 
-Additionally, the `/data_script.gd` file stores crucial game data, and the `/project.godot` file is the main configuration file for the Godot game engine.
+  - `/export_presets.cfg`: Configuration file for export settings.
+
+  - `/debug.keystore`: Debug keystore file for Android development (relevant only for Android developers).
+- `/Images`: Contains images used for the README.
 
 ## System Setup and Contribution
 

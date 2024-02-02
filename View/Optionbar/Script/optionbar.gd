@@ -426,7 +426,7 @@ func _on_collect_button_pressed():
 				var temp: int = DataScript.get_mooneten()
 				DataScript.add_mooneten(DataScript.maxMoonetenStorage - DataScript.get_mooneten())
 				DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][mooneten_amount] = (
-					DataScript.fieldArray[building_id][RESSOURCE_AMOUNT]
+					DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][mooneten_amount]
 					- (DataScript.maxMoonetenStorage - temp)
 				)
 				set_bars()

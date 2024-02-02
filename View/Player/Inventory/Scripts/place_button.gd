@@ -5,7 +5,6 @@ extends Button
 
 
 # Function: _on_pressed
-# Description: Called when the button is pressed. Prints the button's name and calls the player's place_building method.
+# Description: Called when the button is pressed. Calls the player's place_building method.
 func _on_pressed():
-	print(self.name)
 	player.place_building(int(str(self.name)))

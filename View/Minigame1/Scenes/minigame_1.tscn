@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfq6ogl4ncriu"]
+[gd_scene load_steps=13 format=3 uid="uid://bfq6ogl4ncriu"]
 
 [ext_resource type="Script" path="res://Minigame1/Scripts/minigame_1.gd" id="1_47igm"]
 [ext_resource type="PackedScene" uid="uid://b6xe8654tk18d" path="res://Minigame1/Scenes/info.tscn" id="2_ybuk1"]
 [ext_resource type="Texture2D" uid="uid://b56jve8otmcps" path="res://Minigame1/Assets/shot_button.png" id="3_f3oky"]
 [ext_resource type="PackedScene" uid="uid://g40na2y72ch1" path="res://Minigame1/Scenes/spaceship.tscn" id="3_ydnmk"]
+[ext_resource type="Theme" uid="uid://fk8kk11hy4lf" path="res://Minigame2/Assets/Font.tres" id="5_q654l"]
 [ext_resource type="PackedScene" uid="uid://djvcmma4a72cc" path="res://Minigame1/Scenes/GameOverScreen.tscn" id="6_8lwdk"]
 [ext_resource type="Script" path="res://Minigame1/Scripts/PauseMenu.gd" id="6_i48fi"]
 [ext_resource type="Texture2D" uid="uid://d4bvoelmcyjy7" path="res://Minigame1/Assets/Space_Background.png" id="6_rv1y7"]
@@ -39,11 +40,11 @@ action = "schuss"
 
 [node name="PauseMenu" type="Control" parent="Points"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 320.0
 offset_bottom = 180.0
+theme = ExtResource("5_q654l")
 script = ExtResource("6_i48fi")
 
 [node name="PauseBackround" type="ColorRect" parent="Points/PauseMenu"]
@@ -75,11 +76,13 @@ vertical_alignment = 1
 
 [node name="Resume" type="Button" parent="Points/PauseMenu/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 theme_override_styles/focus = SubResource("StyleBoxEmpty_p26yn")
 text = "Resume Game"
 
 [node name="Exit" type="Button" parent="Points/PauseMenu/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 theme_override_styles/focus = SubResource("StyleBoxEmpty_sybcb")
 text = "Exit"
 

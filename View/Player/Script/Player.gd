@@ -116,6 +116,7 @@ func reset_camera():
 	camera.zoom = standart_camerazoom
 	camera.position = standart_position
 	resourceBar.visible = true
+	mapButton.visible = true
 	modulate = Color.WHITE
 	mapButton.texture_normal = showMapTexture
 
@@ -201,7 +202,6 @@ func free_field_distance_check():
 func open_inventory(value):
 	fieldIndex = getFieldIndex(value)
 	buildingIndex = getBuildingIndex(fieldIndex)[0]
-	print(fieldIndex)
 	if buildingIndex == -1:
 		DataScript.is_in_building_menu = true
 		$Camera2D/HUD/showMap.visible = false
@@ -216,6 +216,8 @@ func open_inventory(value):
 func place_building(bIndex: int):
 	DataScript.is_in_building_menu = false
 	$Camera2D/HUD/Inventory.visible = false
+	$Camera2D/HUD/showMap.visible = true
+	$Camera2D/HUD/RessourceBar.visible = true
 	reset_camera()
 	DataScript.set_building(fieldIndex, DataScript.inventory[bIndex])
 	DataScript.inventory.remove_at(bIndex)

@@ -216,6 +216,8 @@ func open_inventory(value):
 func place_building(bIndex: int):
 	DataScript.is_in_building_menu = false
 	$Camera2D/HUD/Inventory.visible = false
+	$Camera2D/HUD/showMap.visible = true
+	$Camera2D/HUD/RessourceBar.visible = true
 	reset_camera()
 	DataScript.set_building(fieldIndex, DataScript.inventory[bIndex])
 	DataScript.inventory.remove_at(bIndex)

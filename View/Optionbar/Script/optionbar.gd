@@ -128,10 +128,14 @@ func set_rocket_image():
 func is_upgradeable():
 	if is_max_level():
 		disable_upgrade_button()
+		$optionbar_rect/buttons_rect/buttons/Upgrade_warning.size.x = 66
+		$optionbar_rect/buttons_rect/buttons/Upgrade_warning.position.x = 85
 		$optionbar_rect/buttons_rect/buttons/Upgrade_warning/Label.text = "Rocket Level is too low!"
 		upgrade_warning.visible = true
 	elif building_id == DataScript.ROCKET and !is_rocket_upgradeable():
 		disable_upgrade_button()
+		$optionbar_rect/buttons_rect/buttons/Upgrade_warning.size.x = 141
+		$optionbar_rect/buttons_rect/buttons/Upgrade_warning.position.x = 10
 		$optionbar_rect/buttons_rect/buttons/Upgrade_warning/Label.text = "You need to buy all Buildings in the Shop to upgrade the Rocket!"
 		upgrade_warning.visible = true
 	else:
@@ -399,7 +403,6 @@ func reset_buttons():
 # Function: needed_ressource_check
 # Description: Checks the type of building and sets flags for needed resources accordingly.
 func needed_ressource_check():
-	print(DataScript.fieldArray[building_id][building_type])
 	match DataScript.fieldArray[building_id][building_type]:
 		DataScript.MOONETEN_GENERATOR, DataScript.moonetenStorage:
 			need_moonstone = true

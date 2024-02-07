@@ -66,3 +66,17 @@ jobs:
           path: |
             /home/runner/.local/share/godot/archives/
           retention-days: 2
+
+  release:
+    name: Release pushed tag
+    runs-on: ubuntu-latest
+    steps:         
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
+              --generate-notes

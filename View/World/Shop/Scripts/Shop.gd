@@ -49,8 +49,6 @@ func open_shop():
 	shop_menu.position = optionbar_pos
 	shop_menu.visible = true
 	player.stand_still = true
-	player.set_process(false)
-	player.set_physics_process(false)
 	player.get_node("Camera2D/HUD").visible = false
 
 

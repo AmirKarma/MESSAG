@@ -40,6 +40,7 @@ action = "schuss"
 
 [node name="PauseMenu" type="Control" parent="Points"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 320.0

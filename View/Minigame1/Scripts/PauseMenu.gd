@@ -9,6 +9,9 @@ var countdown: Control
 # Reference to the label node displaying countdown information.
 var countdown_label: Label
 
+# Reference to the label node displaying the Gameover Screen information.
+var game_over_screen: Control
+
 # Controls the pause state in the game.
 var is_paused:
 	set(value):
@@ -20,6 +23,7 @@ var is_paused:
 # Description: Called when the node enters the scene tree for the first time.
 # Initializes references to the countdown nodes, sets initial variables for pause state and timer.
 func _ready():
+	game_over_screen = get_node("/root/minigame1/Points/GameOverScreen")
 	countdown = get_parent().get_node("Countdown")
 	countdown_label = countdown.get_node("CountdownLabel")
 	is_paused = false
@@ -30,15 +34,9 @@ func _ready():
 # Description: Handles unhandled input events.
 # Toggles the pause state and updates the game's paused status when the "pause" action is pressed.
 func _unhandled_input(event):
-	if event.is_action_pressed("pause"):
-		toggle_pause_state()
+	if event.is_action_pressed("pause") and !game_over_screen.visible:
+		is_paused = true
 		set_game_state()
-
-
-# Function: toggle_pause_state
-# Description: Toggles the game's pause state and handles related actions.
-func toggle_pause_state():
-	is_paused = !is_paused
 
 
 # Function: set_game_state
@@ -52,7 +50,7 @@ func set_game_state():
 # Description: Handles the event when the resume button is pressed.
 # Resumes the game, makes the countdown visible, and starts the pause timer.
 func _on_resume_pressed():
-	toggle_pause_state()
+	is_paused = false
 	countdown.visible = true
 	$PauseTimer.start()
 
@@ -61,7 +59,7 @@ func _on_resume_pressed():
 # Description: Handles the event when the exit button is pressed.
 # Resumes the game, loads the "world.tscn" scene, replaces the current scene with the new world scene.
 func _on_exit_pressed():
-	toggle_pause_state()
+	is_paused = false
 	load_world_scene()
 
 

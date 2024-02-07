@@ -293,12 +293,10 @@ func set_card_enabled():
 
 
 # Function: _on_close_button_pressed
-# Description: Called when the close button is pressed. Hides the building card, enables player processes, and makes HUD visible.
+# Description: Called when the close button is pressed. Hides the building card and makes HUD visible.
 func _on_close_button_pressed():
 	DataScript.is_in_building_menu = false
 	visible = false
-	player.set_process(true)
-	player.set_physics_process(true)
 	player.get_node("Camera2D/HUD").visible = true
 
 

@@ -64,12 +64,10 @@ func _on_close_button_pressed():
 
 
 # Function: hide_optionbar
-# Description: Hides the option bar, enables player processes, and makes HUD visible.
+# Description: Hides the option bar, and makes HUD visible.
 func hide_optionbar():
 	DataScript.is_in_building_menu = false
 	self.visible = false
-	player.set_process(true)
-	player.set_physics_process(true)
 	player.get_node("Camera2D/HUD").visible = true
 
 
@@ -460,6 +458,7 @@ func _on_collect_button_pressed():
 				)
 				DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][moonstone_amount] = 0
 				set_bars()
+	DataScript.save_field_data()
 
 
 # Function: _on_remove_button_pressed

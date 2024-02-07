@@ -135,6 +135,9 @@ var last_player_position: Vector2 = Vector2(168, 131)
 #Declares the timer.
 var timer: Timer
 
+#Declares if the window focus is tapped out 
+var is_tapped_out:bool = false
+
 
 # Function: _ready
 # Description: Called when the node is ready.
@@ -153,35 +156,65 @@ func _ready():
 
 # Function: _on_timeout_timer
 # Description: Called when the timeout timer expires.
-# Adds new mooneten to the player's resources and updates buildings.
+# Adds new ressource to the player's resources and updates buildings.
 func _on_timeout_timer():
-	var new_mooneten: int = 10
+	var new_resource: int = 10
 	var ressourceamount: int = 0
 	for n in range(0, 14):
 		if fieldArray[n][building_type] == MOONETEN_GENERATOR:
-			new_mooneten = fieldArray[n][level_index] * new_mooneten
+			new_resource = fieldArray[n][level_index] * new_resource
 			if (
 				fieldArray[n][RESSOURCE_AMOUNT][mooneten_amount]
-				<= fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1] - new_mooneten
+				<= fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1] - new_resource
 			):
-				ressourceamount = fieldArray[n][RESSOURCE_AMOUNT][mooneten_amount] + new_mooneten
+				ressourceamount = fieldArray[n][RESSOURCE_AMOUNT][mooneten_amount] + new_resource
 			else:
 				ressourceamount = fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
 			fieldArray[n][RESSOURCE_AMOUNT][mooneten_amount] = ressourceamount
 		elif fieldArray[n][building_type] == moonstoneGenerator:
-			new_mooneten = fieldArray[n][level_index] * new_mooneten
+			new_resource = fieldArray[n][level_index] * new_resource
 			if (
 				fieldArray[n][RESSOURCE_AMOUNT][moonstone_amount]
-				<= fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1] - new_mooneten
+				<= fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1] - new_resource
 			):
-				ressourceamount = fieldArray[n][RESSOURCE_AMOUNT][moonstone_amount] + new_mooneten
+				ressourceamount = fieldArray[n][RESSOURCE_AMOUNT][moonstone_amount] + new_resource
 			else:
 				ressourceamount = fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
 			fieldArray[n][RESSOURCE_AMOUNT][moonstone_amount] = ressourceamount
-		new_mooneten = 10
+		new_resource = 10
 	timer.start()
+	save_field_data()
 
-
+# Function: _notification
+# Description: Handles notifications from the window manager, specifically close and go back requests.
+func _notification(what):
+	match(what):
+	# Handle a close request from the window manager
+		NOTIFICATION_WM_CLOSE_REQUEST:
+			save_data()
+			get_tree().quit()
+	# Handle a go back request from the window manager
+		NOTIFICATION_WM_GO_BACK_REQUEST:
+			save_data()
+			get_tree().quit()
+		NOTIFICATION_WM_WINDOW_FOCUS_OUT:
+			save_data()
+			if get_child_count() != 0:
+				remove_child(timer)
+			var pause_event = InputEventAction.new()
+			pause_event.action = "pause"
+			pause_event.pressed = true
+			Input.parse_input_event(pause_event)
+	# Handle a focus in request from the window manager	
+		NOTIFICATION_WM_WINDOW_FOCUS_IN:
+			_ready()
+			
+## Function: save_data
+## Description: calls the function to save the last gamestate befor tapping out or close the game
+func save_data():
+	set_unix_last_time(Time.get_unix_time_from_system())
+	save_field_data()
+	save_player_data()
 # Function: set_building
 # Description: Sets the data for a building at a specific field index and saves field data.
 func set_building(field_index: int, building: Array):
@@ -302,8 +335,8 @@ func get_mooneten():
 #   - value: The amount to add to the mooneten variable.
 func add_mooneten(value):
 	mooneten = mooneten + value
-	save_player_data()
 	update_storage_building_capacity()
+	save_player_data()
 
 
 # Function: remove_mooneten
@@ -312,8 +345,8 @@ func add_mooneten(value):
 #   - value: The amount to subtract from the mooneten variable.
 func remove_mooneten(value):
 	mooneten = mooneten - value
-	save_player_data()
 	update_storage_building_capacity()
+	save_player_data()
 
 
 # Function: set_unix_last_time
@@ -338,8 +371,8 @@ func get_unix_last_time():
 #   - value: New value to set for moonstone.
 func set_moonstone(value):
 	moonstone = value
-	save_player_data()
 	update_storage_building_capacity()
+	save_player_data()
 
 
 # Function: get_moonstone
@@ -355,8 +388,8 @@ func get_moonstone():
 #   - value: The amount to add to the moonstone variable.
 func add_moonstone(value):
 	moonstone = moonstone + value
-	save_player_data()
 	update_storage_building_capacity()
+	save_player_data()
 
 
 # Function: remove_moonstone
@@ -365,8 +398,8 @@ func add_moonstone(value):
 #   - value: The amount to subtract from the moonstone variable.
 func remove_moonstone(value):
 	moonstone = moonstone - value
-	save_player_data()
 	update_storage_building_capacity()
+	save_player_data()
 
 
 # Function: set_minigame1_score
@@ -567,7 +600,7 @@ func load_player_data():
 		storage_upgrade_costs = file.get_var()
 		generators_max_storage_size = file.get_var()
 		storage_max_storage_size = file.get_var()
-		add_offline_mooneten()
+		add_offline_ressources()
 	else:
 		firstGame = true
 		unixLastTime = Time.get_unix_time_from_system()
@@ -597,88 +630,51 @@ func load_field_data():
 # END: ed8c6549bwf9
 
 
-# Function: add_offline_mooneten
+# Function: add_offline_ressources
 # Description: Adds mooneten resources based on the time the player was offline.
 # It calculates the offline_mooneten amount and distributes it among generators.
-func add_offline_mooneten():
+func add_offline_ressources():
 	var time_difference: float = float(Time.get_unix_time_from_system() - get_unix_last_time())
-	var diff: float = time_difference / 60.0  # Keep diff as float for precision
-	var rounded_diff: int = round(diff)  # Round the result when necessary
-	var offline_mooneten: int = rounded_diff * 5
-	if offline_mooneten > 1000:
-		offline_mooneten = 1000
+	var diff: float = round(time_difference / 60.0)  # Keep diff as float for precision
+	var offline_ressources: int = diff * 5
 	var ressourceamount: int = 0
-	for n in range(0, 14):
-		if fieldArray[n][building_type] == MOONETEN_GENERATOR:
-			offline_mooneten = fieldArray[n][level_index] * offline_mooneten
-			if offline_mooneten <= 1000:
-				if (
-					fieldArray[n][RESSOURCE_AMOUNT][mooneten_amount]
-					<= (
-						fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
-						- offline_mooneten
-					)
-				):
-					ressourceamount = (
-						fieldArray[n][RESSOURCE_AMOUNT][mooneten_amount] + offline_mooneten
-					)
-				else:
-					ressourceamount = fieldArray[n][max_storage_size][
-						fieldArray[n][level_index] - 1
-					]
+	for field_index in range(0, 14):
+		if fieldArray[field_index][building_type] == MOONETEN_GENERATOR:
+			offline_ressources = fieldArray[field_index][level_index] * offline_ressources
+			if (
+				fieldArray[field_index][RESSOURCE_AMOUNT][mooneten_amount] + offline_ressources
+				<= (
+					fieldArray[field_index][max_storage_size][fieldArray[field_index][level_index] - 1]
+					 
+				)
+			):
+				ressourceamount = (
+					fieldArray[field_index][RESSOURCE_AMOUNT][mooneten_amount] + offline_ressources
+				)
 			else:
-				offline_mooneten = 1000
-				if (
-					fieldArray[n][RESSOURCE_AMOUNT][mooneten_amount]
-					<= (
-						fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
-						- offline_mooneten
-					)
-				):
-					ressourceamount = (
-						fieldArray[n][RESSOURCE_AMOUNT][mooneten_amount] + offline_mooneten
-					)
-				else:
-					ressourceamount = fieldArray[n][max_storage_size][
-						fieldArray[n][level_index] - 1
-					]
-
-			fieldArray[n][RESSOURCE_AMOUNT][mooneten_amount] = ressourceamount
-		elif fieldArray[n][building_type] == moonstoneGenerator:
-			offline_mooneten = fieldArray[n][level_index] * offline_mooneten
-			if offline_mooneten <= 1000:
-				if (
-					fieldArray[n][RESSOURCE_AMOUNT][moonstone_amount]
-					<= (
-						fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
-						- offline_mooneten
-					)
-				):
-					ressourceamount = (
-						fieldArray[n][RESSOURCE_AMOUNT][moonstone_amount] + offline_mooneten
-					)
-				else:
-					ressourceamount = fieldArray[n][max_storage_size][
-						fieldArray[n][level_index] - 1
-					]
+				ressourceamount = fieldArray[field_index][max_storage_size][
+					fieldArray[field_index][level_index] - 1
+				]
+			fieldArray[field_index][RESSOURCE_AMOUNT][mooneten_amount] = ressourceamount
+		elif fieldArray[field_index][building_type] == moonstoneGenerator:
+			offline_ressources = fieldArray[field_index][level_index] * offline_ressources
+			if (
+				fieldArray[field_index][RESSOURCE_AMOUNT][moonstone_amount] + offline_ressources
+				<= (
+					fieldArray[field_index][max_storage_size][fieldArray[field_index][level_index] - 1]
+					
+				)
+			):
+				ressourceamount = (
+					fieldArray[field_index][RESSOURCE_AMOUNT][moonstone_amount] + offline_ressources
+				)
 			else:
-				offline_mooneten = 1000
-				if (
-					fieldArray[n][RESSOURCE_AMOUNT][moonstone_amount]
-					<= (
-						fieldArray[n][max_storage_size][fieldArray[n][level_index] - 1]
-						- offline_mooneten
-					)
-				):
-					ressourceamount = (
-						fieldArray[n][RESSOURCE_AMOUNT][moonstone_amount] + offline_mooneten
-					)
-				else:
-					ressourceamount = fieldArray[n][max_storage_size][
-						fieldArray[n][level_index] - 1
-					]
-			fieldArray[n][RESSOURCE_AMOUNT][moonstone_amount] = ressourceamount
-		offline_mooneten = diff * 5
+				ressourceamount = fieldArray[field_index][max_storage_size][
+					fieldArray[field_index][level_index] - 1
+				]
+			fieldArray[field_index][RESSOURCE_AMOUNT][moonstone_amount] = ressourceamount
+		offline_ressources = diff * 5
+	save_field_data()
 
 
 # Function: set_max_ressources

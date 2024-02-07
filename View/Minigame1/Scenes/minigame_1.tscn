@@ -1,0 +1,160 @@
+[gd_scene load_steps=13 format=3 uid="uid://bfq6ogl4ncriu"]
+
+[ext_resource type="Script" path="res://Minigame1/Scripts/minigame_1.gd" id="1_47igm"]
+[ext_resource type="PackedScene" uid="uid://b6xe8654tk18d" path="res://Minigame1/Scenes/info.tscn" id="2_ybuk1"]
+[ext_resource type="Texture2D" uid="uid://b56jve8otmcps" path="res://Minigame1/Assets/shot_button.png" id="3_f3oky"]
+[ext_resource type="PackedScene" uid="uid://g40na2y72ch1" path="res://Minigame1/Scenes/spaceship.tscn" id="3_ydnmk"]
+[ext_resource type="Theme" uid="uid://fk8kk11hy4lf" path="res://Minigame2/Assets/Font.tres" id="5_q654l"]
+[ext_resource type="PackedScene" uid="uid://djvcmma4a72cc" path="res://Minigame1/Scenes/GameOverScreen.tscn" id="6_8lwdk"]
+[ext_resource type="Script" path="res://Minigame1/Scripts/PauseMenu.gd" id="6_i48fi"]
+[ext_resource type="Texture2D" uid="uid://d4bvoelmcyjy7" path="res://Minigame1/Assets/Space_Background.png" id="6_rv1y7"]
+[ext_resource type="Texture2D" uid="uid://b570jwv50m17d" path="res://Minigame2/Assets/pixilart-drawing.png" id="7_a5nwn"]
+[ext_resource type="PackedScene" uid="uid://bb0x0ox30dogx" path="res://Minigame1/Scenes/joystick.tscn" id="13_qrxh0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p26yn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sybcb"]
+
+[node name="minigame1" type="Node2D"]
+script = ExtResource("1_47igm")
+
+[node name="Points" type="CanvasLayer" parent="."]
+
+[node name="info" parent="Points" instance=ExtResource("2_ybuk1")]
+offset_left = 7.0
+offset_top = 3.0
+offset_right = 96.0
+offset_bottom = 43.0
+
+[node name="PauseButton" type="TouchScreenButton" parent="Points"]
+position = Vector2(290, 10)
+texture_normal = ExtResource("7_a5nwn")
+action = "pause"
+
+[node name="Touchshot" type="TouchScreenButton" parent="Points"]
+top_level = true
+position = Vector2(22, 112)
+scale = Vector2(0.273438, 0.3125)
+texture_normal = ExtResource("3_f3oky")
+action = "schuss"
+
+[node name="PauseMenu" type="Control" parent="Points"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+theme = ExtResource("5_q654l")
+script = ExtResource("6_i48fi")
+
+[node name="PauseBackround" type="ColorRect" parent="Points/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="CenterContainer" type="CenterContainer" parent="Points/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Points/PauseMenu/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Points/PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Resume" type="Button" parent="Points/PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+theme_override_styles/focus = SubResource("StyleBoxEmpty_p26yn")
+text = "Resume Game"
+
+[node name="Exit" type="Button" parent="Points/PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sybcb")
+text = "Exit"
+
+[node name="PauseTimer" type="Timer" parent="Points/PauseMenu"]
+
+[node name="Countdown" type="Control" parent="Points"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseBackround" type="ColorRect" parent="Points/Countdown"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="CountdownLabel" type="Label" parent="Points/Countdown"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverScreen" parent="Points" instance=ExtResource("6_8lwdk")]
+process_mode = 3
+visible = false
+
+[node name="Back" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(160, 90)
+scale = Vector2(0.333333, 0.333333)
+texture = ExtResource("6_rv1y7")
+
+[node name="spaceship" parent="." instance=ExtResource("3_ydnmk")]
+top_level = true
+position = Vector2(157, 90)
+
+[node name="startPos" type="Marker2D" parent="."]
+position = Vector2(157, 91)
+
+[node name="RespawnPos" type="Node2D" parent="."]
+position = Vector2(158, 91)
+
+[node name="shootCont" type="Node2D" parent="."]
+position = Vector2(-13, -13)
+
+[node name="Gun" type="Node" parent="."]
+
+[node name="AllComets" type="Node" parent="."]
+
+[node name="Joystick" parent="." instance=ExtResource("13_qrxh0")]
+top_level = true
+position = Vector2(269, 130)
+
+[connection signal="pressed" from="Points/PauseMenu/CenterContainer/VBoxContainer/Resume" to="Points/PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="Points/PauseMenu/CenterContainer/VBoxContainer/Exit" to="Points/PauseMenu" method="_on_exit_pressed"]
+[connection signal="timeout" from="Points/PauseMenu/PauseTimer" to="Points/PauseMenu" method="_on_pause_timer_timeout"]

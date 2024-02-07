@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6xe8654tk18d"]
+
+[ext_resource type="Theme" uid="uid://fk8kk11hy4lf" path="res://Minigame2/Assets/Font.tres" id="1_0yee3"]
+[ext_resource type="Script" path="res://Minigame1/Scripts/info.gd" id="1_73w8n"]
+
+[node name="info" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_0yee3")
+script = ExtResource("1_73w8n")
+
+[node name="Points" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 85.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 11
+text = "Punkte: 3123"
+
+[node name="Lives" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 18.0
+offset_right = 55.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 9
+text = "Leben: 3"

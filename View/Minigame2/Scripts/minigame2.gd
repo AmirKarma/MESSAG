@@ -1,34 +1,35 @@
+## This script is designed to handle the spawning, movement, and management of enemies in Minigame 2. It extends the Node2D class and utilizes various variables and functions to achieve its functionality.
+
 extends Node2D
 
-# Random number generator for generating random values
+## Random number generator for generating random values
 var random: RandomNumberGenerator = RandomNumberGenerator.new()
 
-# Array of scene paths to different enemy types
+## Array of scene paths to different enemy types
 var enemy_path: PackedScene = preload("res://Minigame2/Scenes/enemy.tscn")
 
-# Array of possible x-values for enemy spawn positions
+## Array of possible x-values for enemy spawn positions
 var x_values: Array = [64, 128, 192, 256]
 
-# Array of possible comet speed values
+## Array of possible comet speed values
 var comet_speed_values: Array = [Vector2(0, 50), Vector2(0, 40), Vector2(0, 30), Vector2(0, 20)]
 
-# Reference to the onready node for the HUD overlay
-@onready var overlay: Node = $Hud/Overlay
-
-# Array to store instances of spawned enemies
+## Array to store instances of spawned enemies
 var spawned_enemies: Array = []
 
-# Array to store corresponding comet speeds for each enemy
+## Array to store corresponding comet speeds for each enemy
 var comet_speed: Array = []
 
-# Variable to determine the number of enemies to spawn
+## Variable to determine the number of enemies to spawn
 var comet_spawn_count: int
 
+## Reference to the onready node for the HUD overlay
+@onready var overlay: Node = $Hud/Overlay
 
-# Called when the node enters the scene tree for the first time.
+
 # Function: _ready
-# Description: Called when the node enters the scene tree for the first time.
-# Initializes timer, score, spawn count, HUD overlay score display, and spawns the initial set of enemies.
+## Called when the node enters the scene tree for the first time.
+## Initializes timer, score, spawn count, HUD overlay score display, and spawns the initial set of enemies.
 func _ready():
 	# Initialize timer, score, and spawn count in DataScript
 	DataScript.minigame2_timer = 3
@@ -44,8 +45,8 @@ func _ready():
 
 
 # Function: _process
-# Description: Called every frame. 'delta' is the elapsed time since the previous frame.
-# Updates the HUD overlay score display and moves/manages enemies in the scene.
+## Called every frame. 'delta' is the elapsed time since the previous frame.
+## Updates the HUD overlay score display and moves/manages enemies in the scene.
 func _process(delta):
 	# Update the HUD overlay score display
 	set_score()
@@ -54,9 +55,29 @@ func _process(delta):
 	move_enemies(delta)
 
 
+# Timer timeout function: _on_timer_timeout
+## Modifies game parameters over time based on the current value of 'minigame2_timer'.
+## Adjusts 'minigame2_timerSpeed', 'comet_spawn_count', and calls 'remove_comet_speed' at specific timer values.
+func _on_timer_timeout():
+	match int(DataScript.minigame2_timer):
+		4:
+			DataScript.minigame2_timerSpeed = 0.005
+			remove_comet_speed(3)
+		5:
+			DataScript.minigame2_timerSpeed = 0.0025
+			comet_spawn_count = 2
+		6:
+			DataScript.minigame2_timerSpeed = 0.00125
+			remove_comet_speed(2)
+		7:
+			remove_comet_speed(1)
+			comet_spawn_count = 3
+	DataScript.minigame2_timer += DataScript.minigame2_timerSpeed
+
+
 # Function: move_enemies
-# Description: Moves enemies based on their individual speeds and checks if they are out of the viewport.
-# Removes enemies that are out of the viewport and spawns new ones as needed.
+## Moves enemies based on their individual speeds and checks if they are out of the viewport.
+## Removes enemies that are out of the viewport and spawns new ones as needed.
 func move_enemies(delta):
 	for enemy in spawned_enemies:
 		# Move enemies based on their individual speeds
@@ -76,13 +97,13 @@ func move_enemies(delta):
 
 
 # Function: set_score
-# Description: Updates the HUD overlay score display using the score from DataScript.
+## Updates the HUD overlay score display using the score from DataScript.
 func set_score():
 	overlay.score = DataScript.get_minigame2_score()
 
 
 # Function: spawn_enemies
-# Description: Spawns a random number of enemies with random positions and speeds.
+## Spawns a random number of enemies with random positions and speeds.
 func spawn_enemies():
 	var x_values_copy: Array = x_values.duplicate(true)
 	var number_of_enemies: int = random.randi_range(comet_spawn_count, 3)
@@ -116,9 +137,9 @@ func spawn_enemies():
 
 
 # Function: remove_enemies
-# Description: Removes an enemy from the scene and its corresponding entries in arrays.
-# This function takes an 'enemy' parameter, removes the corresponding child from the 'Enemies' node,
-# and updates the 'enemies' and 'comet_speed' arrays accordingly.
+## Removes an enemy from the scene and its corresponding entries in arrays.
+## This function takes an 'enemy' parameter, removes the corresponding child from the 'Enemies' node,
+## and updates the 'enemies' and 'comet_speed' arrays accordingly.
 func remove_enemies(enemy):
 	var spawned_enemy_comet_speed_index: int = spawned_enemies.find(enemy)
 	$Enemies.remove_child(enemy)
@@ -126,28 +147,8 @@ func remove_enemies(enemy):
 	comet_speed.remove_at(spawned_enemy_comet_speed_index)
 
 
-# Timer timeout function: _on_timer_timeout
-# Description: Modifies game parameters over time based on the current value of 'minigame2_timer'.
-# Adjusts 'minigame2_timerSpeed', 'comet_spawn_count', and calls 'remove_comet_speed' at specific timer values.
-func _on_timer_timeout():
-	match int(DataScript.minigame2_timer):
-		4:
-			DataScript.minigame2_timerSpeed = 0.005
-			remove_comet_speed(3)
-		5:
-			DataScript.minigame2_timerSpeed = 0.0025
-			comet_spawn_count = 2
-		6:
-			DataScript.minigame2_timerSpeed = 0.00125
-			remove_comet_speed(2)
-		7:
-			remove_comet_speed(1)
-			comet_spawn_count = 3
-	DataScript.minigame2_timer += DataScript.minigame2_timerSpeed
-
-
 # Function: remove_comet_speed
-# Description: Removes a comet speed value at the specified index from the 'comet_speed_values' array.
+## Removes a comet speed value at the specified index from the 'comet_speed_values' array.
 func remove_comet_speed(index):
 	if comet_speed_values.size() > index:
 		comet_speed_values.remove_at(index)

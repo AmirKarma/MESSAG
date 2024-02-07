@@ -1,0 +1,460 @@
+[gd_scene load_steps=29 format=3 uid="uid://bfn2dyx3kd5gb"]
+
+[ext_resource type="Script" path="res://Optionbar/Script/optionbar.gd" id="1_arxm6"]
+[ext_resource type="FontFile" uid="uid://bao8wtv7uxfku" path="res://Optionbar/Assets/04B_30__.TTF" id="2_6x5gh"]
+[ext_resource type="Texture2D" uid="uid://d2017si71n6oa" path="res://Optionbar/Assets/InventoryRect.png" id="2_y45aq"]
+[ext_resource type="SpriteFrames" uid="uid://bqpdqveuisbci" path="res://World/Buildings/Assets/building.tres" id="3_jkwd7"]
+[ext_resource type="Texture2D" uid="uid://cuiv62xt4qge3" path="res://Player/RessourceBar/Assets/Moonete.png" id="4_7gwjs"]
+[ext_resource type="Texture2D" uid="uid://c80k4wk6qhxxr" path="res://Optionbar/Assets/close button.png" id="4_n2fdl"]
+[ext_resource type="Texture2D" uid="uid://8ln2im8vie4r" path="res://Optionbar/Assets/close button pressed.png" id="5_ghjuc"]
+[ext_resource type="Texture2D" uid="uid://bxit1dcy7rct4" path="res://Player/RessourceBar/Assets/Moonstone.png" id="5_p38g3"]
+[ext_resource type="Texture2D" uid="uid://bbvd5rroukc87" path="res://Optionbar/Assets/button_texture - red.png" id="6_5igfh"]
+[ext_resource type="Texture2D" uid="uid://1l1lusx6uwh3" path="res://Optionbar/Assets/button_pressed_texture - red .png" id="7_603ud"]
+[ext_resource type="Texture2D" uid="uid://l5iruscjogs7" path="res://Optionbar/Assets/pick up.png" id="8_27ay3"]
+[ext_resource type="Theme" uid="uid://cv5efycwbspf2" path="res://Optionbar/Assets/buttonAssets.tres" id="9_0l5ce"]
+[ext_resource type="Texture2D" uid="uid://cyldh8dfldssm" path="res://Optionbar/Assets/pick up - pressed.png" id="9_kilnn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pa718"]
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu331"]
+bg_color = Color(0.85098, 0.792157, 0.333333, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aukka"]
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b6jxy"]
+bg_color = Color(0.388235, 0.670588, 0.866667, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dwq4r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6t52k"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7rmvj"]
+texture = ExtResource("6_5igfh")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mevny"]
+texture = ExtResource("6_5igfh")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2iywp"]
+texture = ExtResource("7_603ud")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4bbcj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aotq3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lgjjb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r1xsm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1j3j0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glk0d"]
+bg_color = Color(0.870588, 0.0196078, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="optionbar" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_arxm6")
+
+[node name="optionbar_rect" type="NinePatchRect" parent="."]
+z_index = 1
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 310.0
+offset_bottom = 170.0
+texture = ExtResource("2_y45aq")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="building_name" type="Label" parent="optionbar_rect"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 294.0
+offset_bottom = 29.0
+theme_override_fonts/font = ExtResource("2_6x5gh")
+theme_override_font_sizes/font_size = 13
+text = "Test"
+horizontal_alignment = 1
+
+[node name="building_level" type="Label" parent="optionbar_rect"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 23.0
+offset_right = 294.0
+offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("2_6x5gh")
+theme_override_font_sizes/font_size = 6
+text = "test"
+horizontal_alignment = 1
+
+[node name="closeButton" type="TextureButton" parent="optionbar_rect"]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 8.0
+offset_right = 291.0
+offset_bottom = 32.0
+texture_normal = ExtResource("4_n2fdl")
+texture_pressed = ExtResource("5_ghjuc")
+stretch_mode = 0
+
+[node name="buildingRect" type="NinePatchRect" parent="optionbar_rect"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 35.0
+offset_right = 127.0
+offset_bottom = 150.0
+texture = ExtResource("2_y45aq")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="rocket_image" type="Sprite2D" parent="optionbar_rect/buildingRect"]
+position = Vector2(59, 58)
+
+[node name="building_image" type="AnimatedSprite2D" parent="optionbar_rect/buildingRect"]
+position = Vector2(60, 56)
+sprite_frames = ExtResource("3_jkwd7")
+animation = &"moonetenStorage"
+
+[node name="RessorceRect" type="NinePatchRect" parent="optionbar_rect"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 35.0
+offset_right = 293.0
+offset_bottom = 87.0
+texture = ExtResource("2_y45aq")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="moonetenbar" type="ProgressBar" parent="optionbar_rect/RessorceRect"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 11.0
+offset_right = 152.0
+offset_bottom = 19.0
+theme_override_styles/background = SubResource("StyleBoxFlat_pa718")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wu331")
+max_value = 1000.0
+value = 600.0
+allow_greater = true
+show_percentage = false
+
+[node name="mooneten_label" type="Label" parent="optionbar_rect/RessorceRect/moonetenbar"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 2.0
+offset_right = 68.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("2_6x5gh")
+theme_override_font_sizes/font_size = 4
+text = "500 / 500"
+horizontal_alignment = 1
+
+[node name="moonstonebar" type="ProgressBar" parent="optionbar_rect/RessorceRect"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 35.0
+offset_right = 152.0
+offset_bottom = 43.0
+theme_override_styles/background = SubResource("StyleBoxFlat_aukka")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b6jxy")
+max_value = 500.0
+value = 400.0
+allow_greater = true
+show_percentage = false
+
+[node name="moonstone_label" type="Label" parent="optionbar_rect/RessorceRect/moonstonebar"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 2.0
+offset_right = 69.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("2_6x5gh")
+theme_override_font_sizes/font_size = 4
+text = "400 / 500"
+horizontal_alignment = 1
+
+[node name="Moonete" type="Sprite2D" parent="optionbar_rect/RessorceRect"]
+position = Vector2(20, 15)
+texture = ExtResource("4_7gwjs")
+
+[node name="Moonstone" type="Sprite2D" parent="optionbar_rect/RessorceRect"]
+position = Vector2(20, 39)
+scale = Vector2(1, 0.887)
+texture = ExtResource("5_p38g3")
+
+[node name="buttons_rect" type="NinePatchRect" parent="optionbar_rect"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 94.0
+offset_right = 293.0
+offset_bottom = 150.0
+texture = ExtResource("2_y45aq")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="CenterContainer2" type="CenterContainer" parent="optionbar_rect/buttons_rect"]
+visible = false
+layout_mode = 2
+offset_left = 8.0
+offset_top = 9.0
+offset_right = 155.0
+offset_bottom = 54.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="optionbar_rect/buttons_rect/CenterContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="optionbar_rect/buttons_rect/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="warn_lable" type="Label" parent="optionbar_rect/buttons_rect/CenterContainer2/VBoxContainer/HBoxContainer"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6x5gh")
+theme_override_font_sizes/font_size = 6
+text = "YOU WILL LOSE ITS RESOURCES."
+horizontal_alignment = 3
+vertical_alignment = 1
+
+[node name="HSplitContainer" type="HBoxContainer" parent="optionbar_rect/buttons_rect/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="confirm_button2" type="Button" parent="optionbar_rect/buttons_rect/CenterContainer2/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+theme = ExtResource("9_0l5ce")
+theme_override_fonts/font = ExtResource("2_6x5gh")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dwq4r")
+text = " confirm "
+
+[node name="seperator" type="VSeparator" parent="optionbar_rect/buttons_rect/CenterContainer2/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_6t52k")
+
+[node name="cancel_button2" type="Button" parent="optionbar_rect/buttons_rect/CenterContainer2/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+theme = ExtResource("9_0l5ce")
+theme_override_fonts/font = ExtResource("2_6x5gh")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxTexture_7rmvj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mevny")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2iywp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4bbcj")
+text = "    X    "
+
+[node name="buttons" type="Control" parent="optionbar_rect/buttons_rect"]
+anchors_preset = 0
+offset_right = 162.0
+offset_bottom = 56.0
+theme = ExtResource("9_0l5ce")
+
+[node name="play_button" type="Button" parent="optionbar_rect/buttons_rect/buttons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.043
+anchor_top = 0.5
+anchor_right = 0.043
+anchor_bottom = 0.5
+offset_left = 78.28
+offset_top = -18.0
+offset_right = 144.28
+offset_bottom = -2.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aotq3")
+text = "play"
+
+[node name="upgrade_button" type="Button" parent="optionbar_rect/buttons_rect/buttons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.043
+anchor_top = 0.5
+anchor_right = 0.043
+anchor_bottom = 0.5
+offset_left = 3.034
+offset_top = -18.0
+offset_right = 69.034
+offset_bottom = -2.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lgjjb")
+text = "upgrade"
+
+[node name="collect_button" type="Button" parent="optionbar_rect/buttons_rect/buttons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.043
+anchor_top = 0.5
+anchor_right = 0.043
+anchor_bottom = 0.5
+offset_left = 3.034
+offset_top = 2.0
+offset_right = 69.034
+offset_bottom = 18.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_r1xsm")
+text = "collect"
+
+[node name="remove_button" type="TextureButton" parent="optionbar_rect/buttons_rect/buttons"]
+layout_mode = 0
+offset_left = -123.0
+offset_top = -86.0
+offset_right = -102.0
+offset_bottom = -62.0
+texture_normal = ExtResource("8_27ay3")
+texture_pressed = ExtResource("9_kilnn")
+stretch_mode = 0
+
+[node name="info_button" type="Button" parent="optionbar_rect/buttons_rect/buttons"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.043
+anchor_top = 0.5
+anchor_right = 0.043
+anchor_bottom = 0.5
+offset_left = 78.034
+offset_top = 2.0
+offset_right = 144.034
+offset_bottom = 18.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1j3j0")
+text = "soon..."
+
+[node name="Upgrade_warning" type="Panel" parent="optionbar_rect/buttons_rect/buttons"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 30.0
+offset_right = 151.0
+offset_bottom = 46.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_glk0d")
+
+[node name="Label" type="Label" parent="optionbar_rect/buttons_rect/buttons/Upgrade_warning"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_6x5gh")
+theme_override_font_sizes/font_size = 3
+text = "You need to buy all Buildings!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="optionbar_rect/buttons_rect"]
+visible = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 6.0
+offset_right = 153.0
+offset_bottom = 46.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="optionbar_rect/buttons_rect/CenterContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="optionbar_rect/buttons_rect/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Mooneten" type="Sprite2D" parent="optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HBoxContainer"]
+position = Vector2(10, 10)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_7gwjs")
+
+[node name="Moonstone" type="Sprite2D" parent="optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HBoxContainer"]
+position = Vector2(10, 10)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_p38g3")
+
+[node name="costs_lable" type="Label" parent="optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6x5gh")
+text = "  10000000"
+horizontal_alignment = 3
+vertical_alignment = 1
+
+[node name="HSplitContainer" type="HBoxContainer" parent="optionbar_rect/buttons_rect/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="confirm_button" type="Button" parent="optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+theme = ExtResource("9_0l5ce")
+theme_override_fonts/font = ExtResource("2_6x5gh")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dwq4r")
+text = " confirm "
+
+[node name="seperator" type="VSeparator" parent="optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_6t52k")
+
+[node name="cancel_button" type="Button" parent="optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+theme = ExtResource("9_0l5ce")
+theme_override_fonts/font = ExtResource("2_6x5gh")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxTexture_7rmvj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mevny")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2iywp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4bbcj")
+text = "    X    "
+
+[connection signal="pressed" from="optionbar_rect/closeButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="optionbar_rect/buttons_rect/CenterContainer2/VBoxContainer/HSplitContainer/confirm_button2" to="." method="_on_confirm_button_2_pressed"]
+[connection signal="pressed" from="optionbar_rect/buttons_rect/CenterContainer2/VBoxContainer/HSplitContainer/cancel_button2" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="optionbar_rect/buttons_rect/buttons/play_button" to="." method="_on_play_1_button_pressed"]
+[connection signal="pressed" from="optionbar_rect/buttons_rect/buttons/upgrade_button" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="optionbar_rect/buttons_rect/buttons/collect_button" to="." method="_on_collect_button_pressed"]
+[connection signal="pressed" from="optionbar_rect/buttons_rect/buttons/remove_button" to="." method="_on_remove_button_pressed"]
+[connection signal="pressed" from="optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HSplitContainer/confirm_button" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HSplitContainer/cancel_button" to="." method="_on_cancel_button_pressed"]

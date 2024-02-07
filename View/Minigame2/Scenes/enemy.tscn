@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d3co7gp54ue3q"]
 
-[ext_resource type="Texture2D" uid="uid://43g07mw1smpe" path="res://Minigame2/Img/Mooncar.png" id="1_17cdr"]
+[ext_resource type="Texture2D" uid="uid://43g07mw1smpe" path="res://Minigame2/Assets/Mooncar.png" id="1_17cdr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4q3xw"]
 radius = 14.0

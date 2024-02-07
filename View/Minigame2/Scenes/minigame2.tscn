@@ -1,16 +1,18 @@
-[gd_scene load_steps=37 format=3 uid="uid://det7mjel5dohh"]
+[gd_scene load_steps=39 format=3 uid="uid://det7mjel5dohh"]
 
 [ext_resource type="Script" path="res://Minigame2/Scripts/minigame2.gd" id="1_hejj1"]
 [ext_resource type="Script" path="res://Minigame2/Scripts/Background.gd" id="2_r1cj5"]
-[ext_resource type="Texture2D" uid="uid://dbh5uk0ytof32" path="res://Welt/Background/Terrain_Ecken.png" id="4_lubxe"]
-[ext_resource type="Texture2D" uid="uid://ddhd05dwexuff" path="res://Welt/Background/Terrain_Grau.png" id="5_qcsgn"]
-[ext_resource type="Texture2D" uid="uid://3s6ye2qf1hou" path="res://Welt/Background/Krater_Grau.png" id="6_o33q1"]
+[ext_resource type="Texture2D" uid="uid://dbh5uk0ytof32" path="res://World/Assets/Terrain_Ecken.png" id="4_lubxe"]
+[ext_resource type="Texture2D" uid="uid://ddhd05dwexuff" path="res://World/Assets/Terrain_Grau.png" id="5_qcsgn"]
+[ext_resource type="Texture2D" uid="uid://3s6ye2qf1hou" path="res://World/Assets/Krater_Grau.png" id="6_o33q1"]
 [ext_resource type="Script" path="res://Minigame2/Scripts/Player.gd" id="6_oecr4"]
-[ext_resource type="Texture2D" uid="uid://b570jwv50m17d" path="res://Minigame2/Img/pixilart-drawing.png" id="7_pkj05"]
-[ext_resource type="Texture2D" uid="uid://43g07mw1smpe" path="res://Minigame2/Img/Mooncar.png" id="8_apb1e"]
+[ext_resource type="Texture2D" uid="uid://b570jwv50m17d" path="res://Minigame2/Assets/pixilart-drawing.png" id="7_pkj05"]
+[ext_resource type="Texture2D" uid="uid://43g07mw1smpe" path="res://Minigame2/Assets/Mooncar.png" id="8_apb1e"]
 [ext_resource type="Script" path="res://Minigame2/Scripts/Overlay.gd" id="8_ro0n2"]
+[ext_resource type="FontFile" uid="uid://bao8wtv7uxfku" path="res://Optionbar/Assets/04B_30__.TTF" id="9_eow4p"]
 [ext_resource type="PackedScene" uid="uid://c1jwxw4rf3vfw" path="res://Minigame2/Scenes/GameOverScreenMinigame2.tscn" id="9_eukno"]
 [ext_resource type="Script" path="res://Minigame2/Scripts/PauseMenu.gd" id="10_nu426"]
+[ext_resource type="Theme" uid="uid://fk8kk11hy4lf" path="res://Minigame2/Assets/Font.tres" id="11_opnxd"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_afsc4"]
 tile_data = PackedInt32Array(0, 2, 0, 65536, 2, 1, 1, 65538, 0, 65537, 65538, 1, 2, 131074, 0, 65538, 131074, 1)
@@ -245,6 +247,8 @@ offset_left = 16.0
 offset_top = 1.0
 offset_right = 80.0
 offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("9_eow4p")
+theme_override_font_sizes/font_size = 13
 text = "Score:"
 vertical_alignment = 1
 
@@ -260,6 +264,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 320.0
 offset_bottom = 180.0
+theme = ExtResource("11_opnxd")
 script = ExtResource("10_nu426")
 
 [node name="PauseBackround" type="ColorRect" parent="Hud/PauseMenu"]
@@ -291,11 +296,13 @@ vertical_alignment = 1
 
 [node name="Resume" type="Button" parent="Hud/PauseMenu/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 theme_override_styles/focus = SubResource("StyleBoxEmpty_n81bd")
 text = "Resume Game"
 
 [node name="Exit" type="Button" parent="Hud/PauseMenu/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 theme_override_styles/focus = SubResource("StyleBoxEmpty_331s3")
 text = "Exit"
 

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MESSAG"
-run/main_scene="res://Welt/Start_Menue/start_menue.tscn"
+run/main_scene="res://Start_Menue/Scene/start_menue.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="MESSAG"
 config/features=PackedStringArray("4.1", "Mobile")
@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DataScript="*res://data_script.gd"
+DataScript="*res://DataScript/data_script.gd"
 
 [display]
 

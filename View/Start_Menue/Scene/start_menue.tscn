@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfwde8pm32ahm"]
+[gd_scene load_steps=13 format=3 uid="uid://bfwde8pm32ahm"]
 
 [ext_resource type="Script" path="res://Start_Menue/Script/start_menue.gd" id="1_og3e3"]
 [ext_resource type="Texture2D" uid="uid://dmgaeaw8k83i2" path="res://Start_Menue/Assets/Background_1.png" id="2_bsmnq"]
@@ -11,6 +11,8 @@ default_font_size = 8
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h27fr"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xkjao"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5qk3e"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v73pn"]
 
@@ -82,11 +84,12 @@ offset_bottom = 60.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_xkjao")
 text = "New Game"
 
-[node name="Button" type="Button" parent="VBoxContainer/Buttons"]
+[node name="Tutorial" type="Button" parent="VBoxContainer/Buttons"]
 layout_mode = 2
 offset_top = 63.0
 offset_right = 95.0
 offset_bottom = 89.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5qk3e")
 text = "Tutorial"
 
 [node name="Impressum" type="Button" parent="VBoxContainer/Buttons"]
@@ -127,6 +130,6 @@ label_settings = SubResource("LabelSettings_pcfc8")
 
 [connection signal="pressed" from="VBoxContainer/Buttons/Fortsetzen" to="." method="_on_fortsetzen_pressed"]
 [connection signal="pressed" from="VBoxContainer/Buttons/Neues Spiel" to="." method="_on_neues_spiel_pressed"]
-[connection signal="pressed" from="VBoxContainer/Buttons/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/Tutorial" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Buttons/Impressum" to="." method="_on_impressum_pressed"]
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

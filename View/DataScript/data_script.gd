@@ -1,147 +1,89 @@
-# This script extends the Node2D class
-# This script handles behavior and interactions for a 2D node in the game.
+## This script handles various game mechanics such as resource management, building upgrades, player data persistence, and mini-games. It includes functionalities for managing different types of buildings, upgrading them, setting inventory items, saving and loading player data, handling game events like timers and window focus changes, and calculating offline resource gains. Additionally, it provides methods for resetting game statistics and setting maximum resource capacities.
+
 extends Control
 
-# Player resources and game data variables.
-var firstGame: bool = false
-var mooneten: int = 0
-var moonstone: int = 0
-var unixLastTime: int = 0  # Logout time
-var minigame_one_highscore: int = 0
-var minigame_one_score: int = 0
 
-# Variables for Mini-Game 2.
-# Variable to track the current score in Mini-Game 2.
-var minigame2_score: int = 0
-
-# Variable to store the high score in Mini-Game 2.
-var minigame2_highscore: int = 0
-
-# Timer variable for Mini-Game 2.
-var minigame2_timer: float:
-	set(value):
-		minigame2_timer = value
-
-# Speed at which the timer in Mini-Game 2 decreases.
-var minigame2_timerSpeed: float
-
-# Constant representing the game speed in Mini-Game 2 as a 2D vector
-# (horizontal speed = 0, vertical speed = 10).
+## Mini-Game 2 gamespeed.
 const MINIGAME2_GAMESPEED: Vector2 = Vector2(0, 10)
 
-# Variable to track whether the player is currently in the building menu.
-# If true, the player is in the building menu; otherwise, false.
-var is_in_building_menu: bool = false
+const ROCKET: int = 0  ## Represents the ID for the rocket building.
+const SHOP: int = 1  ## Represents the ID for the shop building.
+const MOONETEN_GENERATOR: int = 2  ## Represents the ID for the Mooneten Generator building.
+const moonstoneGenerator: int = 3  ## Represents the ID for the Moonstone Generator building.
+const moonetenStorage: int = 4  ## Represents the ID for the Mooneten Storage building.
+const moonstoneStorage: int = 5  ## Represents the ID for the Moonstone Storage building.
 
-# Variables for the maximum amount of Mooneten/Moonstone the player is able to store.
-var maxMoonetenStorage: int = 0
-var maxMoonstoneStorage: int = 0
+const building_type: int = 0  ## Index for the type of building in the field array.
+const name_index: int = 1  ## Index for the name of the building in the field array.
+const level_index: int = 2  ## Index for the level of the building in the field array.
+const upgrade_cost_index: int = 3  ## Index for the upgrade cost of the building in the field array.
+const image_index: int = 4  ## Index for the image of the building in the field array.
+const game_path_index: int = 5  ## Index for the game path of the building in the field array.
+const RESSOURCE_AMOUNT: int = 6  ## Index for the resource amount of the building in the field array.
+const max_storage_size: int = 7  ## Index for the maximum storage size of the building in the field array.
 
-# Variables for the building ids.
-const ROCKET: int = 0
-const SHOP: int = 1
-const MOONETEN_GENERATOR: int = 2
-const moonstoneGenerator: int = 3
-const moonetenStorage: int = 4
-const moonstoneStorage: int = 5
+const mooneten_amount: int = 0  ## Index for the Mooneten amount in the field array.
+const moonstone_amount: int = 1  ## Index for the Moonstone amount in the field array.
 
-# Variables for the indices of the field array.
-const building_type: int = 0
-const name_index: int = 1
-const level_index: int = 2
-const upgrade_cost_index: int = 3
-const image_index: int = 4
-const game_path_index: int = 5
-const RESSOURCE_AMOUNT: int = 6
-const max_storage_size: int = 7
+const MOONETEN_GENERATOR_CARD = 0  ## Constant representing the Mooneten Generator card in the shop.
+const MOONSTONE_GENERATOR_CARD = 1  ## Constant representing the Moonstone Generator card in the shop.
+const MOONETEN_STORAGE_CARD = 2  ## Constant representing the Mooneten Storage card in the shop.
+const MOONSTONE_STORAGE_CARD = 3  ## Constant representing the Moonstone Storage card in the shop.
 
-# Variables for ressource indices of the field array.
-const mooneten_amount: int = 0
-const moonstone_amount: int = 1
+## Constants for price updates.
+const UPGRADE_PRICE_1 = 2000  ## Cost for the first level upgrade.
+const UPGRADE_PRICE_2 = 10000  ## Cost for the second level upgrade.
+const UPGRADE_PRICE_3 = 50000  ## Cost for the third level upgrade.
+const UPGRADE_PRICE_4 = 75000  ## Cost for the fourth level upgrade.
 
-# Constans for shopelements.
-const MOONETEN_GENERATOR_CARD = 0
-const MOONSTONE_GENERATOR_CARD = 1
-const MOONETEN_STORAGE_CARD = 2
-const MOONSTONE_STORAGE_CARD = 3
+var firstGame: bool = false  ## Indicates if it's the player's first game.
+var mooneten: int = 0  ## Amount of Mooneten resource.
+var moonstone: int = 0  ## Amount of Moonstone resource.
+var unixLastTime: int = 0  ## Unix timestamp of the last logout time.
+var minigame_one_highscore: int = 0  ## High score achieved in Mini-Game 1.
+var minigame_one_score: int = 0  ## Current score in Mini-Game 1.
 
-# Constans for priceupdates.
-const UPGRADE_PRICE_1 = 2000
-const UPGRADE_PRICE_2 = 10000
-const UPGRADE_PRICE_3 = 50000
-const UPGRADE_PRICE_4 = 75000
+var minigame2_score: int = 0  ## Current score in Mini-Game 2.
+var minigame2_highscore: int = 0  ## High score achieved in Mini-Game 2.
+var minigame2_timer: float  ## Timer variable for Mini-Game 2.
+var minigame2_timerSpeed: float  ## Speed at which the timer in Mini-Game 2 decreases.
+var is_in_building_menu: bool = false  ## Indicates if the player is currently in the building menu.
+var maxMoonetenStorage: int = 0  ## Maximum capacity for storing Mooneten.
+var maxMoonstoneStorage: int = 0  ## Maximum capacity for storing Moonstone.
 
-# Variables for the upgrade costs of each building type.
-var generators_upgrade_costs: Array = [1000, 2500, 5000, 7500]
-var storage_upgrade_costs: Array = [3000, 9000, 15000, 25000]
-var generators_max_storage_size: Array = [1000, 2000, 3000, 4000, 5000]
-var storage_max_storage_size: Array = [5000, 10000, 15000, 20000, 25000]
+var generators_upgrade_costs: Array = [1000, 2500, 5000, 7500]  ## Upgrade costs for generators.
+var storage_upgrade_costs: Array = [3000, 9000, 15000, 25000]  ## Upgrade costs for storage buildings.
+var generators_max_storage_size: Array = [1000, 2000, 3000, 4000, 5000]  ## Maximum storage size for generators.
+var storage_max_storage_size: Array = [5000, 10000, 15000, 20000, 25000]  ## Maximum storage size for storage buildings.
 
-# Shopdata as a Dictionary.
+## Shop data as an array of dictionaries.
 var shop_data: Array = [
-	{
-		"building_id": MOONETEN_GENERATOR,
-		"name": "Moonetengenerator",
-		"price": 200,
-		"is_bought": false
-	},
-	{
-		"building_id": moonstoneGenerator,
-		"name": "Moonstonegenerator",
-		"price": 200,
-		"is_bought": false
-	},
+	{"building_id": MOONETEN_GENERATOR, "name": "Moonetengenerator", "price": 200, "is_bought": false},
+	{"building_id": moonstoneGenerator, "name": "Moonstonegenerator", "price": 200, "is_bought": false},
 	{"building_id": moonetenStorage, "name": "Moonetenstorage", "price": 1000, "is_bought": false},
 	{"building_id": moonstoneStorage, "name": "Moonstonestorage", "price": 1000, "is_bought": false}
 ]
 
-# Field array holds all the data of the buildings.
+## Field array holds all the data of the buildings.
 var fieldArray: Array = [
-	[
-		ROCKET,
-		"Rocket",
-		1,
-		[100000, 200000, 400000],
-		"",
-		"res://Minigame1/Scenes/minigame_1.tscn",
-		[0, 0],
-		[1000, 2000, 5000, 10000]
-	],
-	[-1],
-	[-1],
-	[-1],
-	[-1],
-	[-1],
-	[-1],
-	[-1],
-	[-1],
-	[-1],
-	[-1],
-	[-1],
-	[-1],
-	[-2]
+	[ROCKET, "Rocket", 1, [100000, 200000, 400000], "", "res://Minigame1/Scenes/minigame_1.tscn", [0, 0], [1000, 2000, 5000, 10000]],
+	[-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-2]
 ]
 
-# Declare inventory array.
-var inventory: Array = []
+var inventory: Array = []  ## Stores the player's inventory.
 
-# Data storage location.
-var ressourceBarDataString: String = "user://playerData.dat"
-var fieldDataString: String = "user://fieldData.dat"
+var ressourceBarDataString: String = "user://playerData.dat"  ## Location for storing resource bar data.
+var fieldDataString: String = "user://fieldData.dat"  ## Location for storing field data.
 
-# Declare last player position variable.
-var last_player_position: Vector2 = Vector2(168, 131)
+var last_player_position: Vector2 = Vector2(168, 131)  ## Stores the last position of the player.
 
-#Declares the timer.
-var timer: Timer
+var timer: Timer  ## Timer used in the game.
 
-#Declares if the window focus is tapped out 
-var is_tapped_out:bool = false
-
+var is_tapped_out: bool = false  ## Indicates if the game window has lost focus.
 
 # Function: _ready
-# Description: Called when the node is ready.
-# Initializes and starts the timer, loads field and player data, and sets maximum resources.
+## Called when the node is ready.
+## Initializes and starts the timer, loads field and player data, and sets maximum resources.
 func _ready():
 	timer = Timer.new()
 	add_child(timer)
@@ -155,8 +97,8 @@ func _ready():
 
 
 # Function: _on_timeout_timer
-# Description: Called when the timeout timer expires.
-# Adds new ressource to the player's resources and updates buildings.
+## Called when the timeout timer expires.
+## Adds new ressource to the player's resources and updates buildings.
 func _on_timeout_timer():
 	var new_resource: int = 10
 	var ressourceamount: int = 0
@@ -186,7 +128,7 @@ func _on_timeout_timer():
 	save_field_data()
 
 # Function: _notification
-# Description: Handles notifications from the window manager, specifically close and go back requests.
+## Handles notifications from the window manager, specifically close and go back requests.
 func _notification(what):
 	match(what):
 	# Handle a close request from the window manager
@@ -210,27 +152,29 @@ func _notification(what):
 			_ready()
 			
 ## Function: save_data
-## Description: calls the function to save the last gamestate befor tapping out or close the game
+## calls the function to save the last gamestate befor tapping out or close the game
 func save_data():
 	set_unix_last_time(Time.get_unix_time_from_system())
 	save_field_data()
 	save_player_data()
+	
+	
 # Function: set_building
-# Description: Sets the data for a building at a specific field index and saves field data.
+## Sets the data for a building at a specific field index and saves field data.
 func set_building(field_index: int, building: Array):
 	fieldArray[field_index] = building
 	save_field_data()
 
 
 # Function: remove_building
-# Description: Rmoves the data for a building at a specific field index and saves field data.
+## Rmoves the data for a building at a specific field index and saves field data.
 func remove_building(field_index: int):
 	fieldArray[field_index] = [-1]
 	save_field_data()
 
 
 # Function: set_inventory
-# Description: Sets the inventory data for a building at a specific building index.
+## Sets the inventory data for a building at a specific building index.
 func set_inventory(
 	building_index: int,
 	building_name: String,
@@ -254,29 +198,29 @@ func set_inventory(
 
 
 # Function: edit_building
-# Description: Edits a specific attribute of a building in the fieldArray and saves field data.
+## Edits a specific attribute of a building in the fieldArray and saves field data.
 func edit_building(building_id: int, attribute_id: int, value):
 	fieldArray[building_id][attribute_id] = value
 	save_field_data()
 
 
 # Function: update_upgrade_costs
-# Description: Updates the current upgrade costs with new costs.
+## Updates the current upgrade costs with new costs.
 func update_upgrade_costs(current_costs: Array, new_costs: Array):
 	for cost in new_costs:
 		current_costs.append(cost)
 
 
 # Function: update_storage_size
-# Description: Updates the current storage size with new size.
+## Updates the current storage size with new size.
 func update_storage_size(current_size: Array, new_size: Array):
 	for storage_size in new_size:
 		current_size.append(storage_size)
 
 
 # Function: on_rocket_level_upgrade
-# Description: Called when the rocket level is upgraded.
-# Updates shop data based on the rocket level.
+## Called when the rocket level is upgraded.
+## Updates shop data based on the rocket level.
 func on_rocket_level_upgrade():
 	match fieldArray[ROCKET][2]:
 		2:
@@ -304,8 +248,8 @@ func on_rocket_level_upgrade():
 
 
 # Function: update_shop_data
-# Description: Updates the price and is_bought status
-# for a specific shop item and saves player data.
+## Updates the price and is_bought status
+## for a specific shop item and saves player data.
 func update_shop_data(shop_id, new_price):
 	shop_data[shop_id]["price"] = new_price
 	shop_data[shop_id]["is_bought"] = false
@@ -313,9 +257,9 @@ func update_shop_data(shop_id, new_price):
 
 
 # Function: set_mooneten
-# Description: Setter function for the mooneten variable.
-# Parameters:
-#   - value: New value to set for mooneten.
+## Setter function for the mooneten variable.[br]
+## Parameters:[br]
+##   - value: New value to set for mooneten.
 func set_mooneten(value):
 	mooneten = value
 	save_player_data()
@@ -323,16 +267,16 @@ func set_mooneten(value):
 
 
 # Function: get_mooneten
-# Description: Getter function for the mooneten variable.
-# Returns: The value of mooneten.
+## Getter function for the mooneten variable. [br]
+## Returns: The value of mooneten.
 func get_mooneten():
 	return mooneten
 
 
 # Function: add_mooneten
-# Description: Adds the specified value to the mooneten variable and saves player data.
-# Parameters:
-#   - value: The amount to add to the mooneten variable.
+## Adds the specified value to the mooneten variable and saves player data.[br]
+## Parameters:[br]
+##   - value: The amount to add to the mooneten variable.
 func add_mooneten(value):
 	mooneten = mooneten + value
 	update_storage_building_capacity()
@@ -340,9 +284,9 @@ func add_mooneten(value):
 
 
 # Function: remove_mooneten
-# Description: Subtracts the specified value from the mooneten variable and saves player data.
-# Parameters:
-#   - value: The amount to subtract from the mooneten variable.
+## Subtracts the specified value from the mooneten variable and saves player data.[br]
+## Parameters:[br]
+##   - value: The amount to subtract from the mooneten variable.
 func remove_mooneten(value):
 	mooneten = mooneten - value
 	update_storage_building_capacity()
@@ -350,25 +294,25 @@ func remove_mooneten(value):
 
 
 # Function: set_unix_last_time
-# Description: Setter function for the unixLastTime variable.
-# Parameters:
-#   - value: New value to set for unixLastTime.
+## Setter function for the unixLastTime variable.[br]
+## Parameters:[br]
+##   - value: New value to set for unixLastTime.
 func set_unix_last_time(value):
 	unixLastTime = value
 	save_player_data()
 
 
 # Function: get_unix_last_time
-# Description: Getter function for the unixLastTime variable.
-# Returns: The value of unixLastTime.
+## Getter function for the unixLastTime variable.[br]
+## Returns: The value of unixLastTime.
 func get_unix_last_time():
 	return unixLastTime
 
 
 # Function: set_moonstone
-# Description: Setter function for the moonstone variable.
-# Parameters:
-#   - value: New value to set for moonstone.
+## Setter function for the moonstone variable.[br]
+## Parameters:[br]
+##   - value: New value to set for moonstone.
 func set_moonstone(value):
 	moonstone = value
 	update_storage_building_capacity()
@@ -376,16 +320,16 @@ func set_moonstone(value):
 
 
 # Function: get_moonstone
-# Description: Getter function for the moonstone variable.
-# Returns: The value of moonstone.
+## Getter function for the moonstone variable.[br]
+## Returns: The value of moonstone.
 func get_moonstone():
 	return moonstone
 
 
 # Function: add_moonstone
-# Description: Adds the specified value to the moonstone variable and saves player data.
-# Parameters:
-#   - value: The amount to add to the moonstone variable.
+## Adds the specified value to the moonstone variable and saves player data.[br]
+## Parameters:[br]
+##   - value: The amount to add to the moonstone variable.
 func add_moonstone(value):
 	moonstone = moonstone + value
 	update_storage_building_capacity()
@@ -393,9 +337,9 @@ func add_moonstone(value):
 
 
 # Function: remove_moonstone
-# Description: Subtracts the specified value from the moonstone variable and saves player data.
-# Parameters:
-#   - value: The amount to subtract from the moonstone variable.
+## Subtracts the specified value from the moonstone variable and saves player data.[br]
+## Parameters:[br]
+##  - value: The amount to subtract from the moonstone variable.
 func remove_moonstone(value):
 	moonstone = moonstone - value
 	update_storage_building_capacity()
@@ -403,9 +347,9 @@ func remove_moonstone(value):
 
 
 # Function: set_minigame1_score
-# Description: Setter function for the minigame_one_score variable.
-# Parameters:
-#   - value: New score value to set minigame_one_score.
+## Setter function for the minigame_one_score variable.[br]
+## Parameters:[br]
+##   - value: New score value to set minigame_one_score.
 func set_minigame1_score(value):
 	minigame_one_score = value
 	if minigame_one_score >= minigame_one_highscore:
@@ -414,9 +358,9 @@ func set_minigame1_score(value):
 
 
 # Function: set_minigame2_highscore
-# Description: Setter function for the minigame2_highscore variable.
-# Parameters:
-#   - value: New highscore value to set minigame2_highscore.
+## Setter function for the minigame2_highscore variable.[br]
+## Parameters:[br]
+##   - value: New highscore value to set minigame2_highscore.
 func set_minigame2_highscore(value):
 	if value > minigame2_highscore:
 		minigame2_highscore = value
@@ -424,84 +368,84 @@ func set_minigame2_highscore(value):
 
 
 # Function: get_minigame2_highscore
-# Description: Getter function for the minigame2_highscore variable.
-# Returns: The value of minigame2_highscore.
+## Getter function for the minigame2_highscore variable.[br]
+## Returns: The value of minigame2_highscore.
 func get_minigame2_highscore():
 	return minigame2_highscore
 
 
 # Function: get_minigame1_score
-# Description: Getter function for the minigame_one_score variable.
-# Returns: The value of minigame_one_score.
+## Getter function for the minigame_one_score variable.[br]
+## Returns: The value of minigame_one_score.
 func get_minigame1_score():
 	return minigame_one_score
 
 
 # Function: set_minigame2_score
-# Description: Setter function for the minigame2_score variable.
-# Parameters:
-#   - value: New score value to set minigame2_score.
+## Setter function for the minigame2_score variable.[br]
+## Parameters:[br]
+##   - value: New score value to set minigame2_score.
 func set_minigame2_score(value):
 	minigame2_score = value
 	save_player_data()
 
 
 # Function: get_minigame2_score
-# Description: Getter function for the minigame2_score variable.
-# Returns: The value of minigame2_score.
+## Getter function for the minigame2_score variable.[br]
+## Returns: The value of minigame2_score.
 func get_minigame2_score():
 	return minigame2_score
 
 
 # Function: get_minigame1_highscore
-# Description: Getter function for the minigame_one_highscore variable.
-# Returns: The value of minigame_one_highscore.
+## Getter function for the minigame_one_highscore variable.[br]
+## Returns: The value of minigame_one_highscore.
 func get_minigame1_highscore():
 	return minigame_one_highscore
 
 
 # Function: is_playing_first_time
-# Description: Checks if the game is being played for the first time.
-# Returns: True if it's the first time, False otherwise.
+## Checks if the game is being played for the first time.[br]
+## Returns: True if it's the first time, False otherwise.
 func is_playing_first_time():
 	return firstGame
 
 
 # Function: set_first_game
-# Description: Setter function for the firstGame variable.
-# Parameters:
-#   - value: Boolean value to set firstGame.
+## Setter function for the firstGame variable.[br]
+## Parameters:[br]
+##   - value: Boolean value to set firstGame.
 func set_first_game(value):
 	firstGame = value
 	save_player_data()
 
 
 # Function: get_last_player_position
-# Description: Getter function for the last_player_position variable.
-# Returns: The value of last_player_position.
+## Getter function for the last_player_position variable.[br]
+## Returns: The value of last_player_position.
 func get_last_player_position():
 	return last_player_position
 
 
 # Function: set_last_player_position
-# Description: Setter function for the last_player_position variable.
-# Parameters:
-#   - value: New position value to set last_player_position.
+## Setter function for the last_player_position variable.[br]
+## Parameters:[br]
+##   - value: New position value to set last_player_position.
 func set_last_player_position(value):
 	last_player_position = value
 	save_player_data()
 
 
 # Function: update_storage_building_capacity
-# Description: Updates the storage capacity of specific buildings in the fieldArray based on their type.
-# It resets the current capacity and then sets the updated capacity for each eligible building.
+## Updates the storage capacity of specific buildings in the fieldArray based on their type.
+## It resets the current capacity and then sets the updated capacity for each eligible building.
 func update_storage_building_capacity():
 	reset_storage_building_capacity()
 	set_storage_building_capacity()
 
 
 # Function: reset_storage_building_capacity
-# Description: Resets the current resource capacity of storage buildings in the fieldArray.
+## Resets the current resource capacity of storage buildings in the fieldArray.
 func reset_storage_building_capacity():
 	for n in range(0, 14):
 		if (
@@ -514,7 +458,7 @@ func reset_storage_building_capacity():
 
 
 # Function: set_storage_building_capacity
-# Description: Sets the updated resource capacity for eligible storage buildings in the fieldArray.
+## Sets the updated resource capacity for eligible storage buildings in the fieldArray.
 func set_storage_building_capacity():
 	var i: int = 0
 	var space_available: int = 0
@@ -564,7 +508,7 @@ func set_storage_building_capacity():
 
 
 # Function: save_player_data
-# Description: Saves player data to a file.
+## Saves player data to a file.
 func save_player_data():
 	var file: FileAccess = FileAccess.open(ressourceBarDataString, FileAccess.WRITE)
 	file.store_var(firstGame)
@@ -583,7 +527,7 @@ func save_player_data():
 
 
 # Function: load_player_data
-# Description: Loads player data from a file if it exists; otherwise, initializes default values.
+## Loads player data from a file if it exists; otherwise, initializes default values.
 func load_player_data():
 	if FileAccess.file_exists(ressourceBarDataString):
 		var file: FileAccess = FileAccess.open(ressourceBarDataString, FileAccess.READ)
@@ -603,12 +547,12 @@ func load_player_data():
 		add_offline_ressources()
 	else:
 		firstGame = true
-		unixLastTime = Time.get_unix_time_from_system()
+		unixLastTime = int(Time.get_unix_time_from_system())
 		save_player_data()
 
 
 # Function: save_field_data
-# Description: Saves the field data to a file.
+## Saves the field data to a file.
 func save_field_data():
 	var file: FileAccess = FileAccess.open(fieldDataString, FileAccess.WRITE)
 	for n in range(0, 14):
@@ -616,8 +560,7 @@ func save_field_data():
 
 
 # Function: load_field_data
-# Description: Loads the field data from a file. If the file doesn't exist, it creates one.
-# BEGIN: ed8c6549bwf9
+## Loads the field data from a file. If the file doesn't exist, it creates one.
 func load_field_data():
 	if FileAccess.file_exists(fieldDataString):
 		var file: FileAccess = FileAccess.open(fieldDataString, FileAccess.READ)
@@ -627,16 +570,13 @@ func load_field_data():
 		save_field_data()
 
 
-# END: ed8c6549bwf9
-
-
 # Function: add_offline_ressources
-# Description: Adds mooneten resources based on the time the player was offline.
-# It calculates the offline_mooneten amount and distributes it among generators.
+## Adds mooneten resources based on the time the player was offline.
+## It calculates the offline_mooneten amount and distributes it among generators.
 func add_offline_ressources():
 	var time_difference: float = float(Time.get_unix_time_from_system() - get_unix_last_time())
 	var diff: float = round(time_difference / 60.0)  # Keep diff as float for precision
-	var offline_ressources: int = diff * 5
+	var offline_ressources: int = int(diff * 5)
 	var ressourceamount: int = 0
 	for field_index in range(0, 14):
 		if fieldArray[field_index][building_type] == MOONETEN_GENERATOR:
@@ -673,12 +613,12 @@ func add_offline_ressources():
 					fieldArray[field_index][level_index] - 1
 				]
 			fieldArray[field_index][RESSOURCE_AMOUNT][moonstone_amount] = ressourceamount
-		offline_ressources = diff * 5
+		offline_ressources = int(diff * 5)
 	save_field_data()
 
 
 # Function: set_max_ressources
-# Description: Sets the maximum storage capacity for mooneten and moonstone based on buildings.
+## Sets the maximum storage capacity for mooneten and moonstone based on buildings.
 func set_max_ressources():
 	var temp_mooneten: int = 0
 	var temp_moonstone: int = 0
@@ -695,12 +635,12 @@ func set_max_ressources():
 
 
 # Function: reset_stats
-# Description: Resets various game-related statistics to their initial values.
+## Resets various game-related statistics to their initial values.
 func reset_stats():
 	firstGame = true
 	mooneten = 0
 	moonstone = 0
-	unixLastTime = Time.get_unix_time_from_system()
+	unixLastTime = int(Time.get_unix_time_from_system())
 	minigame2_highscore = 0
 	minigame_one_highscore = 0
 	fieldArray = [

@@ -1,17 +1,23 @@
+## This script manages the interaction between the player and buildings in the game scene.
+
 extends Node2D
 
-# Nodes for the scene
-@onready var player: CharacterBody2D = get_node("/root/World/Player")
-@onready var optionbar: Control = get_node("/root/World/Optionbar")
-
-#Variable for the current building index
+# Variable: building_index
+## Represents the index of the current building.
 var building_index: int = 0
 
+# Variable: player_is_moving
+## Indicates whether the player is currently moving.
 var player_is_moving: bool = false
 
+# Nodes for the scene
+## Reference to the player character node.
+@onready var player: CharacterBody2D = get_node("/root/World/Player")
+## Reference to the option bar node.
+@onready var optionbar: Control = get_node("/root/World/Optionbar")
 
 # Function: building_distance
-# Description: Checks the distance between the player and a building. If the player is close enough, opens the option bar.
+## Checks the distance between the player and a building. If the player is close enough, opens the option bar.
 func building_distance(building: Node2D):
 	if player.camera.zoom == player.standart_camerazoom:
 		if building.pressed and !player.player_is_moving:
@@ -31,10 +37,8 @@ func building_distance(building: Node2D):
 	else:
 		building.pressed = false
 
-
-
 # Function: open_optionbar
-# Description: Opens the option bar for a specific building.
+## Opens the option bar for a specific building.
 func open_optionbar(id: int):
 	DataScript.is_in_building_menu = true
 	var optionbar_pos: Vector2 = (
@@ -45,9 +49,8 @@ func open_optionbar(id: int):
 	player.stand_still = true
 	player.get_node("Camera2D/HUD").visible = false
 
-
 # Function: updateBuildings
-# Description: Updates the visibility and animation of building icons based on the data in DataScript.fieldArray.
+## Updates the visibility and animation of building icons based on the data in DataScript.fieldArray.
 func updateBuildings(building: Node2D):
 	for n in range(1, 13):
 		if building.id == n:

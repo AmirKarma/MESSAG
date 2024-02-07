@@ -1,36 +1,54 @@
-# Spaceship script
+## This script defines the behavior of a spaceship in the game.
 
 class_name spaceship extends CharacterBody2D
 
-# Signals for communication with other nodes
+## Signal for communication with other nodes
 signal cannon_shot(shot)
+
+## Signal for communication with other nodes
 signal player_dead
 
-# Exported variables for easy tweaking in the editor
+## Exported variable for adjusting the player's speed in the editor
 @export var player_speed: float = 50
+
+## Exported variable for adjusting the rate of shooting in the editor
 @export var shot_rate: float = 0.25
 
-# References to scene elements using the @onready keyword
-@onready var Gun: Node = $Gun
-@onready var sprite: Sprite2D = $Sprite2D
-@onready var collision: CollisionPolygon2D = $CollisionPolygon2D
-var timer1: Timer
-
-# Preloaded scene for bullets
-var shot_scene: PackedScene = preload("res://Minigame1/Scenes/bullet.tscn")
-
-# Variables for controlling shooting
-var shot_cooldown: bool = false
-var alive: bool = true
-
-# Exported variables for spaceship movement
+## Exported variable for adjusting the movement speed in the editor
 @export var movement_speed: float = 2.5
+
+## Exported variable for adjusting the maximum speed in the editor
 @export var max_speed: float = 100.0
+
+## Exported variable for adjusting the rotation speed in the editor
 @export var rotation_speed: float = 250.0
+
+## Exported variable for adjusting the floating effect in the editor
 @export var float_effect: float = 0.5
 
+## Timer for managing shooting cooldown
+var timer1: Timer
 
-# Called when the node is added to the scene
+## Preloaded scene for bullets
+var shot_scene: PackedScene = preload("res://Minigame1/Scenes/bullet.tscn")
+
+## Variable for controlling shooting cooldown
+var shot_cooldown: bool = false
+
+## Variable representing player status
+var alive: bool = true
+
+## Reference to the Gun node using the @onready keyword
+@onready var Gun: Node = $Gun
+
+## Reference to the sprite node using the @onready keyword
+@onready var sprite: Sprite2D = $Sprite2D
+
+## Reference to the collision node using the @onready keyword
+@onready var collision: CollisionPolygon2D = $CollisionPolygon2D
+
+
+## Called when the node is added to the scene
 func _ready():
 	# Timer for controlling respawn
 	timer1 = Timer.new()
@@ -39,7 +57,7 @@ func _ready():
 	timer1.timeout.connect(playerCollisionRespawn)
 
 
-# Process function for handling user input
+## Process function for handling user input
 func _process(_delta):
 	if Input.is_action_pressed("schuss"):
 		if !shot_cooldown:
@@ -49,7 +67,7 @@ func _process(_delta):
 			shot_cooldown = false
 
 
-# Physics process function for handling movement
+## Physics process function for handling movement
 func _physics_process(delta):
 	var direction: Vector2 = Vector2(0, Input.get_axis("vor", "zurueck"))
 	velocity += direction.rotated(rotation) * movement_speed
@@ -81,13 +99,13 @@ func _physics_process(delta):
 		global_position.x = 0
 
 
-# Function to handle respawn after a collision
+## Function to handle respawn after a collision
 func playerCollisionRespawn():
 	collision.set_deferred("disabled", false)
 	process_mode = Node.PROCESS_MODE_INHERIT
 
 
-# Function to handle player death
+## Function to handle player death
 func dead():
 	if alive == true:
 		alive = false
@@ -96,7 +114,7 @@ func dead():
 		emit_signal("player_dead")
 
 		
-# Respawn function
+## Respawn function
 func respawn(pos):
 	if alive == false:
 		alive = true
@@ -105,7 +123,7 @@ func respawn(pos):
 		sprite.visible = true
 		timer1.start()		
 
-# Function to handle shooting
+## Function to handle shooting
 func shoot():
 	if alive:
 		var shot_instance: Node = shot_scene.instantiate()

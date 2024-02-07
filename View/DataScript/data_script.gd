@@ -201,7 +201,7 @@ func _notification(what):
 			save_data()
 			if get_child_count() != 0:
 				remove_child(timer)
-			var pause_event = InputEventAction.new()
+			var pause_event: InputEventAction = InputEventAction.new()
 			pause_event.action = "pause"
 			pause_event.pressed = true
 			Input.parse_input_event(pause_event)

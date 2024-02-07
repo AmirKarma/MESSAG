@@ -48,12 +48,13 @@ jobs:
           echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
         
       - name: set release
-        run: echo "Hello, World!"
+        run: |
           if [[ "${{ github.base_ref }}" == "releases" ]]; then
             echo "CREATE_RELEASE=true" >> $GITHUB_ENV
           else
             echo "CREATE_RELEASE=false" >> $GITHUB_ENV
           fi
+          echo $CREATE_RELEASE
           
 
       - name: exportGame

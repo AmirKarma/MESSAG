@@ -1,21 +1,17 @@
+## This script handles the interaction with a touch screen button to toggle visibility of a building placement UI.
+
 extends Node2D
 
-@onready var building_inv : Node = $"GebäudePlazieren"
-@onready var building_text : Node = $inv_text
+# Nodes for building placement UI
+## Reference to the node representing the building placement interface.
+@onready var building_inv: Node = $"GebäudePlazieren"
+## Reference to the node representing the text associated with the building placement interface.
+@onready var building_text: Node = $inv_text
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-# Function called when the screen is pressed.
-# First Sets a Overlay + Lable Visible true, if its pressed again, change the current scene back
-# to main tutorial
+# Function: _on_touch_screen_button_pressed
+## Called when the screen is pressed. Toggles the visibility of the building placement UI and associated text.
+## If the UI is not visible, it sets it to visible along with the text. If pressed again, it changes the current scene
+## back to the main tutorial.
 func _on_touch_screen_button_pressed():
 	if building_inv.visible == false:
 		building_inv.visible = true

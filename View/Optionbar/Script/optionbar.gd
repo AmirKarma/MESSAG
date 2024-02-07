@@ -1,50 +1,118 @@
+## The script is the behavior and functionality of the building Menu. It defines various variables, constants, and functions to handle tasks such as displaying building information, managing upgrades, handling resource collection, and interacting with different building types. Additionally, it contains logic for setting UI elements, checking upgrade eligibility, and updating resource amounts based on player actions.
+
 extends Control
 
+
+## Constant representing the type of the building (currently set to 0)
+const building_type: int = 0
+
+## Constant representing the index of the building's name
+const name_index: int = 1
+
+## Constant representing the index of the building's level
+const level_index: int = 2
+
+## Constant representing the index of the building's upgrade cost
+const upgrade_cost_index: int = 3
+
+## Constant representing the index of the building's image
+const image_index: int = 4
+
+## Constant representing the index of the building's game path
+const game_path_index: int = 5
+
+## Constant representing the amount of resources associated with the building
+const RESSOURCE_AMOUNT: int = 6
+
+## Constant representing the maximum storage size of the building
+const max_storage_size: int = 7
+
+## Constant representing the amount of mooneten associated with the building
+const mooneten_amount: int = 0
+
+## Constant representing the amount of moonstone associated with the building
+const moonstone_amount: int = 1
+
+## Variable to store the size of the option bar rectangle.
+var optionbar_rect_size: Vector2
+
+## Variable to store the position of the building image
+var building_image_pos: Vector2
+
+## String variable to store the name of the game scene associated with the building
+var game_scene: String
+
+## Integer variable to store the ID of the building
+var building_id: int = 0
+
+## Boolean variable indicating whether the building needs moonstone
+var need_moonstone: bool = false
+
+## Boolean variable indicating whether the building needs mooneten
+var need_mooneten: bool = false
+
+## Reference to the building rect node in the scene.
 @onready var building_rect: Node = $optionbar_rect/buildingRect
+
+## Reference to the building name node in the scene.
 @onready var building_name: Node = $optionbar_rect/building_name
+
+## Reference to the building rect node in the scene.
 @onready var building_level: Node = $optionbar_rect/building_level
+
+## Reference to the play button in the scene.
 @onready var play_button: Button = $optionbar_rect/buttons_rect/buttons/play_button
+
+## Reference to the collect button in the scene.
 @onready var collect_button: Button = $optionbar_rect/buttons_rect/buttons/collect_button
+
+## Reference to the remove TextureButton in the scene.
 @onready var remove_button: TextureButton = $optionbar_rect/buttons_rect/buttons/remove_button
+
+## Reference to the cancel button in the scene. 
 @onready
 var cancel_button: Button = $optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HSplitContainer/cancel_button
+
+## Reference to the confirm button in the scene. 
 @onready
 var confirm_button: Button = $optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HSplitContainer/confirm_button
+
+## Reference to the upgrade button in the scene.
 @onready var upgrade_button: Button = $optionbar_rect/buttons_rect/buttons/upgrade_button
+
+## Reference to the costs label in the scene.
 @onready
 var costs_lable: Label = $optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HBoxContainer/costs_lable
+
+## Reference to the upgrade warning Panel in the scene.
 @onready var upgrade_warning: Panel = $optionbar_rect/buttons_rect/buttons/Upgrade_warning
+
+## Reference to the mooneten image Sprite2D in the scene.
 @onready
 var mooneten_img: Sprite2D = $optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HBoxContainer/Mooneten
+
+## Reference to the moonstone image Sprite2D in the scene.
 @onready
 var moonstone_img: Sprite2D = $optionbar_rect/buttons_rect/CenterContainer/VBoxContainer/HBoxContainer/Moonstone
+
+## Reference to the confirm button in the scene.
 @onready
 var confirm_button2: Button = $optionbar_rect/buttons_rect/CenterContainer2/VBoxContainer/HSplitContainer/confirm_button2
+
+## Reference to the warn label in the scene.
 @onready
 var warn_lable: Label = $optionbar_rect/buttons_rect/CenterContainer2/VBoxContainer/HBoxContainer/warn_lable
+
+## Reference to the cancel button in the scene.
 @onready
 var cancel_button2: Button = $optionbar_rect/buttons_rect/CenterContainer2/VBoxContainer/HSplitContainer/cancel_button2
+
+## Reference to the player CharacterBody2D in the scene.
 @onready var player: CharacterBody2D = get_node("/root/World/Player")
-var optionbar_rect_size: Vector2
-var building_image_pos: Vector2
-var game_scene: String
-var building_id: int = 0
-const building_type: int = 0
-const name_index: int = 1
-const level_index: int = 2
-const upgrade_cost_index: int = 3
-const image_index: int = 4
-const game_path_index: int = 5
-const RESSOURCE_AMOUNT: int = 6
-const max_storage_size: int = 7
-const mooneten_amount: int = 0
-const moonstone_amount: int = 1
-var need_moonstone: bool = false
-var need_mooneten: bool = false
 
 
 # Function: _ready
-# Description: Initializes text labels and positions for the option bar and building image.
+## Initializes text labels and positions for the option bar and building image.
 func _ready():
 	costs_lable.text = "  "
 	building_level.text = "Level "
@@ -54,8 +122,8 @@ func _ready():
 
 
 # Function: _on_close_button_pressed
-# Description: Handles the event when the close button is pressed.
-# Hides the option bar, resets buttons, and resets the needed resource flags.
+## Handles the event when the close button is pressed.
+## Hides the option bar, resets buttons, and resets the needed resource flags.
 func _on_close_button_pressed():
 	hide_optionbar()
 	reset_buttons()
@@ -64,7 +132,7 @@ func _on_close_button_pressed():
 
 
 # Function: hide_optionbar
-# Description: Hides the option bar, and makes HUD visible.
+## Hides the option bar, and makes HUD visible.
 func hide_optionbar():
 	DataScript.is_in_building_menu = false
 	self.visible = false
@@ -72,8 +140,8 @@ func hide_optionbar():
 
 
 # Function: set_optionbar
-# Description: Sets the option bar's position, updates UI elements based on the building ID.
-# Handles visibility of buttons, plays scenes if applicable, and checks upgrade eligibility.
+## Sets the option bar's position, updates UI elements based on the building ID.
+## Handles visibility of buttons, plays scenes if applicable, and checks upgrade eligibility.
 func set_optionbar(positon: Vector2, id: int):
 	self.position = positon
 	building_id = id
@@ -104,8 +172,8 @@ func set_optionbar(positon: Vector2, id: int):
 
 
 # Function: set_building_image
-# Description: Sets the building image based on the animation index.
-# Plays the animation for the building image and adjusts visibility of UI elements.
+## Sets the building image based on the animation index.
+## Plays the animation for the building image and adjusts visibility of UI elements.
 func set_building_image():
 	building_rect.get_node("building_image").play(DataScript.fieldArray[building_id][image_index])
 	$optionbar_rect/buildingRect/rocket_image.visible = false
@@ -113,7 +181,7 @@ func set_building_image():
 
 
 # Function: set_rocket_image
-# Description: Sets the rocket image and adjusts visibility of UI elements.
+## Sets the rocket image and adjusts visibility of UI elements.
 func set_rocket_image():
 	building_rect.get_node("rocket_image").texture = load("res://World/Rocket/Asset/Rakete.png")
 	$optionbar_rect/buildingRect/rocket_image.visible = true
@@ -121,8 +189,8 @@ func set_rocket_image():
 
 
 # Function: is_upgradeable
-# Description: Checks if the building is upgradeable based on certain conditions.
-# Disables the upgrade button and displays a warning if conditions are not met.
+## Checks if the building is upgradeable based on certain conditions.
+## Disables the upgrade button and displays a warning if conditions are not met.
 func is_upgradeable():
 	if is_max_level():
 		disable_upgrade_button()
@@ -141,8 +209,8 @@ func is_upgradeable():
 
 
 # Function: is_rocket_upgradeable
-# Description: Checks if the rocket is upgradeable by verifying if all buildings in the shop are bought.
-# Returns true if upgradeable, false otherwise.
+## Checks if the rocket is upgradeable by verifying if all buildings in the shop are bought.[br]
+## Returns true if upgradeable, false otherwise.
 func is_rocket_upgradeable() -> bool:
 	for data in DataScript.shop_data:
 		if !data["is_bought"]:
@@ -151,23 +219,23 @@ func is_rocket_upgradeable() -> bool:
 
 
 # Function: disable_upgrade_button
-# Description: Disables the upgrade button by setting its appearance to dim gray and disabling it.
+## Disables the upgrade button by setting its appearance to dim gray and disabling it.
 func disable_upgrade_button():
 	upgrade_button.modulate = Color.DIM_GRAY
 	upgrade_button.disabled = true
 
 
 # Function: _on_play_1_button_pressed
-# Description: Handles the event when the play 1 button is pressed.
-# Changes the scene to the specified game scene.
+## Handles the event when the play 1 button is pressed.
+## Changes the scene to the specified game scene.
 func _on_play_1_button_pressed():
 	DataScript.is_in_building_menu = false
 	get_tree().change_scene_to_file(game_scene)
 
 
 # Function: _on_upgrade_button_pressed
-# Description: Handles the event when the upgrade button is pressed.
-# Checks needed resources, upgrade eligibility, sets resource images, and adjusts button visibility.
+## Handles the event when the upgrade button is pressed.
+## Checks needed resources, upgrade eligibility, sets resource images, and adjusts button visibility.
 func _on_upgrade_button_pressed():
 	needed_ressource_check()
 	upgrade_check()
@@ -177,7 +245,7 @@ func _on_upgrade_button_pressed():
 
 
 # Function: set_ressource_img
-# Description: Sets the visibility of resource images based on the needed resource.
+## Sets the visibility of resource images based on the needed resource.
 func set_ressource_img():
 	if need_mooneten:
 		mooneten_img.visible = true
@@ -188,8 +256,8 @@ func set_ressource_img():
 
 
 # Function: upgrade_check
-# Description: Checks whether there are enough resources for an upgrade.
-# Updates the confirm button's appearance and state accordingly.
+## Checks whether there are enough resources for an upgrade.
+## Updates the confirm button's appearance and state accordingly.
 func upgrade_check():
 	if (need_mooneten and is_not_enough_mooneten()) or need_moonstone and is_not_enough_moonstone():
 		confirm_button.modulate = Color.DIM_GRAY
@@ -197,8 +265,8 @@ func upgrade_check():
 
 
 # Function: is_not_enough_mooneten
-# Description: Checks if there is not enough mooneten for an upgrade.
-# Returns true if the condition is met, false otherwise.
+## Checks if there is not enough mooneten for an upgrade.[br]
+## Returns true if the condition is met, false otherwise.
 func is_not_enough_mooneten():
 	return (
 		DataScript.get_mooneten()
@@ -209,8 +277,8 @@ func is_not_enough_mooneten():
 
 
 # Function: is_not_enough_moonstone
-# Description: Checks if there is not enough moonstone for an upgrade.
-# Returns true if the condition is met, false otherwise.
+## Checks if there is not enough moonstone for an upgrade.[br]
+## Returns true if the condition is met, false otherwise.
 func is_not_enough_moonstone():
 	return (
 		DataScript.get_moonstone()
@@ -221,8 +289,8 @@ func is_not_enough_moonstone():
 
 
 # Function: is_max_level
-# Description: Checks if the building is at its maximum level.
-# Returns true if the condition is met, false otherwise.
+## Checks if the building is at its maximum level.[br]
+## Returns true if the condition is met, false otherwise.
 func is_max_level():
 	return (
 		DataScript.fieldArray[building_id][level_index]
@@ -231,15 +299,15 @@ func is_max_level():
 
 
 # Function: _on_cancel_button_pressed
-# Description: Handles the event when the cancel button is pressed.
-# Calls the reset_buttons function.
+## Handles the event when the cancel button is pressed.
+## Calls the reset_buttons function.
 func _on_cancel_button_pressed():
 	reset_buttons()
 
 
 # Function: _on_confirm_button_pressed
-# Description: Handles the event when the confirm button is pressed.
-# Checks for needed resources, deducts the cost, upgrades the building, and updates UI elements.
+## Handles the event when the confirm button is pressed.
+## Checks for needed resources, deducts the cost, upgrades the building, and updates UI elements.
 func _on_confirm_button_pressed():
 	if need_mooneten:
 		DataScript.remove_mooneten(
@@ -268,17 +336,17 @@ func _on_confirm_button_pressed():
 
 
 # Function: rocket_upgrade
-# Description: Upgrades the rocket if the building type matches the rocket type.
-# Calls the on_rocket_level_upgrade function from the DataScript.
+## Upgrades the rocket if the building type matches the rocket type.
+## Calls the on_rocket_level_upgrade function from the DataScript.
 func rocket_upgrade():
 	if building_id == DataScript.fieldArray[building_id][building_type]:
 		DataScript.on_rocket_level_upgrade()
 
 
 # Function: set_building_texts
-# Description: Sets the text values for building upgrade information.
-# Checks if the building is not at its maximum level before updating the upgrade cost label.
-# Updates the building level label.
+## Sets the text values for building upgrade information.
+## Checks if the building is not at its maximum level before updating the upgrade cost label.
+## Updates the building level label.
 func set_building_texts():
 	if !is_max_level():
 		costs_lable.text = (
@@ -293,7 +361,7 @@ func set_building_texts():
 
 
 # Function: set_bars
-# Description: Sets the visibility and values of resource bars based on the type of building.
+## Sets the visibility and values of resource bars based on the type of building.
 func set_bars():
 	$optionbar_rect/RessorceRect/moonetenbar.visible = true
 	$optionbar_rect/RessorceRect/Moonete.visible = true
@@ -387,7 +455,7 @@ func set_bars():
 
 
 # Function: reset_buttons
-# Description: Resets the appearance and functionality of buttons in the option bar.
+## Resets the appearance and functionality of buttons in the option bar.
 func reset_buttons():
 	$optionbar_rect/buttons_rect/buttons.visible = true
 	$optionbar_rect/buttons_rect/CenterContainer.visible = false
@@ -399,7 +467,7 @@ func reset_buttons():
 
 
 # Function: needed_ressource_check
-# Description: Checks the type of building and sets flags for needed resources accordingly.
+## Checks the type of building and sets flags for needed resources accordingly.
 func needed_ressource_check():
 	match DataScript.fieldArray[building_id][building_type]:
 		DataScript.MOONETEN_GENERATOR, DataScript.moonetenStorage:
@@ -409,8 +477,8 @@ func needed_ressource_check():
 
 
 # Function: _on_collect_button_pressed
-# Description: Handles the event when the collect button is pressed for a specific building.
-# Checks the building type and updates resource amounts accordingly.
+## Handles the event when the collect button is pressed for a specific building.
+## Checks the building type and updates resource amounts accordingly.
 func _on_collect_button_pressed():
 	if DataScript.fieldArray[building_id][building_type] == DataScript.MOONETEN_GENERATOR:
 		if DataScript.fieldArray[building_id][RESSOURCE_AMOUNT][mooneten_amount] > 0:
@@ -462,22 +530,22 @@ func _on_collect_button_pressed():
 
 
 # Function: _on_remove_button_pressed
-# Description: Handles the event when the remove button is pressed for a specific building.
+## Handles the event when the remove button is pressed for a specific building.
 func _on_remove_button_pressed():
 	$optionbar_rect/buttons_rect/buttons.visible = false
 	$optionbar_rect/buttons_rect/CenterContainer2.visible = true
 
 
 # Function: _on_cancel_button_2_pressed
-# Description: Handles the event when the cancel button is pressed.
-# Calls the reset_buttons function.
+## Handles the event when the cancel button is pressed.
+## Calls the reset_buttons function.
 func _on_cancel_button_2_pressed():
 	reset_buttons()
 
 
 # Function: _on_confirm_button_2_pressed
-# Description: Handles the event when the confirm button is pressed.
-# Places building in inventory and updates UI elements.
+##	Handles the event when the confirm button is pressed.
+##	Places building in inventory and updates UI elements.
 func _on_confirm_button_2_pressed():
 	if DataScript.fieldArray[building_id][building_type] == DataScript.MOONETEN_GENERATOR:
 		DataScript.set_inventory(

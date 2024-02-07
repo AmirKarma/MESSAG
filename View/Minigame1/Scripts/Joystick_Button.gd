@@ -1,19 +1,28 @@
+## This script extends the Node2D class and manages behavior and interactions for a 2D node in the game.
+
 extends Sprite2D
 
-@onready var parent: Node = $".."
-var pressed: bool = false
-
+## The maximum length for a variable
 @export var maxlength: int = 23
+
+## The deadzone value
 @export var deadzone: int = 5
 
+## Indicates whether the button is pressed
+var pressed: bool = false
 
-# Called when the node enters the scene tree for the first time.
+## Reference to the parent node
+@onready var parent: Node = $".."
+
+
+
+## Called when the node enters the scene tree for the first time.
 func _ready():
 	maxlength *= 15 * parent.scale.x
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-# Checking Joystick Position and does Spaceship Interaction
+## Called every frame. 'delta' is the elapsed time since the previous frame.
+## Checking Joystick Position and does Spaceship Interaction
 func _process(delta):
 	if pressed:
 		if get_global_mouse_position().distance_to(parent.global_position) <= maxlength:
@@ -72,10 +81,10 @@ func _process(delta):
 		Input.action_release("vor")
 		Input.action_release("zurueck")
 
-
+## Called when the touch button is pressed down.
 func _on_touch_on_off_button_down():
 	pressed = true
 
-
+## Called when the touch button is released.
 func _on_touch_on_off_button_up():
 	pressed = false

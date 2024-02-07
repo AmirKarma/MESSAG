@@ -1,31 +1,60 @@
-# Comet script
+# This script defines the behavior of comets in the game.
 
 class_name Comet extends Area2D
 
-# Signal for communication with other nodes
+## Signal emitted when the comet is destroyed. Carries information about the position, size, and points awarded.
 signal destroyed(position, size)
 
-# Variables for movement
-var movement_vector: Vector2 = Vector2(0, -1)
-var comet_speed: float = 30
-var comet_speed_large: float = randf_range(20, 30)
-var comet_speed_medium: float = randf_range(35, 45)
-var comet_speed_small: float = randf_range(50, 60)
-
-# References to scene elements using the @onready keyword
-@onready var comet_sprite: Sprite2D = $Sprite2D
-@onready var comet_hitbox: CollisionShape2D = $CollisionShape2D
-
-# Enumeration for comet size
+## Enumerates the possible sizes of comets: LARGE, MEDIUM, SMALL.
 enum CometSize { LARGE, MEDIUM, SMALL }
+
+
+## Represents the size of the comet.
 @export var size: int = CometSize.LARGE
 
 
-# Called when the node is added to the scene
+## Represents the direction of movement for the comet.
+var movement_vector: Vector2 = Vector2(0, -1)
+
+
+## Represents the speed of the comet.
+var comet_speed: float = 30
+
+
+## Represents the speed range for large comets.
+var comet_speed_large: float = randf_range(20, 30)
+
+
+## Represents the speed range for medium-sized comets.
+var comet_speed_medium: float = randf_range(35, 45)
+
+
+## Represents the speed range for small comets.
+var comet_speed_small: float = randf_range(50, 60)
+
+
+## Represents the points awarded for destroying the comet based on its size.
+var points: int:
+	get:
+		match size:
+			CometSize.LARGE:
+				return 10
+			CometSize.MEDIUM:
+				return 15
+			CometSize.SMALL:
+				return 25
+			_:
+				return 0
+
+# Reference to the comet's sprite and hitbox
+@onready var comet_sprite: Sprite2D = $Sprite2D
+@onready var comet_hitbox: CollisionShape2D = $CollisionShape2D
+
+# Function: _ready
+## Called when the node is added to the scene. Initializes properties and sets sprite textures based on comet size.
 func _ready():
 	rotation = randf_range(0, 2 * PI)
 
-	# Set properties based on comet size
 	match size:
 		CometSize.LARGE:
 			comet_speed = comet_speed_large
@@ -47,8 +76,8 @@ func _ready():
 				"shape", preload("res://Minigame1/Assets/chunks_small.tres")
 			)
 
-
-# Physics process function for handling movement
+# Function: _physics_process
+## Handles the movement of the comet.
 func _physics_process(delta):
 	global_position += delta * movement_vector.rotated(rotation) * comet_speed
 
@@ -66,29 +95,15 @@ func _physics_process(delta):
 	elif global_position.x - comet_radius > screen_size.x:
 		global_position.x = -comet_radius
 
-
-# Function called for comet destruction
-func destruction():
-	emit_signal("destroyed", global_position, size, points)
-	queue_free()
-	
-	
-# Points awarded for comet destruction
-var points: int:
-	get:
-		match size:
-			CometSize.LARGE:
-				return 10
-			CometSize.MEDIUM:
-				return 15
-			CometSize.SMALL:
-				return 25
-			_:
-				return 0	
-
-
-# Function called when Spaceship body enters the comet's area
+# Function: _on_body_entered
+## Called when the body enters the comet's area. If the body is a spaceship, the spaceship is destroyed.
 func _on_body_entered(body):
 	if body is spaceship:
 		var spaceship: spaceship = body
 		spaceship.dead()
+
+# Function: destruction
+## Called for comet destruction. Emits the "destroyed" signal and removes the comet from the scene.
+func destruction():
+	emit_signal("destroyed", global_position, size, points)
+	queue_free()

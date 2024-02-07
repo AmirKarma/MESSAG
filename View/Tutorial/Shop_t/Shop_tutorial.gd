@@ -1,17 +1,10 @@
+## This script defines a Node2D that handles the functionality to return to the main tutorial scene when a screen press event occurs.
+
 extends Node2D
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-# Function called when the screen is pressed.
-# change the current scene back to main tutorial
+## Function called when the screen is pressed.
+## It changes the current scene back to main tutorial
 func _on_back_2_tutorial_pressed():
 	var main_tutorial: Node = load("res://Tutorial/Tutorial_1.tscn").instantiate()
 	get_tree().root.add_child(main_tutorial)

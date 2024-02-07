@@ -58,18 +58,6 @@ func initialize_ui_references():
 		score = points
 		score_display.points = score
 		
-		
-# Function: update_high_score
-# Description: Sets the high score to the current score.
-func update_high_score():
-	highscore_label.text = "Highscore: " + str(DataScript.get_minigame1_highscore())
-
-
-# Function: update_score
-# Description: Updates the current score.
-func update_score():
-	score_label.text = "Score: " + str(DataScript.get_minigame1_score())		
-
 
 func _ready():
 	initialize_ui_references()
@@ -105,6 +93,16 @@ func _process(_delta):
 	elif Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 
+# Function: update_high_score
+# Description: Sets the high score to the current score.
+func update_high_score():
+	highscore_label.text = "Highscore: " + str(DataScript.get_minigame1_highscore())
+
+
+# Function: update_score
+# Description: Updates the current score.
+func update_score():
+	score_label.text = "Score: " + str(DataScript.get_minigame1_score())		
 
 # Variable for player lives, connecting it to the UI
 var lives: int = 3:

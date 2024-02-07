@@ -43,8 +43,6 @@ func open_optionbar(id: int):
 	optionbar.set_optionbar(optionbar_pos, id)
 	optionbar.set_visible(true)
 	player.stand_still = true
-	player.set_process(false)
-	player.set_physics_process(false)
 	player.get_node("Camera2D/HUD").visible = false
 
 

@@ -73,6 +73,16 @@ var exitMapTexture: Resource = load("res://Player/MapButton/mapExit.png")
 var screen_is_pressed: bool = false
 var player_is_moving: bool = false
 
+func _ready():
+	DataScript.is_in_building_menu = false
+	screen_is_pressed = false
+	player_is_moving = false
+	mapShowPressed = false
+	free_field_pressed = false
+	stand_still = false
+	moving = false
+	reset_camera()
+
 
 # Function: _unhandled_input
 # Description: Handles unhandled input events, specifically for mouse clicks.

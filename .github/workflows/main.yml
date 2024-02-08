@@ -71,6 +71,8 @@ jobs:
   release-project:
     name: Release Project
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     needs: build
     steps:
     - name: Download site content

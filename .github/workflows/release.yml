@@ -2,11 +2,11 @@ name: CI/CD
 
 on:
   push:
-    branches: [ release ]
+    branches: [ releases ]
     tags:
       - 'v*.*'
   pull_request:
-    branches: [ release ]
+    branches: [ releases ]
 
   workflow_dispatch:
     

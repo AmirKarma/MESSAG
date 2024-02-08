@@ -75,10 +75,14 @@ jobs:
       contents: write
     needs: build
     steps:
-    - name: Download site content
+    - name: Download content
       uses: actions/download-artifact@v2
       with:
         name: build
+    
+    - name: List directory contents
+      run: ls -R
+      
     - name: Create GitHub release
       id: create-new-release
       uses: actions/create-release@v1

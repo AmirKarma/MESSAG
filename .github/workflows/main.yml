@@ -3,6 +3,8 @@ name: CI/CD
 on:
   push:
     branches: [ main, feature ]
+    tags:
+      - 'v*.*'
   pull_request:
     branches: [ main, feature ]
 
@@ -53,7 +55,6 @@ jobs:
           godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.1.2/Godot_v4.1.2-stable_linux.x86_64.zip
           godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.1.2/Godot_v4.1.2-stable_export_templates.tpz
           relative_project_path: ./View/
-          create_release: true
           archive_output: true
           wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
         env:
@@ -67,16 +68,31 @@ jobs:
             /home/runner/.local/share/godot/archives/
           retention-days: 2
 
-  release:
-    name: Release pushed tag
+  release-project:
+    name: Release Project
     runs-on: ubuntu-latest
-    steps:         
-      - name: Create release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref_name }}
-        run: |
-          gh release create "$GITHUB_REF_NAME" \
-              --repo="$GITHUB_REPOSITORY" \
-              --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
-              --generate-notes
+    if: startsWith(github.ref_name, 'v')
+    needs: build
+    steps:
+    - name: Download site content
+      uses: actions/download-artifact@v2
+      with:
+        name: build
+    - name: Create GitHub release
+      id: create-new-release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ github.run_number }}
+        release_name: Release V${{ github.run_number }}
+
+    - name: Upload release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+        asset_path: ./build.zip
+        asset_name: MESSAG-v${{ github.run_number }}.zip
+        asset_content_type: application/zip

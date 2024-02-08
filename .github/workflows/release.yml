@@ -2,11 +2,11 @@ name: CI/CD
 
 on:
   push:
-    branches: [ main, feature ]
+    branches: [ releases ]
     tags:
       - 'v*.*'
   pull_request:
-    branches: [ main, feature ]
+    branches: [ releases ]
 
   workflow_dispatch:
     
@@ -67,3 +67,57 @@ jobs:
           path: |
             /home/runner/.local/share/godot/archives/
           retention-days: 2
+
+  release-project:
+    name: Release Project
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    needs: build
+    steps:
+    - name: Download content
+      uses: actions/download-artifact@v2
+      with:
+        name: build
+    
+    - name: List directory contents
+      run: ls -R
+
+    - name: Create GitHub release
+      id: create-new-release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ github.run_number }}
+        release_name: Release V${{ github.run_number }}
+
+    - name: Upload Android release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+        asset_path: ./Android.zip
+        asset_name: Android-v${{ github.run_number }}.zip
+        asset_content_type: application/zip
+
+    - name: Upload Windows Desktop release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+        asset_path: ./WindowsDesktop.zip
+        asset_name: WindowsDesktop-v${{ github.run_number }}.zip
+        asset_content_type: application/zip
+
+    - name: Upload iOS release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+        asset_path: ./iOS.zip
+        asset_name: iOS-v${{ github.run_number }}.zip
+        asset_content_type: application/zip

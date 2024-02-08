@@ -2,11 +2,11 @@ name: CI/CD
 
 on:
   push:
-    branches: [ main, feature ]
+    branches: [ main, feature, releases ]
     tags:
       - 'v*.*'
   pull_request:
-    branches: [ feature ]
+    branches: [ main, feature ]
 
   workflow_dispatch:
     
@@ -71,7 +71,7 @@ jobs:
   release-project:
     name: Release Project
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/releases'
     permissions:
       contents: write
     needs: build

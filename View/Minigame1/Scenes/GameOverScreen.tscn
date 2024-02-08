@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://djvcmma4a72cc"]
+
+[ext_resource type="Script" path="res://Minigame1/Scripts/RetryButton.gd" id="1_ivxgs"]
+[ext_resource type="Theme" uid="uid://fk8kk11hy4lf" path="res://Minigame2/Assets/Font.tres" id="1_y145l"]
+[ext_resource type="Script" path="res://Minigame1/Scripts/ExitButton.gd" id="2_p7hpq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tktv1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wwsjt"]
+
+[node name="GameOverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_y145l")
+
+[node name="PauseBackround" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.352941)
+
+[node name="GameOverText2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 9.0
+offset_right = 290.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 34
+text = "Game Over"
+
+[node name="scoreLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.234375
+anchor_top = 0.344444
+anchor_right = 0.940625
+anchor_bottom = 0.477778
+offset_left = 8.0
+offset_top = 7.87973e-05
+offset_right = 8.0
+offset_bottom = 8.4281e-05
+text = "Score:"
+vertical_alignment = 1
+
+[node name="highscoreLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.115625
+anchor_top = 0.533333
+anchor_right = 0.95
+anchor_bottom = 0.666667
+offset_top = 5.93662e-05
+offset_bottom = 6.48499e-05
+text = "HighScore:"
+vertical_alignment = 1
+
+[node name="RetryButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 131.0
+offset_right = 140.0
+offset_bottom = 167.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tktv1")
+text = "Retry"
+script = ExtResource("1_ivxgs")
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 131.0
+offset_right = 280.0
+offset_bottom = 167.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wwsjt")
+text = "Exit"
+script = ExtResource("2_p7hpq")

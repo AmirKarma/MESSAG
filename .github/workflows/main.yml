@@ -1,22 +1,54 @@
-
-name: CI
+name: CI/CD
 
 on:
-
   push:
-    branches: [ main, feature ]
+    branches: [ main, feature, releases, devops, debug, bugfix ]
+    tags:
+      - 'v*.*'
   pull_request:
-    branches: [ main, feature ]
+    branches: [ devops, feature, debug, bugfix ]
 
   workflow_dispatch:
-
+    
 jobs:
+  check_datatypes:
+    name: Run Python script
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: python .github/workflows/check_datatypes.py
+
+  static-checks:
+    name: 'Static checks'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: Scony/godot-gdscript-toolkit@master
+      - run: gdformat ./View/
+
   build:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v4
 
-      - uses: actions/checkout@v3.3.0
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          accept-android-sdk-licenses: 'false'
+
+      - name: install wine
+        id: wine_install
+        run: |
+          sudo apt install wine64
+          echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
+          
       - name: exportGame
         uses: firebelley/godot-export@v5.2.1
         with:
@@ -24,12 +56,69 @@ jobs:
           godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.1.2/Godot_v4.1.2-stable_export_templates.tpz
           relative_project_path: ./View/
           archive_output: true
+          wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-#      - name: Artifacts
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: build 
-#          path: |
-#            /home/runner/.local/share/godot/archives/
-          
-      
+      - name: Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build 
+          path: |
+            /home/runner/.local/share/godot/archives/
+          retention-days: 2
+
+  release-project:
+    name: Release Project
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/releases'
+    permissions:
+      contents: write
+    needs: build
+    steps:
+    - name: Download content
+      uses: actions/download-artifact@v2
+      with:
+        name: build
+    
+    - name: List directory contents
+      run: ls -R
+
+    - name: Create GitHub release
+      id: create-new-release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ github.run_number }}
+        release_name: Release V${{ github.run_number }}
+
+    - name: Upload Android release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+        asset_path: ./Android.zip
+        asset_name: Android-v${{ github.run_number }}.zip
+        asset_content_type: application/zip
+
+    - name: Upload Windows Desktop release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+        asset_path: ./WindowsDesktop.zip
+        asset_name: WindowsDesktop-v${{ github.run_number }}.zip
+        asset_content_type: application/zip
+
+    - name: Upload iOS release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+        asset_path: ./iOS.zip
+        asset_name: iOS-v${{ github.run_number }}.zip
+        asset_content_type: application/zip
